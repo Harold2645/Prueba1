@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/registrar.css">
+    <title>Registrar</title>
+</head>
+<body id="cuerpo">
+    <main id="ppal">
+
+        <header id="cabeza">
+            <figure id="logo">
+                <img src="../static/img/logoSena.png" alt="Logo-Sena">
+            </figure>
+            <h2>Registrarse</h2>
+            <a href="/">Inicio</a>
+        </header>
+
+        <section id="cuerpo">
+            <form action="/guardarUsarios" method="post" enctype="multipart/form-data" >
+
+                <h2 id="alerta">{{msg}}</h2>
+
+                <label for="documento">Documento</label>
+                <input type="text" name="documento" id="documento" placeholder="C.C. / Pas / C.E. / PEP" pattern="[0-9]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento"autofocus required>
+
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" pattern="[a-zA-Z\_]" required>
+
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" pattern="[a-zA-Z\_]{1,20}" required>
+
+
+                <label for="celular">Celular</label>
+                <input type="tel" name="celular" id="celular" pattern="[0-9]{9,10}" maxlength="10" minlength="9" required>
+
+                <label for="contrasena">Contraseña</label>
+                <input type="password" name="contrasena" id="contrasena" pattern="[0-9]{7,11}" maxlength="15" minlength="6" required>
+
+                <label for="rol">Rol</label>
+                <select name="rol" id="rol" required>
+                    <option value="">Seleciona</option>
+                    <option value="Aprendiz">Aprendiz</option>
+                    <option value="Instructor">Instructor</option>
+                    <option value="Instructor">Practicante</option>
+                    <option value="Trabajador">Trabajador de planta</option>
+
+                </select>
+
+                <label for="ficha">Ficha</label>
+                <input type="text" name="ficha" list="fichas">
+                <datalist name="fichas" id="fichas" >
+                    {% for ficha in fichas %}
+                    <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
+                    {% endfor %}
+                </datalist>
+
+
+                <button type="submit" id="registrar">Registrar</button>
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>

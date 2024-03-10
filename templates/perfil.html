@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/perfil.css">
+    <title>Perfil de Usuario</title>
+</head>
+<body>
+
+    <main id="ppal">
+
+        <header id="cabeza">
+            <figure id="logo">
+                <img src="../static/img/logoSena.png" alt="Logo-Sena">
+            </figure>
+            <a href="/Correcto">Inicio</a>
+        </header >
+        
+        <section id="cuerpo">
+            <h2>Perfil de Usuario</h2>
+            <table>
+                <tr>
+                    <th>Documento:</th>
+                    <td>{{ res[0][0] }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre:</th>
+                    <td>{{ res[0][1] }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido:</th>
+                    <td>{{ res[0][2] }}</td>
+            </tr>
+            <tr>
+                <th>Celular:</th>
+                <td>{{ res[0][3] }}</td>
+            </tr>
+            <tr>
+                <th>Contraseña:</th>
+                <td>{{ res[0][4] }}</td>
+            </tr>
+            <tr>
+                <th>Rol:</th>
+                <td>{{ res[0][5] }}</td>
+            </tr>
+            <tr>
+                <th>Ficha:</th>
+                <td>{{ res[0][6] }}</td>
+            </tr>
+        </table>
+    </section>
+</main>
+</body>
+</html>
