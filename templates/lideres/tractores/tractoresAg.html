@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/agregarTractor.css">
+    <title>Inicio</title>
+</head>
+<body>
+    
+    <main id="cuerpo">
+        
+        <header id="cabeza">
+            <h1>Hangar</h1>
+            <a href="/Correcto">Inicio</a>
+        </header>
+
+        <section id="agregar">
+            <form id="agregar_tractor" name="agregar_tractor" action="/guardarTractor" method="post" enctype="multipart/form-data">
+                <h2>Agregar Tractores</h2>
+                <h4>{{msg}}</h4>
+
+                <label for="id_tractor">Identificador</label>
+                <input type="text" name="id_tractor" id="id_tractor" required>
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" >
+
+                <label for="id_categoria">Categoria:</label>
+                <select name="id_categoria" id="id_categoria" required>
+                    <option value="">--Seleccione--</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria[0] }}" {% if categoria[0]  %}selected{% endif %}>{{ categoria[1] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado" required>
+                    <option value="">--Seleccione uno--</option>
+                    <option value="Bueno">Bueno</option>
+                    <option value="Malo">Malo</option>
+                    <option value="Reparacion">Reparacion</option>
+                </select>
+
+                <label for="disponibilidad">Disponibilidad:</label>
+                <select name="disponibilidad" id="disponibilidad" required>
+                    <option value="">--Seleccione uno--</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="Ocupado">Ocupado</option>
+                </select>
+
+                <button type="submit">Guardar</button>
+
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

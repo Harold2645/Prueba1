@@ -11,7 +11,8 @@ from models.novedades import misNovedades
 @app.route('/registrar')
 def registrar():
     fichas = misUsuarios.buscarFicha()
-    return render_template("registrar.html",fichas=fichas)
+    vFicha = [ficha[0] for ficha in fichas ]
+    return render_template("registrar.html",fichas=vFicha)
 
 # Funcion Guardar Usuarios
 @app.route("/guardarUsarios", methods=['POST'])

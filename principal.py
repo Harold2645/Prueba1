@@ -2,6 +2,8 @@ from flask import render_template, send_from_directory, session
 from conexion import *
 from routes.usuarios import *
 from routes.novedades import *
+from routes.categorias import *
+from routes.inventario import *
 
 @app.route('/uploads/<nombre>')
 def uploads(nombre):

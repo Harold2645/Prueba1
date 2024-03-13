@@ -8,7 +8,7 @@ from models.funciones import misCategorias
 def consultaTractores():
     if session.get("loginCorrecto"):
         resultado = misTracores.todoslosTractores()
-        return render_template("tractores/todoslosTractores.html", res=resultado)
+        return render_template("lideres/tractores/verTractores.html", res=resultado)
     else:
         return redirect('/')
 
@@ -17,7 +17,7 @@ def consultaTractores():
 def agregaarticulo():
     if session.get("loginCorrecto"):
         categorias = misCategorias.categoriasTractor()
-        return render_template("tractores/agregarTractores.html", categorias=categorias)
+        return render_template("lideres/tractores/tractoresAg.html", categorias=categorias)
     else:
         return redirect('/')
 
@@ -30,10 +30,10 @@ def guardararticulo():
     disponibilidad = request.form['disponibilidad']
     if misTracores.buscar(idObjeto):
         categorias = misCategorias.categoriasTractor()
-        return render_template("tractores/agregarTractores.html", msg="Id ya existente", categorias=categorias)
+        return render_template("lideres/tractores/tractoresAg.html", msg="Id ya existente", categorias=categorias)
     else:
         misTracores.agregar([idObjeto,nombre,idCategoria,estado,disponibilidad])
-        return redirect("/tractores")
+        return redirect("/consultarTractores")
 
 #borrar tractores 
 @app.route('/borrarTractor/<idObjetos>')
@@ -47,7 +47,7 @@ def editarTractor(idObjeto):
     if session.get("loginCorrecto"):
         tractor = misTracores.buscar(idObjeto)
         categorias = misCategorias.categoriasTractor()
-        return render_template("tractores/modificarTractor.html",tractor=tractor[0], categorias=categorias)
+        return render_template("lideres/tractores/tractoresEd.html",tractor=tractor[0], categorias=categorias)
     else:
         return redirect('/')
     
@@ -61,7 +61,7 @@ def actualizarTractor():
     activo = request.form['activo']
     modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
     misTracores.modificar(modif)
-    return redirect("/tractores")
+    return redirect("/consultarTractores")
 
 
 #herramientas
