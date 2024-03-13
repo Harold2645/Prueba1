@@ -18,7 +18,7 @@ class Tractores:
         return resultado
     
     def agregar(self, tractor):
-        sql = f"INSERT INTO objetos (idObjeto, nombre, idCategoria, estado, disponibilidad, activo, foto, tipo) VALUES ('{tractor[0]}', '{tractor[1]}', '{tractor[2]}', '{tractor[3]}', '{tractor[4]}', '1','{tractor[5]}', 'tractor')"
+        sql = f"INSERT INTO `objetos` (`idobjeto`, `idcategoria`, `nombre`, `disponibilidad`, `tipo`, `foto`, `activo`, `fecha`, `creador`) VALUES ('{tractor[0]}', '{tractor[1]}', '{tractor[2]}', '{tractor[3]}', 'tractor', '{tractor[4]}', '1', '{tractor[5]}', '{tractor[6]}')"
         self.cursor.execute(sql)
         
     def buscar(self,idObjeto):

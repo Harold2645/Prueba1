@@ -1,2 +1,48 @@
-<a href="/">Login</a>
-<h1>Eres una usuario lider</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/novedades.css">
+    <title>Novedades</title>
+</head>
+<body>
+    <main>
+
+        <header>
+            <h2>Novedades</h2>
+        </header>
+
+        <a href="/tractores">Inicio</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Id del objeto</th>
+                    <th>Documento</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>                    
+                    <th>Descripcion</th>
+                    <th>Foto</th>
+                    <th>Creador</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nove in res %}
+                <tr>
+                    <th>{{nove[0]}}</th>
+                    <th>{{nove[1]}}</th>
+                    <th><a href="/perfil/{{ nove[2] }}">{{ nove[2] }}</a></th>                    
+                    <th>{{nove[3]}}</th>
+                    <th>{{nove[4]}}</th>
+                    <th>{{nove[5]}}</th>
+                    <th>{{nove[6]}}</th>
+                    <th>{{nove[7]}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

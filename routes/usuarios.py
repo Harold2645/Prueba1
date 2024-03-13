@@ -43,11 +43,9 @@ def login():
     sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}'"
     cur.execute(sql)
     resultado = cur.fetchone()
-
     if resultado is None:
         return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
     else:
-        print(resultado)
         documento = resultado['documento']
         nombre = resultado['nombre']
         apellido = resultado['apellido']
@@ -68,7 +66,7 @@ def redireccion():
             resultado = misTracores.consultarTractor()
             return render_template('usuarios/tractores.html', res=resultado)
         elif rol == 'Admin' or rol == 'Practicante':
-            resultado = misNovedades.consultar()
+            resultado = misNovedades.consultarNovedades()
             return render_template('lideres/novedades/novedades.html', res=resultado)
         else:
             return render_template("index.html", msg="Rol no reconocido")
@@ -77,7 +75,7 @@ def redireccion():
     
 #Interfaz Perfil
 @app.route('/perfilPropio')
-def perfil():
+def perfilpropio():
         if session.get("loginCorrecto"):
             documento = session['documento']
             if misUsuarios.buscar(documento):
@@ -85,5 +83,23 @@ def perfil():
                     return render_template("perfil.html", res=resultado1)
             else:
                 return redirect('/login')
+        else:
+            return redirect('/')
+        
+#Perfil
+@app.route('/perfil/<documento_parm>')
+def perfil(documento_parm):
+    rol = session.get('rol')
+    if rol == 'Admin':
+        if misUsuarios.buscar(documento_parm):
+                resultado1 = misUsuarios.buscar(documento_parm)
+                return render_template("perfil.html", res=resultado1)
+        else:
+            return redirect('/')
+    else:
+        documento = session['documento']
+        if misUsuarios.buscar(documento):
+                resultado1 = misUsuarios.buscar(documento)
+                return render_template("perfil.html", res=resultado1)
         else:
             return redirect('/')
