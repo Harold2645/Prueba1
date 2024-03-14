@@ -104,3 +104,12 @@ def perfil(documento_parm):
                 return render_template("perfil.html", res=resultado1)
         else:
             return redirect('/')
+        
+#mostar usuarios 
+@app.route('/usuarios')
+def clientes():
+    if session.get("loginCorrecto"):
+        resultado = misUsuarios.consultar()
+        return render_template("usuarios.html", res=resultado)
+    else:
+        return redirect('/')

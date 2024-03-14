@@ -18,7 +18,9 @@ def consultaCategorias():
 @app.route('/agregarCategoria')
 def agregarCategoria():
     if session.get("loginCorrecto"):
-        return render_template("lideres/categorias/categoriaAg.html")
+        descripcion = misCategorias.buscarCate()
+        descri = [descrip[0] for descrip in descripcion]
+        return render_template("lideres/categorias/categoriaAg.html", descripciones=descri)
     else:
         return redirect('/')
 

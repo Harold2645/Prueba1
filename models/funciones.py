@@ -37,6 +37,12 @@ class Categorias:
         sql = f"DELETE FROM categorias WHERE `idCategoria` = {idCategoria}"
         self.cursor.execute(sql)
 
+    def buscarCate(self):
+        sql = "SELECT descripcion FROM categorias"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
 
 
 

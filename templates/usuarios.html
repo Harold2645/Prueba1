@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/usuarios.css">
+    <title>Gestión de clientes</title>
+</head>
+<body>
+    <header>
+        <h1>Gestión de Usuarios</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/Correcto">Inicio</a></li>
+            <li><a href="/registrar">Registrar Usuario</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Nombre Completo</th>
+                    <th>Celular</th>
+                    <th>Rol</th>
+                    <th>Ficha</th>
+                    <th>Fecha de Registro</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usu in res %}
+                <tr>
+                    <td>{{usu[0]}}</td>
+                    <td>{{usu[1]}} {{usu[2]}}</td>
+                    <td>{{usu[3]}} </td>
+                    <td>{{usu[5]}}</td>
+                    <td>{{usu[6]}}</td>
+                    <td>{{usu[7]}}</td>
+                    <td>{{usu[8]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>© 2024 Hangar - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

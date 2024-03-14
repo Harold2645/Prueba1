@@ -26,8 +26,16 @@
                     <option value="">--Selecciona--</option>
                     <option value="Tractor">Tractor</option>
                     <option value="Herramienta">Herramienta</option>
-                    <option value="Consumible">Consumible</option>
+                    <option value="Insumo">Consumible</option>
                 </select>
+
+                <label for="descripcion">Descripcion:</label> 
+                <input type="text" name="descripcion" id="descripcion" list="descrip" placeholder="Descripcion de la categoria" required>
+                <datalist name="descrip" id="descrip" >
+                    {% for descri in descripciones %}
+                    <option value="{{ descri }}" {% if descri %} selected {% endif %}></option>
+                    {% endfor %}
+                </datalist>
 
                 <button type="submit">Guardar</button>            
                 <a href="/consultarCategorias">Cancelar</a>
