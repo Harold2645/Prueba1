@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/todoslosTractores.css">
+    <title>Consumibles</title>
+</head>
+<body>
+    <header id="cabeza">
+        <h1>Hangar</h1>
+        <a href="/tractores">Inicio</a>
+    </header>
+
+    <main id="cuerpo">
+        <table>
+            <thead>
+                <tr>
+                    <th>Identificador</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Estado</th>
+                    <th>Disponibilidad</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cons in res %}
+                    <tr>
+                        <td>{{cons[0]}}</td>
+                        <td>{{cons[1]}}</td>
+                        <td>{{cons[2]}}</td>
+                        <td>{{cons[5]}}</td>
+                        <td>{{cons[4]}}</td>
+                        <td>{{cons[8]}}</td>
+                        <td>
+                            <a href="editarConsumibles/{{cons[0]}}">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>

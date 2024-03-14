@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/categorias.css">
+    <title>Categorias</title>
+</head>
+<body>
+    <main>
+
+        <header>
+            <h2>Categorias</h2>
+        </header>
+
+        <a href="/tractores">Inicio</a>
+        <a href="/agregarCategoria">Agregar Categorias</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cate in res %}
+                <tr>
+                    <th>{{cate[0]}}</th>
+                    <th>{{cate[1]}}</th>
+                    <th>{{cate[2]}}</th>
+                    <th>
+                        <a href="borrarCategoria/{{cate[0]}}">Eliminar</a>
+                    </th> 
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+</body>
+</html>

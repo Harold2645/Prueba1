@@ -1,3 +1,4 @@
+from datetime import datetime
 from conexion import *
 from flask import redirect, render_template, request, session
 from models.funciones import misCategorias
@@ -25,7 +26,12 @@ def agregarCategoria():
 def guardarCategoria():
     nombre = request.form['nombre_categoria']
     tipo = request.form['tipo_categoria']
-    misCategorias.agregarCategoria([nombre, tipo])
+    descripcion = request.form['descripcion']
+    ahora = datetime.now()
+    fecha = ahora.strftime("%Y%m%d%H%M%S")
+    documento = session['documento']
+    creador = documento
+    misCategorias.agregarCategoria([nombre, tipo, descripcion, fecha, creador])
     return redirect("/consultarCategorias")
 
 #borrar categorias

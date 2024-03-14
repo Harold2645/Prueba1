@@ -30,7 +30,7 @@ class Categorias:
         return categorias
 
     def agregarCategoria(self, categ):
-        sql = f"INSERT INTO categorias (nombre, tipo) VALUES ('{categ[0]}', '{categ[1]}')"
+        sql = f"INSERT INTO `categorias` (`nombre`, `tipo`, `descripcion`, `fecha`, `creador`) VALUES ('{categ[0]}', '{categ[1]}', '{categ[2]}', '{categ[3]}', '{categ[4]}')"
         self.cursor.execute(sql)
         
     def borrarCategoria(self, idCategoria):

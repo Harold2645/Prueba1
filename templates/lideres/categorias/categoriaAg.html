@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/agregarCategorias.css">
+    <title>Agregar Categoria</title>
+</head>
+<body>
+    
+    <main id="cuerpo">
+        
+        <header id="cabeza">
+            <h1>Categorias</h1>
+        </header>
+
+        <section id="agregar">
+            <form id="agregar_categorias" name="agregar_categorias" action="/guardarCategoria" method="post" enctype="multipart/form-data">
+                <h2>Agregar Categorias</h2>
+
+                <label for="nombre_categoria">Nombre</label>
+                <input type="text" name="nombre_categoria" id="nombre_categoria" placeholder="Nombre de la categoria" required>
+
+                <label for="tipo_categoria">Tipo de categoria</label>
+                <select name="tipo_categoria" id="tipo_categoria" required>
+                    <option value="">--Selecciona--</option>
+                    <option value="Tractor">Tractor</option>
+                    <option value="Herramienta">Herramienta</option>
+                    <option value="Consumible">Consumible</option>
+                </select>
+
+                <button type="submit">Guardar</button>            
+                <a href="/consultarCategorias">Cancelar</a>
+
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

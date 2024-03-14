@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/todoslosTractores.css">
+    <title>Tractores</title>
+</head>
+<body>
+    <header id="cabeza">
+        <h1>Hangar</h1>
+        <a href="/tractores">Atras</a>
+    </header>
+
+    <main id="cuerpo">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id Herramienta</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Estado</th>
+                    <th>Disponibilidad</th>
+                    <th>Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for herra in res %}
+                    <tr>
+                        <td>{{herra[0]}}</td>
+                        <td>{{herra[1]}}</td>
+                        <td>{{herra[2]}}</td>
+                        <td>{{herra[5]}}</td>
+                        <td>{{herra[4]}}</td>
+                        <td>{{herra[8]}}</td>
+                        <td>
+                            <a href="editarHerramienta/{{herra[0]}}">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>

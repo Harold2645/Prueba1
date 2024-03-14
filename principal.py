@@ -14,5 +14,9 @@ def index():
     session["logueado"] = False
     return render_template('/index.html') 
 
+@app.route('/funciones')
+def funciones():
+    return render_template("funciones.html")
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port="5080")

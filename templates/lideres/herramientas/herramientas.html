@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
+    <link rel="shortcut icon" href="../static/true.png" type="image/x-icon">
+    <title>Inicio</title>
+</head>
+<body>
+    
+
+    <main id="ppal">
+    <header id="cabeza">
+
+        <figure id="marca"><img src="../static/true.png" alt="SENA logotipo"></figure>
+
+        <h1>Hangar</h1>
+
+        <nav id="menu_admor">
+            <i class="lni lni-menu" id="disparador"></i>
+            <ul id="opcs_menu">
+                <li><a href="/usuarios">Usuarios</a></li>
+                <li><a href="/iniciar">Login</a></li>
+                <li><a href="/funciones">Funciones Admin</a></li>
+                <li><a href="/agregarHerramienta" >Agregar herramientas</a></li>
+                <li><a href="/">CERRAR SESIÓN</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="cont_mayor">
+        <section id="links" class="Titulo">
+            <a href="/consultarConsumibles"><i class="lni lni-chevron-left" id="left"></i></a>
+            <h2>herramientas</h2>
+            <a href="/tractores"><i class="lni lni-chevron-right"></i></a>
+        </section>
+        <section id="cont_paneles">
+            {% for herra in res %}
+                <article class="mosaico" id="reservas">
+                    <h2>{{herra[1]}}</h2>
+                    <h6>Id Herramienta: {{herra[0]}}</h6>
+                    <h6>Categoria: {{herra[2]}} </h6>
+                    <h6>Disponibilidad: {{herra[8]}}</h6>
+    
+                    <section id="cont_link" >
+                        <a href="editarHerramienta/{{herra[0]}}">Editar</a>
+                        <a href="borrarHerramienta/{{herra[0]}}">Eliminar</a>
+                    </section>
+    
+                    
+                        
+                </article>
+            {% endfor %}
+            
+        </section>
+    </section>
+    </main>
+
+</body>
+</html>
