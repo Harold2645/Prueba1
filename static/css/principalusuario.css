@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+body, html{
+    margin: 0;
+    padding: 0;
+}
+figure{
+    padding: 0;
+    margin: 0;
+}
+@media only screen and (min-width: 360px){
+    .logo_sena{
+
+    }
+    #logo_sena{
+        background-color: black;
+        width: 90px;
+        height: 80px;
+    }
+    .tresuno{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        margin-top: -80px;
+    }
+        article#art_tractores{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 35px 0px 10px 120px;
+            padding: 5px;
+            background-color: blueviolet;
+        }
+            h1#titulo1{
+                font-size: clamp(5px, 5vw, 15px);
+            }
+            figure#foto_tractor{
+
+            }
+                img#foto_tractor{
+                    width: 60px;
+                    height: 50px;
+                }
+            p#parrafo_tractores{
+                font-size: clamp(5px, 5vw, 12px);
+            }
+            form#form_tractores{
+
+            }
+                button#button_tractores{
+                    font-size: clamp(5px, 5vw, 12px);
+                    padding: 3px;
+                    border-radius: 5px;
+                }
+        
+        article#art_herramientas{
+            display: flex;
+            background-color: blue;
+            align-items: center;
+            flex-direction: column;
+            margin: 35px 0px 10px 120px;
+            padding: 5px;
+        }
+            h1#titulo2{
+                font-size: clamp(5px, 5vw, 15px);
+            }
+            figure#foto_herramienta{
+
+            }
+                img#foto_herramienta{
+                    width: 60px;
+                    height: 50px;
+                }
+            form#form_herramientas{
+
+            }
+                input#buscar_herramientas{
+                    font-size: clamp(5px, 5vw, 12px);
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+                button#button_herramientas{
+                    font-size: clamp(5px, 5vw, 12px);
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+            p#parrafo_herramientas{
+                font-size: clamp(5px, 5vw, 12px);
+            }
+        article#art_insumos{
+            display: flex;
+            background-color: aqua;
+            align-items: center;
+            flex-direction: column;
+            margin: 35px 0px 10px 120px;
+            padding: 5px;
+        }
+            h1#titulo3{
+                font-size: clamp(5px, 5vw, 15px);
+            }
+            figure#foto_insumo{
+
+            }
+                img#foto_insumo{
+                    width: 60px;
+                    height: 50px;
+                }
+            form#form_insumos{
+
+            }
+                input#buscar_insumo{
+                    font-size: clamp(5px, 5vw, 12px);
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+                button#button_insumos{
+                    font-size: clamp(5px, 5vw, 12px);
+                    border-radius: 5px;
+                    padding: 3px;
+                }
+            p#parrafo_insumos{
+                font-size: clamp(5px, 5vw, 12px);
+            }
+
+}
+@media only screen and (min-width: 768px){
+}
+@media only screen and (min-width: 1024px){
+}

@@ -1,0 +1,135 @@
+:root{
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon: #CB7766;
+    --blanco: #fefefe;
+    --negro: #070707;
+}
+
+*{
+    box-sizing: border-box;
+    transition: all 0,3s;
+}
+::placeholder, ::-moz-placeholder{
+    color: inherit;
+    font-family: inherit;
+}
+figure{
+    margin: 0;
+    padding: 0;
+}
+    figure img{
+        margin: 0;
+        padding: 0;
+        width: 80px;
+    }
+body, html{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(../img/fondo_hangar_dark.jpg);/*Aqui va el fondo*/
+    background-position: center;
+    font-size: 16px;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header#cabeza{
+    background: rgb(254,254,254);
+    margin: 0;
+    padding: 5px 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    #cabeza #logo{
+        width: 80px;
+    }
+main#ppal {
+    max-width: 400px;
+    max-height: 800px;
+    background-color: var(--blanco); 
+    padding: 20px;
+    margin: 15px;
+}
+h2 {
+    color: var(--azul-dark); 
+    margin: 0;    
+}
+h2#alerta{
+    color: red;
+    padding: 10px 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+.grupos1{
+    display: flex;
+}
+    .grupos1 input{
+        min-width: 21vw;
+    }
+section#cuerpo{
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    color: var(--negro); 
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: none;
+    border-bottom: 2px solid var(--logo-sena); 
+    border-right: 2px solid var(--logo-sena);
+}
+
+button#registrar {
+    background-color: var(--logo-sena); 
+    color: #ffffff; 
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    color: var(--logo-sena); 
+    padding: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+@media screen and (min-width: 800px) {
+
+    #cuerpo {
+        justify-content: flex-end;
+    }
+    .grupos1 input{
+        min-width: 17vw;
+    }
+}
+@media screen and (min-width: 1080px) {
+    .grupos1 input{
+        min-width: 9vw;
+    }
+}
+
+

@@ -72,7 +72,8 @@ input {
     border-bottom: solid 1px var(--negro);
 }
 a#registrar{
-    color: var(--azul-dark);
+    color: var(--logo-sena); 
+    cursor: pointer;
     display: block;
     text-align: center;
     margin: 20px 0;

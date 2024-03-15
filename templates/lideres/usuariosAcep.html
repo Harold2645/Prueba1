@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/novedades.css">
+    <title>Princial</title>
+</head>
+<body>
+    <main>
+
+        <header id="cabeza">
+
+            <!-- <figure id="marca">
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="SENA logotipo">
+            </figure> -->
+
+            <h1>Hangar</h1>
+            <nav id="menu_admor">
+                <i class="lni lni-menu" id="disparador"></i>
+                <ul id="opcs_menu">
+                    <li><a href="/usuarios">Usuarios</a></li>
+                    <li><a href="/funciones">Funciones Admin</a></li>
+                    <li><a href="/agregarTractor" >Agregar Tractores</a></li>
+                    <li><a href="/">CERRAR SESIÓN</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="Usuarios">
+            <h4>Usuarios por aceptar</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre Completo</th>
+                        <th>Celular</th>
+                        <th>Rol</th>
+                        <th>Ficha</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+                {% for usua in usu %}
+                <tr>
+                    <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
+                    <th>{{usua[1]}} {{usua[2]}}</th>
+                    <th>{{usua[3]}}</th>
+                    <th>{{usua[5]}}</th>
+                    <th>{{usua[6]}}</th>
+                    <th><a href="/aceptar/{{usua[0]}}">Aceptar</a></th>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

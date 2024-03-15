@@ -37,16 +37,13 @@
         <section id="cont_paneles">
             {% for trac in res %}
                 <article class="mosaico" id="reservas">
-                    <h2>{{trac[1]}}</h2>
+                    <h2>{{trac[2]}}</h2>
                     <h6>Id Tractor: {{trac[0]}}</h6>
-                    <h6>Categoria: {{trac[2]}} </h6>
-                    <h6>Disponibilidad: {{trac[8]}}</h6>
-    
-                    <section id="cont_link" >
-                    </section>
-    
-                    
-                        
+                    <h6>Categoria: {{trac[1]}} </h6>
+                    <h6>Disponibilidad: {{trac[3]}}</h6>
+                    <figure>
+                        <img src="uploads/{{trac[6]}}" alt="{{trac[2]}}">
+                    </figure>
                 </article>
             {% endfor %}
             

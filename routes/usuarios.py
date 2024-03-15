@@ -5,6 +5,7 @@ from conexion import *
 from models.usuarios import misUsuarios
 from models.inventario import misTracores
 from models.novedades import misNovedades
+# from models.funciones import misPrestamos
 
 
 #Interfaz registrar usuarios
@@ -64,16 +65,41 @@ def redireccion():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            resultado = misTracores.consultarTractor()
-            return render_template('usuarios/tractores.html', res=resultado)
+            return render_template('usuarios/principalUsu.html')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.consultarNovedades()
-            return render_template('lideres/novedades/novedades.html', res=resultado)
+            usuarios = misUsuarios.consultAcepta()
+            # prestamos= misPrestamos.consultar()
+            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios)
+        # ,pres=prestamos
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
     
+
+#Aceptar usuario
+@app.route('/aceptar/<documento_parm>')
+def aceptar(documento_parm):
+    misUsuarios.aceptarSi(documento_parm)
+    return redirect('/Correcto')
+
+#Interfaz solo para aceptar Usuarios
+@app.route('/aceptarUsuarios')
+def aceptarUsuario():
+    if session.get("loginCorrecto"):
+        rol = session['rol']
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect ('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            usuarios = misUsuarios.consultAcepta()
+            return render_template("lideres/usuariosAcep.html", usu=usuarios)
+        else:
+                return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
+
+
 #Interfaz Perfil
 @app.route('/perfilPropio')
 def perfilpropio():
@@ -105,6 +131,7 @@ def perfil(documento_parm):
         else:
             return redirect('/')
         
+        
 #mostar usuarios 
 @app.route('/usuarios')
 def clientes():
@@ -113,3 +140,7 @@ def clientes():
         return render_template("usuarios.html", res=resultado)
     else:
         return redirect('/')
+    
+@app.route("/principalusuarios")
+def usuarios():
+    return render_template('usuarios/principalUsu.html')

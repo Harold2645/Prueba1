@@ -25,7 +25,8 @@ class Usuario:
     def consultAcepta(self):
         sql = "SELECT * FROM usuarios WHERE activo=2"
         self.cursor.execute(sql)
-        self.mysql.commit()
+        resultado = self.cursor.fetchall()
+        return resultado
 
     def aceptarSi(self, documento):
         sql = f"UPDATE usuarios  SET activo=1 WHERE documento={documento}"

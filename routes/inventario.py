@@ -2,7 +2,24 @@ from flask import redirect, render_template, request, session
 from conexion import *
 from models.inventario import misHerramientas, misInsumos, misLiquidos, misTracores
 from models.funciones import misCategorias
+from datetime import datetime
 
+
+
+#Tractores
+@app.route('/tractores')
+def tractores():
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        resultado = misTracores.consultarTractor()
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return render_template('usuarios/tractores.html', res=resultado)
+        elif rol == 'Admin' or rol == 'Practicante':
+            return render_template('lideres/tractores/tractores.html', res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
 
 @app.route('/consultarTractores')
 def consultaTractores():
@@ -23,16 +40,24 @@ def agregaarticulo():
 
 @app.route("/guardarTractor" ,methods=['POST'])
 def guardararticulo():
+    documento = session['documento'] 
     idObjeto = request.form['id_tractor']
     nombre = request.form['nombre']
     idCategoria = request.form.get('id_categoria')
-    estado = request.form['estado']
     disponibilidad = request.form['disponibilidad']
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    creador = documento
     if misTracores.buscar(idObjeto):
         categorias = misCategorias.categoriasTractor()
         return render_template("lideres/tractores/tractoresAg.html", msg="Id ya existente", categorias=categorias)
     else:
-        misTracores.agregar([idObjeto,nombre,idCategoria,estado,disponibilidad])
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "A"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        print(foto.filename,nombreFoto)
+        foto.save("uploads/"+nombreFoto)
+        misTracores.agregar([idObjeto,idCategoria,nombre,disponibilidad,nombreFoto,fecha,creador])
         return redirect("/consultarTractores")
 
 #borrar tractores 
@@ -70,12 +95,12 @@ def consultaHerramientas():
     if session.get("loginCorrecto"):
         rol = session['rol']
         resultado = misHerramientas.consultarHerramientas()
-        if rol == 'Aprendiz':
-            return render_template('Aprendiz/herramientasA.html', res=resultado)
-        elif rol == 'Instructor':
-            return render_template("Instructor/herramientaIns.html", res=resultado)
-        elif rol == 'Admin':
-            return render_template("herramientas/herramientas.html", res=resultado)
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return render_template('usuarios/herramientas.html', res=resultado)
+        elif rol == 'Admin' or rol == 'Practicante':
+            return render_template("lideres/herramientas/herramientas.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -83,7 +108,7 @@ def consultaHerramientas():
 def consultalasHerramientas():
     if session.get("loginCorrecto"):
         resultado = misHerramientas.todaslasHerramientas()
-        return render_template("herramientas/todaslasHerramientas.html", res=resultado)
+        return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
     else:
         return redirect('/')
 
@@ -92,7 +117,7 @@ def consultalasHerramientas():
 def agregarHerramienta():
     if session.get("loginCorrecto"):
         categorias = misCategorias.categoriasHerramienta()
-        return render_template("herramientas/agregarHerramientas.html", categorias=categorias)
+        return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
     else:
         return redirect('/')
 
@@ -105,7 +130,7 @@ def guardarHerramienta():
     disponibilidad = request.form['disponibilidad']
     if misHerramientas.buscar(idObjeto):
         categorias = misCategorias.categoriasTractor()
-        return render_template("herramientas/agregarHerramienta.html", msg="Id ya existente", categorias=categorias)
+        return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
     else:
         misHerramientas.agregar([idObjeto,nombre,idCategoria,estado,disponibilidad])
         return redirect("/consultarHerramientas")
@@ -122,7 +147,7 @@ def editarHerramienta(idObjeto):
     if session.get("loginCorrecto"):
         herramienta = misHerramientas.buscar(idObjeto)
         categorias = misCategorias.categoriasHerramienta()
-        return render_template("herramientas/modificarherramienta.html",herramienta=herramienta[0], categorias=categorias)
+        return render_template("lideres/herramientas/herramientasEd.html",herramienta=herramienta[0], categorias=categorias)
     else:
         return redirect('/')
     
