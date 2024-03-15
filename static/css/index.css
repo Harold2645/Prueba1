@@ -21,7 +21,7 @@
 figure{
     margin: auto;
     padding: 0;
-    width: 100px;
+    width: 210px;
 }
     figure img{
         margin: 0;
@@ -44,8 +44,7 @@ body{
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
-    background-image: url(../img/fondo_hangar_dark.jpg) ;
-    background-position: center;
+    background: url(../img/fondo_hangar_dark.jpg) center center / cover no-repeat;
 }
 
 form#login {
@@ -63,11 +62,12 @@ label {
     display: block;
     margin: 10px 0 5px;
     color: var(--negro); 
+    font-size: 0.8em;
 }
 input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 32px;
     border: none;
     border-bottom: solid 1px var(--negro);
 }
@@ -76,7 +76,7 @@ a#registrar{
     cursor: pointer;
     display: block;
     text-align: center;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
     text-decoration: none;
     font-size: 12px;
 }
@@ -109,7 +109,7 @@ div#boton{
     form#login {
         padding: 20px;
         min-width: 320px;
-        margin-right: 50px;
+        margin-right: 20%;
     }
     
 }
@@ -122,8 +122,8 @@ div#boton{
 }
 @media screen and (min-width: 1800px) {
     form#login {
-        min-width: 550px;
-        min-height: 400px;
+        min-width: 420px;
+        min-height: 200px;
         padding: 30px;
     }
     label {
