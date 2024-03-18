@@ -13,20 +13,26 @@ def consultaConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
         resultado = misInsumos.consultarinsumos()
-        if rol == 'Aprendiz':
-            return render_template('Aprendiz/consumiblesA.html', res=resultado)
-        elif rol == 'Instructor':
-            return render_template("Instructor/consumiblesIns.html", res=resultado)
-        elif rol == 'Admin':
-            return render_template("consumibles/consumibles.html", res=resultado)
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return render_template('usuarios/insumos.html', res=resultado)
+        elif rol == 'Admin' or rol == 'Practicante':
+            return render_template("lideres/insumos/insumos.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
     
 @app.route('/consultarlosConsumibles')
 def consultalarConsumibles():
     if session.get("loginCorrecto"):
-        resultado = misInsumos.todoslosinsumos()
-        return render_template("consumibles/todaslasConsumibles.html", res=resultado)
+        rol = session['rol']
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misInsumos.todoslosinsumos()
+            return render_template("lideres/insumos/verInsumos.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -34,29 +40,46 @@ def consultalarConsumibles():
 @app.route("/agregarConsumibles")
 def agregarConsumibles():
     if session.get("loginCorrecto"):
-        categorias = misCategorias.categoriasConsumibles()
-        return render_template("consumibles/agregarConsumibles.html", categorias=categorias)
+        rol = session['rol']
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            categorias = misCategorias.categoriasInsumos()
+            return render_template("lideres/insumos/insumosAg.html", categorias=categorias)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
 @app.route("/guardarConsumibles" ,methods=['POST'])
 def guardarConsumibles():
-    idObjeto = request.form['id_Consumible']
-    nombre = request.form['nombre']
+    documento = session['documento'] 
     idCategoria = request.form.get('id_categoria')
+    nombre = request.form['nombre']
     cantidad = request.form['cantidad']
-    if misInsumos.buscar(idObjeto):
-        categorias = misCategorias.categoriasTractor()
-        return render_template("consumibles/agregarConsumible.html", msg="Id ya existente", categorias=categorias)
-    else:
-        misInsumos.agregar([idObjeto,nombre,idCategoria,cantidad])
-        return redirect("/consultarConsumibles")
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    creador = documento
+    fnombre,fextension = os.path.splitext(foto.filename)
+    nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+    foto.save("uploads/"+nombreFoto)
+    misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
+    print(idCategoria,nombre,cantidad,nombreFoto,fecha,creador)
+    return redirect("/consultarConsumibles")
 
 #borrar Consumibles 
 @app.route('/borrarConsumibles/<idObjetos>')
 def borrarConsumibles(idObjetos):
     misInsumos.borrar(idObjetos)
     return redirect('/consultarConsumibles')
+
+
+
+#Falta organizar
+
+
+
 
 #editar Consumibles
 @app.route('/editarConsumibles/<idObjeto>')

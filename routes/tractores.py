@@ -45,7 +45,6 @@ def guardararticulo():
     idCategoria = request.form.get('id_categoria')
     disponibilidad = request.form['disponibilidad']
     foto = request.files['foto']
-    ahora = datetime.now()
     fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     creador = documento
     if misTracores.buscar(idObjeto):
@@ -53,8 +52,7 @@ def guardararticulo():
         return render_template("lideres/tractores/tractoresAg.html", msg="Id ya existente", categorias=categorias)
     else:
         fnombre,fextension = os.path.splitext(foto.filename)
-        nombreFoto = "A"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-        print(foto.filename,nombreFoto)
+        nombreFoto = "A"+fecha.strftime("%Y%m%d%H%M%S")+fextension
         foto.save("uploads/"+nombreFoto)
         misTracores.agregar([idObjeto,idCategoria,nombre,disponibilidad,nombreFoto,fecha,creador])
         return redirect("/consultarTractores")

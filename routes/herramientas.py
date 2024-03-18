@@ -41,16 +41,23 @@ def agregarHerramienta():
 
 @app.route("/guardarHerramienta" ,methods=['POST'])
 def guardarHerramienta():
-    idObjeto = request.form['id_herramienta']
+    documento = session['documento'] 
+    idobjeto = request.form['id_herramienta']
+    idcategoria = request.form.get('id_categoria')
     nombre = request.form['nombre']
-    idCategoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    if misHerramientas.buscar(idObjeto):
+    cantidad = request.form['cantidad']
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    creador = documento
+    if misHerramientas.buscar(idobjeto):
         categorias = misCategorias.categoriasTractor()
         return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
     else:
-        misHerramientas.agregar([idObjeto,nombre,idCategoria,estado,disponibilidad])
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        foto.save("uploads/"+nombreFoto)
+        misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
         return redirect("/consultarHerramientas")
 
 #borrar Herramientas 

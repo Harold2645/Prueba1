@@ -23,15 +23,23 @@ class Categorias:
         categorias = self.cursor.fetchall()
         return categorias
     
-    def categoriasConsumibles(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Consumible'"
+    def categoriasInsumos(self):
+        sql = "SELECT * FROM categorias WHERE tipo='Insumos'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
 
+    def categoriasLiquidos(self):
+        sql = "SELECT * FROM categorias WHERE tipo='Liquidos'"
+        self.cursor.execute(sql)
+        categorias = self.cursor.fetchall()
+        return categorias
+
+
     def agregarCategoria(self, categ):
         sql = f"INSERT INTO `categorias` (`nombre`, `tipo`, `descripcion`, `fecha`, `creador`) VALUES ('{categ[0]}', '{categ[1]}', '{categ[2]}', '{categ[3]}', '{categ[4]}')"
         self.cursor.execute(sql)
+        self.mysql.commit()
         
     def borrarCategoria(self, idCategoria):
         sql = f"DELETE FROM categorias WHERE `idCategoria` = {idCategoria}"

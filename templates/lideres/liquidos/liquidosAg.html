@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/agregarConsumible.css">
+    <title>Agregar Consumible</title>
+</head>
+<body>
+    
+    <main id="cuerpo">
+        
+        <header id="cabeza">
+            <h1>Hangar - Agregar Consumible</h1>
+            <a href="/Correcto">Inicio</a>
+        </header>
+
+        <section id="agregar">
+            <form id="agregar_consumible" name="agregar_consumible" action="/guardarLiquidos" method="post" enctype="multipart/form-data">
+                <h2>Agregar Consumible</h2>
+                <h4>{{msg}}</h4>
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+                <label for="id_categoria">Categoría:</label>
+                <select name="id_categoria" id="id_categoria" >
+                    <option value="">--Seleccione--</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" min="1" required>
+
+                <label for="foto">Foto:</label>
+                <input type="file" name="foto" id="foto">
+
+                <button type="submit">Guardar</button>
+
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

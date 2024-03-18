@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/agregarTractor.css">
+    <link rel="stylesheet" href="../static/css/agregarHerramienta.css">
     <title>Agregar Herramienta</title>
 </head>
 <body>
@@ -11,12 +11,12 @@
     <main id="cuerpo">
         
         <header id="cabeza">
-            <h1>Hangar</h1>
-            <a href="/tractores">Inicio</a>
+            <h1>Hangar - Agregar Herramienta</h1>
+            <a href="/Correcto">Inicio</a>
         </header>
 
         <section id="agregar">
-            <form id="agregar_tractor" name="agregar_tractor" action="/guardarHerramienta" method="post" enctype="multipart/form-data">
+            <form id="agregar_herramienta" name="agregar_herramienta" action="/guardarHerramienta" method="post" enctype="multipart/form-data">
                 <h2>Agregar Herramienta</h2>
                 <h4>{{msg}}</h4>
 
@@ -24,30 +24,21 @@
                 <input type="text" name="id_herramienta" id="id_herramienta" required>
 
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" >
+                <input type="text" name="nombre" id="nombre" required>
 
-                <label for="id_categoria">Categoria:</label>
+                <label for="id_categoria">Categoría:</label>
                 <select name="id_categoria" id="id_categoria" required>
                     <option value="">--Seleccione--</option>
                     {% for categoria in categorias %}
-                        <option value="{{ categoria[0] }}" {% if categoria[0]  %}selected{% endif %}>{{ categoria[1] }}</option>
+                        <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
 
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado" required>
-                    <option value="">--Seleccione uno--</option>
-                    <option value="Bueno">Bueno</option>
-                    <option value="Malo">Malo</option>
-                    <option value="Reparacion">Reparacion</option>
-                </select>
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" min="1" required>
 
-                <label for="disponibilidad">Disponibilidad:</label>
-                <select name="disponibilidad" id="disponibilidad" required>
-                    <option value="">--Seleccione uno--</option>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Ocupado">Ocupado</option>
-                </select>
+                <label for="foto">Foto:</label>
+                <input type="file" name="foto" id="foto">
 
                 <button type="submit">Guardar</button>
 

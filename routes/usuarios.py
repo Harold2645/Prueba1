@@ -42,7 +42,7 @@ def login():
     contrasena = request.form['contrasena']
     cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
     cur = mysql.cursor(dictionary=True)
-    sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}'"
+    sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
     cur.execute(sql)
     resultado = cur.fetchone()
     if resultado is None:
@@ -103,36 +103,39 @@ def aceptarUsuario():
 #Interfaz Perfil
 @app.route('/perfilPropio')
 def perfilpropio():
-        if session.get("loginCorrecto"):
-            documento = session['documento']
-            if misUsuarios.buscar(documento):
-                    resultado1 = misUsuarios.buscar(documento)
-                    return render_template("perfil.html", res=resultado1)
-            else:
-                return redirect('/login')
-        else:
-            return redirect('/')
-        
-#Perfil
-@app.route('/perfil/<documento_parm>')
-def perfil(documento_parm):
-    rol = session.get('rol')
-    if rol == 'Admin':
-        if misUsuarios.buscar(documento_parm):
-                resultado1 = misUsuarios.buscar(documento_parm)
-                return render_template("perfil.html", res=resultado1)
-        else:
-            return redirect('/')
-    else:
+    if session.get("loginCorrecto"):
         documento = session['documento']
         if misUsuarios.buscar(documento):
                 resultado1 = misUsuarios.buscar(documento)
                 return render_template("perfil.html", res=resultado1)
         else:
+            return redirect('/login')
+    else:
+        return redirect('/')
+        
+#Perfil
+@app.route('/perfil/<documento_parm>')
+def perfil(documento_parm):
+    if session.get("loginCorrecto"):
+        rol = session.get('rol')
+        if rol == 'Admin':
+            if misUsuarios.buscar(documento_parm):
+                    resultado1 = misUsuarios.buscar(documento_parm)
+                    return render_template("perfil.html", res=resultado1)
+            else:
+                return redirect('/')
+        else:
+            documento = session['documento']
+            if misUsuarios.buscar(documento):
+                    resultado1 = misUsuarios.buscar(documento)
+                    return render_template("perfil.html", res=resultado1)
+            else:
+                return redirect('/')
+    else:
             return redirect('/')
-        
-        
-#mostar usuarios 
+    
+
+#mostar usuarios de la base de datos que estan activos
 @app.route('/usuarios')
 def clientes():
     if session.get("loginCorrecto"):
@@ -141,6 +144,11 @@ def clientes():
     else:
         return redirect('/')
     
+
+#Interfaz de usuarios normales 
 @app.route("/principalusuarios")
 def usuarios():
-    return render_template('usuarios/principalUsu.html')
+    if session.get("loginCorrecto"):
+        return render_template('usuarios/principalUsu.html')
+    else:
+            return redirect('/')
