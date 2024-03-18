@@ -33,7 +33,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Id del objeto</th>
-                    <th>Documento</th>
+                    <th>Prestado</th>
                     <th>Tipo</th>
                     <th>Fecha</th>                    
                     <th>Descripcion</th>
@@ -51,7 +51,7 @@
                     <th>{{nove[4]}}</th>
                     <th>{{nove[5]}}</th>
                     <th>{{nove[6]}}</th>
-                    <th>{{nove[7]}}</th>
+                    <th><a href="/perfil/{{ nove[2] }}">{{ nove[7] }}</a></th>
                 </tr>
                 {% endfor %}
             </tbody>

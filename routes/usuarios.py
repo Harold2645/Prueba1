@@ -3,14 +3,14 @@ import hashlib
 from flask import redirect, render_template, request, session
 from conexion import *
 from models.usuarios import misUsuarios
-from models.inventario import misTracores
 from models.novedades import misNovedades
 # from models.funciones import misPrestamos
 
 
 #Interfaz registrar usuarios
 @app.route('/registrar')
-def registrar():
+def registrar():    
+    session["logueado"] = False
     fichas = misUsuarios.buscarFicha()
     vFicha = [ficha[0] for ficha in fichas ]
     return render_template("registrar.html",fichas=vFicha)

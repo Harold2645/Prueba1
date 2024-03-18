@@ -43,7 +43,4 @@ class Categorias:
         resultado = self.cursor.fetchall()
         return resultado
 
-
-
-
 misCategorias=Categorias(mysql)

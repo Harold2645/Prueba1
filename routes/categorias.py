@@ -1,7 +1,7 @@
 from datetime import datetime
 from conexion import *
 from flask import redirect, render_template, request, session
-from models.funciones import misCategorias
+from models.categorias import misCategorias
 
 #categorias
 

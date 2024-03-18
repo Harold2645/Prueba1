@@ -1,7 +1,8 @@
 from conexion import *
 import datetime
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, session
 from models.novedades import misNovedades
+from models.usuarios import misUsuarios
 
 
 @app.route("/agregarnovedad")
@@ -24,3 +25,18 @@ def guardarnovedad():
         foto.save("/uploads/"+nuevoNombreFoto)
     misNovedades.agregarNovedad (idobjeto, documento, tipo, fecha, descripcion, nuevoNombreFoto)
     return redirect('/Correcto')
+
+
+@app.route('/novedades')
+def novedades():
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misNovedades.consultarNovedades()
+            return render_template('lideres/novedades/novedades.html', res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')

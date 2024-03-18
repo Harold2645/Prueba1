@@ -3,7 +3,11 @@ from conexion import *
 from routes.usuarios import *
 from routes.novedades import *
 from routes.categorias import *
-from routes.inventario import *
+from routes.insumos import *
+from routes.tractores import *
+from routes.herramientas import *
+from routes.liquidos import *
+
 
 @app.route('/uploads/<nombre>')
 def uploads(nombre):
