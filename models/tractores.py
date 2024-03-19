@@ -6,7 +6,7 @@ class Tractores:
         self.cursor = self.mysql.cursor()
         
     def consultarTractor(self):
-        sql = "SELECT * FROM objetos WHERE tipo='tractor' AND activo='1'"
+        sql = "SELECT * FROM objetos WHERE tipo='tractor'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

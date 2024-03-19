@@ -10,28 +10,96 @@ figure{
     padding: 0;
     margin: 0;
 }
-@media only screen and (min-width: 360px){
-    .logo_sena{
 
+section#cont_paneles{
+    background-color:var(--crema);
+    margin: 0;
+    padding: 2em 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: space-evenly; 
+}
+    section#cont_link {
+        display: flex;
     }
-    #logo_sena{
-        background-color: black;
-        width: 90px;
-        height: 80px;
+
+    header#header{
+        background-color: green;
+        display: flex;
+        align-items: center;
     }
-    .tresuno{
+    #menu_cont{
         display: flex;
         flex-direction: column;
-        justify-content: end;
-        margin-top: -80px;
+        align-items: center;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 100vh;
+        width: 160px;
+        box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
+        background-color: green;
+        display: none;
+    }
+    #menu_cont.visible{
+        display: block;
+    }
+    #cont-disparador{
+        position: absolute;
+        right: 20px;
+        background: none;
+        border: none;
+    }
+    #disparador{
+        color: white;
+        font-size: 30px;
+    }
+    #cont-close{
+        background: none;
+        border: none;
+        padding: 10px;
+    }
+    #close{
+        color: white;
+    }
+    header li{
+        padding: 15px;
+        list-style-type: none;
+    }
+    header a{
+        text-decoration: none;
+        color: white;
+    }
+
+        .logo_sena{
+            
+        }
+        #logo_sena{
+            width: 90px;
+            height: 80px;
+        }
+    .tresuno{
+        display: flex;
+        width: 100%;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: flex-end;
     }
         article#art_tractores{
             display: flex;
             align-items: center;
             flex-direction: column;
-            margin: 35px 0px 10px 120px;
-            padding: 5px;
-            background-color: blueviolet;
+            width: 330px;
+            margin-bottom: 70px;
+            padding: 20px;
+            box-shadow:
+            0 0 0 2px rgb(255, 255, 255),
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+            background-color: white;
         }
             h1#titulo1{
                 font-size: clamp(5px, 5vw, 15px);
@@ -57,11 +125,15 @@ figure{
         
         article#art_herramientas{
             display: flex;
-            background-color: blue;
             align-items: center;
             flex-direction: column;
-            margin: 35px 0px 10px 120px;
-            padding: 5px;
+            width: 330px;
+            margin-bottom: 70px;
+            padding: 10px;
+            box-shadow:
+            0 0 0 2px rgb(255, 255, 255),
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+            background-color: white;
         }
             h1#titulo2{
                 font-size: clamp(5px, 5vw, 15px);
@@ -91,11 +163,15 @@ figure{
             }
         article#art_insumos{
             display: flex;
-            background-color: aqua;
             align-items: center;
             flex-direction: column;
-            margin: 35px 0px 10px 120px;
-            padding: 5px;
+            width: 330px;
+            margin-bottom: 70px;
+            padding: 10px;
+            box-shadow:
+            0 0 0 2px rgb(255, 255, 255),
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+            background-color: white;
         }
             h1#titulo3{
                 font-size: clamp(5px, 5vw, 15px);
@@ -124,8 +200,65 @@ figure{
                 font-size: clamp(5px, 5vw, 12px);
             }
 
+@media only screen and (min-width: 1000px){
+    #menu_cont{
+        display: block;
+        background: none;
+        box-shadow: none;
+    }
+    #cont-disparador, #cont-close{
+        display: none;
+    }
+    .interior{
+        display: flex;
+        justify-content: flex-end;
+    }
+    #pepito{
+        background-color: aqua;
+
+    }
+    
 }
-@media only screen and (min-width: 768px){
+
+@media only screen and (min-height: 653px){
+    .tresuno{
+        margin-top: 10px;
+    }
+    article#art_tractores{
+        margin-bottom: 20px;
+    }
+    article#art_herramientas{
+        margin-bottom: 20px;
+    }
+    article#art_insumos{
+        margin-bottom: 0px;
+    }
 }
-@media only screen and (min-width: 1024px){
+@media only screen and (max-height: 652px){
+    p{
+        display: none;
+    }
+    article#art_tractores{
+        margin-bottom: 10px;
+    }
+    article#art_herramientas{
+        margin-bottom: 10px;
+    }
+    article#art_insumos{
+        margin-bottom: 0px;
+    }
+}
+@media only screen and (min-height: 1000px){
+    .tresuno{
+        margin-top: 10px;
+    }
+    article#art_tractores{
+        margin-bottom: 90px;
+    }
+    article#art_herramientas{
+        margin-bottom: 90px;
+    }
+    article#art_insumos{
+        margin-bottom: 0px;
+    }
 }

@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../../static/css/tractoresUsu.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
     <link rel="shortcut icon" href="../static/true.png" type="image/x-icon">
     <title>Inicio</title>
@@ -36,11 +36,9 @@
         <section id="cont_paneles">
             {% for herra in res %}
                 <article class="mosaico" id="reservas">
-                    <h2>{{herra[1]}}</h2>
+                    <h2>{{herra[2]}}</h2>
                     <h6>Id Herramienta: {{herra[0]}}</h6>
-                    <h6>Categoria: {{herra[2]}} </h6>
-                    <h6>Disponibilidad: {{herra[8]}}</h6>
-    
+                    <h6>Categoria: {{herra[1]}} </h6>    
                     <section id="cont_link" >
                         <a href="pedir/{{herra[0]}}">pedir</a>
                     </section>
