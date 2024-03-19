@@ -6,13 +6,13 @@ class Tractores:
         self.cursor = self.mysql.cursor()
         
     def consultarTractor(self):
-        sql = "SELECT * FROM objetos WHERE tipo='tractor'"
+        sql = "SELECT * FROM tractores WHERE activo='1'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def todoslosTractores(self):
-        sql = "SELECT * FROM objetos WHERE tipo='tractor'"
+        sql = "SELECT * FROM tractores"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -24,7 +24,7 @@ class Tractores:
         self.mysql.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT idObjeto FROM objetos WHERE idObjeto={idObjeto}"
+        sql = f"SELECT * FROM tractores WHERE idObjeto={idObjeto}"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -35,7 +35,7 @@ class Tractores:
         self.mysql.commit()
         
     def borrar(self, idObjeto):
-        sql = f"UPDATE objetos SET activo=0 WHERE idObjeto={idObjeto}"
+        sql = f"UPDATE tractores SET activo=0 WHERE idObjeto={idObjeto}"
         self.cursor.execute(sql)
         self.mysql.commit()
 

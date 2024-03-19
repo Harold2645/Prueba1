@@ -5,9 +5,9 @@ class novedades:
         self.mysql = mysql
         self.cursor = self.mysql.cursor()
 
-    def agregarNovedad(self, idobjeto, documento, tipo, fecha, descripcion, foto):
-        sql = "INSERT INTO `novedades` ( `idobjeto`, `documento`, `tipo`, `fecha`, `descripcion`, `foto`) VALUES (%s, %s, %s, %s, %s, %s)"
-        self.cursor.execute(sql, (idobjeto, documento, tipo, fecha, descripcion, foto))
+    def agregarNovedad(self, novedad):
+        sql = f"INSERT INTO novedades (`idobjeto`, `documento`, `tipo`, `fecha`, `descripcion`, `foto`, `creador`) VALUES ('{novedad[0]}', '{novedad[1]}', '{novedad[2]}', '{novedad[3]}', '{novedad[4]}', '{novedad[5]}', '{novedad[6]}')"
+        self.cursor.execute(sql)
         self.mysql.commit()
         
     def consultarNovedades(self):
@@ -16,4 +16,10 @@ class novedades:
         resultado = self.cursor.fetchall()
         return resultado
     
+    def buscar(self,idObjeto):
+        sql = f"SELECT * FROM novedades WHERE idObjeto={idObjeto}"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
 misNovedades=novedades(mysql)

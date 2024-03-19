@@ -37,20 +37,19 @@
         </section>
         <section id="cont_paneles">
             {% for cons in res %}
-                <article class="mosaico" id="reservas">
-                    <h2>{{cons[1]}}</h2>
-                    <h6>Id constor: {{cons[0]}}</h6>
-                    <h6>Categoria: {{cons[2]}} </h6>
-                    <h6>Disponibilidad: {{cons[8]}}</h6>
-    
-                    <section id="cont_link" >
-                        <a href="editarConsumibles/{{cons[0]}}">Editar</a>
-                        <a href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
-                    </section>
-    
-                    
-                        
-                </article>
+            <article class="mosaico" id="reservas">
+                <h2>{{cons[2]}}</h2>
+                <h6>Categoria: {{cons[1]}} </h6>
+                <h6>Cantidad: {{cons[3]}}</h6>
+                    <figure class="img-thumbnail" >
+                        <img width="100" height="100"  src="../../../uploads/{{cons[5]}}" alt="{{cons[2]}}">
+                    </figure>
+
+                <section id="cont_link" >
+                    <a href="editarConsumibles/{{cons[0]}}">Editar</a>
+                    <a href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
+                </section>
+            </article>
             {% endfor %}
             
         </section>
