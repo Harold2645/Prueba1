@@ -24,7 +24,7 @@ class Categorias:
         return categorias
     
     def categoriasInsumos(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Insumos'"
+        sql = "SELECT * FROM categorias WHERE tipo='Insumo'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
