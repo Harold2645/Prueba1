@@ -7,6 +7,7 @@ from routes.insumos import *
 from routes.tractores import *
 from routes.herramientas import *
 from routes.liquidos import *
+from routes.graficos import *
 
 
 @app.route('/uploads/<nombre>')

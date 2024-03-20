@@ -24,7 +24,7 @@ class Tractores:
         self.mysql.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT * FROM tractores WHERE idObjeto={idObjeto}"
+        sql = f"SELECT * FROM tractores WHERE idObjeto='{idObjeto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
