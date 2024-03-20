@@ -37,25 +37,26 @@ def agregaarticulo():
     else:
         return redirect('/')
 
-@app.route("/guardarTractor" ,methods=['POST'])
-def guardararticulo():
+@app.route("/guardarTractor",   methods=['POST'])
+def agregarTrac():
     documento = session['documento'] 
-    idObjeto = request.form['id_tractor']
-    nombre = request.form['nombre']
-    idCategoria = request.form.get('id_categoria')
-    disponibilidad = request.form['disponibilidad']
-    foto = request.files['foto']
-    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    idobjeto = request.form['idobjeto']
+    categoria = request.form['idcategoria']
+    foto = request.files['fototrac']
+    hora = datetime.now()
+    fechacreacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     creador = documento
-    if misTracores.buscar(idObjeto):
+    marca = request.form['marca']
+    modelo = request.form['modelo']
+    if misTracores.buscar(idobjeto):
         categorias = misCategorias.categoriasTractor()
-        return render_template("lideres/tractores/tractoresAg.html", msg="Id ya existente", categorias=categorias)
+        return render_template("lideres/tractores/tractoresAg.html", categorias=categorias, msg="Id ya existente")
     else:
-        fnombre,fextension = os.path.splitext(foto.filename)
-        nombreFoto = "A"+fecha.strftime("%Y%m%d%H%M%S")+fextension
-        foto.save("uploads/"+nombreFoto)
-        misTracores.agregar([idObjeto,idCategoria,nombre,disponibilidad,nombreFoto,fecha,creador])
-        return redirect("/consultarTractores")
+        fnombre,fextension = os.path.splitext(foto.filename)  
+        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+        foto.save("uploads/" + fotot)
+        misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
+        return redirect("/tractores")
 
 #borrar tractores 
 @app.route('/borrarTractor/<idObjetos>')

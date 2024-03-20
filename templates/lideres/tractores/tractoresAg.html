@@ -20,29 +20,25 @@
                 <h2>Agregar Tractores</h2>
                 <h4>{{msg}}</h4>
 
-                <label for="id_tractor">Identificador</label>
-                <input type="text" name="id_tractor" id="id_tractor" required>
+                <label for="idobjeto">Codigo sena:</label>
+                <input type="text" name="idobjeto" id="idobjeto" required>
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" >
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" id="marca" required>
 
-                <label for="id_categoria">Categoria:</label>
-                <select name="id_categoria" id="id_categoria" required>
+                <label for="modelo">Modelo</label>
+                <input type="text" name="modelo" id="modelo" required>
+
+                <label for="idcategoria">Categoria:</label>
+                <select name="idcategoria" id="idcategoria" required>
                     <option value="">--Seleccione--</option>
                     {% for categoria in categorias %}
                         <option value="{{ categoria[0] }}" {% if categoria[0]  %}selected{% endif %}>{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
 
-                <label for="disponibilidad">Disponibilidad:</label>
-                <select name="disponibilidad" id="disponibilidad" required>
-                    <option value="">--Seleccione uno--</option>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Ocupado">Ocupado</option>
-                </select>
-
-                <label for="foto">Foto:</label>
-                <input type="file" name="foto" id="foto">
+                <label for="fototrac">Foto:</label>
+                <input type="file" name="fototrac" id="fototrac">
 
                 <button type="submit">Guardar</button>
 

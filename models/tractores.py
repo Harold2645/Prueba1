@@ -18,7 +18,7 @@ class Tractores:
         return resultado
     
     def agregar(self, tractor):
-        sql = f"INSERT INTO `objetos` (`idobjeto`, `idcategoria`, `nombre`, `disponibilidad`, `tipo`, `foto`, `activo`, `fecha`, `creador`) VALUES ('{tractor[0]}', '{tractor[1]}', '{tractor[2]}', '{tractor[3]}', 'tractor', '{tractor[4]}', '1', '{tractor[5]}', '{tractor[6]}')"
+        sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo) VALUES ('{tractor[0]}','{tractor[1]}','{tractor[2]}','1','{tractor[3]}','{tractor[4]}','{tractor[5]}','{tractor[6]}')"
         print(sql)
         self.cursor.execute(sql)
         self.mysql.commit()
