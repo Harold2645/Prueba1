@@ -37,163 +37,77 @@ body{
     min-height: 100vh;
     width: 100vw;
 }
-header#cabeza{
-    background: var(--logo-sena);
-    margin: 0;
-    padding: 11px 16px;
-    width: 100%;
+header#header{
+    background-color: green;
+    display: flex;
+    align-items: center;
+}
+#menu_cont{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 160px;
+    box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
+    background-color: green;
+    display: none;
 }
-    #cabeza #marca{
-        width: 80px;
+#menu_cont.visible{
+    display: block;
+}
+#cont-disparador{
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+}
+#disparador{
+    color: white;
+    font-size: 30px;
+}
+#cont-close{
+    background: none;
+    border: none;
+    padding: 10px;
+}
+#close{
+    color: white;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+li{
+    white-space: nowrap;
+    padding: 15px;
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+header a{
+    text-decoration: none;
+    color: white;
+}
+#logo_sena{
+    width: 90px;
+    height: 80px;
+}
+@media only screen and (min-width: 1000px){
+    #menu_cont{
+        display: block;
+        background: none;
+        box-shadow: none;
     }
-    #cabeza #opcs_menu{
+    #cont-disparador, #cont-close{
         display: none;
     }
-    #cabeza #disparador{
-        font-size: 2em;
-    }
-
-main#ppal{
-    margin: 0;
-    min-height: 100vh;
-    padding: 0;
-    width: 100%;
-}
-
-section#cont_mayor{
-    background-color:var(--crema);
-    margin: 0;
-    padding: 11px 16px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-    section#links{
+    .interior{
         display: flex;
-        justify-content: space-between;
-        max-width: 100%;
-        margin: 0;
-    }
-        #links a, h2 {
-            text-decoration: none;
-            padding: 10px;
-            color: var(--logo-sena);
-            margin: 0 125px ;
-        }
-    .Titulo{
-        font-family: 'Titillium Web', sans-serif;
-    font-size: 16px;
-    text-decoration: none;
-    margin-bottom: 20px;
-    }
-
-    section#cont_paneles{
-        background-color:var(--crema);
-        margin: 0;
-        padding: 2em 1em;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: flex-start;
-        align-content: space-evenly; 
-    }
-        section#cont_link {
-            display: flex;
-        }
-
-.mosaico{
-    background-color: var(--logo-sena);
-    border-radius: 16px;
-    box-shadow: 0 2px 11px rgba(9, 13, 17, 0.33);
-    margin: 0 0 2em 0;
-    padding: 1em;
-    width: clamp(308px, 92%, 400px);
-}
-    .mosaico h2{
-        color: #000;
-        font-size: 2.1em;
-        line-height: 1em;
-        margin: 0 0 13px 0;
-    }
-    .mosaico h6{
-        color: var(--azul-dark) ;
-        font-size: 1em;
-        line-height: 1em;
-        margin: 0 0 13px 0;
-    }
-    .mosaico form{
-        position: relative;
-        z-index: 1;
-        margin: 0 0 21px 0;
-    }
-    .mosaico a{
-        background-color: var(--salmon);
-        border-radius: 2em;
-        color: var(--crema);
-        font-size: 1.5em;
-        font-weight: 600;
-        margin: 0;
-        padding: 13px 33% 13px 17px;
-        text-decoration: none;
-        width: 50%;
-        display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-    }
-    
-
-
-    @media screen and (min-width: 1000px){
-        #ppal{
-            display: flex;
-            justify-content: flex-start;
-            align-items: stretch;
-        }
-        header#cabeza{
-            flex-direction: column;
-            width: 280px;
-        }
-            #cabeza #marca{
-                width: 85px;
-            }
-            #cabeza #disparador{
-                display: none;
-            }
-            #cabeza #opcs_menu{
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                align-items: flex-start;
-            }
-                #opcs_menu{
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                    #opcs_menu a{
-                        color: var(--azul-dark);
-                        margin: 10% 0;
-                        padding: 11px 13px;
-                        text-decoration: none ;
-                        display: block;
-                    }
-                    #opcs_menu a:hover{
-                        background-color: var(--salmon) ;
-                        color: var(--crema);
-                    }
-                    .Titulo {
-                        font-family: 'Titillium Web', sans-serif;
-                        font-size: 20px;
-                        text-decoration: none;
-                        }
-                        .mosaico {
-                            width: calc(33.33% - 20px); /* Ajusta según tus necesidades */
-                        }
-    }
+    }    
+}
