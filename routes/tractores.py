@@ -11,10 +11,12 @@ def tractores():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         resultado = misTracores.consultarTractor()
+        categorias = misCategorias.categoriasTractor()
+        print(categorias)
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/tractores.html', res=resultado)
+            return render_template('usuarios/tractores.html', res=resultado, categorias=categorias)
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template('lideres/tractores/tractores.html', res=resultado)
+            return render_template('lideres/tractores/tractores.html', res=resultado, categorias=categorias)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

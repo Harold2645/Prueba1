@@ -96,6 +96,83 @@ header a{
     width: 90px;
     height: 80px;
 }
+
+
+
+section#cont_mayor{
+    background-color:var(--crema);
+    margin: 0;
+    padding: 11px 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+        h2 {
+            padding: 10px;
+            color: var(--logo-sena);
+        }
+    #titulo{
+    font-size: 16px;
+    margin-bottom: 20px;
+    }
+
+    section#cont_paneles{
+        background-color:var(--crema);
+        margin: 0;
+        padding: 2em 1em;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: space-evenly; 
+    }
+        section#cont_link {
+            display: flex;
+        }
+
+.mosaico{
+    background-color: var(--logo-sena);
+    border-radius: 16px;
+    box-shadow: 0 2px 11px rgba(9, 13, 17, 0.33);
+    margin: 0 0 2em 0;
+    padding: 1em;
+    width: clamp(308px, 92%, 400px);
+}
+    .mosaico h2{
+        color: #000;
+        font-size: 2.1em;
+        line-height: 1em;
+        margin: 0 0 13px 0;
+    }
+    .mosaico h6{
+        color: var(--azul-dark) ;
+        font-size: 1em;
+        line-height: 1em;
+        margin: 0 0 13px 0;
+    }
+    .mosaico form{
+        position: relative;
+        z-index: 1;
+        margin: 0 0 21px 0;
+    }
+    .mosaico a{
+        background-color: var(--salmon);
+        border-radius: 2em;
+        color: var(--crema);
+        font-size: 1.5em;
+        font-weight: 600;
+        margin: 0px;
+        padding: 13px 0;
+        text-decoration: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
 @media only screen and (min-width: 1000px){
     #menu_cont{
         display: block;
@@ -109,5 +186,8 @@ header a{
         display: flex;
         justify-content: flex-end;
         align-items: center;
-    }    
-}
+    }  
+    .mosaico {
+    width: calc(33.33% - 20px); /* Ajusta según tus necesidades */
+    }
+    }

@@ -65,22 +65,26 @@ section#cont_paneles{
     #close{
         color: white;
     }
-    header li{
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    li{
+        white-space: nowrap;
         padding: 15px;
         list-style-type: none;
+        display: inline-block;
+        margin-right: 10px;
     }
     header a{
         text-decoration: none;
         color: white;
     }
-
-        .logo_sena{
-            
-        }
-        #logo_sena{
-            width: 90px;
-            height: 80px;
-        }
+    #logo_sena{
+        width: 90px;
+        height: 80px;
+    }
     .tresuno{
         display: flex;
         width: 100%;
@@ -212,12 +216,7 @@ section#cont_paneles{
     .interior{
         display: flex;
         justify-content: flex-end;
-    }
-    #pepito{
-        background-color: aqua;
-
-    }
-    
+    }    
 }
 
 @media only screen and (min-height: 653px){
