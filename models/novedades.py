@@ -1,14 +1,14 @@
 from conexion import *
 
 class novedades:
-    def __init__(self, mysql):
-        self.mysql = mysql
-        self.cursor = self.mysql.cursor()
+    def __init__(self, conexion):
+        self.conexion = conexion
+        self.cursor = self.conexion.cursor()
 
     def agregarNovedad(self, novedad):
         sql = f"INSERT INTO novedades (`idobjeto`, `documento`, `tipo`, `fecha`, `descripcion`, `foto`, `creador`) VALUES ('{novedad[0]}', '{novedad[1]}', '{novedad[2]}', '{novedad[3]}', '{novedad[4]}', '{novedad[5]}', '{novedad[6]}')"
         self.cursor.execute(sql)
-        self.mysql.commit()
+        self.conexion.commit()
         
     def consultarNovedades(self):
         sql = "SELECT * FROM novedades"
@@ -22,4 +22,4 @@ class novedades:
         resultado = self.cursor.fetchall()
         return resultado
 
-misNovedades=novedades(mysql)
+misNovedades=novedades(conexion)

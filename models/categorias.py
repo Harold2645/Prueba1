@@ -1,9 +1,9 @@
 from conexion import *
 
 class Categorias:
-    def __init__(self, mysql):
-        self.mysql = mysql
-        self.cursor = self.mysql.cursor()
+    def __init__(self, conexion):
+        self.conexion = conexion
+        self.cursor = self.conexion.cursor()
         
     def consultarCategorias(self):
         sql = "SELECT * FROM categorias"
@@ -39,7 +39,7 @@ class Categorias:
     def agregarCategoria(self, categ):
         sql = f"INSERT INTO `categorias` (`nombre`, `tipo`, `descripcion`, `fecha`, `creador`) VALUES ('{categ[0]}', '{categ[1]}', '{categ[2]}', '{categ[3]}', '{categ[4]}')"
         self.cursor.execute(sql)
-        self.mysql.commit()
+        self.conexion.commit()
         
     def borrarCategoria(self, idCategoria):
         sql = f"DELETE FROM categorias WHERE `idCategoria` = {idCategoria}"
@@ -51,4 +51,4 @@ class Categorias:
         resultado = self.cursor.fetchall()
         return resultado
 
-misCategorias=Categorias(mysql)
+misCategorias=Categorias(conexion)

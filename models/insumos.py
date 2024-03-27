@@ -1,9 +1,9 @@
 from conexion import *
 
 class Insumos:
-    def __init__(self, mysql):
-        self.mysql = mysql
-        self.cursor = self.mysql.cursor()
+    def __init__(self, conexion):
+        self.conexion = conexion
+        self.cursor = self.conexion.cursor()
         
     def consultarinsumos(self):
         sql = "SELECT * FROM consumibles WHERE tipo='Insumo' AND activo='1'"
@@ -20,7 +20,7 @@ class Insumos:
     def agregar(self, insumos):
         sql = f"INSERT INTO `consumibles` (`idcategoria`, `nombre`, `cantidad`, `tipo`, `foto`, `activo`, `fecha`, `creador`) VALUES ('{insumos[0]}', '{insumos[1]}', '{insumos[2]}', 'Insumo', '{insumos[3]}', '1', '{insumos[4]}', '{insumos[5]}')"
         self.cursor.execute(sql)        
-        self.mysql.commit()
+        self.conexion.commit()
         
     def buscar(self,idObjeto):
         sql = f"SELECT * FROM consumibles WHERE idObjeto={idObjeto}"
@@ -31,11 +31,11 @@ class Insumos:
     def modificar(self, insumos):
         sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idCategoria='{insumos[2]}', cantidad='{insumos[3]}', activo='{insumos[4]}', foto='{insumos[5]}' WHERE idconsumible='{insumos[0]}'"
         self.cursor.execute(sql)        
-        self.mysql.commit()
+        self.conexion.commit()
         
     def borrar(self, idObjeto):
         sql = f"UPDATE consumibles SET activo=0 WHERE idconsumible={idObjeto}"
         self.cursor.execute(sql)        
-        self.mysql.commit()
+        self.conexion.commit()
 
-misInsumos = Insumos(mysql)
+misInsumos = Insumos(conexion)

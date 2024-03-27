@@ -41,7 +41,7 @@ def login():
     documento = request.form['documento']
     contrasena = request.form['contrasena']
     cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-    cur = mysql.cursor(dictionary=True)
+    cur = conexion.cursor(dictionary=True)
     sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
     cur.execute(sql)
     resultado = cur.fetchone()

@@ -11,12 +11,12 @@ def graficos():
 
 @app.route('/grafConsu')
 def grafConsu():
-    cursor = mysql.cursor()
+    cursor = conexion.cursor()
     sql = "SELECT nombre, cantidad FROM consumibles "\
           "GROUP BY nombre ORDER BY nombre ASC"
     cursor.execute(sql)
     data = cursor.fetchall()
-    mysql.close()
+    conexion.close()
 
     x = [dato[0] for dato in data]
     y = [dato[1] for dato in data]
@@ -33,13 +33,13 @@ def grafConsu():
 @app.route('/grafTrac')
 def grafTrac():
 
-    cursor = mysql.cursor()
+    cursor = conexion.cursor()
     sql = "SELECT tractores.marca, servicios.cantidad, servicios.fechasalida, COUNT(*) FROM servicios  "\
           "INNER JOIN tractores ON servicios.idobjeto = tractores.idobjeto "\
           "GROUP BY tractores.marca ORDER BY tractores.marca ASC"
     cursor.execute(sql)
     data = cursor.fetchall()
-    mysql.close()
+    conexion.close()
 
     # fig, ax = plt.subplots(figsize=(5, 3), layout='constrained')
     # np.random.seed(19680801)
