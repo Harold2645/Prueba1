@@ -37,12 +37,16 @@ def grafTrac():
     tractores_vistor = set()
 
     for dato in data:
-        x = dato[1]
-        y = dato[0]
-        nombreT = dato[2]
+        x = dato[1] #fecha
+        y = dato[0] #cantidad
+        nombreT = dato[2] #nombre
         
         if nombreT not in tractores_vistor:
-            ax.plot(x, y, label=nombreT)
+
+            x_trac = [dato[1] for dato in data if dato[2] == nombreT]
+            y_trac = [dato[0] for dato in data if dato[2] == nombreT]  
+            
+            lineas = ax.plot(x_trac, y_trac, label=nombreT)
             tractores_vistor.add(nombreT)
 
 

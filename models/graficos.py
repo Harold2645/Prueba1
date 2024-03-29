@@ -6,10 +6,6 @@ class Graficos:
         self.cursor = self.conexion.cursor()
     
     def datosTractores(self):
-        # sql = "SELECT tractores.marca, servicios.cantidad, servicios.fechasalida, COUNT(*) FROM servicios  "\
-        #   "INNER JOIN tractores ON servicios.idobjeto = tractores.idobjeto "\
-        #   "GROUP BY tractores.marca ORDER BY tractores.marca ASC"
-
         sql = "SELECT servicios.cantidad, servicios.fechasalida, tractores.marca FROM servicios INNER JOIN tractores ON tractores.idobjeto = servicios.idobjeto WHERE servicios.tipo = 'Tractor' AND tractores.activo = '1'"
         self.cursor.execute(sql)
         data = self.cursor.fetchall()
