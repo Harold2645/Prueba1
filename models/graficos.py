@@ -12,8 +12,7 @@ class Graficos:
         return data
     
     def datosConsumibles(self):
-        sql = "SELECT nombre, cantidad FROM consumibles "\
-          "GROUP BY nombre ORDER BY nombre ASC"
+        sql = "SELECT nombre, cantidad FROM consumibles WHERE tipo = 'Liquido' GROUP BY nombre ORDER BY nombre ASC;"
         self.cursor.execute(sql)
         data = self.cursor.fetchall()
         return data
