@@ -5,15 +5,11 @@ from flask import redirect, render_template
 from models.enviosConsu import misEnvios
 from conexion import *
 
-@app.route('/graficos')
-def graficos():
-    return render_template('lideres/graficos/graficos.html')
-
-
 @app.route('/envioConsuPez')
 def envioConsuPez(): 
 
     data = misEnvios.datoacpm()
+
     if data and data[0][0] <= 25:
         remitente = "hangarsena23@outlook.com"
         destinatario = "padilla2645@gmail.com"
@@ -28,8 +24,9 @@ def envioConsuPez():
         smtp.login(remitente,"chicastrans69")
         smtp.sendmail(remitente, destinatario, email.as_string())
         smtp.quit()
-
-    return redirect('/graficos')
+        return redirect('/graficos')
+    else:
+        return redirect('/funciones')
 
  
 
