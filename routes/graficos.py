@@ -2,6 +2,7 @@ from flask import redirect, render_template
 import matplotlib.pyplot as plt
 import io
 import numpy as np
+import base64
 from conexion import *
 from models.graficos import misGraficos
 
@@ -22,9 +23,8 @@ def grafConsu():
     ax.bar(x, y)
     ax.set_xlabel('Tipos')
     ax.set_ylabel('Cantidad en Bodega')
-
     plt.show()
-
+    
     return redirect('/graficos')
 
 @app.route('/grafTrac')
