@@ -8,7 +8,7 @@ conexion = mysql.connector.connect(user='freedb_hangar0.2', password='3Rde#r5E5E
 
 app = Flask(__name__)
 app.secret_key=str(randint(10000,99999))
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes = 3)
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes = 15)
 
 CARPETAU = os.path.join('uploads')
 app.config['CARPETAU']=CARPETAU

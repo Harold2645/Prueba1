@@ -4,7 +4,7 @@ from flask import redirect, render_template, request, session
 from conexion import *
 from models.usuarios import misUsuarios
 from models.novedades import misNovedades
-# from models.funciones import misPrestamos
+from models.servicios import misServicios
 
 
 #Interfaz registrar usuarios
@@ -41,17 +41,17 @@ def login():
     documento = request.form['documento']
     contrasena = request.form['contrasena']
     cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-    cur = conexion.cursor(dictionary=True)
     sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
+    cur = conexion.cursor()
     cur.execute(sql)
     resultado = cur.fetchone()
     if resultado is None:
         return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
     else:
-        documento = resultado['documento']
-        nombre = resultado['nombre']
-        apellido = resultado['apellido']
-        rol = resultado['rol']
+        documento = resultado[0]
+        nombre = resultado[1]
+        apellido = resultado[2]
+        rol = resultado[3]
         nombre_completo = f"{nombre} {apellido}"
         session['loginCorrecto'] = True
         session['documento'] = documento
@@ -69,9 +69,9 @@ def redireccion():
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.consultarNovedades()
             usuarios = misUsuarios.consultAcepta()
-            # prestamos= misPrestamos.consultar()
-            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios)
-        # ,pres=prestamos
+            prestamos= misServicios.consultarPedidos()
+            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios,prest=prestamos)
+        
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

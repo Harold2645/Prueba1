@@ -10,13 +10,12 @@ from models.tractores import misTracores
 def tractores():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
-        resultado = misTracores.consultarTractor()
-        categorias = misCategorias.categoriasTractor()
-        print(categorias)
+        resultado = misTracores.mostarTractores()
+        print(resultado)
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/tractores.html', res=resultado, categorias=categorias)
+            return render_template('usuarios/tractores.html', res=resultado)
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template('lideres/tractores/tractores.html', res=resultado, categorias=categorias)
+            return render_template('lideres/tractores/tractores.html', res=resultado)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -64,7 +63,7 @@ def agregarTrac():
 @app.route('/borrarTractor/<idObjetos>')
 def borrarTractor(idObjetos):
     misTracores.borrar(idObjetos)
-    return redirect('/')
+    return redirect('/tractores')
 
 #editar tractores
 @app.route('/editarTractor/<idObjeto>')
@@ -78,13 +77,15 @@ def editarTractor(idObjeto):
     
 @app.route('/actualizarTractor', methods=['POST'])
 def actualizarTractor():
-    idObjeto = request.form['id_tractor']
-    nombre = request.form['nombre']
-    categoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    activo = request.form['activo']
-    modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-    misTracores.modificar(modif)
+    idobjeto = request.form['id_tractor']
+    categoria = request.form['id_categoria']
+    marca = request.form['marca']
+    modelo = request.form['modelo']
+    foto = request.files['fototrac']
+    hora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)  
+    fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+    foto.save("uploads/" + fotot)
+    misTracores.modificar([idobjeto, categoria, fotot, marca, modelo])
     return redirect("/consultarTractores")
 

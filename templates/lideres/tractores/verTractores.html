@@ -9,36 +9,72 @@
 <body>
     <header id="cabeza">
         <h1>Hangar</h1>
-        <a href="/tractores">Inicio</a>
+        <a href="/Correcto">Inicio</a>
     </header>
 
     <main id="cuerpo">
+
+        <header id="header">
+            <figure>
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+            </figure>
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+            <div id="menu_cont">
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+                <div class="menu">
+                    <ul class="interior">
+                        <li><a href="/Correcto">Inicio</a></li>
+                        <li><a href="/consultarHerramientas">Herramientas</a></li>
+                        <li><a href="/consultarConsumibles">Insumos</a></li>
+                        <li><a href="/mispedidos">Mis pedidos</a></li>
+                        <li><a href="/perfilPropio">Mi perfil</a></li>
+                        <li><a href="/">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
         <table>
             <thead>
                 <tr>
                     <th>Id Tractor</th>
                     <th>Categoria</th>
-                    <th>Nombre</th>
-                    <th>Disponibilidad</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
                     <th>Foto</th>
-                    <th>Creador</th>
+                    <th>Disponibilidad</th>
                 </tr>
             </thead>
             <tbody>
                 {% for trac in res %}
                     <tr>
+                        <td>{{trac[2]}}</td>
+                        <td>{{trac[7]}}</td>
                         <td>{{trac[0]}}</td>
                         <td>{{trac[1]}}</td>
-                        <td>{{trac[2]}}</td>
-                        <td>{{trac[3]}}</td>
                         <td>
                             <figure class="img-thumbnail" >
-                                <img width="100" height="100"  src="uploads/{{trac[6]}}" alt="{{trac[2]}}">
+                                <img width="100" height="100"  src="../../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}">
                             </figure>
                         </td>
-                        <td>{{trac[9]}}</td>
+                        
+
+                        {% if trac[5] == '0' %}
+                            <td>Ocupado</td>
+                        {% elif trac[5] == '1' %}
+                            <td>Disponible</td>
+                        {% elif trac[5] == '2' %}
+                            <td>Prestado</td>
+                        {% else %}
+                            <td>NO ESTA</td>
+                        {% endif %}
+
                         <td>
-                            <a href="editarTractor/{{trac[0]}}">Editar</a>
+                            <a href="editarTractor/{{trac[2]}}">Editar</a>
                         </td>
                     </tr>
                 {% endfor %}

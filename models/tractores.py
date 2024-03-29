@@ -12,7 +12,7 @@ class Tractores:
         return resultado
     
     def todoslosTractores(self):
-        sql = "SELECT * FROM tractores"
+        sql = "SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor';"        
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -30,7 +30,7 @@ class Tractores:
         return resultado
 
     def modificar(self, tractor):
-        sql = f"UPDATE objetos SET nombre='{tractor[1]}', idCategoria='{tractor[2]}', estado='{tractor[3]}', disponibilidad='{tractor[4]}', activo='{tractor[5]}' WHERE idObjeto='{tractor[0]}'"
+        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}' WHERE idObjeto='{tractor[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
         
@@ -38,5 +38,11 @@ class Tractores:
         sql = f"UPDATE tractores SET activo=0 WHERE idObjeto={idObjeto}"
         self.cursor.execute(sql)
         self.conexion.commit()
+
+    def mostarTractores(self):
+        sql = "SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND tractores.activo = '1' AND categorias.tipo = 'Tractor';"        
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
 
 misTracores = Tractores(conexion)

@@ -2,7 +2,9 @@ from flask import redirect, render_template
 import matplotlib.pyplot as plt
 import io
 import numpy as np
+import base64
 from conexion import *
+from models.graficos import misGraficos
 
 
 @app.route('/graficos')
@@ -11,59 +13,48 @@ def graficos():
 
 @app.route('/grafConsu')
 def grafConsu():
-    cursor = conexion.cursor()
-    sql = "SELECT nombre, cantidad FROM consumibles "\
-          "GROUP BY nombre ORDER BY nombre ASC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    conexion.close()
+   
+    data = misGraficos.datosConsumibles()
 
     x = [dato[0] for dato in data]
     y = [dato[1] for dato in data]
 
     fig, ax = plt.subplots()
     ax.bar(x, y)
-    ax.set_xlabel('Tractores')
+    ax.set_xlabel('Tipos')
     ax.set_ylabel('Cantidad en Bodega')
-
     plt.show()
-
+    
     return redirect('/graficos')
 
 @app.route('/grafTrac')
 def grafTrac():
 
-    cursor = conexion.cursor()
-    sql = "SELECT tractores.marca, servicios.cantidad, servicios.fechasalida, COUNT(*) FROM servicios  "\
-          "INNER JOIN tractores ON servicios.idobjeto = tractores.idobjeto "\
-          "GROUP BY tractores.marca ORDER BY tractores.marca ASC"
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    conexion.close()
-
-    # fig, ax = plt.subplots(figsize=(5, 3), layout='constrained')
-    # np.random.seed(19680801)
-
-    x = [dato[0] for dato in data]
-    y = [dato[1] for dato in data]
-    z = [dato[2] for dato in data]
+    data = misGraficos.datosTractores()
 
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    # linesy = ax.plot(x, z, label='Tractor Ferguson')
+    tractores_vistor = set()
 
-    ax.scatter(z, y, label='[FALTA ESTO]')
+    for dato in data:
+        x = dato[1] #fecha
+        y = dato[0] #cantidad
+        nombreT = dato[2] #nombre
+        
+        if nombreT not in tractores_vistor:
 
-    ax.set_xlabel('Fechas De Salida')
-    ax.set_ylabel('Cantidad De Peticiones')
-    ax.set_title('GRAFICO DE PETIONES MENSUAL')
+            x_trac = [dato[1] for dato in data if dato[2] == nombreT]
+            y_trac = [dato[0] for dato in data if dato[2] == nombreT]  
+            
+            lineas = ax.plot(x_trac, y_trac, label=nombreT)
+            tractores_vistor.add(nombreT)
+
+
+    ax.set_xlabel('Fechas')
+    ax.set_ylabel('Cantidad de Peticiones')
+    ax.set_title('Solicitudes de Tractores')
     ax.legend()
 
     plt.show()
-
-    fig, ax =plt.subplot(figsize=(5, 3), layout='constrained')
-    np.random.seed(19680801)
-
-
 
     return redirect('/graficos')

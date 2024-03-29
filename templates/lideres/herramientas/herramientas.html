@@ -12,29 +12,30 @@
     
 
     <main id="ppal">
-    <header id="cabeza">
-
-        <figure id="marca"><img src="../static/true.png" alt="SENA logotipo"></figure>
-
-        <h1>Hangar</h1>
-
-        <nav id="menu_admor">
-            <i class="lni lni-menu" id="disparador"></i>
-            <ul id="opcs_menu">
-                <li><a href="/usuarios">Usuarios</a></li>
-                <li><a href="/iniciar">Login</a></li>
-                <li><a href="/funciones">Funciones Admin</a></li>
-                <li><a href="/agregarHerramienta" >Agregar herramientas</a></li>
-                <li><a href="/">CERRAR SESIÓN</a></li>
-            </ul>
-        </nav>
-    </header>
+        <header id="header">
+            <figure>
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+            </figure>
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+            <div id="menu_cont">
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+                <div class="menu">
+                    <ul class="interior">
+                        <li><a href="/Correcto">Inicio</a></li>
+                        <li><a href="/consultarHerramientas">Herramientas</a></li>
+                        <li><a href="/consultarConsumibles">Insumos</a></li>
+                        <li><a href="/mispedidos">Mis pedidos</a></li>
+                        <li><a href="/perfilPropio">Mi perfil</a></li>
+                        <li><a href="/">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
     <section id="cont_mayor">
-        <section id="links" class="Titulo">
-            <a href="/consultarConsumibles"><i class="lni lni-chevron-left" id="left"></i></a>
-            <h2>herramientas</h2>
-            <a href="/tractores"><i class="lni lni-chevron-right"></i></a>
-        </section>
         <section id="cont_paneles">
             {% for herra in res %}
             <article class="mosaico" id="reservas">

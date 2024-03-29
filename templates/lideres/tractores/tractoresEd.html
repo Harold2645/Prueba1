@@ -16,40 +16,30 @@
         <section>
             <form action="/actualizarTractor" method="post" enctype="multipart/form-data">
 
-                <label for="id_tractor">Identificador</label>
+                <label for="id_tractor">Codigo sena</label>
                 <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[0]}}">
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" value="{{tractor['1']}}" >
-
                 <label for="id_categoria">Categoria:</label>
-                <select name="id_categoria" id="id_categoria">
+                <select name="id_categoria" id="id_categoria" value="{{tractor[1]}}">
                     <option value="">--Seleccione--</option>
                     {% for categoria in categorias %}
                     <option value="{{ categoria[0] }}" {% if categoria[0] == tractor[2] %}selected{% endif %}>{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
 
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado" required>
-                    <option value="">Selecciona</option>
-                    <option value="Bueno">Bueno</option>
-                    <option value="Malo">Malo</option>
-                    <option value="Reparacion">Reparacion</option>
-                </select>
+                <label for="marca">Marca:</label>
+                <input type="text" name="marca" id="marca" value="{{tractor[6]}}" >
 
-                <label for="disponibilidad">Disponibilidad:</label>
-                <select name="disponibilidad" id="disponibilidad" required>
-                    <option value="">--Seleccione uno--</option>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Ocupado">Ocupado</option>
-                </select>
+                <label for="modelo">Modelo</label>
+                <input type="text" name="modelo" id="modelo" value="{{tractor[7]}}">
 
-                <label for="activo">Activo:</label>
-                <select name="activo" id="activo" required>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
-                </select> 
+
+                <label for="fototrac">Foto:</label>
+                <input type="file" name="fototrac" id="fototrac">
+
+                <figure class="img-thumbnail" >
+                    <img width="100" height="100"  src="../../../uploads/{{tractor[2]}}" alt="{{tractor[6]}} {{tractor[7]}}">
+                </figure>
 
                 <button type="submit">Guardar</button>
                 <a href="/tractores">Cancelar</a>
