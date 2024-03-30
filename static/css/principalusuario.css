@@ -10,9 +10,12 @@ figure{
     padding: 0;
     margin: 0;
 }
+body{
+    background: url(../img/fondo1.png);
+
+}
 
 section#cont_paneles{
-    background-color:var(--crema);
     margin: 0;
     padding: 2em 1em;
     width: 100%;

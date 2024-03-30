@@ -9,6 +9,7 @@ from routes.herramientas import *
 from routes.liquidos import *
 from routes.graficos import *
 from routes.enviosConsu import *
+from routes.servicios import *
 
 
 

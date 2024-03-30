@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/todoslosTractores.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <title>Tractores</title>
 </head>
 <body>
@@ -27,10 +27,7 @@
                 </button>
                 <div class="menu">
                     <ul class="interior">
-                        <li><a href="/Correcto">Inicio</a></li>
-                        <li><a href="/consultarHerramientas">Herramientas</a></li>
-                        <li><a href="/consultarConsumibles">Insumos</a></li>
-                        <li><a href="/mispedidos">Mis pedidos</a></li>
+                        <li><a href="/agregarTractor">Agregar Tractor</a></li>
                         <li><a href="/perfilPropio">Mi perfil</a></li>
                         <li><a href="/">Cerrar Sesion</a></li>
                     </ul>
@@ -41,7 +38,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id Tractor</th>
+                    <th>Codigo Sena</th>
                     <th>Categoria</th>
                     <th>Marca</th>
                     <th>Modelo</th>
@@ -74,7 +71,10 @@
                         {% endif %}
 
                         <td>
-                            <a href="editarTractor/{{trac[2]}}">Editar</a>
+                            <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
+                        </td>
+                        <td>
+                            <a onclick="return confirm('¿Seguro elimina este tractor??')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
                         </td>
                     </tr>
                 {% endfor %}

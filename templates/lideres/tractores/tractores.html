@@ -14,7 +14,7 @@
     <main id="ppal">
         <header id="header">
             <figure>
-                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
             </figure>
             <button id="cont-disparador">
                 <i class="lni lni-menu" id="disparador"></i>
@@ -25,7 +25,7 @@
                 </button>
                 <div class="menu">
                     <ul class="interior">
-                        <li><a href="/Correcto">Inicio</a></li>
+                        <li><a href="/agregarTractor">Agregar Tractor</a></li>
                         <li><a href="/consultarHerramientas">Herramientas</a></li>
                         <li><a href="/consultarConsumibles">Insumos</a></li>
                         <li><a href="/mispedidos">Mis pedidos</a></li>
@@ -64,8 +64,8 @@
                         <img width="100" height="100"  src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}">
                     </figure>
                     <section id="cont_link" >
-                        <a href="editarConsumibles/{{herra[0]}}">Editar</a>
-                        <a href="borrarConsumibles/{{herra[0]}}">Eliminar</a>
+                        <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[0]}}">Editar</a>
+                        <a onclick="return confirm('¿Seguro elimina este tractor??')" href="borrarTractor/{{trac[0]}}">Eliminar</a>
                     </section>
             </article>
         {% endfor %}

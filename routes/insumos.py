@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.insumos import misInsumos
+from models.movimientos import misMovimientos
 
 
 #Consumibles
@@ -65,40 +66,57 @@ def guardarConsumibles():
     nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
     foto.save("uploads/"+nombreFoto)
     misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
-    print(idCategoria,nombre,cantidad,nombreFoto,fecha,creador)
+
+    movimiento = "AgregoInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarConsumibles")
 
 #borrar Consumibles 
 @app.route('/borrarConsumibles/<idObjetos>')
 def borrarConsumibles(idObjetos):
     misInsumos.borrar(idObjetos)
+
+    nombre = misInsumos.buscarnombre(idObjetos)
+    creador = session['documento'] 
+    movimiento = "BorroInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect('/consultarConsumibles')
-
-
-
-#Falta organizar
-
-
 
 
 #editar Consumibles
 @app.route('/editarConsumibles/<idObjeto>')
 def editarConsumibles(idObjeto):
     if session.get("loginCorrecto"):
-        Consu = misInsumos.buscar(idObjeto)
-        categorias = misCategorias.categoriasConsumibles()
-        return render_template("consumibles/modificarConsumibles.html",Consu=Consu[0], categorias=categorias)
+        Consumible = misInsumos.buscar(idObjeto)
+        categorias = misCategorias.categoriasInsumos()
+        return render_template("lideres/insumos/insumosEd.html",Consu=Consumible[0], categorias=categorias)
     else:
         return redirect('/')
     
 @app.route('/actualizarConsumibles', methods=['POST'])
 def actualizarConsumibles():
-    idObjeto = request.form['id_Consumible']
+    idobjeto = request.form['idobjeto']
     nombre = request.form['nombre']
     categoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    activo = request.form['activo']
-    modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-    misInsumos.modificar(modif)
+    cantidad = request.form['cantidad']
+    foto = request.files['foto']
+
+    ahora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)
+    nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+    foto.save("uploads/"+nombreFoto)
+    misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
+
+    creador = session['documento'] 
+    movimiento = "EditoInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarConsumibles")
+
+@app.route('/buscarLiquido', methods=['POST'])
+def buscarLiquido():
+    if session.get("loginCorrecto"):
+        termino_busqueda = request.form.get('buscar_insumo', '').strip()
+        resultado = misInsumos.buscarPornombre(termino_busqueda)
+        return render_template("usuarios/insumos.html", res=resultado)
+    else:
+        return redirect('/')

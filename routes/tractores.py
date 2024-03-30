@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.tractores import misTracores
+from models.movimientos import misMovimientos
 
 
 #Tractores
@@ -11,7 +12,6 @@ def tractores():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         resultado = misTracores.mostarTractores()
-        print(resultado)
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return render_template('usuarios/tractores.html', res=resultado)
         elif rol == 'Admin' or rol == 'Practicante':
@@ -40,13 +40,12 @@ def agregaarticulo():
 
 @app.route("/guardarTractor",   methods=['POST'])
 def agregarTrac():
-    documento = session['documento'] 
+    creador = session['documento'] 
     idobjeto = request.form['idobjeto']
     categoria = request.form['idcategoria']
     foto = request.files['fototrac']
     hora = datetime.now()
     fechacreacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    creador = documento
     marca = request.form['marca']
     modelo = request.form['modelo']
     if misTracores.buscar(idobjeto):
@@ -57,13 +56,11 @@ def agregarTrac():
         fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
         foto.save("uploads/" + fotot)
         misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
+                #funcion de guardar en tabla movimientos
+        movimiento = "Agrego"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
         return redirect("/tractores")
 
-#borrar tractores 
-@app.route('/borrarTractor/<idObjetos>')
-def borrarTractor(idObjetos):
-    misTracores.borrar(idObjetos)
-    return redirect('/tractores')
 
 #editar tractores
 @app.route('/editarTractor/<idObjeto>')
@@ -87,5 +84,19 @@ def actualizarTractor():
     fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
     foto.save("uploads/" + fotot)
     misTracores.modificar([idobjeto, categoria, fotot, marca, modelo])
+
+    creador = session['documento'] 
+    movimiento = "EditoTractor"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
     return redirect("/consultarTractores")
 
+#borrar tractores 
+@app.route('/borrarTractor/<idObjetos>')
+def borrarTractor(idObjetos):
+    misTracores.borrar(idObjetos)
+
+    idobjeto = idObjetos
+    creador = session['documento'] 
+    movimiento = "BorroTractor"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
+    return redirect('/tractores')

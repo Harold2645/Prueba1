@@ -70,7 +70,7 @@ def redireccion():
             resultado = misNovedades.consultarNovedades()
             usuarios = misUsuarios.consultAcepta()
             prestamos= misServicios.consultarPedidos()
-            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios,prest=prestamos)
+            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios,pres=prestamos)
         
         else:
             return render_template("index.html", msg="Rol no reconocido")
@@ -79,8 +79,8 @@ def redireccion():
     
 
 #Aceptar usuario
-@app.route('/aceptar/<documento_parm>')
-def aceptar(documento_parm):
+@app.route('/aceptarUsu/<documento_parm>')
+def aceptarUsu(documento_parm):
     misUsuarios.aceptarSi(documento_parm)
     return redirect('/Correcto')
 

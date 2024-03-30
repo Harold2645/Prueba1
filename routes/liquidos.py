@@ -3,6 +3,8 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.liquidos import misLiquidos
+from models.movimientos import misMovimientos
+
 
 
 #Liquidos
@@ -65,12 +67,20 @@ def guardarLiquidos():
     nombreFoto = "L"+ahora.strftime("%Y%m%d%H%M%S")+fextension
     foto.save("uploads/"+nombreFoto)
     misLiquidos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
+
+    movimiento = "AgregoLiquido"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarLiquidos")
 
 #borrar Liquidos 
 @app.route('/borrarLiquidos/<idObjetos>')
 def borrarLiquidos(idObjetos):
     misLiquidos.borrar(idObjetos)
+
+    nombre = misLiquidos.buscarnombre(idObjetos)
+    creador = session['documento'] 
+    movimiento = "BorroLiquido"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect('/consultarLiquidos')
 
 
@@ -99,4 +109,8 @@ def actualizarLiquidos():
     activo = request.form['activo']
     modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
     misLiquidos.modificar(modif)
+
+    creador = session['documento'] 
+    movimiento = "EditoLiquido"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarLiquidos")
