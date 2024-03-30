@@ -6,7 +6,7 @@ class Herramientas:
         self.cursor = self.conexion.cursor()
         
     def consultarHerramientas(self):
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.nombre = herramientas.nombre WHERE activo='1';"
+        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE activo='1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -43,7 +43,7 @@ class Herramientas:
     #urbano aqui hago la funcion para mostrar solo lo que el usuario necesita
 
     def buscarPornombre(self, nombre):
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.nombre = herramientas.nombre WHERE herramientas.nombre LIKE '%{nombre}%' AND activo='1';"
+        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE herramientas.nombre LIKE '%{nombre}%' AND activo='1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

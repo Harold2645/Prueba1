@@ -56,6 +56,3 @@ class Insumos:
 
 misInsumos = Insumos(conexion)
 
-# f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.nombre LIKE '{nombre}' AND consumibles.activo = '1';"
-
-# f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE categorias.nombre LIKE '{nombre}' AND consumibles.activo = '1';"

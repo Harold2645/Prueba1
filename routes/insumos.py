@@ -120,10 +120,8 @@ def actualizarConsumibles():
 @app.route('/buscarLiquido', methods=['POST'])
 def buscarLiquido():
     if session.get("loginCorrecto"):
-        termino_busqueda = request.form.get('buscar_liquido', '').strip()
+        termino_busqueda = request.form.get('buscar_insumo', '').strip()
         resultado = misInsumos.buscarPornombre(termino_busqueda)
-        print(resultado)
         return render_template("usuarios/insumos.html", res=resultado)
-    
     else:
         return redirect('/')
