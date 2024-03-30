@@ -41,4 +41,11 @@ class Liquidos:
         self.cursor.execute(sql)        
         self.conexion.commit()
 
+
+    def buscarnombre(self,idObjeto):
+        sql = f"SELECT nombre FROM consumibles WHERE idObjeto={idObjeto}"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
 misLiquidos = Liquidos(conexion)   

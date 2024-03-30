@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.herramientas import misHerramientas
-
+from models.movimientos import misMovimientos
 
 
 
@@ -58,12 +58,19 @@ def guardarHerramienta():
         nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
         foto.save("uploads/"+nombreFoto)
         misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
+        movimiento = "AgregoHerramienta"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
         return redirect("/consultarHerramientas")
 
 #borrar Herramientas 
 @app.route('/borrarHerramienta/<idObjetos>')
 def borrarHerramienta(idObjetos):
     misHerramientas.borrar(idObjetos)
+
+    idobjeto = idObjetos
+    creador = session['documento'] 
+    movimiento = "BorroHerramienta"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
     return redirect('/consultarHerramientas')
 
 #editar Herramientas
@@ -86,5 +93,21 @@ def actualizarHerramienta():
     activo = request.form['activo']
     modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
     misHerramientas.modificar(modif)
+    
+    creador = session['documento'] 
+    movimiento = "EditoHerramienta"
+    misMovimientos.agregar([creador, movimiento, idObjeto])
     return redirect("/consultaHerramientas")
 
+
+
+#urbano aqui hago la funcion para mostrar solo lo que el usuario 
+
+@app.route('/buscarHerramientas', methods=['POST'])
+def buscarHerramientas():
+    if session.get("loginCorrecto"):
+        termino_busqueda = request.form.get('buscar_herramientas', '').strip()
+        resultado = misHerramientas.buscarPornombre(termino_busqueda)
+        return render_template("usuarios/herramientas.html", res=resultado)
+    else:
+        return redirect('/')

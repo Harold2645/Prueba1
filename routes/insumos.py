@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.insumos import misInsumos
+from models.movimientos import misMovimientos
 
 
 #Consumibles
@@ -66,12 +67,20 @@ def guardarConsumibles():
     foto.save("uploads/"+nombreFoto)
     misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
     print(idCategoria,nombre,cantidad,nombreFoto,fecha,creador)
+
+    movimiento = "AgregoInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarConsumibles")
 
 #borrar Consumibles 
 @app.route('/borrarConsumibles/<idObjetos>')
 def borrarConsumibles(idObjetos):
     misInsumos.borrar(idObjetos)
+
+    nombre = misInsumos.buscarnombre(idObjetos)
+    creador = session['documento'] 
+    movimiento = "BorroInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect('/consultarConsumibles')
 
 
@@ -101,4 +110,20 @@ def actualizarConsumibles():
     activo = request.form['activo']
     modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
     misInsumos.modificar(modif)
+
+    creador = session['documento'] 
+    movimiento = "EditoInsumo"
+    misMovimientos.agregar([creador, movimiento, nombre])
     return redirect("/consultarConsumibles")
+
+
+@app.route('/buscarLiquido', methods=['POST'])
+def buscarLiquido():
+    if session.get("loginCorrecto"):
+        termino_busqueda = request.form.get('buscar_liquido', '').strip()
+        resultado = misInsumos.buscarPornombre(termino_busqueda)
+        print(resultado)
+        return render_template("usuarios/insumos.html", res=resultado)
+    
+    else:
+        return redirect('/')

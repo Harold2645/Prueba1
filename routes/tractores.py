@@ -60,7 +60,7 @@ def agregarTrac():
         foto.save("uploads/" + fotot)
         misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
         #funcion de guardar en tabla movimientos
-        movimiento = "Agrego"
+        movimiento = "AgregoTractor"
         misMovimientos.agregar([creador, movimiento, idobjeto])
         return redirect("/tractores")
 
@@ -71,7 +71,7 @@ def borrarTractor(idObjetos):
 
     idobjeto = idObjetos
     creador = session['documento'] 
-    movimiento = "Borro"
+    movimiento = "BorroTractor"
     misMovimientos.agregar([creador, movimiento, idobjeto])
     return redirect('/')
 
@@ -97,7 +97,7 @@ def actualizarTractor():
     misTracores.modificar(modif)
 
     creador = session['documento'] 
-    movimiento = "Edito"
+    movimiento = "EditoTractor"
     misMovimientos.agregar([creador, movimiento, idObjeto])
     return redirect("/consultarTractores")
 

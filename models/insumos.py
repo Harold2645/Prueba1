@@ -6,7 +6,7 @@ class Insumos:
         self.cursor = self.conexion.cursor()
         
     def consultarinsumos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='Insumo' AND activo='1'"
+        sql =  f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.activo = '1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -38,4 +38,23 @@ class Insumos:
         self.cursor.execute(sql)        
         self.conexion.commit()
 
+
+    #urbano aqui hago la funcion para mostrar solo lo que el usuario necesita
+
+    def buscarPornombre(self, nombre):
+        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.nombre LIKE '{nombre}' AND consumibles.activo = '1';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
+    def buscarnombre(self,idObjeto):
+        sql = f"SELECT nombre FROM consumibles WHERE idObjeto={idObjeto}"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
+
 misInsumos = Insumos(conexion)
+
+
+# f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE categorias.nombre LIKE '{nombre}' AND consumibles.activo = '1';"
