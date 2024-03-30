@@ -14,7 +14,7 @@ from routes.enviosConsu import *
 @app.route('/uploads/<nombre>')
 def uploads(nombre):
     return send_from_directory(app.config['CARPETAU'],nombre)
-
+ 
 @app.route('/')
 def index():
     session["logueado"] = False

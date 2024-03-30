@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.categorias import misCategorias
 from models.tractores import misTracores
+from models.movimientos import misMovimientos
 
 
 #Tractores
@@ -58,12 +59,20 @@ def agregarTrac():
         fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
         foto.save("uploads/" + fotot)
         misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
+        #funcion de guardar en tabla movimientos
+        movimiento = "Agrego"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
         return redirect("/tractores")
 
 #borrar tractores 
 @app.route('/borrarTractor/<idObjetos>')
 def borrarTractor(idObjetos):
     misTracores.borrar(idObjetos)
+
+    idobjeto = idObjetos
+    creador = session['documento'] 
+    movimiento = "Borro"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
     return redirect('/')
 
 #editar tractores
@@ -86,5 +95,9 @@ def actualizarTractor():
     activo = request.form['activo']
     modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
     misTracores.modificar(modif)
+
+    creador = session['documento'] 
+    movimiento = "Edito"
+    misMovimientos.agregar([creador, movimiento, idObjeto])
     return redirect("/consultarTractores")
 

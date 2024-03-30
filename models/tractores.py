@@ -35,7 +35,7 @@ class Tractores:
         self.conexion.commit()
         
     def borrar(self, idObjeto):
-        sql = f"UPDATE tractores SET activo=0 WHERE idObjeto={idObjeto}"
+        sql = f"UPDATE tractores SET activo='0' WHERE idobjeto='{idObjeto}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 

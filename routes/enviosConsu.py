@@ -23,7 +23,7 @@ def envioConsuPez():
     imgrafico = base64.b64encode(grafico.read()).decode('utf-8')
 
     if data and data[0][0] <= 25:
-        remitente = "hangarsena23@outlook.com"
+        remitente = "hangarsena24@outlook.com"
         destinatario = "padilla2645@gmail.com"
         mensaje = "Aqui se muestra la cantidad de conbusible que hay bodega solicitamos mas"
 
@@ -40,7 +40,7 @@ def envioConsuPez():
 
         smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
         smtp.starttls()
-        smtp.login(remitente,"chicastrans69")
+        smtp.login(remitente,"correosena03")
         smtp.sendmail(remitente, destinatario, email.as_string())
         smtp.quit()
         return redirect('/graficos')
