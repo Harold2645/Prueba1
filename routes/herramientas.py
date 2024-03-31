@@ -7,6 +7,7 @@ from models.movimientos import misMovimientos
 
 
 
+
 #herramientas
 @app.route('/consultarHerramientas')
 def consultaHerramientas():
@@ -51,15 +52,17 @@ def guardarHerramienta():
     fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     creador = documento
     if misHerramientas.buscar(idobjeto):
-        categorias = misCategorias.categoriasTractor()
+        categorias = misCategorias.categoriasHerramienta()
         return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
     else:
         fnombre,fextension = os.path.splitext(foto.filename)
         nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
         foto.save("uploads/"+nombreFoto)
         misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
+
         movimiento = "AgregoHerramienta"
         misMovimientos.agregar([creador, movimiento, idobjeto])
+
         return redirect("/consultarHerramientas")
 
 #borrar Herramientas 
@@ -71,6 +74,7 @@ def borrarHerramienta(idObjetos):
     creador = session['documento'] 
     movimiento = "BorroHerramienta"
     misMovimientos.agregar([creador, movimiento, idobjeto])
+
     return redirect('/consultarHerramientas')
 
 #editar Herramientas
@@ -88,17 +92,18 @@ def actualizarHerramienta():
     idObjeto = request.form['id_herramienta']
     nombre = request.form['nombre']
     categoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    activo = request.form['activo']
-    modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-    misHerramientas.modificar(modif)
-    
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)
+    nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+    foto.save("uploads/"+nombreFoto)
+    misHerramientas.modificar([idObjeto,nombre,categoria,nombreFoto])
+
     creador = session['documento'] 
     movimiento = "EditoHerramienta"
     misMovimientos.agregar([creador, movimiento, idObjeto])
-    return redirect("/consultaHerramientas")
 
+    return redirect("/consultarHerramientas")
 
 
 #urbano aqui hago la funcion para mostrar solo lo que el usuario 

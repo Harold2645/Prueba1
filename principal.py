@@ -9,12 +9,14 @@ from routes.herramientas import *
 from routes.liquidos import *
 from routes.graficos import *
 from routes.enviosConsu import *
+from routes.servicios import *
+
 
 
 @app.route('/uploads/<nombre>')
 def uploads(nombre):
     return send_from_directory(app.config['CARPETAU'],nombre)
- 
+
 @app.route('/')
 def index():
     session["logueado"] = False

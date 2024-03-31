@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/registrar.css">
+    <title></title>
+</head>
+<body id="cuerpo">
+    <main id="ppal">
+
+        <header id="cabeza">
+            <h2>Pedir</h2>
+        </header>
+
+        <section id="cuerpo">
+
+            <form id="Pedir" name="Pedir" action="/prestamo" method="post" enctype="multipart/form-data">
+
+                <figure id="logo">
+                    <img src="../static/img/logoSena.png" alt="Logo Sena">
+                </figure>
+
+                <input type="hidden" name="idobjeto" value="{{res[0]}}">
+
+                <input type="hidden" name="tipo" value="{{tipo}}">
+
+                <label for="nombre">Nombre:</label>
+                    <input type="text" readonly value="{{res[1]}}" required>
+
+                <label for="labor">Labor:</label>
+                    <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="3" required>
+
+                <label for="ficha">Ficha:</label>
+                <input type="text" name="ficha" id="ficha" placeholder="Ficha donde se usara" pattern="[0-9]{5,12}" minlength="5" maxlength="12" tabindex="3">
+                                        
+                <label for="fecha">Fecha que lo necesita:</label>
+                <input type="date" name="fecha" id="fecha">
+
+                {% if tipo=='Insumo' %}
+                    <label for="cantidad" pattern="[0-9]{1,3}" minlength="1" maxlength="3" tabindex="4" required >Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad">
+                {% endif %}
+                    
+                    <div id="boton">
+                        <button type="submit" id="registrar">GUARDAR</button>
+                    </div>
+                    <a href="/Correcto" id="cancelar">Cancelar</a>
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>

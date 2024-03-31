@@ -14,30 +14,31 @@
         </header>
 
         <section>
-            <form action="/actualizarHerramienta" method="post" enctype="multipart/form-data">
+            <form action="/actualizarConsumibles" method="post" enctype="multipart/form-data">
 
-                <label for="id_Consumible">Identificador</label>
-                <input type="text" name="id_Consumible" id="id_Consumible" readonly value="{{Consu[0]}}">
+                <input type="hidden" id="idobjeto" name="idobjeto" value="{{ Consu[0] }}" >
 
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" value="{{Consu['1']}}" >
+                <input type="text" name="nombre" id="nombre" value="{{Consu[1]}}" >
 
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" required value="{{Consu[2]}}">
+
+                
                 <label for="id_categoria">Categoria:</label>
                 <select name="id_categoria" id="id_categoria">
-                    <option value="">--Seleccione--</option>
+                    <option value="{{Consu[6]}}">{{Consu[7]}}</option>
                     {% for categoria in categorias %}
                     <option value="{{ categoria[0] }}" {% if categoria[0] == Consu[2] %}selected{% endif %}>{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
+                
+                <label for="foto"></label>
+                <input type="file" name="foto" id="foto">
 
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" required value="{{Consu[6]}}">
-
-                <label for="activo">Activo:</label>
-                <select name="activo" id="activo" required>
-                    <option value="1">Si</option>
-                    <option value="0">No</option>
-                </select> 
+                <figure class="img-thumbnail" >
+                    <img width="100" height="100"  src="../../../uploads/{{Consu[3]}}" alt="{{Consu[1]}}">
+                </figure>
 
                 <button type="submit">Guardar</button>
                 <a href="/consultarConsumibles">Cancelar</a>

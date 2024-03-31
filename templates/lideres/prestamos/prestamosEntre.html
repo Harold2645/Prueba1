@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/principalLider.css">
+    <title>Prestamos</title>
+</head>
+<body>
+    
+    <header id="header">
+        <figure>
+            <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+        </figure>
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
+        </button>
+        <div id="menu_cont">
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+            <div class="menu">
+                <ul class="interior">
+                    <li><a href="/Correcto">Inicio</a></li>
+                    <li><a href="/consultarAceptado">Prestados</a></li>
+                    <li><a href="/consultarEnEspera">Por Aceptar</a></li>
+                    <li><a href="/consultarPorEntregar">Por entregar</a></li>
+                    <li><a href="/consultarDevueltos">Devueltos</a></li>
+                    <li><a href="/consultarRechazados">Rechazados</a></li>
+
+                    <li><a href="/">CERRAR SESIÓN</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div id="prestamos">
+        <h4>Prestamos pendientes</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Codigo sena</th>
+                    <th>Labor </th>
+                    <th>Quien lo pide</th>
+                    <th>Ficha</th>    
+                    <th>Fecha </th>
+                    <th>Estado</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for prest in pres %}
+            <tr>
+                <th>{{prest[0]}} {{prest[1]}}</th>
+                <th>{{prest[2]}}</th>
+                <th>{{prest[3]}}</th>
+                <th><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></th> 
+
+                {% if prest[5] == '0' %}
+                    <th>No hay</th>
+                {% else %}
+                    <th>{{prest[5]}}</th>
+                {% endif %}
+
+
+                <th>{{prest[6]}}</th>
+
+                {% if prest[7] == '0' %}
+                    <th>Rechazado</th>
+                {% elif prest[7] == '1' %}
+                    <th>En espera</th>
+                {% elif prest[7] == '2' %}
+                    <th>Prestado</th>
+                {% elif prest[7] == '3' %}
+                <th>Devuelto</th>
+                {% elif prest[7] == '4' %}
+                <th>Por entregar</th>
+                {% else %}
+                <th>NO ESTA</th>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
