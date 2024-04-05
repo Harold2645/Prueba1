@@ -10,29 +10,26 @@ figure{
     padding: 0;
     margin: 0;
 }
+html{
+    height: 100%;
+}
 body{
-    background: url(../img/fondo1.png);
-
+    background: url(../static/img/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100%;
+    backdrop-filter: blur(5px);
+    display: grid;
+    grid-template: 
+        "header" 100px
+        "tresuno"
+        "footer" 50px;
 }
-
-section#cont_paneles{
-    margin: 0;
-    padding: 2em 1em;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    align-content: space-evenly; 
-}
-    section#cont_link {
-        display: flex;
-    }
-
     header#header{
-        background-color: green;
         display: flex;
         align-items: center;
+        grid-area: header;
     }
     #menu_cont{
         display: flex;
@@ -44,8 +41,9 @@ section#cont_paneles{
         height: 100vh;
         width: 160px;
         box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
-        background-color: green;
+        background-color: #39A900;
         display: none;
+        z-index: 2;
     }
     #menu_cont.visible{
         display: block;
@@ -68,45 +66,41 @@ section#cont_paneles{
     #close{
         color: white;
     }
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    li{
-        white-space: nowrap;
+    header li{
         padding: 15px;
         list-style-type: none;
-        display: inline-block;
-        margin-right: 10px;
     }
     header a{
         text-decoration: none;
         color: white;
     }
-    #logo_sena{
-        width: 90px;
-        height: 80px;
-    }
+
+        .logo_sena{
+            
+        }
+        #logo_sena{
+            width: 90px;
+            height: 80px;
+        }
     .tresuno{
-        display: flex;
-        width: 100%;
-        margin-top: 20px;
+        grid-area: tresuno;
+        display: grid;
         flex-wrap: wrap;
-        flex-direction: column;
-        align-content: flex-end;
+        justify-content: flex-end;
+        grid-template-columns: 300px;
+        gap: 0.5%;
     }
         article#art_tractores{
             display: flex;
+            place-content: center;
             align-items: center;
             flex-direction: column;
-            width: 330px;
-            margin-bottom: 70px;
             padding: 20px;
-            box-shadow:
+            border-radius: 5px;
+            /* box-shadow:
             0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-            background-color: white;
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
+            background-color: rgba(255, 255, 255, 0.9);
         }
             h1#titulo1{
                 font-size: clamp(5px, 5vw, 15px);
@@ -126,7 +120,7 @@ section#cont_paneles{
             }
                 button#button_tractores{
                     font-size: clamp(5px, 5vw, 12px);
-                    padding: 3px;
+                    padding: 7px;
                     border-radius: 5px;
                 }
         
@@ -134,13 +128,13 @@ section#cont_paneles{
             display: flex;
             align-items: center;
             flex-direction: column;
-            width: 330px;
-            margin-bottom: 70px;
-            padding: 10px;
-            box-shadow:
+            place-content: center;
+            padding: 20px;
+            border-radius: 5px;
+            /* box-shadow:
             0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-            background-color: white;
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
+            background-color: rgba(255, 255, 255, 0.9);
         }
             h1#titulo2{
                 font-size: clamp(5px, 5vw, 15px);
@@ -160,7 +154,7 @@ section#cont_paneles{
                     border-radius: 5px;
                     padding: 3px;
                 }
-                button#button_herramientas{
+                button#button_iconoh{
                     font-size: clamp(5px, 5vw, 12px);
                     border-radius: 5px;
                     padding: 3px;
@@ -172,13 +166,13 @@ section#cont_paneles{
             display: flex;
             align-items: center;
             flex-direction: column;
-            width: 330px;
-            margin-bottom: 70px;
+            place-content: center;
             padding: 10px;
-            box-shadow:
+            border-radius: 5px;
+            /* box-shadow:
             0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-            background-color: white;
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
+            background-color: rgba(255, 255, 255, 0.9);
         }
             h1#titulo3{
                 font-size: clamp(5px, 5vw, 15px);
@@ -198,7 +192,7 @@ section#cont_paneles{
                     border-radius: 5px;
                     padding: 3px;
                 }
-                button#button_insumos{
+                button#button_iconoi{
                     font-size: clamp(5px, 5vw, 12px);
                     border-radius: 5px;
                     padding: 3px;
@@ -207,11 +201,31 @@ section#cont_paneles{
                 font-size: clamp(5px, 5vw, 12px);
             }
 
+        article button{
+            border: none;
+            background-color: #36A900;
+            font-size: clamp(5px, 5vw, 12px);
+            border-radius: 5px;
+            padding: 7px;
+        }
+        article a{
+            text-decoration: none;
+            color: white;
+        }
+        #iconocolor{
+            color: white;
+            padding: 2px;
+        }
+#footer{
+    color: white;
+    place-content: center;
+}
 @media only screen and (min-width: 1000px){
     #menu_cont{
         display: block;
         background: none;
         box-shadow: none;
+        width: 100%;
     }
     #cont-disparador, #cont-close{
         display: none;
@@ -219,48 +233,11 @@ section#cont_paneles{
     .interior{
         display: flex;
         justify-content: flex-end;
-    }    
+    }
 }
 
-@media only screen and (min-height: 653px){
-    .tresuno{
-        margin-top: 10px;
-    }
-    article#art_tractores{
-        margin-bottom: 20px;
-    }
-    article#art_herramientas{
-        margin-bottom: 20px;
-    }
-    article#art_insumos{
-        margin-bottom: 0px;
-    }
-}
-@media only screen and (max-height: 652px){
+@media only screen and (max-height: 700px){
     p{
         display: none;
-    }
-    article#art_tractores{
-        margin-bottom: 10px;
-    }
-    article#art_herramientas{
-        margin-bottom: 10px;
-    }
-    article#art_insumos{
-        margin-bottom: 0px;
-    }
-}
-@media only screen and (min-height: 1000px){
-    .tresuno{
-        margin-top: 10px;
-    }
-    article#art_tractores{
-        margin-bottom: 90px;
-    }
-    article#art_herramientas{
-        margin-bottom: 90px;
-    }
-    article#art_insumos{
-        margin-bottom: 0px;
     }
 }
