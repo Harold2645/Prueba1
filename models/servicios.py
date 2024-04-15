@@ -1,5 +1,13 @@
 from conexion import *
 
+    #Solicitado     =   S
+    #Aceptado       =   A
+    #Por entregar   =   E
+    #Prestado       =   P
+    #Devuelto       =   D
+    #Rechazado      =   R
+
+
 class Servicios:
     def __init__(self, conexion):
         self.conexion = conexion
@@ -10,33 +18,40 @@ class Servicios:
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
-    
-    def consultarPedidos(self):
-        sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = '1';"
+
+    def consultarSolicitados(self):
+        sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'S';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
-    def consultarPrestado(self):
-        sql = "SELECT * FROM servicios WHERE estado='2'"
-        self.cursor.execute(sql)
-        resultado = self.cursor.fetchall()
-        return resultado
-    
-    def consultarDevuelto(self):
-        sql = "SELECT * FROM servicios WHERE estado='3'"
+    def consultarAceptado(self):
+        sql = "SELECT * FROM servicios WHERE estado='A'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def consultarPorEntregar(self):
-        sql = "SELECT * FROM servicios WHERE estado='4'"
+        sql = "SELECT * FROM servicios WHERE estado='E'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
-    def consultarCancelado(self):
-        sql = "SELECT * FROM servicios WHERE estado='0'"
+
+    def consultarPrestado(self):
+        sql = "SELECT * FROM servicios WHERE estado='P'"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarDevuelto(self):
+        sql = "SELECT * FROM servicios WHERE estado='D'"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
+    def consultarRechazado(self):
+        sql = "SELECT * FROM servicios WHERE estado='R'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -65,10 +80,36 @@ class Servicios:
         self.conexion.commit()
 
     def aceptarPrestamo(self, id):
-        sql = f"UPDATE servicios  SET estado='4' WHERE idservicio={id}"
+        sql = f"UPDATE servicios  SET estado='A' WHERE idservicio={id}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
+    def porEntregarPrestamo(self, id):
+        sql = f"UPDATE servicios  SET estado='E' WHERE idservicio={id}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
+    def prestado(self, id):
+        sql = f"UPDATE servicios  SET estado='P' WHERE idservicio={id}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+    
+    def devuelto(self, id):
+        sql = f"UPDATE servicios  SET estado='D' WHERE idservicio={id}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
+    def rechazarPrestamo(self, id):
+        sql = f"UPDATE servicios  SET estado='R' WHERE idservicio={id}"
         self.cursor.execute(sql)
         self.conexion.commit()
 
 
+    #Solicitado     =   S
+    #Aceptado       =   A
+    #Por entregar   =   E
+    #Prestado       =   P
+    #Devuelto       =   D
+    #Rechazado      =   R
 
 misServicios = Servicios(conexion)

@@ -69,7 +69,7 @@ def redireccion():
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.consultarNovedades()
             usuarios = misUsuarios.consultAcepta()
-            prestamos= misServicios.consultarPedidos()
+            prestamos= misServicios.consultarSolicitados()
             return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios,pres=prestamos)
         
         else:

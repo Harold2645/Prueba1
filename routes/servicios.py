@@ -35,7 +35,7 @@ def consultarAceptado():
 @app.route('/consultarEnEspera')
 def consultarEnEspera():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarPedidos()
+        resultado = misServicios.consultarSolicitados()
         return render_template("lideres/prestamos/prestamosPed.html", res=resultado)
     else:
         return redirect('/')
@@ -49,11 +49,11 @@ def consultarDevueltos():
     else:
         return redirect('/')
     
-#mostrar Todos los pedido rechazados)
+#mostrar Todos los pedido rechazados
 @app.route('/consultarRechazados')
 def consultarRechazados():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarCancelado()
+        resultado = misServicios.consultarRechazado()
         return render_template("lideres/prestamos/prestamosCan.html", res=resultado)
     else:
         return redirect('/')
