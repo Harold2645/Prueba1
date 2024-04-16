@@ -100,8 +100,33 @@ def prestamo():
     misServicios.pedir(agg)
     return redirect("/Correcto")
 
+
+#Aceptar pedido 
 @app.route('/aceptarPedido/<id>')
 def aceptarPedido(id):
     misServicios.aceptarPrestamo(id)
     return redirect('/Correcto')
 
+#pedido falta entregarlo
+@app.route('/porEntregarPedido/<id>')
+def EntregarPedido(id):
+    misServicios.porEntregarPrestamo(id)
+    return redirect('/Correcto')
+
+#pedido  Prestado
+@app.route('/prestado/<id>')
+def prestado(id):
+    misServicios.prestado(id)
+    return redirect('/Correcto')
+
+#Pedido devuelto pedido 
+@app.route('/devolver/<id>')
+def devolver(id):
+    misServicios.devuelto(id)
+    return redirect('/Correcto')
+
+#Pedido devuelto pedido 
+@app.route('/rechazar/<id>')
+def rechazar(id):
+    misServicios.rechazarPrestamo(id)
+    return redirect('/Correcto')
