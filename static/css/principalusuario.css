@@ -14,7 +14,7 @@ html{
     height: 100%;
 }
 body{
-    background: url(../static/img/1.png);
+    background: url(../img/fondo1.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -30,6 +30,7 @@ body{
         display: flex;
         align-items: center;
         grid-area: header;
+        position: relative;
     }
     #menu_cont{
         display: flex;
@@ -216,6 +217,10 @@ body{
             color: white;
             padding: 2px;
         }
+        #icono_buscar{
+            color: white;
+            cursor: pointer;
+        }
 #footer{
     color: white;
     place-content: center;
@@ -225,6 +230,7 @@ body{
         display: block;
         background: none;
         box-shadow: none;
+        height: 100px;
         width: 100%;
     }
     #cont-disparador, #cont-close{
