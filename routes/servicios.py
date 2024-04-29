@@ -14,15 +14,6 @@ def consultarTodosPedidos():
         return redirect('/')
 
 #mostrar Todos los pedidos Aceptados
-@app.route('/consultarPorEntregar')
-def consultarPorEntregar():
-    if session.get("loginCorrecto"):
-        resultado = misServicios.consultarPorEntregar()
-        return render_template("lideres/prestamos/prestamosEntre.html", res=resultado)
-    else:
-        return redirect('/')
-
-#mostrar Todos los pedidos Aceptados
 @app.route('/consultarAceptado')
 def consultarAceptado():
     if session.get("loginCorrecto"):
@@ -107,11 +98,6 @@ def aceptarPedido(id):
     misServicios.aceptarPrestamo(id)
     return redirect('/Correcto')
 
-#pedido falta entregarlo
-@app.route('/porEntregarPedido/<id>')
-def EntregarPedido(id):
-    misServicios.porEntregarPrestamo(id)
-    return redirect('/Correcto')
 
 #pedido  Prestado
 @app.route('/prestado/<id>')
