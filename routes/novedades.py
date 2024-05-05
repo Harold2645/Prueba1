@@ -4,28 +4,34 @@ from flask import redirect, render_template, request, session
 from models.novedades import misNovedades
 from models.usuarios import misUsuarios
 
-
 @app.route("/agregarnovedad")
 def agregarnovedad():
-    return render_template('lideres/novedades/novedadesAg.html')
+    if session.get("loginCorrecto"):
+        return render_template('lideres/novedades/novedadesAg.html')
+    else:
+        return redirect('/')
 
 @app.route("/guardarnovedad", methods=['POST'])
 def guardarnovedad():
-    idobjeto = request.form['objetotxt']
-    documento = request.form['identxt']
-    tipo = request.form['tipotxt']
-    fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    descripcion = request.form['destxt']
-    foto = request.files['fototxt']
-    now = datetime.now()
-    tiempo = now.strftime("%Y%H%M%S")
+    if session.get("loginCorrecto"):
+        idobjeto = request.form['objetotxt']
+        documento = request.form['identxt']
+        tipo = request.form['tipotxt']
+        fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        descripcion = request.form['destxt']
+        foto = request.files['fototxt']
+        now = datetime.datetime.now()
+        tiempo = now.strftime("%Y%H%M%S")
+        nuevoNombreFoto = ""
 
-    if foto.filename!='':
-        nuevoNombreFoto = tiempo+foto.filename
-        foto.save("/uploads/"+nuevoNombreFoto)
-    misNovedades.agregarNovedad (idobjeto, documento, tipo, fecha, descripcion, nuevoNombreFoto)
-    return redirect('/Correcto')
+        if foto.filename != '':
+            nuevoNombreFoto = tiempo + foto.filename
+            foto.save("uploads/" + nuevoNombreFoto)
 
+        misNovedades.agregarNovedad(idobjeto, documento, tipo, fecha, descripcion, nuevoNombreFoto)
+        return redirect('/Correcto')
+    else:
+        return redirect('/')
 
 @app.route('/novedades')
 def novedades():

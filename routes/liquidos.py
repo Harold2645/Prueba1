@@ -5,11 +5,9 @@ from models.categorias import misCategorias
 from models.liquidos import misLiquidos
 from models.movimientos import misMovimientos
 
+# Liquidos
 
-
-#Liquidos
-
-#mostrar Liquidos
+# mostrar Liquidos
 @app.route('/consultarLiquidos')
 def consultaLiquidos():
     if session.get("loginCorrecto"):
@@ -38,7 +36,7 @@ def consultalarLiquidos():
     else:
         return redirect('/')
 
-#agregar Liquidos
+# agregar Liquidos
 @app.route("/agregarLiquidos")
 def agregarLiquidos():
     if session.get("loginCorrecto"):
@@ -55,41 +53,41 @@ def agregarLiquidos():
 
 @app.route("/guardarLiquidos" ,methods=['POST'])
 def guardarLiquidos():
-    documento = session['documento'] 
-    idCategoria = request.form.get('id_categoria')
-    nombre = request.form['nombre']
-    cantidad = request.form['cantidad']
-    foto = request.files['foto']
-    ahora = datetime.now()
-    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    creador = documento
-    fnombre,fextension = os.path.splitext(foto.filename)
-    nombreFoto = "L"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-    foto.save("uploads/"+nombreFoto)
-    misLiquidos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
+    if session.get("loginCorrecto"):
+        documento = session['documento'] 
+        idCategoria = request.form.get('id_categoria')
+        nombre = request.form['nombre']
+        cantidad = request.form['cantidad']
+        foto = request.files['foto']
+        ahora = datetime.now()
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        creador = documento
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "L"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        foto.save("uploads/"+nombreFoto)
+        misLiquidos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
 
-    movimiento = "AgregoLiquido"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarLiquidos")
+        movimiento = "AgregoLiquido"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect("/consultarLiquidos")
+    else:
+        return redirect('/')
 
-#borrar Liquidos 
+# borrar Liquidos 
 @app.route('/borrarLiquidos/<idObjetos>')
 def borrarLiquidos(idObjetos):
-    misLiquidos.borrar(idObjetos)
+    if session.get("loginCorrecto"):
+        misLiquidos.borrar(idObjetos)
 
-    nombre = misLiquidos.buscarnombre(idObjetos)
-    creador = session['documento'] 
-    movimiento = "BorroLiquido"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect('/consultarLiquidos')
+        nombre = misLiquidos.buscarnombre(idObjetos)
+        creador = session['documento'] 
+        movimiento = "BorroLiquido"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect('/consultarLiquidos')
+    else:
+        return redirect('/')
 
-
-
-
-
-#Falta organizar
-
-#editar Liquidos
+# editar Liquidos
 @app.route('/editarLiquidos/<idObjeto>')
 def editarLiquidos(idObjeto):
     if session.get("loginCorrecto"):
@@ -101,16 +99,19 @@ def editarLiquidos(idObjeto):
     
 @app.route('/actualizarLiquidos', methods=['POST'])
 def actualizarLiquidos():
-    idObjeto = request.form['id_Consumible']
-    nombre = request.form['nombre']
-    categoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    activo = request.form['activo']
-    modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-    misLiquidos.modificar(modif)
+    if session.get("loginCorrecto"):
+        idObjeto = request.form['id_Consumible']
+        nombre = request.form['nombre']
+        categoria = request.form.get('id_categoria')
+        estado = request.form['estado']
+        disponibilidad = request.form['disponibilidad']
+        activo = request.form['activo']
+        modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
+        misLiquidos.modificar(modif)
 
-    creador = session['documento'] 
-    movimiento = "EditoLiquido"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarLiquidos")
+        creador = session['documento'] 
+        movimiento = "EditoLiquido"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect("/consultarLiquidos")
+    else:
+        return redirect('/')

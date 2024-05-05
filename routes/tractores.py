@@ -40,26 +40,29 @@ def agregaarticulo():
 
 @app.route("/guardarTractor",   methods=['POST'])
 def agregarTrac():
-    creador = session['documento'] 
-    idobjeto = request.form['idobjeto']
-    categoria = request.form['idcategoria']
-    foto = request.files['fototrac']
-    hora = datetime.now()
-    fechacreacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    marca = request.form['marca']
-    modelo = request.form['modelo']
-    if misTracores.buscar(idobjeto):
-        categorias = misCategorias.categoriasTractor()
-        return render_template("lideres/tractores/tractoresAg.html", categorias=categorias, msg="Id ya existente")
+    if session.get("loginCorrecto"):
+        creador = session['documento'] 
+        idobjeto = request.form['idobjeto']
+        categoria = request.form['idcategoria']
+        foto = request.files['fototrac']
+        hora = datetime.now()
+        fechacreacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        if misTracores.buscar(idobjeto):
+            categorias = misCategorias.categoriasTractor()
+            return render_template("lideres/tractores/tractoresAg.html", categorias=categorias, msg="Id ya existente")
+        else:
+            fnombre,fextension = os.path.splitext(foto.filename)  
+            fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+            foto.save("uploads/" + fotot)
+            misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
+                    #funcion de guardar en tabla movimientos
+            movimiento = "AgregoTractor"
+            misMovimientos.agregar([creador, movimiento, idobjeto])
+            return redirect("/tractores")
     else:
-        fnombre,fextension = os.path.splitext(foto.filename)  
-        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
-        foto.save("uploads/" + fotot)
-        misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
-                #funcion de guardar en tabla movimientos
-        movimiento = "AgregoTractor"
-        misMovimientos.agregar([creador, movimiento, idobjeto])
-        return redirect("/tractores")
+        return redirect('/')
 
 
 #editar tractores
@@ -74,29 +77,34 @@ def editarTractor(idObjeto):
     
 @app.route('/actualizarTractor', methods=['POST'])
 def actualizarTractor():
-    idobjeto = request.form['id_tractor']
-    categoria = request.form['id_categoria']
-    marca = request.form['marca']
-    modelo = request.form['modelo']
-    foto = request.files['fototrac']
-    hora = datetime.now()
-    fnombre,fextension = os.path.splitext(foto.filename)  
-    fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
-    foto.save("uploads/" + fotot)
-    misTracores.modificar([idobjeto, categoria, fotot, marca, modelo])
+    if session.get("loginCorrecto"):
+        idobjeto = request.form['id_tractor']
+        categoria = request.form['id_categoria']
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        foto = request.files['fototrac']
+        hora = datetime.now()
+        fnombre,fextension = os.path.splitext(foto.filename)  
+        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+        foto.save("uploads/" + fotot)
+        misTracores.modificar([idobjeto, categoria, fotot, marca, modelo])
 
-    creador = session['documento'] 
-    movimiento = "EditoTractor"
-    misMovimientos.agregar([creador, movimiento, idobjeto])
-    return redirect("/consultarTractores")
+        creador = session['documento'] 
+        movimiento = "EditoTractor"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
+        return redirect("/consultarTractores")
+    else:
+        return redirect('/')
 
 #borrar tractores 
 @app.route('/borrarTractor/<idObjetos>')
 def borrarTractor(idObjetos):
-    misTracores.borrar(idObjetos)
-
-    idobjeto = idObjetos
-    creador = session['documento'] 
-    movimiento = "BorroTractor"
-    misMovimientos.agregar([creador, movimiento, idobjeto])
-    return redirect('/tractores')
+    if session.get("loginCorrecto"):
+        misTracores.borrar(idObjetos)
+        idobjeto = idObjetos
+        creador = session['documento'] 
+        movimiento = "BorroTractor"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
+        return redirect('/tractores')
+    else:
+        return redirect('/')

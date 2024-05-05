@@ -6,36 +6,38 @@ from models.usuarios import misUsuarios
 from models.novedades import misNovedades
 from models.servicios import misServicios
 
-
-#Interfaz registrar usuarios
+# Interfaz para registrar usuarios
 @app.route('/registrar')
 def registrar():    
     session["logueado"] = False
     fichas = misUsuarios.buscarFicha()
     vFicha = [ficha[0] for ficha in fichas ]
-    return render_template("registrar.html",fichas=vFicha)
+    return render_template("registrar.html", fichas=vFicha)
 
-# Funcion Guardar Usuarios
+# Función para guardar usuarios
 @app.route("/guardarUsarios", methods=['POST'])
 def guardarUsuarios():
-    documento = request.form['documento']
-    nombre = request.form['nombre']
-    apellido = request.form['apellido']
-    celular = request.form['celular']
-    contrasena = request.form['contrasena']
-    cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-    rol = request.form['rol']
-    ficha = request.form['ficha']
-    ahora = datetime.now()
-    fecha = ahora.strftime("%Y%m%d%H%M%S")
-    existente = misUsuarios.buscar(documento)
-    if existente:
-        return render_template("registrar.html", msg="Documento ya existe")
+    if session.get("loginCorrecto"):
+        documento = request.form['documento']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        celular = request.form['celular']
+        contrasena = request.form['contrasena']
+        cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
+        rol = request.form['rol']
+        ficha = request.form['ficha']
+        ahora = datetime.now()
+        fecha = ahora.strftime("%Y%m%d%H%M%S")
+        existente = misUsuarios.buscar(documento)
+        if existente:
+            return render_template("registrar.html", msg="Documento ya existe")
+        else:
+            misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
+            return redirect('/')
     else:
-        misUsuarios.agregar([documento,nombre,apellido,celular,cifrada,rol,ficha,fecha])
         return redirect('/')
 
-#Funcion Login
+# Función para el login
 @app.route("/login", methods=['POST'])
 def login():
     documento = request.form['documento']
@@ -58,8 +60,8 @@ def login():
         session['nombreUsuario'] = nombre_completo
         session['rol'] = rol
         return redirect("/Correcto")
-    
-#Login correcto 
+
+# Página de inicio después del login
 @app.route('/Correcto')
 def redireccion():
     if session.get("loginCorrecto"):
@@ -71,72 +73,71 @@ def redireccion():
             tractores = misServicios.consultarSolicitadosTractor()
             herramientas = misServicios.consultarSolicitadosHerramienta()
             consumibles = misServicios.consultarSolicitadosConsumible()
-            return render_template('lideres/principalLIde.html', usu=usuarios, con=consumibles , her=herramientas , trac=tractores)
-        
+            return render_template('lideres/principalLIde.html', usu=usuarios, con=consumibles, her=herramientas, trac=tractores)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-    
 
-#Aceptar usuario
+# Aceptar usuario
 @app.route('/aceptarUsu/<documento_parm>')
 def aceptarUsu(documento_parm):
-    misUsuarios.aceptarSi(documento_parm)
-    return redirect('/Correcto')
+    if session.get("loginCorrecto"):
+        misUsuarios.aceptarSi(documento_parm)
+        return redirect('/Correcto')
+    else:
+        return redirect('/')
 
-#Interfaz solo para aceptar Usuarios
+# Interfaz para aceptar usuarios
 @app.route('/aceptarUsuarios')
 def aceptarUsuario():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect ('/Correcto')
+            return redirect('/Correcto')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
             return render_template("lideres/usuariosAcep.html", usu=usuarios)
         else:
-                return render_template("index.html", msg="Rol no reconocido")
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
-
-#Interfaz Perfil
+# Interfaz del perfil propio
 @app.route('/perfilPropio')
 def perfilpropio():
     if session.get("loginCorrecto"):
         documento = session['documento']
         if misUsuarios.buscar(documento):
-                resultado1 = misUsuarios.buscar(documento)
-                return render_template("perfil.html", res=resultado1)
+            resultado1 = misUsuarios.buscar(documento)
+            return render_template("perfil.html", res=resultado1)
         else:
             return redirect('/login')
     else:
         return redirect('/')
-        
-#Perfil
+
+# Perfil de usuario
 @app.route('/perfil/<documento_parm>')
 def perfil(documento_parm):
     if session.get("loginCorrecto"):
         rol = session.get('rol')
         if rol == 'Admin':
             if misUsuarios.buscar(documento_parm):
-                    resultado1 = misUsuarios.buscar(documento_parm)
-                    return render_template("perfil.html", res=resultado1)
+                resultado1 = misUsuarios.buscar(documento_parm)
+                return render_template("perfil.html", res=resultado1)
             else:
                 return redirect('/')
         else:
             documento = session['documento']
             if misUsuarios.buscar(documento):
-                    resultado1 = misUsuarios.buscar(documento)
-                    return render_template("perfil.html", res=resultado1)
+                resultado1 = misUsuarios.buscar(documento)
+                return render_template("perfil.html", res=resultado1)
             else:
                 return redirect('/')
     else:
-            return redirect('/')
-    
+        return redirect('/')
 
-#mostar usuarios de la base de datos que estan activos
+# Mostrar usuarios activos
 @app.route('/usuarios')
 def clientes():
     if session.get("loginCorrecto"):
@@ -144,12 +145,11 @@ def clientes():
         return render_template("usuarios.html", res=resultado)
     else:
         return redirect('/')
-    
 
-#Interfaz de usuarios normales 
+# Interfaz de usuarios normales 
 @app.route("/principalusuarios")
 def usuarios():
     if session.get("loginCorrecto"):
         return render_template('usuarios/principalUsu.html')
     else:
-            return redirect('/')
+        return redirect('/')

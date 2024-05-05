@@ -101,20 +101,19 @@ def devolver(idservicio):
 #Form de pedido
 @app.route('/devolucion', methods=['POST'])
 def devolucion():
-    id = request.form['idservicio']
-    print(id)
-    descripcion = request.form['descripcion']
-    foto = request.files['foto']
-
-    hora = datetime.now()
-    fnombre,fextension = os.path.splitext(foto.filename)  
-    fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
-    foto.save("uploads/" + fotot)
-
-    envio=[id,hora,descripcion,fotot]
-    misServicios.devuelto(envio)
-
-    return redirect("/Correcto")
+    if session.get("loginCorrecto"):
+        id = request.form['idservicio']
+        descripcion = request.form['descripcion']
+        foto = request.files['foto']
+        hora = datetime.now()
+        fnombre,fextension = os.path.splitext(foto.filename)  
+        fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+        foto.save("uploads/" + fotot)
+        envio=[id,hora,descripcion,fotot]
+        misServicios.devuelto(envio)
+        return redirect("/Correcto")
+    else:
+        return redirect('/')
 
 @app.route('/prestado/<idservicio>')
 def prestado(idservicio):
@@ -126,61 +125,70 @@ def prestado(idservicio):
 #Form de pedido
 @app.route('/pedido', methods=['POST'])
 def pedido():
-    id = request.form['idservicio']
-    estadosalida = request.form['estado']
-    encargado = session['documento']
-    envio=[id,estadosalida,encargado]
-    print(envio)
-    misServicios.prestado(envio)
-
-    return redirect("/Correcto")
-
+    if session.get("loginCorrecto"):
+        id = request.form['idservicio']
+        estadosalida = request.form['estado']
+        encargado = session['documento']
+        envio=[id,estadosalida,encargado]
+        print(envio)
+        misServicios.prestado(envio)
+        return redirect("/Correcto")
+    else:
+        return redirect('/')
 
 #Form de prestamo
 @app.route('/prestamo', methods=['POST'])
 def prestamo():
-    idobjeto = request.form['idobjeto']
-    labor = request.form['labor']
-    documento = session['documento']
-
-    if 'ficha' in request.form and len(request.form['ficha']) > 0:
-        ficha = request.form['ficha']
+    if session.get("loginCorrecto"):
+        idobjeto = request.form['idobjeto']
+        labor = request.form['labor']
+        documento = session['documento']
+        if 'ficha' in request.form and len(request.form['ficha']) > 0:
+            ficha = request.form['ficha']
+        else:
+            ficha = '0'
+        fecha = request.form['fecha']
+        if 'cantidad' in request.form and len(request.form['cantidad']) > 0:
+            cantidad = request.form['cantidad']
+        else:
+            cantidad = '1'
+        tipo = request.form['tipo']
+        agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo]
+        misServicios.pedir(agg)
+        return redirect("/Correcto")
     else:
-        ficha = '0'
-    fecha = request.form['fecha']
-
-    if 'cantidad' in request.form and len(request.form['cantidad']) > 0:
-        cantidad = request.form['cantidad']
-    else:
-        cantidad = '1'
-
-    tipo = request.form['tipo']
-    agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo]
-    misServicios.pedir(agg)
-    return redirect("/Correcto")
+        return redirect('/')
 
 
 #Aceptar pedido 
 @app.route('/aceptarPedido/<id>')
 def aceptarPedido(id):
-    misServicios.aceptarPrestamo(id)
-    return redirect('/Correcto')
-
-
-#pedido  Prestado
-# @app.route('/prestado/<id>')
-# def prestado(id):
-#     misServicios.prestado(id)
-#     return redirect('/Correcto')
-
-#Pedido devuelto pedido 
-# @app.route('/devolver/<id>')
-# def devolver(id):
-#     misServicios.devuelto(id)
-#     return redirect('/Correcto')
+    if session.get("loginCorrecto"):
+        misServicios.aceptarPrestamo(id)
+        return redirect('/Correcto')
+    else:
+        return redirect('/')
 
 #Pedido devuelto pedido 
 @app.route('/rechazar/<id>')
 def rechazar(id):
-    misServicios.rechazarPrestamo(id)
-    return redirect('/Correcto')
+    if session.get("loginCorrecto"):
+        misServicios.rechazarPrestamo(id)
+        return redirect('/Correcto')
+    else:
+        return redirect('/')
+    
+
+@app.route('/mispedidos')
+def mispedidos():
+    if session.get("loginCorrecto"):
+        id = session['documento']
+        tractores = misServicios.consultarTractorMios(id)
+        herramientas = misServicios.consultarHerramientaMios(id)
+        consumibles = misServicios.consultarConsumibleMios(id)
+        return render_template("pedidos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Mis pedidos')
+
+
+
+    else:
+        return redirect('/')

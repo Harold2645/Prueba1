@@ -5,10 +5,9 @@ from models.categorias import misCategorias
 from models.insumos import misInsumos
 from models.movimientos import misMovimientos
 
+# Consumibles
 
-#Consumibles
-
-#mostrar consumibles
+# mostrar consumibles
 @app.route('/consultarConsumibles')
 def consultaConsumibles():
     if session.get("loginCorrecto"):
@@ -22,7 +21,7 @@ def consultaConsumibles():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-    
+
 @app.route('/consultarlosConsumibles')
 def consultalarConsumibles():
     if session.get("loginCorrecto"):
@@ -37,7 +36,7 @@ def consultalarConsumibles():
     else:
         return redirect('/')
 
-#agregar Consumibles
+# agregar Consumibles
 @app.route("/agregarConsumibles")
 def agregarConsumibles():
     if session.get("loginCorrecto"):
@@ -54,36 +53,41 @@ def agregarConsumibles():
 
 @app.route("/guardarConsumibles" ,methods=['POST'])
 def guardarConsumibles():
-    documento = session['documento'] 
-    idCategoria = request.form.get('id_categoria')
-    nombre = request.form['nombre']
-    cantidad = request.form['cantidad']
-    foto = request.files['foto']
-    ahora = datetime.now()
-    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    creador = documento
-    fnombre,fextension = os.path.splitext(foto.filename)
-    nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-    foto.save("uploads/"+nombreFoto)
-    misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
+    if session.get("loginCorrecto"):
+        documento = session['documento'] 
+        idCategoria = request.form.get('id_categoria')
+        nombre = request.form['nombre']
+        cantidad = request.form['cantidad']
+        foto = request.files['foto']
+        ahora = datetime.now()
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        creador = documento
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        foto.save("uploads/"+nombreFoto)
+        misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
 
-    movimiento = "AgregoInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarConsumibles")
+        movimiento = "AgregoInsumo"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect("/consultarConsumibles")
+    else:
+        return redirect('/')
 
-#borrar Consumibles 
+# borrar Consumibles 
 @app.route('/borrarConsumibles/<idObjetos>')
 def borrarConsumibles(idObjetos):
-    misInsumos.borrar(idObjetos)
+    if session.get("loginCorrecto"):
+        misInsumos.borrar(idObjetos)
 
-    nombre = misInsumos.buscarnombre(idObjetos)
-    creador = session['documento'] 
-    movimiento = "BorroInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect('/consultarConsumibles')
+        nombre = misInsumos.buscarnombre(idObjetos)
+        creador = session['documento'] 
+        movimiento = "BorroInsumo"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect('/consultarConsumibles')
+    else:
+        return redirect('/')
 
-
-#editar Consumibles
+# editar Consumibles
 @app.route('/editarConsumibles/<idObjeto>')
 def editarConsumibles(idObjeto):
     if session.get("loginCorrecto"):
@@ -95,22 +99,25 @@ def editarConsumibles(idObjeto):
     
 @app.route('/actualizarConsumibles', methods=['POST'])
 def actualizarConsumibles():
-    idobjeto = request.form['idobjeto']
-    nombre = request.form['nombre']
-    categoria = request.form.get('id_categoria')
-    cantidad = request.form['cantidad']
-    foto = request.files['foto']
+    if session.get("loginCorrecto"):
+        idobjeto = request.form['idobjeto']
+        nombre = request.form['nombre']
+        categoria = request.form.get('id_categoria')
+        cantidad = request.form['cantidad']
+        foto = request.files['foto']
 
-    ahora = datetime.now()
-    fnombre,fextension = os.path.splitext(foto.filename)
-    nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-    foto.save("uploads/"+nombreFoto)
-    misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
+        ahora = datetime.now()
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        foto.save("uploads/"+nombreFoto)
+        misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
 
-    creador = session['documento'] 
-    movimiento = "EditoInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarConsumibles")
+        creador = session['documento'] 
+        movimiento = "EditoInsumo"
+        misMovimientos.agregar([creador, movimiento, nombre])
+        return redirect("/consultarConsumibles")
+    else:
+        return redirect('/')
 
 @app.route('/buscarLiquido', methods=['POST'])
 def buscarLiquido():

@@ -145,7 +145,7 @@ class Servicios:
         self.conexion.commit()
 
     def aceptarPrestamo(self, id):
-        sql = f"UPDATE servicios  SET estado='A' WHERE idservicio={id}"
+        sql = f"UPDATE servicios  SET estado='A' WHERE idservicio='{id}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 
@@ -156,15 +156,32 @@ class Servicios:
         self.conexion.commit()
     
     def devuelto(self, devo):
-        sql = f"UPDATE servicios  SET fechaentrada='{devo[1]}', descripcion='{devo[2]}', foto='{devo[3]}', estado='D' WHERE idservicio={devo[0]}"
+        sql = f"UPDATE servicios  SET fechaentrada='{devo[1]}', descripcion='{devo[2]}', foto='{devo[3]}', estado='D' WHERE idservicio='{devo[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 
     def rechazarPrestamo(self, id):
-        sql = f"UPDATE servicios  SET estado='R' WHERE idservicio={id}"
+        sql = f"UPDATE servicios  SET estado='R' WHERE idservicio='{id}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 
+    def consultarTractorMios(self, id):
+        sql = f"SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.documento = {id}"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarHerramientaMios(self, id):
+        sql = f"SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.documento = {id};"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarConsumibleMios(self, id):
+        sql = f"SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.documento = {id};"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
 
     #Solicitado     =   S
     #Aceptado       =   A
