@@ -24,34 +24,99 @@ class Servicios:
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
+    
+    def consultarConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
 
-    def consultarSolicitados(self):
+    def consultarSolicitadosTractor(self):
         sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'S';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
-    def consultarAceptado(self):
+    def consultarSolicitadosHerramienta(self):
+        sql = "SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'S';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarSolicitadosConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'S';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
+    def consultarAceptadoTractor(self):
         sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'A';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
+    def consultarAceptadoHerramienta(self):
+        sql = "SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'A';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarAceptadoConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'A';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
 
-    def consultarPrestado(self):
+    def consultarPrestadoTracor(self):
         sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'P';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
-    def consultarDevuelto(self):
+    def consultarPrestadoHerramienta(self):
+        sql = "SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'P';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarPrestadoConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'P';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarDevueltoTractor(self):
         sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'D';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
+    
+    def consultarDevueltoHerramienta(self):
+        sql = "SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'D';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarDevueltoConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'D';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
 
-    def consultarRechazado(self):
+    def consultarRechazadoTractor(self):
         sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'R';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarRechazadoHerramienta(self):
+        sql = "SELECT h.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'R';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarRechazadoConsumible(self):
+        sql = "SELECT c.nombre, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'R';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -84,13 +149,14 @@ class Servicios:
         self.cursor.execute(sql)
         self.conexion.commit()
 
-    def prestado(self, id):
-        sql = f"UPDATE servicios  SET estado='P' WHERE idservicio={id}"
+    def prestado(self, servi):
+        print(servi)
+        sql = f"UPDATE servicios  SET estadosalida='{servi[1]}', encargado='{servi[2]}', estado='P' WHERE idservicio='{servi[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
     
-    def devuelto(self, id):
-        sql = f"UPDATE servicios  SET estado='D' WHERE idservicio={id}"
+    def devuelto(self, devo):
+        sql = f"UPDATE servicios  SET fechaentrada='{devo[1]}', descripcion='{devo[2]}', foto='{devo[3]}', estado='D' WHERE idservicio={devo[0]}"
         self.cursor.execute(sql)
         self.conexion.commit()
 

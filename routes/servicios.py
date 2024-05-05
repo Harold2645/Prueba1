@@ -8,26 +8,45 @@ from models.servicios import misServicios
 @app.route('/consultarTodosPedidos')
 def consultarTodosPedidos():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultar()
-        return render_template("lideres/prestamos/prestamos.html", res=resultado)
+        tractores = misServicios.consultarTractor()
+        herramientas = misServicios.consultarHerramienta()
+        consumibles = misServicios.consultarConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Todos los prestamos')
     else:
         return redirect('/')
+    
+    
+#mostrar Todos los pedidos solicitados
+@app.route('/consultarSolicitados')
+def consultarSolicitados():
+    if session.get("loginCorrecto"):
+        tractores = misServicios.consultarSolicitadosTractor()
+        herramientas = misServicios.consultarSolicitadosHerramienta()
+        consumibles = misServicios.consultarSolicitadosConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Solicitados')
+    else:
+        return redirect('/')
+
 
 #mostrar Todos los pedidos Aceptados
 @app.route('/consultarAceptado')
 def consultarAceptado():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarPrestado()
-        return render_template("lideres/prestamos/prestamosPres.html", res=resultado)
+        tractores = misServicios.consultarAceptadoTractor()
+        herramientas = misServicios.consultarAceptadoHerramienta()
+        consumibles = misServicios.consultarAceptadoConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Falta entregar')
     else:
         return redirect('/')
     
-#mostrar Todos los pedidos en espera
-@app.route('/consultarEnEspera')
-def consultarEnEspera():
+#mostrar Todos los pedidos entregados
+@app.route('/consultarprestados')
+def consultarprestados():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarSolicitados()
-        return render_template("lideres/prestamos/prestamosPed.html", res=resultado)
+        tractores = misServicios.consultarPrestadoTracor()
+        herramientas = misServicios.consultarPrestadoHerramienta()
+        consumibles = misServicios.consultarPrestadoConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Prestados')
     else:
         return redirect('/')
 
@@ -35,8 +54,10 @@ def consultarEnEspera():
 @app.route('/consultarDevueltos')
 def consultarDevueltos():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarDevuelto()
-        return render_template("lideres/prestamos/prestamosDev.html", res=resultado)
+        tractores = misServicios.consultarDevueltoTractor()
+        herramientas = misServicios.consultarDevueltoHerramienta()
+        consumibles = misServicios.consultarDevueltoConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Devueltos')
     else:
         return redirect('/')
     
@@ -44,8 +65,10 @@ def consultarDevueltos():
 @app.route('/consultarRechazados')
 def consultarRechazados():
     if session.get("loginCorrecto"):
-        resultado = misServicios.consultarRechazado()
-        return render_template("lideres/prestamos/prestamosCan.html", res=resultado)
+        tractores = misServicios.consultarRechazadoTractor()
+        herramientas = misServicios.consultarRechazadoHerramienta()
+        consumibles = misServicios.consultarRechazadoConsumible()
+        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Rechazados')
     else:
         return redirect('/')
     
@@ -68,6 +91,51 @@ def pedir(idobjeto):
     else:
         return redirect('/')
     
+@app.route('/devolver/<idservicio>')
+def devolver(idservicio):
+    if session.get("loginCorrecto"):
+        return render_template("lideres/devoluciones/devoluciones.html", idservicio=idservicio)
+    else:
+        return redirect('/')
+    
+#Form de pedido
+@app.route('/devolucion', methods=['POST'])
+def devolucion():
+    id = request.form['idservicio']
+    print(id)
+    descripcion = request.form['descripcion']
+    foto = request.files['foto']
+
+    hora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)  
+    fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+    foto.save("uploads/" + fotot)
+
+    envio=[id,hora,descripcion,fotot]
+    misServicios.devuelto(envio)
+
+    return redirect("/Correcto")
+
+@app.route('/prestado/<idservicio>')
+def prestado(idservicio):
+    if session.get("loginCorrecto"):
+        return render_template("lideres/prestamos/prestar.html", idservicio=idservicio)
+    else:
+        return redirect('/')
+
+#Form de pedido
+@app.route('/pedido', methods=['POST'])
+def pedido():
+    id = request.form['idservicio']
+    estadosalida = request.form['estado']
+    encargado = session['documento']
+    envio=[id,estadosalida,encargado]
+    print(envio)
+    misServicios.prestado(envio)
+
+    return redirect("/Correcto")
+
+
 #Form de prestamo
 @app.route('/prestamo', methods=['POST'])
 def prestamo():
@@ -100,16 +168,16 @@ def aceptarPedido(id):
 
 
 #pedido  Prestado
-@app.route('/prestado/<id>')
-def prestado(id):
-    misServicios.prestado(id)
-    return redirect('/Correcto')
+# @app.route('/prestado/<id>')
+# def prestado(id):
+#     misServicios.prestado(id)
+#     return redirect('/Correcto')
 
 #Pedido devuelto pedido 
-@app.route('/devolver/<id>')
-def devolver(id):
-    misServicios.devuelto(id)
-    return redirect('/Correcto')
+# @app.route('/devolver/<id>')
+# def devolver(id):
+#     misServicios.devuelto(id)
+#     return redirect('/Correcto')
 
 #Pedido devuelto pedido 
 @app.route('/rechazar/<id>')

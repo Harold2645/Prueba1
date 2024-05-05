@@ -19,11 +19,13 @@
             <button id="cont-close">
                 <i class="lni lni-close" id="close"></i>
             </button>
+
             <div class="menu">
                 <ul class="interior">
                     <li><a href="/Correcto">Inicio</a></li>
-                    <li><a href="/consultarAceptado">Prestados</a></li>
-                    <li><a href="/consultarEnEspera">Por Aceptar</a></li>
+                    <li><a href="/consultarSolicitados">Solicitudes</a></li>
+                    <li><a href="/consultarAceptado">Por entregar</a></li>
+                    <li><a href="/consultarprestados">Prestados</a></li>
                     <li><a href="/consultarDevueltos">Devueltos</a></li>
                     <li><a href="/consultarRechazados">Rechazados</a></li>
 
@@ -34,7 +36,7 @@
     </header>
 
     <div id="prestamos">
-        <h4>Prestamos pendientes</h4>
+        <h4>{{titulo}}</h4>
         
         <table>
             <thead>
@@ -50,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for prest in res %}
+            {% for prest in trac %}
             <tr>
                 <th>{{prest[0]}} {{prest[1]}}</th>
                 <th>{{prest[2]}}</th>
@@ -66,21 +68,119 @@
 
                 <th>{{prest[6]}}</th>
 
-                {% if prest[7] == '0' %}
-                    <th>Rechazado</th>
-                {% elif prest[7] == '1' %}
-                    <th>En espera</th>
-                {% elif prest[7] == '2' %}
+                {% if prest[7] == 'S' %}
+                    <th>Solicitado</th>
+                {% elif prest[7] == 'A' %}
+                    <th>Aceptado</th>
+                {% elif prest[7] == 'P' %}
                     <th>Prestado</th>
-                {% elif prest[7] == '3' %}
-                <th>Devuelto</th>
-                {% elif prest[7] == '4' %}
-                <th>Por entregar</th>
+                {% elif prest[7] == 'D' %}
+                    <th>Devuelto</th>
+                {% elif prest[7] == 'R' %}
+                    <th>Rechazado</th>
                 {% else %}
-                <th>NO ESTA</th>
+                    <th>NO ESTA</th>
+                {% endif %}
+
+                {% if prest[7] == 'S' %}
+                    <th><a href="/aceptarPedido/{{prest[8]}}">Aceptar</a></th>
+                    <th><a href="/rechazar/{{prest[8]}}">Rechazar</a></th>
+                {% elif prest[7] == 'A' %}
+                    <th><a href="/prestado/{{prest[8]}}">Entregar</a></th>
+                {% elif prest[7] == 'P' %}
+                    <th><a href="/devolver/{{prest[8]}}">Devolver</a></th>
+                {% else %}
+                    <th> </th>
                 {% endif %}
             </tr>
             {% endfor %}
+
+            {% for prest in her %}
+            <tr>
+                <th>{{prest[0]}}</th>
+                <th>{{prest[1]}}</th>
+                <th>{{prest[2]}}</th>
+                <th><a href="/perfil/{{ prest[3] }}">{{ prest[3] }}</a></th> 
+
+                {% if prest[4] == '0' %}
+                    <th>No hay</th>
+                {% else %}
+                    <th>{{prest[4]}}</th>
+                {% endif %}
+
+
+                <th>{{prest[5]}}</th>
+
+                {% if prest[6] == 'S' %}
+                    <th>Solicitado</th>
+                {% elif prest[6] == 'A' %}
+                    <th>Aceptado</th>
+                {% elif prest[6] == 'P' %}
+                    <th>Prestado</th>
+                {% elif prest[6] == 'D' %}
+                    <th>Devuelto</th>
+                {% elif prest[6] == 'R' %}
+                    <th>Rechazado</th>
+                {% else %}
+                    <th>NO ESTA</th>
+                {% endif %}
+
+                {% if prest[6] == 'S' %}
+                    <th><a href="/aceptarPedido/{{prest[7]}}">Aceptar</a></th>
+                    <th><a href="/rechazar/{{prest[7]}}">Rechazar</a></th>
+                {% elif prest[6] == 'A' %}
+                    <th><a href="/prestado/{{prest[7]}}">Entregar</a></th>
+                {% elif prest[6] == 'P' %}
+                    <th><a href="/devolver/{{prest[7]}}">Devolver</a></th>
+                {% else %}
+                    <th> </th>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+            {% for prest in con %}
+            <tr>
+                <th>{{prest[0]}}</th>
+                <th>{{prest[1]}}</th>
+                <th>{{prest[2]}}</th>
+                <th><a href="/perfil/{{ prest[3] }}">{{ prest[3] }}</a></th> 
+
+                {% if prest[4] == '0' %}
+                    <th>No hay</th>
+                {% else %}
+                    <th>{{prest[4]}}</th>
+                {% endif %}
+
+
+                <th>{{prest[5]}}</th>
+
+                {% if prest[6] == 'S' %}
+                    <th>Solicitado</th>
+                {% elif prest[6] == 'A' %}
+                    <th>Aceptado</th>
+                {% elif prest[6] == 'P' %}
+                    <th>Prestado</th>
+                {% elif prest[6] == 'D' %}
+                    <th>Devuelto</th>
+                {% elif prest[6] == 'R' %}
+                    <th>Rechazado</th>
+                {% else %}
+                    <th>NO ESTA</th>
+                {% endif %}
+
+                {% if prest[6] == 'S' %}
+                    <th><a href="/aceptarPedido/{{prest[7]}}">Aceptar</a></th>
+                    <th><a href="/rechazar/{{prest[7]}}">Rechazar</a></th>
+                {% elif prest[6] == 'A' %}
+                    <th><a href="/prestado/{{prest[7]}}">Entregar</a></th>
+                {% elif prest[6] == 'P' %}
+                    <th><a href="/devolver/{{prest[7]}}">Devolver</a></th>
+                {% else %}
+                    <th> </th>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
             </tbody>
         </table>
     </div>
