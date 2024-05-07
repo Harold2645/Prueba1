@@ -186,7 +186,7 @@ def mispedidos():
         tractores = misServicios.consultarTractorMios(id)
         herramientas = misServicios.consultarHerramientaMios(id)
         consumibles = misServicios.consultarConsumibleMios(id)
-        return render_template("pedidos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Mis pedidos')
+        return render_template("usuarios/pedidos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Mis pedidos')
 
 
 
