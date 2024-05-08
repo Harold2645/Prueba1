@@ -45,7 +45,7 @@ def envioConsuPez():
         smtp.quit()
         return redirect('/graficos')
     else:
-        return redirect('/funciones')
+        return redirect('/Correcto')
 
  
 

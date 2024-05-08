@@ -285,4 +285,5 @@ def agregarE():
 
     misFichas.agregarE(fotos)
         
-    return render_template("lideres/hojaVida/tractores.html", msg ="Se completo correctamente la carga de la hoja de vida del tractor")
+    resultado = misFichas.consultarTractor(idObjetos)
+    return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
