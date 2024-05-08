@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/css/tractorCG.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="formulario">
+        <form class="formulario-hoja" action="/agregarHojaC" method="post">
+            <h2>Agregar hoja vida c</h2>
+
+            <input type="hidden" name="idObjetos" value="{{res[0]}}">
+
+
+            <div class="campo">
+                <label for="tipodidcncr">Tipo De Inyeccion De Combustible (Normal/Common Rail)</label>
+                <input type="text" name="tipodidcncr" id="tipodidcncr" required>
+            </div>
+
+            <div class="campo">
+                <label for="marcadlbdi">Marca De La Bomba De Inyeccion</label>
+                <input type="text" name="marcadlbdi" id="marcadlbdi" required>
+            </div>
+
+            <div class="campo">
+                <label for="referenciadlbdin">Referencia De La Bomba De Inyeccion</label>
+                <input type="text" name="referenciadlbdin" id="referenciadlbdin" required>
+            </div>
+
+            <div class="campo">
+                <label for="tensionesdlltsr">Tensiones De La Llantas Trasera Segun Referencia</label>
+                <input type="text" name="tensionesdlltsr" id="tensionesdlltsr" required>
+            </div>
+
+            <div class="campo">
+                <label for="tencionmdllt">Tencion Maxima De Las Llantas Trasera</label>
+                <input type="text" name="tencionmdllt" id="tencionmdllt" required>
+            </div>
+
+            <div class="campo">
+                <label for="cargampslrt">Carga Maxima Puede Soportar La Rueda Trasera</label>
+                <input type="text" name="cargampslrt" id="cargampslrt" required>
+            </div>
+
+            <div class="campo">
+                <label for="desgastedlrt">Desgaste De Las Ruedas Trasera (mm)</label>
+                <input type="text" name="desgastedlrt" id="desgastedlrt" required>
+            </div>
+
+            <div class="campo">
+                <label for="dimesionesdlldsr">Dimesiones De Las Llantas Delanteras Segun Referencia</label>
+                <input type="text" name="dimesionesdlldsr" id="dimesionesdlldsr" required>
+            </div>
+
+            <div class="campo">
+                <label for="presionmdlld">Presion Maxima De Las Llantas Delanteras</label>
+                <input type="text" name="presionmdlld" id="presionmdlld" required>
+            </div>
+
+            <div class="campo">
+                <label for="cargampslrd">Carga Maxima Puede Soportar La Rueda Delantera (KG)</label>
+                <input type="text" name="cargampslrd" id="cargampslrd" required>
+            </div>
+
+            <div class="campo">
+                <label for="desgastesdlrd">Desgaste De Las Ruedas Delantera (mm)</label>
+                <input type="text" name="desgastesdlrd" id="desgastesdlrd" required>
+            </div>
+
+            <div class="campo">
+                <button type="submit">Siguiente</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

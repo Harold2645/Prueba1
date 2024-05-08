@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/css/tractorBG.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="formulario">
+        <form class="formulario-hoja" action="/agregarHojaB" method="post" enctype="multipart/form-data">
+            <h2>Agregar hoja de vida del Tractor</h2>
+
+            <input type="hidden" name="idObjetos" value="{{res[0]}}">
+
+
+            <div class="campo">
+                <label for="tipodtraccion">Tipo De Traccion (4x2 / 4x4 )</label>
+                <input type="text" name="tipodtraccion" id="tipodtraccion" required>
+            </div>
+
+            <div class="campo">
+                <label for="distanciaeejes">Distancia Entre Ejes (mm) -A</label>
+                <input type="text" name="distanciaeejes" id="distanciaeejes" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturadpacded">Altura Del Piso Al Centro Del Eje Delantero (mm)-M</label>
+                <input type="text" name="alturadpacded" id="alturadpacded" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturatotal">Altura Total (mm)-H</label>
+                <input type="text" name="alturatotal" id="alturatotal" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturadetatdlc">Altura Del Eje Trasero Al Techo De La Cabina (mm)-I</label>
+                <input type="text" name="alturadetatdlc" id="alturadetatdlc" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturamlb">Altura Maxima Baja La Maquina (mm)-K</label>
+                <input type="text" name="alturamlb" id="alturamlb" required>
+            </div>
+
+            <div class="campo">
+                <label for="longitudtilbdt">Longitud Total -Incluida La Barra De Tiro (mm)-B</label>
+                <input type="text" name="longitudtilbdt" id="longitudtilbdt" required>
+            </div>
+
+            <div class="campo">
+                <label for="anchototalf">Ancho Total (mm)-F</label>
+                <input type="text" name="anchototalf" id="anchototalf" required>
+            </div>
+
+            <div class="campo">
+                <label for="anchototalg">Ancho Total (mm)-G</label>
+                <input type="text" name="anchototalg" id="anchototalg" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturadpaddl">Altura Del Piso Al Diferencial Delantero (mm)-L</label>
+                <input type="text" name="alturadpaddl" id="alturadpaddl" required>
+            </div>
+
+            <div class="campo">
+                <label for="alturadpadtn">Altura Del Piso Al Diferencial Trasero (mm)-N</label>
+                <input type="text" name="alturadpadtn" id="alturadpadtn" required>
+            </div>
+
+            <div class="campo">
+                <label for="distanciadpato">Distancia Del Piso Al tiro (mm)-O</label>
+                <input type="text" name="distanciadpato" id="distanciadpato" required>
+            </div>
+
+            <div class="campo">
+                <label for="tomafnde">Toma Fuerza - Numero De Estrias</label>
+                <input type="text" name="tomafnde" id="tomafnde" required>
+            </div>
+
+            <div class="campo">
+                <label for="tomafrtrm">Toma Fuerza - rpm TDF/RPM Motor</label>
+                <input type="text" name="tomafrtrm" id="tomafrtrm" required>
+            </div>
+            
+            <div class="campo">
+                <button type="submit">Siguiente</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

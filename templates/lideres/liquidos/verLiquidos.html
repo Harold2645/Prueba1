@@ -2,12 +2,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/todoslosTractores.css">
+    <link rel="stylesheet" href="../../../static/css/principalLider.css">
+    <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <title>Consumibles</title>
 </head>
 <body>
-    <header id="cabeza">
-        <h1>Hangar</h1>
-        <a href="/tractores">Inicio</a>
+
+    <header id="header">
+        <figure>
+            <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+        </figure>
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
+        </button>
+        <div id="menu_cont">
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+            <div class="menu">
+                <ul class="interior">
+                    <li>
+                        <a href="#">Usuarios</a>
+                        <ul id="menu_usuarios">
+                            <li><a href="/usuarios" class="bton_usu">Personas registradas</a></li>
+                            <li><a href="/aceptarUsuarios" class="bton_usu">Aceptar usuarios</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Tractores</a>
+                        <ul id="menu_tractores">
+                            <li><a href="/consultarTractores" class="bton_trac">Todos los tractores</a></li>
+                            <li><a href="/tractores" class="bton_trac">Tractores disponibles</a></li>
+                            <li><a href="/agregarTractor" class="bton_trac">Agregar tractor</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Herramientas</a>
+                        <ul id="menu_herramienta">
+                            <li><a href="/consultarlasHerramientas" class="bton_her">Todas las herramientas</a></li>
+                            <li><a href="/consultarHerramientas" class="bton_her">Herramientas disponibles</a></li>
+                            <li><a href="/agregarHerramienta" class="bton_her">Agregar herramienta</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Insumos</a>
+                        <ul id="menu_insumo">
+                            <li><a href="/consultarlosConsumibles" class="bton_ins">Todos los insumos</a></li>
+                            <li><a href="/consultarConsumibles" class="bton_ins">Insumos disponibles</a></li>
+                            <li><a href="/agregarConsumibles" class="bton_ins">Agregar insumos</a></li>
+
+                            <li>
+                                <a href="#">Liquidos</a>
+                                <ul id="menu_liquidos">
+                                    <li><a href="/consultarlosLiquidos" class="bton_liq">Todos los liquidos</a></li>
+                                    <li><a href="/consultarLiquidos" class="bton_liq">Liquidos disponibles</a></li>
+                                    <li><a href="/agregarLiquidos" class="bton_liq">Agregar liquido</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Servicios</a>
+                        <ul id="menu_servicios">
+                            <li><a href="/consultarTodosPedidos" class="bton_ser">Todos los pedidos</a></li>
+                            <li><a href="/consultarSolicitados" class="bton_ser">Solicitudes</a></li>
+                            <li><a href="/consultarAceptado" class="bton_ser">Por entregar</a></li>
+                            <li><a href="/consultarprestados" class="bton_ser">Prestados</a></li>
+                            <li><a href="/consultarDevueltos" class="bton_ser">Devueltos</a></li>
+                            <li><a href="/consultarRechazados" class="bton_ser">Rechazados</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Categorias</a>
+                        <ul id="menu_categorias">
+                            <li><a href="/consultarCategorias" class="bton_usu">Categorias registradas</a></li>
+                            <li><a href="/agregarCategoria" class="bton_usu">Agregar categorias</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="/graficos">Graficos</a></li>
+                    <li><a href="/">CERRAR SESIÓN</a></li>
+
+
+                </ul>
+            </div>
+        </div>
     </header>
 
     <main id="cuerpo">

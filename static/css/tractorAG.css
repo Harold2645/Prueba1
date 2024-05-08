@@ -1,0 +1,87 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://s1.1zoom.me/b5564/928/England_Fields_Sky_557992_1920x1080.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Cabecera */
+.cabeza {
+    background: #39A900 url('https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-negro-png-2022-300x294.png') no-repeat left center;
+    background-size: 50px 50px;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navegacion a {
+    color: #000000;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navegacion a:hover {
+    color: #fff;
+}
+
+/* Formulario */
+.formulario-agregar {
+    max-width: 550px;
+    margin: 1px auto;
+    padding: 22px;
+    background-color: rgba(255, 255, 255, 0.87);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-agregar h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formulario-agregar label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario-agregar input[type="text"],
+.formulario-agregar select {
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.formulario-agregar input[type="text"]:focus,
+.formulario-agregar select:focus {
+    border-color: #39A900;
+}
+
+.formulario-agregar button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-agregar button:hover {
+    background-color: #39A900;
+}
+
+/* Clases para los divs de cada campo del formulario */
+.campo-formulario {
+    margin-bottom: 20px; /* Espacio entre campos */
+}

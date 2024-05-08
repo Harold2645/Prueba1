@@ -12,7 +12,7 @@ class Tractores:
         return resultado
     
     def agregar(self, tractor):
-        sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo) VALUES ('{tractor[0]}','{tractor[1]}','{tractor[2]}','1','{tractor[3]}','{tractor[4]}','{tractor[5]}','{tractor[6]}')"
+        sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo,fechamodelo) VALUES ('{tractor[0]}','{tractor[1]}','{tractor[2]}','1','{tractor[3]}','{tractor[4]}','{tractor[5]}','{tractor[6]}','{tractor[7]}')"
         self.cursor.execute(sql)
         self.conexion.commit()
         
@@ -23,7 +23,7 @@ class Tractores:
         return resultado
 
     def modificar(self, tractor):
-        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}' WHERE idObjeto='{tractor[0]}'"
+        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}', fechamodelo='{tractor[5]}' WHERE idObjeto='{tractor[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
         

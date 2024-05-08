@@ -1,0 +1,104 @@
+/*:root {
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon: #CB7766;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('https://s1.1zoom.me/b4950/240/Agricultural_machinery_2011-18_Fendt_724_Vario_542190_2560x1440.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#cuerpo {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    max-width: 500px; 
+    margin: 0 auto;
+    background: rgba(251, 251, 226, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(168, 145, 145, 0.1);
+    position: relative;
+}
+
+
+#cabeza {
+    background-color: var(--azul-dark);
+    color: var(--crema);
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#cabeza h1 {
+    margin: 0;
+    line-height: 1.5;
+}
+
+#cabeza a {
+    color: var(--azul-claro);
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+#cabeza a:hover {
+    color: var(--amarrillo);
+}
+
+h2 {
+    color: var(--azul-dark);
+}
+
+h4 {
+    color: var(--salmon);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+input:hover,
+select:hover {
+    transform: scale(1.1);
+}
+
+button {
+    background-color: var(--logo-sena);
+    color: var(--azul-claro);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--azul-claro);
+    color: var(--azul-dark);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

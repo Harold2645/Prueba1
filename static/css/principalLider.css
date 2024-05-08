@@ -120,6 +120,11 @@ section#cont_paneles{
             h1#titulo1{
                 font-size: clamp(5px, 5vw, 15px);
             }
+
+            #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_liquidos, #menu_servicios, #menu_categorias{
+                display: none;
+            }
+
             figure#foto_tractor{
 
             }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/css/tractorEG.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="formulario">
+        <form class="formulario-hoja" action="/agregarHojaE" method="post" enctype="multipart/form-data">
+            <h2>Ingresa las imágenes</h2>
+
+            <input type="hidden" name="idObjetos" value="{{res[0]}}">
+
+
+            <div class="campo">
+                <label for="ftdrenaje">Drenaje de agua sistema de Combustible</label>
+                <input type="file" name="ftdrenaje" id="ftdrenaje" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftbateria">Batería</label>
+                <input type="file" name="ftbateria" id="ftbateria" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroac">Filtro de aceite de Motor</label>
+                <input type="file" name="ftfiltroac" id="ftfiltroac" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroar">Filtro de aire</label>
+                <input type="file" name="ftfiltroar" id="ftfiltroar" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroachid">Filtro de aceite Hidráulico</label>
+                <input type="file" name="ftfiltroachid" id="ftfiltroachid" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltrocomb">Filtro de Combustible</label>
+                <input type="file" name="ftfiltrocomb" id="ftfiltrocomb" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftcabeza">Tractor</label>
+                <input type="file" name="ftcabeza" id="ftcabeza" required>
+            </div>
+
+            <div class="campo">
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

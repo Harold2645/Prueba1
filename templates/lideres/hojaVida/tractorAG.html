@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/css/tractorAG.css">
+    <title>Inicio</title>
+</head>
+<body>
+    <main class="cuerpo">
+        <header class="cabeza">
+            <h1>Hangar</h1>
+            <nav class="navegacion">
+                <a href="/Correcto">Inicio</a>
+                <a href="/agregarBG/{{res[0]}}">Actualizar Hoja vida B</a>
+                <a href="/agregarCG/{{res[0]}}">Actualizar Hoja vida C</a>
+                <a href="/agregarDG/{{res[0]}}">Actualizar Hoja vida D</a>
+                <a href="/agregarEG/{{res[0]}}">Actualizar Hoja vida E</a> 
+            </nav>
+        </header>
+
+        <section class="formulario-agregar">
+            <form class="agregar-tractor" action="/agregarHoja" method="post">
+                <h2>Actualizar hoja de vida del Tractor</h2>
+
+                <input type="hidden" name="idObjetos" value="{{res[0]}}">
+
+
+                <div class="campo-formulario">
+                    <label for="nodstractor">No. De serie De Tractor</label>
+                    <input type="text" name="nodstractor" id="nodstractor" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="nosmotor">No. Serie Motor</label>
+                    <input type="text" name="nosmotor" id="nosmotor" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="potenciadmotor">Potencia Del Motor (HP)</label>
+                    <input type="text" name="potenciadmotor" id="potenciadmotor" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="pasodtractor">Peso Del Tractor (KG)</label>
+                    <input type="text" name="pasodtractor" id="pasodtractor" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="numerodcilindro">Numero De Cilindro</label>
+                    <input type="text" name="numerodcilindro" id="numerodcilindro" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="tipodmotorlv">Tipo De Motor (Linea / V)</label>
+                    <input type="text" name="tipodmotorlv" id="tipodmotorlv" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="numerodcha">Numero De Cambio De Hacia Adelante</label>
+                    <input type="text" name="numerodcha" id="numerodcha" required>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="numerodcer">Numero De Cambio En Reversa</label>
+                    <input type="text" name="numerodcer" id="numerodcer" required>
+                </div>
+
+                <button type="submit">Siguiente</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,385 @@
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../static/css/tractores.css">
+    <title>Tractores</title>
+    
+</head>
+
+
+
+<body>
+    <header id="cabeza">
+        <h1>Hangar</h1>
+        <a href="/Correcto">Inicio</a>
+        <a href="/agregar/{{ trac[0] }}">Actualizar Tractor</a>
+        <span>{{msg}}</span>
+    </header>
+    <br>
+
+    
+    <div class="contenedor-tablas">
+        <table class="tabla">
+    <thead>
+        <tr>
+            <th>
+                Caracteristicas
+
+            </th>
+            <th>
+                Datos
+
+            </th>
+            <!-- <th>Segunda tabla fotos</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- {% for trac in res %} -->
+        
+        
+
+        <tr>
+            <td>Codigo Sena</td>
+            <td coslpan="2">{{ trac[0] }}</td>
+        </tr>
+        <tr>
+            <td>Marca</td>
+            <td colspan="2">{{ trac[6] }}</td>
+        </tr>
+        <tr>
+            
+            <td>Modelo</td>
+            <td colspan="2">{{ trac[7] }}</td>
+        </tr>
+        <tr>
+            <td>Año</td>
+            <td colspan="2">{{ trac[8] }}</td>
+        </tr>
+        <tr>
+            <td>No. De serie De Tractor</td>
+            <td colspan="2">{{ trac[9] }}</td>
+        </tr>
+        <tr>
+            <td>No. Serie Motor</td>
+            <td colspan="2">{{ trac[10] }}</td>
+        </tr>
+        <tr>
+            <td>Potencia Del Motor (HP)</td>
+            <td colspan="2">{{ trac[11] }}</td>
+        </tr>
+        <tr>
+            <td>Peso Del Tractor (KG)</td>
+            <td colspan="2">{{ trac[12] }}</td>
+        </tr>
+        <tr>
+            <td>Numero De Cilindro</td>
+            <td colspan="2">{{ trac[13] }}</td>
+        </tr>
+        <tr>
+            <td>Tipo De Motor (Linea / V)</td>
+            <td colspan="2">{{ trac[14] }}</td>
+        </tr>
+        <tr>
+            <td>Numero De Cambio De Hacia Adelante</td>
+            <td colspan="2">{{ trac[15] }}</td>
+        </tr>
+        <tr>
+            <td>Numero De Cambio En Reversa</td>
+            <td colspan="2">{{ trac[16] }}</td>
+        </tr>
+        
+    
+</table>
+<br>
+
+<table class="tabla">
+    <thead>
+        <tr>
+            <th>
+                Caracteristicas
+
+            </th>
+            <th>
+                Datos
+
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        
+
+
+        <tr>
+            <td>Tipo De Traccion (4x2 / 4x4 )</td>
+            <td colspan="2">{{ trac[17] }}</td>
+        </tr>
+        <tr>
+            <td>Distancia Entre Ejes (mm) -A</td>
+            <td colspan="2">{{ trac[18] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Del Piso Al Centro Del Eje Delantero (mm)-M</td>
+            <td colspan="2">{{ trac[19] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Total (mm)-H</td>
+            <td colspan="2">{{ trac[20] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Del Eje Trasero Al Techo De La Cabina (mm)-I</td>
+            <td colspan="2">{{ trac[21] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Maxima Baja La Maquina (mm)-K</td>
+            <td colspan="2">{{ trac[22] }}</td>
+        </tr>
+        <tr>
+            <td>Longitud Total -Incluida La Barra De Tiro (mm)-B</td>
+            <td colspan="2">{{ trac[23] }}</td>
+        </tr>
+        <tr>
+            <td>Ancho Total (mm)-F</td>
+            <td colspan="2">{{ trac[24] }}</td>
+        </tr>
+        <tr>
+            <td>Ancho Total (mm)-G</td>
+            <td colspan="2">{{ trac[25] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Del Piso Al Diferencial Delantero (mm)-L</td>
+            <td colspan="2">{{ trac[26] }}</td>
+        </tr>
+        <tr>
+            <td>Altura Del Piso Al Diferencial Trasero (mm)-N</td>
+            <td colspan="2">{{ trac[27] }}</td>
+        </tr>
+        <tr>
+            <td>Distancia Del Piso Al tiro (mm)-O</td>
+            <td colspan="2">{{ trac[28] }}</td>
+        </tr>
+        <tr>
+            <td>Toma Fuerza - Numero De Estrias</td>
+            <td colspan="2">{{ trac[29] }}</td>
+        </tr>
+        <tr>
+            <td>Toma Fuerza - rpm TDF/RPM Motor</td>
+            <td colspan="2">{{ trac[30] }}</td>
+        </tr>  
+    
+</table>
+</div>
+
+<br>
+
+
+
+<div class="contenedor-tablas">
+    <table class="tabla">
+    <thead>
+        <tr>
+            <th>
+                Caracteristicas
+
+            </th>
+            <th>
+                Datos
+
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+      
+
+
+        <tr>
+            <td>Tipo De Inyeccion De Combustible (Normal/Common Rail)</td>
+            <td colspan="2">{{ trac[31] }}</td>
+        </tr>
+        <tr>
+            <td>Marca De La Bomba De Inyeccion</td>
+            <td colspan="2">{{ trac[32] }}</td>
+        </tr>
+        <tr>
+            <td>Referencia De La Bomba De Inyeccion</td>
+            <td colspan="2">{{ trac[33] }}</td>
+        </tr>
+        <tr>
+            <td>Tensiones De La Llantas Trasera Segun Referencia</td>
+            <td colspan="2">{{ trac[34] }}</td>
+        </tr>
+        <tr>
+            <td>Tencion Maxima De Las Llantas Trasera</td>
+            <td colspan="2" >{{ trac[35] }}</td>
+        </tr>
+        <tr>
+            <td>Carga Maxima Puede Soportar La Rueda Trasera</td>
+            <td colspan="2">{{ trac[36] }}</td>
+        </tr>
+        <tr>
+            <td>Desgaste De Las Ruedas Trasera (mm)</td>
+            <td colspan="2">{{ trac[37] }}</td>
+        </tr>
+        <tr>
+            <td>Dimesiones De Las Llantas Delanteras Segun Referencia </td>
+            <td colspan="2">{{ trac[38] }}</td>
+        </tr>
+        <tr>
+            <td>Presion Maxima De Las Llantas Delanteras</td>
+            <td colspan="2">{{ trac[39] }}</td>
+        </tr>
+        <tr>
+            <td>Carga Maxima Puede Soportar La Rueda Delantera (KG)</td>
+            <td colspan="2">{{ trac[40] }}</td>
+        </tr>
+        <tr>
+            <td>Desgaste De Las Ruedas Delantera (mm)</td>
+            <td colspan="2">{{ trac[41] }}</td>
+        </tr>
+
+</table>
+
+
+<br>
+
+
+    <table class="tabla">
+    <thead>
+        <tr>
+            <th>
+                Caracteristicas
+
+            </th>
+            <th>
+                Datos
+
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        
+
+        <tr>
+            <td>Aceite Motor</td>
+            <td colspan="2">{{ trac[42] }}</td>
+        </tr>
+        <tr>
+            <td>Aceite Hidraulico</td>
+            <td colspan="2">{{ trac[43] }}</td>
+        </tr>
+        <tr>
+            <td>Aceite Transmision</td>
+            <td colspan="2">{{ trac[44] }}</td>
+        </tr>
+        <tr>
+            <td>Aceite De Diferencial Delantera</td>
+            <td colspan="2">{{ trac[45] }}</td>
+        </tr>
+        <tr>
+            <td>Aceite Liquido De Frenos</td>
+            <td colspan="2">{{ trac[46] }}</td>
+        </tr>
+        <tr>
+            <td>Filtro De Aceite Motor-Marca/Referencial</td>
+            <td colspan="2">{{ trac[47] }}</td>
+        </tr>
+        <tr>
+            <td>Filtro De Combustible-Marca/Referencial</td>
+            <td colspan="2">{{ trac[48] }}</td>
+        </tr>
+        <tr>
+            <td>Filtro De Aceite Hidraulico-Marca/Referencial</td>
+            <td colspan="2">{{ trac[49] }}</td>
+        </tr>
+        <tr>
+            <td>Filtro De Aire Primario-Marca/Referencial</td>
+            <td colspan="2">{{ trac[50] }}</td>
+        </tr>
+        <tr>
+            <td>Filtro De Aire Secundario-Marca/Referencial</td>
+            <td colspan="2">{{ trac[51] }}</td>
+        </tr>
+        <tr>
+            <td>Bateria-Marca/Referencial</td>
+            <td colspan="2">{{ trac[52] }}</td>
+        </tr>
+        <tr>
+            <td>Numero De Pesas En Las Ruedas Traseras</td>
+            <td colspan="2">{{ trac[53] }}</td>
+        </tr>
+        <tr>
+            <td>Numero De Pesas En Las Ruedas Traseras</td>
+            <td colspan="2">{{ trac[54] }}</td>
+        </tr>
+</table>
+</div>
+
+<br>
+<div class="contenedor-tablas">
+    <table class="tabla">
+    <thead>
+        <tr>
+            <th>
+                Caracteristicas
+            </th>
+            <th>
+                Fotos
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        
+
+        <tr>
+            <td>Drenaje de agua sistema de Combustible</td>
+            <td colspan="2">{{ trac[55] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[55] }}" ></td>
+        </tr> 
+        <tr>
+            <td>bateria</td>
+            <td colspan="2">{{ trac[56] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[56] }}" ></td>
+        </tr>
+        <tr>
+            <td>filtro aceite de motor</td>
+            <td colspan="2">{{ trac[57] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[57] }}" ></td>
+        </tr>
+        
+        <tr>
+            <td>filtro de aire</td>
+            <td colspan="2">{{ trac[58] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[58] }}" ></td>
+        </tr>
+        <!-- ... -->
+        <tr>
+            <td>filtro de aceite Hidraulico</td>
+            <td colspan="2">{{ trac[59] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[59] }}" ></td>
+        </tr>
+        <tr>
+            <td>filtro de Combustible</td>
+            <td colspan="2">{{ trac[60] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[60] }}" ></td>
+        </tr>   
+        <tr>
+            <td>tractor</td>
+            <td colspan="2">{{ trac[61] }}</td>
+            <td><img class="img-thumbnail" width="40" height="40" src="uploads/{{ trac[61] }}" ></td>
+        </tr> 
+
+        <!-- {% endfor %} -->
+            </tbody>
+        </table>
+</div>
+    </main>
+
+</body>
+
+</html>
