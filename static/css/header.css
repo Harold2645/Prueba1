@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    transition: all 0.7s ease-in-out;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+    ul li {
+        position: relative;
+        z-index: 2;
+    }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 13px;
+}
+html, body{
+    margin: 0%;
+    padding: 0%;
+}
+figure{
+    padding: 0;
+    margin: 0;
+}
+
+header#header{
+    display: flex;
+    align-items: center;
+    grid-area: header;
+    background-color: #36A900;
+}
+#menu_cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 160px;
+    box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
+    background-color: #39A900;
+    display: none;
+    z-index: 2;
+}
+#menu_cont.visible{
+    display: block;
+}
+#cont-disparador{
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+}
+#disparador{
+    color: white;
+    font-size: 30px;
+}
+#cont-close{
+    background: none;
+    border: none;
+    padding: 10px;
+}
+#close{
+    color: white;
+}
+header li{
+    padding: 15px;
+    list-style-type: none;
+}
+header a{
+    text-decoration: none;
+    color: white;
+}
+#logo_sena{
+    width: 90px;
+    height: 80px;
+}
+#menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+display: none;  
+}
+
+@media only screen and (min-width: 800px){
+    #menu_cont{
+        display: block;
+        background: none;
+        box-shadow: none;
+        width: 100%;
+        height: 0%;
+    }
+    #cont-disparador, #cont-close{
+        display: none;
+    }
+    .interior{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    figure#logo{
+        display: flex;
+        justify-content: center;
+    }
+    img#logo-sena{
+        width: 120px;
+        height: 120px;
+    }
+
+    #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+        background-color: rgb(53, 153, 7);
+        box-shadow: 0px 5px 16px rgba(11,3,43,0.3);
+        color: aliceblue;
+        position: absolute;
+        z-index: 2;
+    }
+    #menu_tractores{
+        bottom: -130px;
+        left: 0%;
+        width: 160px;
+    }
+    #menu_usuarios{
+        bottom: -85px;
+        left: 0%;
+        width: 150px;
+    }
+    #menu_herramienta{
+        bottom: -130px;
+        left: 0%;
+        width: 180px;
+    }
+    #menu_insumo{
+        bottom: -180px;
+        left: 0%;
+        width: 150px;
+    }
+        #menu_liquidos{
+            background-color: #287902;
+            bottom: -100px;
+            left: 50%;
+            width: 150px;
+            position: absolute;
+        }
+    #menu_servicios{
+        bottom: -270px;
+        left: 50%;
+        width: 135px;
+    }
+    #menu_categorias, #menu_novedad{
+        bottom: -85px;
+        left: 0%;
+        width: 160px;
+    }
+
+}
+
