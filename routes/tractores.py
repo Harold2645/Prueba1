@@ -121,169 +121,202 @@ def borrarTractor(idObjetos):
 
 @app.route('/hojavidatractores/<idObjetos>')
 def tractor(idObjetos):
-    resultado = misFichas.consultarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misFichas.consultarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route("/agregar/<idObjetos>")
 def agregar(idObjetos):
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template('lideres/hojaVida/tractorAG.html', res=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template('lideres/hojaVida/tractorAG.html', res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route("/agregarHoja", methods=['POST'])
 def agregarA():
-    idObjetos = request.form['idObjetos']
-    nodstractor = request.form['nodstractor']
-    nosmotor = request.form['nosmotor']
-    potenciadmotor = request.form['potenciadmotor']
-    pasodtractor = request.form['pasodtractor']
-    numerodcilindro = request.form['numerodcilindro']
-    tipodmotorlv = request.form['tipodmotorlv']
-    numerodcha = request.form['numerodcha']
-    numerodcer = request.form['numerodcer']
+    if session.get("loginCorrecto"):
+        idObjetos = request.form['idObjetos']
+        nodstractor = request.form['nodstractor']
+        nosmotor = request.form['nosmotor']
+        potenciadmotor = request.form['potenciadmotor']
+        pasodtractor = request.form['pasodtractor']
+        numerodcilindro = request.form['numerodcilindro']
+        tipodmotorlv = request.form['tipodmotorlv']
+        numerodcha = request.form['numerodcha']
+        numerodcer = request.form['numerodcer']
 
-    misFichas.agregarA([idObjetos,nodstractor, nosmotor, potenciadmotor, pasodtractor, numerodcilindro,tipodmotorlv,numerodcha,numerodcer])
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractorBG.html", res=resultado[0])
+        misFichas.agregarA([idObjetos,nodstractor, nosmotor, potenciadmotor, pasodtractor, numerodcilindro,tipodmotorlv,numerodcha,numerodcer])
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractorBG.html", res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route('/agregarBG/<idObjetos>')
 def agregarBG(idObjetos):
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template('lideres/hojaVida/tractorBG.html', res=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template('lideres/hojaVida/tractorBG.html', res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route('/agregarHojaB', methods=['POST'])
 def agregarB():
-    idObjetos = request.form['idObjetos']
-    tipodtraccion = request.form["tipodtraccion"]
-    distanciaeejes = request.form["distanciaeejes"]
-    alturadpacded = request.form["alturadpacded"]
-    alturatotal = request.form["alturatotal"]
-    alturadetatdlc = request.form["alturadetatdlc"]
-    alturamlb = request.form["alturamlb"]
-    longitudtilbdt = request.form["longitudtilbdt"]
-    anchototalf = request.form["anchototalf"]
-    anchototalg = request.form["anchototalg"]
-    alturadpaddl = request.form["alturadpaddl"]
-    alturadpadtn = request.form["alturadpadtn"]
-    distanciadpato = request.form["distanciadpato"]
-    tomafnde = request.form["tomafnde"]
-    tomafrtrm = request.form["tomafrtrm"]
-    agr = [idObjetos,tipodtraccion,distanciaeejes,alturadpacded,alturatotal,alturadetatdlc,alturamlb,longitudtilbdt,anchototalf,anchototalg,alturadpaddl,alturadpadtn,distanciadpato,tomafnde,tomafrtrm]
-    misFichas.agregarB(agr)
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractorCG.html", res=resultado[0])
+    if session.get("loginCorrecto"):
+        idObjetos = request.form['idObjetos']
+        tipodtraccion = request.form["tipodtraccion"]
+        distanciaeejes = request.form["distanciaeejes"]
+        alturadpacded = request.form["alturadpacded"]
+        alturatotal = request.form["alturatotal"]
+        alturadetatdlc = request.form["alturadetatdlc"]
+        alturamlb = request.form["alturamlb"]
+        longitudtilbdt = request.form["longitudtilbdt"]
+        anchototalf = request.form["anchototalf"]
+        anchototalg = request.form["anchototalg"]
+        alturadpaddl = request.form["alturadpaddl"]
+        alturadpadtn = request.form["alturadpadtn"]
+        distanciadpato = request.form["distanciadpato"]
+        tomafnde = request.form["tomafnde"]
+        tomafrtrm = request.form["tomafrtrm"]
+        agr = [idObjetos,tipodtraccion,distanciaeejes,alturadpacded,alturatotal,alturadetatdlc,alturamlb,longitudtilbdt,anchototalf,anchototalg,alturadpaddl,alturadpadtn,distanciadpato,tomafnde,tomafrtrm]
+        misFichas.agregarB(agr)
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractorCG.html", res=resultado[0])
+    else:
+        return redirect('/')
 
 
 
 @app.route('/agregarCG/<idObjetos>')
 def agregarCG(idObjetos):
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template('lideres/hojaVida/tractorCG.html', res=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template('lideres/hojaVida/tractorCG.html', res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route('/agregarHojaC', methods=['POST'])
 def agregarC():
-    idObjetos = request.form['idObjetos']
-    tipodidcncr = request.form["tipodidcncr"]
-    marcadlbdi = request.form["marcadlbdi"]
-    referenciadlbdin = request.form["referenciadlbdin"]
-    tensionesdlltsr = request.form["tensionesdlltsr"]
-    tencionmdllt = request.form["tencionmdllt"]
-    cargampslrt = request.form["cargampslrt"]
-    desgastedlrt = request.form["desgastedlrt"]
-    dimesionesdlldsr = request.form["dimesionesdlldsr"]
-    presionmdlld = request.form["presionmdlld"]
-    cargampslrd = request.form["cargampslrd"]
-    desgastesdlrd  = request.form["desgastesdlrd"]
-    agr  = [idObjetos,tipodidcncr,marcadlbdi,referenciadlbdin,tensionesdlltsr,tencionmdllt,cargampslrt,desgastedlrt,dimesionesdlldsr,presionmdlld,cargampslrd,desgastesdlrd]
-    misFichas.agregarC(agr)
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractorDG.html", res=resultado[0])
+    if session.get("loginCorrecto"):
+        idObjetos = request.form['idObjetos']
+        tipodidcncr = request.form["tipodidcncr"]
+        marcadlbdi = request.form["marcadlbdi"]
+        referenciadlbdin = request.form["referenciadlbdin"]
+        tensionesdlltsr = request.form["tensionesdlltsr"]
+        tencionmdllt = request.form["tencionmdllt"]
+        cargampslrt = request.form["cargampslrt"]
+        desgastedlrt = request.form["desgastedlrt"]
+        dimesionesdlldsr = request.form["dimesionesdlldsr"]
+        presionmdlld = request.form["presionmdlld"]
+        cargampslrd = request.form["cargampslrd"]
+        desgastesdlrd  = request.form["desgastesdlrd"]
+        agr  = [idObjetos,tipodidcncr,marcadlbdi,referenciadlbdin,tensionesdlltsr,tencionmdllt,cargampslrt,desgastedlrt,dimesionesdlldsr,presionmdlld,cargampslrd,desgastesdlrd]
+        misFichas.agregarC(agr)
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractorDG.html", res=resultado[0])
+    else:
+        return redirect('/')
 
 
 
 @app.route('/agregarDG/<idObjetos>')
 def agregarDG(idObjetos):
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template('lideres/hojaVida/tractorDG.html', res=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template('lideres/hojaVida/tractorDG.html', res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route('/agregarHojaD', methods=['POST'])
 def agregarD():
-    idObjetos = request.form['idObjetos']
-    aceitemotor = request.form["aceitemotor"]
-    aceitehidraulico = request.form["aceitehidraulico"]
-    aceitetransmision = request.form["aceitetransmision"]
-    aceiteddd = request.form["aceiteddd"]
-    aceiteldf = request.form["aceiteldf"]
-    filtrodammr = request.form["filtrodammr"]
-    filtrodcmr = request.form["filtrodcmr"]
-    filtrodahmr = request.form["filtrodahmr"]
-    filtrodapmr = request.form["filtrodapmr"]
-    filtrodasmr = request.form["filtrodasmr"]
-    bateriamr = request.form["bateriamr"]
-    numerodpelrta = request.form["numerodpelrta"]
-    numerodpelrt = request.form["numerodpelrt"]
-    
-    misFichas.agregarD([idObjetos,aceitemotor,aceitehidraulico,aceitetransmision,aceiteddd,aceiteldf,filtrodammr,filtrodcmr,filtrodahmr,filtrodapmr,filtrodasmr,bateriamr,numerodpelrta,numerodpelrt])
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractorEG.html", res=resultado[0])
+    if session.get("loginCorrecto"):
+        idObjetos = request.form['idObjetos']
+        aceitemotor = request.form["aceitemotor"]
+        aceitehidraulico = request.form["aceitehidraulico"]
+        aceitetransmision = request.form["aceitetransmision"]
+        aceiteddd = request.form["aceiteddd"]
+        aceiteldf = request.form["aceiteldf"]
+        filtrodammr = request.form["filtrodammr"]
+        filtrodcmr = request.form["filtrodcmr"]
+        filtrodahmr = request.form["filtrodahmr"]
+        filtrodapmr = request.form["filtrodapmr"]
+        filtrodasmr = request.form["filtrodasmr"]
+        bateriamr = request.form["bateriamr"]
+        numerodpelrta = request.form["numerodpelrta"]
+        numerodpelrt = request.form["numerodpelrt"]
+        
+        misFichas.agregarD([idObjetos,aceitemotor,aceitehidraulico,aceitetransmision,aceiteddd,aceiteldf,filtrodammr,filtrodcmr,filtrodahmr,filtrodapmr,filtrodasmr,bateriamr,numerodpelrta,numerodpelrt])
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractorEG.html", res=resultado[0])
+    else:
+        return redirect('/')
 
 
 @app.route('/agregarEG/<idObjetos>')
 def agregarEG(idObjetos):
-    resultado = misServicios.buscarTractor(idObjetos)
-    return render_template('lideres/hojaVida/tractoreG.html', res=resultado[0])
+    if session.get("loginCorrecto"):
+        resultado = misServicios.buscarTractor(idObjetos)
+        return render_template('lideres/hojaVida/tractoreG.html', res=resultado[0])
+    else:
+        return redirect('/')
 
 @app.route('/agregarHojaE', methods=['POST'])
 def agregarE():
-    idObjetos = request.form['idObjetos']
-    ftdrenaje = request.files["ftdrenaje"]
-    hora = datetime.now()
-    fnombre,fextension = os.path.splitext(ftdrenaje.filename)
-    ftdrenajea = "FD"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftdrenajea)
-    ftdrenaje.save("uploads/" + ftdrenajea)
+    if session.get("loginCorrecto"):
+        idObjetos = request.form['idObjetos']
+        ftdrenaje = request.files["ftdrenaje"]
+        hora = datetime.now()
+        fnombre,fextension = os.path.splitext(ftdrenaje.filename)
+        ftdrenajea = "FD"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftdrenajea)
+        ftdrenaje.save("uploads/" + ftdrenajea)
 
-    ftbateria = request.files["ftbateria"]
-    fnombre,fextension = os.path.splitext(ftbateria.filename)
-    ftbateriaa = "FB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftbateriaa)
-    ftbateria.save("uploads/" + ftbateriaa)
+        ftbateria = request.files["ftbateria"]
+        fnombre,fextension = os.path.splitext(ftbateria.filename)
+        ftbateriaa = "FB"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftbateriaa)
+        ftbateria.save("uploads/" + ftbateriaa)
 
-    ftfiltroac = request.files["ftfiltroac"]
-    fnombre,fextension = os.path.splitext(ftfiltroac.filename)
-    ftfiltroaca = "FFA"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftfiltroaca)
-    ftfiltroac.save("uploads/" + ftfiltroaca)
+        ftfiltroac = request.files["ftfiltroac"]
+        fnombre,fextension = os.path.splitext(ftfiltroac.filename)
+        ftfiltroaca = "FFA"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftfiltroaca)
+        ftfiltroac.save("uploads/" + ftfiltroaca)
 
-    ftfiltroar = request.files["ftfiltroar"]
-    fnombre,fextension = os.path.splitext(ftfiltroar.filename)
-    ftfiltroara = "FFB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftfiltroara)
-    ftfiltroar.save("uploads/" + ftfiltroara)
+        ftfiltroar = request.files["ftfiltroar"]
+        fnombre,fextension = os.path.splitext(ftfiltroar.filename)
+        ftfiltroara = "FFB"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftfiltroara)
+        ftfiltroar.save("uploads/" + ftfiltroara)
 
-    ftfiltroachid = request.files["ftfiltroachid"]
-    
-    fnombre,fextension = os.path.splitext(ftfiltroachid.filename)
-    ftfiltroachida = "FFC"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftfiltroachida)
-    ftfiltroachid.save("uploads/" + ftfiltroachida)
-
-    ftfiltrocomb = request.files["ftfiltrocomb"]
-    
-    fnombre,fextension = os.path.splitext(ftfiltrocomb.filename)
-    ftfiltrocomba = "FFCB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftfiltrocomba)
-    ftfiltrocomb.save("uploads/" + ftfiltrocomba)
-
-    ftcabeza = request.files["ftcabeza"]
-    
-    fnombre,fextension = os.path.splitext(ftcabeza.filename)
-    ftcabezaa = "FC"+hora.strftime("%Y%m%d%H%M%S")+fextension
-    print(ftcabezaa)
-    ftcabeza.save("uploads/" + ftcabezaa)
-
-    fotos=[idObjetos,ftdrenajea,ftbateriaa,ftfiltroaca ,ftfiltroara ,ftfiltroachida ,ftfiltrocomba ,ftcabezaa]
-
-    misFichas.agregarE(fotos)
+        ftfiltroachid = request.files["ftfiltroachid"]
         
-    resultado = misFichas.consultarTractor(idObjetos)
-    return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+        fnombre,fextension = os.path.splitext(ftfiltroachid.filename)
+        ftfiltroachida = "FFC"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftfiltroachida)
+        ftfiltroachid.save("uploads/" + ftfiltroachida)
+
+        ftfiltrocomb = request.files["ftfiltrocomb"]
+        
+        fnombre,fextension = os.path.splitext(ftfiltrocomb.filename)
+        ftfiltrocomba = "FFCB"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftfiltrocomba)
+        ftfiltrocomb.save("uploads/" + ftfiltrocomba)
+
+        ftcabeza = request.files["ftcabeza"]
+        
+        fnombre,fextension = os.path.splitext(ftcabeza.filename)
+        ftcabezaa = "FC"+hora.strftime("%Y%m%d%H%M%S")+fextension
+        print(ftcabezaa)
+        ftcabeza.save("uploads/" + ftcabezaa)
+
+        fotos=[idObjetos,ftdrenajea,ftbateriaa,ftfiltroaca ,ftfiltroara ,ftfiltroachida ,ftfiltrocomba ,ftcabezaa]
+
+        misFichas.agregarE(fotos)
+            
+        resultado = misFichas.consultarTractor(idObjetos)
+        return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+    else:
+        return redirect('/')
