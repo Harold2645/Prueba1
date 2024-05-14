@@ -17,7 +17,7 @@ class Tractores:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor' AND idobjeto = '{idObjeto}';"        
+        sql = f"SELECT tractores.marca, tractores.modelo,tractores.fechamodelo ,tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor' AND idobjeto = '{idObjeto}';"        
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
