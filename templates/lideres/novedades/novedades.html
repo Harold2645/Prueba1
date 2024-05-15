@@ -123,19 +123,16 @@
             <thead>
                 <tr>
                     <th>Id del objeto</th>
-                    <th>Prestado</th>
                     <th>Tipo</th>
                     <th>Fecha</th>                    
                     <th>Descripcion</th>
                     <th>Foto</th>
-                    <th>Creador</th>
                 </tr>
             </thead>
             <tbody>
                 {% for nove in res %}
                 <tr>
                     <th>{{nove[1]}}</th>
-                    <th><a href="/perfil/{{ nove[2] }}">{{ nove[2] }}</a></th>                    
                     <th>{{nove[3]}}</th>
                     <th>{{nove[4]}}</th>
                     <th>{{nove[5]}}</th>
@@ -145,6 +142,7 @@
                         </figure>
                     </th>
                     <th><a href="/perfil/{{ nove[2] }}">{{ nove[7] }}</a></th>
+                    <th><a href="/vermas/{{nove[0]}}">Ver mas</a></th>
                 </tr>
                 {% endfor %}
             </tbody>
