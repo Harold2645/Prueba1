@@ -1,5 +1,5 @@
 from conexion import *
-import datetime
+from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.novedades import misNovedades
 from models.usuarios import misUsuarios
@@ -14,21 +14,18 @@ def agregarnovedad():
 @app.route("/guardarnovedad", methods=['POST'])
 def guardarnovedad():
     if session.get("loginCorrecto"):
-        idobjeto = request.form['objetotxt']
-        documento = request.form['identxt']
-        tipo = request.form['tipotxt']
-        fecha = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        descripcion = request.form['destxt']
-        foto = request.files['fototxt']
-        now = datetime.datetime.now()
-        tiempo = now.strftime("%Y%H%M%S")
-        nuevoNombreFoto = ""
+        idobjeto = request.form['id_objeto']
+        documento = session['documento']
+        tipo = request.form['tipo']
+        hora = datetime.now()
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        descripcion = request.form['descripcion']  
+        foto = request.files['foto']
+        fnombre,fextension = os.path.splitext(foto.filename)  
+        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+        foto.save("uploads/" + fotot)
 
-        if foto.filename != '':
-            nuevoNombreFoto = tiempo + foto.filename
-            foto.save("uploads/" + nuevoNombreFoto)
-
-        misNovedades.agregarNovedad(idobjeto, documento, tipo, fecha, descripcion, nuevoNombreFoto)
+        misNovedades.agregarNovedad([idobjeto, documento, tipo, fecha, descripcion, fotot])
         return redirect('/Correcto')
     else:
         return redirect('/')

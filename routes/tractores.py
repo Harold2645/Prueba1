@@ -270,46 +270,39 @@ def agregarE():
         hora = datetime.now()
         fnombre,fextension = os.path.splitext(ftdrenaje.filename)
         ftdrenajea = "FD"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftdrenajea)
         ftdrenaje.save("uploads/" + ftdrenajea)
 
         ftbateria = request.files["ftbateria"]
         fnombre,fextension = os.path.splitext(ftbateria.filename)
         ftbateriaa = "FB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftbateriaa)
         ftbateria.save("uploads/" + ftbateriaa)
 
         ftfiltroac = request.files["ftfiltroac"]
         fnombre,fextension = os.path.splitext(ftfiltroac.filename)
         ftfiltroaca = "FFA"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftfiltroaca)
         ftfiltroac.save("uploads/" + ftfiltroaca)
 
         ftfiltroar = request.files["ftfiltroar"]
         fnombre,fextension = os.path.splitext(ftfiltroar.filename)
         ftfiltroara = "FFB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftfiltroara)
         ftfiltroar.save("uploads/" + ftfiltroara)
 
         ftfiltroachid = request.files["ftfiltroachid"]
         
         fnombre,fextension = os.path.splitext(ftfiltroachid.filename)
         ftfiltroachida = "FFC"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftfiltroachida)
         ftfiltroachid.save("uploads/" + ftfiltroachida)
 
         ftfiltrocomb = request.files["ftfiltrocomb"]
         
         fnombre,fextension = os.path.splitext(ftfiltrocomb.filename)
         ftfiltrocomba = "FFCB"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftfiltrocomba)
         ftfiltrocomb.save("uploads/" + ftfiltrocomba)
 
         ftcabeza = request.files["ftcabeza"]
         
         fnombre,fextension = os.path.splitext(ftcabeza.filename)
         ftcabezaa = "FC"+hora.strftime("%Y%m%d%H%M%S")+fextension
-        print(ftcabezaa)
         ftcabeza.save("uploads/" + ftcabezaa)
 
         fotos=[idObjetos,ftdrenajea,ftbateriaa,ftfiltroaca ,ftfiltroara ,ftfiltroachida ,ftfiltrocomba ,ftcabezaa]

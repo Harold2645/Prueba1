@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/principalLider.css">
+    <link rel="stylesheet" href="../../static/css/header.css">
     <title>Prestamos</title>
 </head>
 <body>
@@ -80,17 +81,6 @@
                 {% else %}
                     <th>NO ESTA</th>
                 {% endif %}
-
-                {% if prest[7] == 'S' %}
-                    <th><a href="/aceptarPedido/{{prest[8]}}">Aceptar</a></th>
-                    <th><a href="/rechazar/{{prest[8]}}">Rechazar</a></th>
-                {% elif prest[7] == 'A' %}
-                    <th><a href="/prestado/{{prest[8]}}">Entregar</a></th>
-                {% elif prest[7] == 'P' %}
-                    <th><a href="/devolver/{{prest[8]}}">Devolver</a></th>
-                {% else %}
-                    <th> </th>
-                {% endif %}
             </tr>
             {% endfor %}
 
@@ -124,16 +114,6 @@
                     <th>NO ESTA</th>
                 {% endif %}
 
-                {% if prest[6] == 'S' %}
-                    <th><a href="/aceptarPedido/{{prest[7]}}">Aceptar</a></th>
-                    <th><a href="/rechazar/{{prest[7]}}">Rechazar</a></th>
-                {% elif prest[6] == 'A' %}
-                    <th><a href="/prestado/{{prest[7]}}">Entregar</a></th>
-                {% elif prest[6] == 'P' %}
-                    <th><a href="/devolver/{{prest[7]}}">Devolver</a></th>
-                {% else %}
-                    <th> </th>
-                {% endif %}
             </tr>
             {% endfor %}
 
@@ -165,17 +145,6 @@
                     <th>Rechazado</th>
                 {% else %}
                     <th>NO ESTA</th>
-                {% endif %}
-
-                {% if prest[6] == 'S' %}
-                    <th><a href="/aceptarPedido/{{prest[7]}}">Aceptar</a></th>
-                    <th><a href="/rechazar/{{prest[7]}}">Rechazar</a></th>
-                {% elif prest[6] == 'A' %}
-                    <th><a href="/prestado/{{prest[7]}}">Entregar</a></th>
-                {% elif prest[6] == 'P' %}
-                    <th><a href="/devolver/{{prest[7]}}">Devolver</a></th>
-                {% else %}
-                    <th> </th>
                 {% endif %}
             </tr>
             {% endfor %}

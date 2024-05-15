@@ -6,7 +6,7 @@ class novedades:
         self.cursor = self.conexion.cursor()
 
     def agregarNovedad(self, novedad):
-        sql = f"INSERT INTO novedades (`idobjeto`, `documento`, `tipo`, `fecha`, `descripcion`, `foto`, `creador`) VALUES ('{novedad[0]}', '{novedad[1]}', '{novedad[2]}', '{novedad[3]}', '{novedad[4]}', '{novedad[5]}', '{novedad[6]}')"
+        sql = f"INSERT INTO novedades (idobjeto, documento, tipo, fecha, descripcion, foto) VALUES ('{novedad[0]}', '{novedad[1]}', '{novedad[2]}', '{novedad[3]}', '{novedad[4]}', '{novedad[5]}')"
         self.cursor.execute(sql)
         self.conexion.commit()
         
