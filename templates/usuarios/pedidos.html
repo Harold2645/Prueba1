@@ -44,7 +44,6 @@
                     <th>Nombre</th>
                     <th>Codigo sena</th>
                     <th>Labor </th>
-                    <th>Quien lo pide</th>
                     <th>Ficha</th>    
                     <th>Fecha </th>
                     <th>Estado</th>
@@ -54,11 +53,9 @@
             <tbody>
             {% for prest in trac %}
             <tr>
-                <th>{{prest[0]}} {{prest[1]}}</th>
+                <th>{{prest[0]}}</th>
                 <th>{{prest[2]}}</th>
                 <th>{{prest[3]}}</th>
-                <th><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></th> 
-
                 {% if prest[5] == '0' %}
                     <th>No hay</th>
                 {% else %}
@@ -83,75 +80,6 @@
                 {% endif %}
             </tr>
             {% endfor %}
-
-            {% for prest in her %}
-            <tr>
-                <th>{{prest[0]}}</th>
-                <th>{{prest[1]}}</th>
-                <th>{{prest[2]}}</th>
-                <th><a href="/perfil/{{ prest[3] }}">{{ prest[3] }}</a></th> 
-
-                {% if prest[4] == '0' %}
-                    <th>No hay</th>
-                {% else %}
-                    <th>{{prest[4]}}</th>
-                {% endif %}
-
-
-                <th>{{prest[5]}}</th>
-
-                {% if prest[6] == 'S' %}
-                    <th>Solicitado</th>
-                {% elif prest[6] == 'A' %}
-                    <th>Aceptado</th>
-                {% elif prest[6] == 'P' %}
-                    <th>Prestado</th>
-                {% elif prest[6] == 'D' %}
-                    <th>Devuelto</th>
-                {% elif prest[6] == 'R' %}
-                    <th>Rechazado</th>
-                {% else %}
-                    <th>NO ESTA</th>
-                {% endif %}
-
-            </tr>
-            {% endfor %}
-
-            {% for prest in con %}
-            <tr>
-                <th>{{prest[0]}}</th>
-                <th>{{prest[1]}}</th>
-                <th>{{prest[2]}}</th>
-                <th><a href="/perfil/{{ prest[3] }}">{{ prest[3] }}</a></th> 
-
-                {% if prest[4] == '0' %}
-                    <th>No hay</th>
-                {% else %}
-                    <th>{{prest[4]}}</th>
-                {% endif %}
-
-
-                <th>{{prest[5]}}</th>
-
-                {% if prest[6] == 'S' %}
-                    <th>Solicitado</th>
-                {% elif prest[6] == 'A' %}
-                    <th>Aceptado</th>
-                {% elif prest[6] == 'P' %}
-                    <th>Prestado</th>
-                {% elif prest[6] == 'D' %}
-                    <th>Devuelto</th>
-                {% elif prest[6] == 'R' %}
-                    <th>Rechazado</th>
-                {% else %}
-                    <th>NO ESTA</th>
-                {% endif %}
-            </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </div>
 
 </body>
 </html>

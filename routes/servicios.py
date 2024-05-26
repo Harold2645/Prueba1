@@ -183,10 +183,8 @@ def rechazar(id):
 def mispedidos():
     if session.get("loginCorrecto"):
         id = session['documento']
-        tractores = misServicios.consultarTractorMios(id)
-        herramientas = misServicios.consultarHerramientaMios(id)
-        consumibles = misServicios.consultarConsumibleMios(id)
-        return render_template("usuarios/pedidos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Mis pedidos')
+        tractores = misServicios.consultarMios(id)
+        return render_template("usuarios/pedidos.html",trac=tractores, titulo='Mis pedidos')
 
 
 
