@@ -8,10 +8,8 @@ from models.servicios import misServicios
 @app.route('/consultarTodosPedidos')
 def consultarTodosPedidos():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarTractor()
-        herramientas = misServicios.consultarHerramienta()
-        consumibles = misServicios.consultarConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Todos los prestamos')
+        tractores = misServicios.consultar()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Todos los prestamos')
     else:
         return redirect('/')
     
@@ -20,10 +18,8 @@ def consultarTodosPedidos():
 @app.route('/consultarSolicitados')
 def consultarSolicitados():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarSolicitadosTractor()
-        herramientas = misServicios.consultarSolicitadosHerramienta()
-        consumibles = misServicios.consultarSolicitadosConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Solicitados')
+        tractores = misServicios.consultarSolicitados()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Solicitados')
     else:
         return redirect('/')
 
@@ -32,10 +28,8 @@ def consultarSolicitados():
 @app.route('/consultarAceptado')
 def consultarAceptado():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarAceptadoTractor()
-        herramientas = misServicios.consultarAceptadoHerramienta()
-        consumibles = misServicios.consultarAceptadoConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Falta entregar')
+        tractores = misServicios.consultarAceptado()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Falta entregar')
     else:
         return redirect('/')
     
@@ -43,10 +37,8 @@ def consultarAceptado():
 @app.route('/consultarprestados')
 def consultarprestados():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarPrestadoTracor()
-        herramientas = misServicios.consultarPrestadoHerramienta()
-        consumibles = misServicios.consultarPrestadoConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Prestados')
+        tractores = misServicios.consultarPrestado()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Prestados')
     else:
         return redirect('/')
 
@@ -54,10 +46,8 @@ def consultarprestados():
 @app.route('/consultarDevueltos')
 def consultarDevueltos():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarDevueltoTractor()
-        herramientas = misServicios.consultarDevueltoHerramienta()
-        consumibles = misServicios.consultarDevueltoConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Devueltos')
+        tractores = misServicios.consultarDevuelto()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Devueltos')
     else:
         return redirect('/')
     
@@ -65,10 +55,8 @@ def consultarDevueltos():
 @app.route('/consultarRechazados')
 def consultarRechazados():
     if session.get("loginCorrecto"):
-        tractores = misServicios.consultarRechazadoTractor()
-        herramientas = misServicios.consultarRechazadoHerramienta()
-        consumibles = misServicios.consultarRechazadoConsumible()
-        return render_template("lideres/prestamos/prestamos.html",con=consumibles , her=herramientas , trac=tractores, titulo='Rechazados')
+        tractores = misServicios.consultarRechazado()
+        return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Rechazados')
     else:
         return redirect('/')
     
@@ -185,8 +173,5 @@ def mispedidos():
         id = session['documento']
         tractores = misServicios.consultarMios(id)
         return render_template("usuarios/pedidos.html",trac=tractores, titulo='Mis pedidos')
-
-
-
     else:
         return redirect('/')

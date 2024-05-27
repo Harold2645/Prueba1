@@ -12,38 +12,45 @@ class Categorias:
         return resultado
         
     def categoriasTractor(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Tractor'"
+        sql = "SELECT * FROM categorias WHERE tipo='Tractor' AND activo='1' "
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
     
     def categoriasHerramienta(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Herramienta'"
+        sql = "SELECT * FROM categorias WHERE tipo='Herramienta' AND activo='1'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
     
     def categoriasInsumos(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Insumo'"
+        sql = "SELECT * FROM categorias WHERE tipo='Insumo' AND activo='1'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
 
     def categoriasLiquidos(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Liquido'"
+        sql = "SELECT * FROM categorias WHERE tipo='Liquido' AND activo='1'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias
 
 
     def agregarCategoria(self, categ):
-        sql = f"INSERT INTO `categorias` (`nombre`, `tipo`, `descripcion`, `fecha`, `creador`) VALUES ('{categ[0]}', '{categ[1]}', '{categ[2]}', '{categ[3]}', '{categ[4]}')"
+        sql = f"INSERT INTO `categorias` (`nombre`, `tipo`, `descripcion`, `fecha`, `creador`, `activo`) VALUES ('{categ[0]}', '{categ[1]}', '{categ[2]}', '{categ[3]}', '{categ[4]}', '1')"
         self.cursor.execute(sql)
         self.conexion.commit()
         
     def borrarCategoria(self, idCategoria):
-        sql = f"DELETE FROM categorias WHERE `idCategoria` = {idCategoria}"
+        sql = f"UPDATE categorias SET activo='0' WHERE idCategoria = '{idCategoria}'"
         self.cursor.execute(sql)
+        self.conexion.commit()
+
+
+    def activarCategoria(self, idCategoria):
+        sql = f"UPDATE categorias SET activo='1' WHERE idCategoria = '{idCategoria}'"
+        self.cursor.execute(sql)
+        self.conexion.commit()
 
     def buscarCate(self):
         sql = "SELECT descripcion FROM categorias"

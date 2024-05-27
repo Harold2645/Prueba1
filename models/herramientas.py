@@ -12,7 +12,7 @@ class Herramientas:
         return resultado
     
     def todaslasHerramientas(self):
-        sql = "SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria;"
+        sql = "SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, herramientas.activo FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -23,7 +23,7 @@ class Herramientas:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria, herramientas.activo WHERE herramientas.activo='1' AND idobjeto = '{idObjeto}'"
+        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre, herramientas.activo FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE idobjeto = '{idObjeto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

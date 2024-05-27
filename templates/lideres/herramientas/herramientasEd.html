@@ -36,11 +36,13 @@
                 <input type="hidden" name="foto1" value="{{herramienta[2]}}">
 
                 {% if herramienta[7] == '0' %}
-                <label for="activo">Activar</label>
-                <select name="activo" id="activo" required>
-                    <option value="{{herramienta[7]}}">Inactivo</option>
-                    <option value="1">Activo</option>
-                </select>
+                    <label for="activo">Activar</label>
+                    <select name="activo" id="activo" required>
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                    </select>
+                {% else %}
+                    <input type="hidden" name="activo" value="{{herramienta[7]}}">
                 {% endif %}
 
                 <figure class="img-thumbnail" >

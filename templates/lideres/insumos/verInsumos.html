@@ -118,23 +118,35 @@
         <table>
             <thead>
                 <tr>
-                    <th>Identificador</th>
                     <th>Nombre</th>
                     <th>Categoria</th>
-                    <th>Estado</th>
+                    <th>Cantidad</th>
+                    <th>Foto</th>
                     <th>Disponibilidad</th>
-                    <th>Activo</th>
                 </tr>
             </thead>
             <tbody>
                 {% for cons in res %}
                     <tr>
-                        <td>{{cons[0]}}</td>
                         <td>{{cons[1]}}</td>
+                        <td>{{cons[6]}}</td>
                         <td>{{cons[2]}}</td>
-                        <td>{{cons[5]}}</td>
-                        <td>{{cons[4]}}</td>
-                        <td>{{cons[8]}}</td>
+                        <td>
+                            <figure class="img-thumbnail" >
+                                <img width="100" height="100"  src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
+                            </figure>
+                        </td>
+
+                        {% if cons[7] == '0' %}
+                            <td>No disponible</td>
+                        {% elif cons[7] == '1' %}
+                            <td>Disponible</td>
+                        {% elif cons[7] == '2' %}
+                            <td>Prestado</td>
+                        {% else %}
+                            <td>NO ESTA</td>
+                        {% endif %}
+
                         <td>
                             <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
                         </td>

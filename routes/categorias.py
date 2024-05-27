@@ -43,7 +43,18 @@ def guardarCategoria():
 @app.route('/borrarCategoria/<idCategoria>')
 def borrarCategoria(idCategoria):
     if session.get("loginCorrecto"):
+        print(idCategoria)
         misCategorias.borrarCategoria(idCategoria)
         return redirect('/consultarCategorias')
     else:
         return redirect('/')
+    
+# Activar categorias
+@app.route('/activarCategoria/<idCategoria>')
+def activarCategoria(idCategoria):
+    if session.get("loginCorrecto"):
+        misCategorias.activarCategoria(idCategoria)
+        return redirect('/consultarCategorias')
+    else:
+        return redirect('/')
+

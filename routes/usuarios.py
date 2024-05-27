@@ -68,10 +68,8 @@ def redireccion():
             return render_template('usuarios/principalUsu.html')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
-            tractores = misServicios.consultarSolicitadosTractor()
-            herramientas = misServicios.consultarSolicitadosHerramienta()
-            consumibles = misServicios.consultarSolicitadosConsumible()
-            return render_template('lideres/principalLIde.html', usu=usuarios, con=consumibles, her=herramientas, trac=tractores)
+            tractores = misServicios.consultarSolicitados()
+            return render_template('lideres/principalLIde.html', usu=usuarios, trac=tractores)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

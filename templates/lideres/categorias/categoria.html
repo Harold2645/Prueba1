@@ -120,26 +120,39 @@
 <table>
     <thead>
         <tr>
-            <th>Id</th>
             <th>Nombre</th>
             <th>Tipo</th>
             <th>Descripción</th>
-            <th>Fecha</th>
             <th>Creador</th>
+            <th>Estado</th>
         </tr>
     </thead>
     <tbody>
         {% for cate in res %}
         <tr>
-            <th>{{cate[0]}}</th>
             <th>{{cate[1]}}</th>
             <th>{{cate[2]}}</th>
             <th>{{cate[3]}}</th>
-            <th>{{cate[4]}}</th>
             <th>{{cate[5]}}</th>
+
+            {% if cate[6] == 0 %}
+                <td>Inactivo</td>
+            {% elif cate[6] == 1 %}
+                <td>Activo</td>
+            {% else %}
+                <th>NO ESTA</th>
+            {% endif %}
+
+            {% if cate[6] == 0 %}
             <th>
-                <a onclick="return confirm('¿Desea eliominar esta categortia?')" href="borrarCategoria/{{cate[0]}}">Eliminar</a>
-            </th> 
+                <a onclick="return confirm('¿Desea activar esta categortia?')" href="activarCategoria/{{cate[0]}}">Activar</a>
+            </th>
+            {% elif cate[6] == 1 %}
+            <th>
+                <a onclick="return confirm('¿Desea eliminar esta categortia?')" href="borrarCategoria/{{cate[0]}}">Eliminar</a>
+            </th>
+            {% endif %}
+
         </tr>
         {% endfor %}
     </tbody>
