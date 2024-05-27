@@ -138,7 +138,7 @@
             <th>{{cate[4]}}</th>
             <th>{{cate[5]}}</th>
             <th>
-                <a href="borrarCategoria/{{cate[0]}}">Eliminar</a>
+                <a onclick="return confirm('¿Desea eliominar esta categortia?')" href="borrarCategoria/{{cate[0]}}">Eliminar</a>
             </th> 
         </tr>
         {% endfor %}

@@ -23,13 +23,13 @@ class Herramientas:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE herramientas.activo='1' AND idobjeto = '{idObjeto}'"
+        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria, herramientas.activo WHERE herramientas.activo='1' AND idobjeto = '{idObjeto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, herramienta):
-        sql = f"UPDATE herramientas SET nombre='{herramienta[1]}', idCategoria='{herramienta[2]}', foto='{herramienta[3]}' WHERE idobjeto='{herramienta[0]}'"
+        sql = f"UPDATE herramientas SET nombre='{herramienta[1]}', idCategoria='{herramienta[2]}', foto='{herramienta[3]}', activo={herramienta[4]} WHERE idobjeto='{herramienta[0]}'"
 
         self.cursor.execute(sql)
         self.conexion.commit()

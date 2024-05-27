@@ -88,12 +88,16 @@ def actualizarTractor():
         modelo = request.form['modelo']
         foto = request.files['fototrac']
         fechamodelo = request.form['fechamodelo']
-
-        hora = datetime.now()
-        fnombre,fextension = os.path.splitext(foto.filename)  
-        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
-        foto.save("uploads/" + fotot)
-        misTracores.modificar([idobjeto, categoria, fotot, marca, modelo, fechamodelo])
+        activo = request.form['activo']
+        if foto.filename == '':
+            foto1 = request.form['foto1']
+            misTracores.modificar([idobjeto, categoria, foto1, marca, modelo, fechamodelo,activo])
+        else:
+            hora = datetime.now()
+            fnombre,fextension = os.path.splitext(foto.filename)  
+            fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+            foto.save("uploads/" + fotot)
+            misTracores.modificar([idobjeto, categoria, fotot, marca, modelo, fechamodelo,activo])
 
         creador = session['documento'] 
         movimiento = "EditoTractor"

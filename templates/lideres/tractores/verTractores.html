@@ -143,7 +143,7 @@
                         
 
                         {% if trac[5] == '0' %}
-                            <td>Ocupado</td>
+                            <td>No disponible</td>
                         {% elif trac[5] == '1' %}
                             <td>Disponible</td>
                         {% elif trac[5] == '2' %}
@@ -156,7 +156,10 @@
                             <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
                         </td>
                         <td>
-                            <a onclick="return confirm('¿Seguro elimina este tractor??')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
+                            <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
+                        </td>
+                        <td>
+                            <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')" href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
                         </td>
                     </tr>
                 {% endfor %}

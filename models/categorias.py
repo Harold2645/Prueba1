@@ -30,7 +30,7 @@ class Categorias:
         return categorias
 
     def categoriasLiquidos(self):
-        sql = "SELECT * FROM categorias WHERE tipo='Liquidos'"
+        sql = "SELECT * FROM categorias WHERE tipo='Liquido'"
         self.cursor.execute(sql)
         categorias = self.cursor.fetchall()
         return categorias

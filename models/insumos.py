@@ -23,13 +23,13 @@ class Insumos:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND idObjeto='{idObjeto}';"
+        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria, consumibles.activo WHERE consumibles.tipo = 'Insumo' AND idObjeto='{idObjeto}';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, insumos):
-        sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idcategoria='{insumos[2]}', cantidad='{insumos[3]}', foto='{insumos[4]}' WHERE idobjeto='{insumos[0]}'"
+        sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idcategoria='{insumos[2]}', cantidad='{insumos[3]}', foto='{insumos[4]}', activo='{insumos[5]}' WHERE idobjeto='{insumos[0]}'"
         self.cursor.execute(sql)        
         self.conexion.commit()
         

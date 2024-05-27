@@ -44,7 +44,7 @@ def agregarLiquidos():
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/Correcto')
         elif rol == 'Admin' or rol == 'Practicante':
-            categorias = misCategorias.categoriasInsumos()
+            categorias = misCategorias.categoriasLiquidos()
             return render_template("lideres/liquidos/liquidosAg.html", categorias=categorias)
         else:
             return render_template("index.html", msg="Rol no reconocido")
@@ -93,21 +93,27 @@ def editarLiquidos(idObjeto):
     if session.get("loginCorrecto"):
         Consu = misLiquidos.buscar(idObjeto)
         categorias = misCategorias.categoriasLiquidos()
-        return render_template("Liquidos/modificarLiquidos.html",Consu=Consu[0], categorias=categorias)
+        return render_template("lideres/liquidos/liquidosEd.html",Consu=Consu[0], categorias=categorias)
     else:
         return redirect('/')
     
 @app.route('/actualizarLiquidos', methods=['POST'])
 def actualizarLiquidos():
     if session.get("loginCorrecto"):
-        idObjeto = request.form['id_Consumible']
+        idobjeto = request.form['idobjeto']
         nombre = request.form['nombre']
         categoria = request.form.get('id_categoria')
-        estado = request.form['estado']
-        disponibilidad = request.form['disponibilidad']
-        activo = request.form['activo']
-        modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-        misLiquidos.modificar(modif)
+        cantidad = request.form['cantidad']
+        foto = request.files['foto']
+        if foto.filename == '':
+            foto1 = request.form['foto1']
+            misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, foto1])
+        else:
+            ahora = datetime.now()
+            fnombre,fextension = os.path.splitext(foto.filename)
+            nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+            foto.save("uploads/"+nombreFoto)
+            misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
 
         creador = session['documento'] 
         movimiento = "EditoLiquido"

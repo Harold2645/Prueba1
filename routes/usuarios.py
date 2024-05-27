@@ -17,25 +17,23 @@ def registrar():
 # Función para guardar usuarios
 @app.route("/guardarUsarios", methods=['POST'])
 def guardarUsuarios():
-    if session.get("loginCorrecto"):
-        documento = request.form['documento']
-        nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        celular = request.form['celular']
-        contrasena = request.form['contrasena']
-        cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-        rol = request.form['rol']
-        ficha = request.form['ficha']
-        ahora = datetime.now()
-        fecha = ahora.strftime("%Y%m%d%H%M%S")
-        existente = misUsuarios.buscar(documento)
-        if existente:
-            return render_template("registrar.html", msg="Documento ya existe")
-        else:
-            misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
-            return redirect('/')
+    documento = request.form['documento']
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    celular = request.form['celular']
+    contrasena = request.form['contrasena']
+    cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
+    rol = request.form['rol']
+    ficha = request.form['ficha']
+    ahora = datetime.now()
+    fecha = ahora.strftime("%Y%m%d%H%M%S")
+    existente = misUsuarios.buscar(documento)
+    if existente:
+        return render_template("registrar.html", msg="Documento ya existe")
     else:
+        misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
         return redirect('/')
+
 
 # Función para el login
 @app.route("/login", methods=['POST'])

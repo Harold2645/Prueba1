@@ -25,13 +25,13 @@ class Liquidos:
 
         
     def buscar(self,idObjeto):
-        sql = f"SELECT * FROM consumibles WHERE idobjeto={idObjeto}"
+        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Liquido' AND idObjeto='{idObjeto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, liquidos):
-        sql = f"UPDATE consumibles SET nombre='{liquidos[1]}', idCategoria='{liquidos[2]}', cantidad='{liquidos[3]}', activo='{liquidos[4]}' WHERE idobjeto='{liquidos[0]}'"
+        sql = f"UPDATE consumibles SET nombre='{liquidos[1]}', idCategoria='{liquidos[2]}', cantidad='{liquidos[3]}', foto='{liquidos[4]}' WHERE idobjeto='{liquidos[0]}'"
         self.cursor.execute(sql)        
         self.conexion.commit()
 

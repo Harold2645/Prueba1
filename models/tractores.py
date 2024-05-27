@@ -23,7 +23,7 @@ class Tractores:
         return resultado
 
     def modificar(self, tractor):
-        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}', fechamodelo='{tractor[5]}' WHERE idObjeto='{tractor[0]}'"
+        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}', fechamodelo='{tractor[5]}', activo='{tractor[6]}' WHERE idObjeto='{tractor[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
         

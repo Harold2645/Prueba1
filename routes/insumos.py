@@ -105,12 +105,16 @@ def actualizarConsumibles():
         categoria = request.form.get('id_categoria')
         cantidad = request.form['cantidad']
         foto = request.files['foto']
-
-        ahora = datetime.now()
-        fnombre,fextension = os.path.splitext(foto.filename)
-        nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-        foto.save("uploads/"+nombreFoto)
-        misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
+        activo = request.form['activo']
+        if foto.filename == '':
+            foto1 = request.form['foto1']
+            misInsumos.modificar([idobjeto,nombre,categoria,cantidad, foto1, activo])
+        else:
+            ahora = datetime.now()
+            fnombre,fextension = os.path.splitext(foto.filename)
+            nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+            foto.save("uploads/"+nombreFoto)
+            misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto, activo])
 
         creador = session['documento'] 
         movimiento = "EditoInsumo"
