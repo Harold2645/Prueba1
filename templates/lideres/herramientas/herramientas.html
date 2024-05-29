@@ -97,13 +97,7 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_novedad">Novedades</a>
-                    <ul id="menu_novedad" class="menu-n02">
-                        <li><a href="/novedades" class="btn-n02">Novedades</a></li>
-                        <li><a href="/agregarnovedad" class="btn-n02">Agregar Novedad</a></li>
-                    </ul>
-                </li>
+                <li><a href="/novedades" class="btn-n02">Novedades</a></li>
 
                 <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
                 <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
@@ -132,6 +126,8 @@
                         <section id="cont_link" >
                             <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}">Editar</a>
                             <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}">Eliminar</a>
+                            <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}">Agregar Novedad</a>
+
                         </section>
                 </article>
                 {% endfor %}

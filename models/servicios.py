@@ -63,7 +63,13 @@ class Servicios:
         return resultado
 
     def buscarInsumo(self, idObjeto):
-        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}'"
+        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Insumo'"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def buscarLiquido(self, idObjeto):
+        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Liquido'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
