@@ -2,19 +2,28 @@ from conexion import *
 from datetime import datetime
 from flask import redirect, render_template, request, session
 from models.novedades import misNovedades
-from models.usuarios import misUsuarios
+from models.servicios import misServicios
 
-@app.route("/agregarnovedad")
-def agregarnovedad():
+@app.route("/agregarnovedad/<idObjeto>")
+def agregarnovedad(idObjeto):
     if session.get("loginCorrecto"):
-        return render_template('lideres/novedades/novedadesAg.html')
+        if (misServicios.buscarTractor(idObjeto)):
+            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Tractor")
+        elif(misServicios.buscarHerramienta(idObjeto)):
+            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Herramienta")
+        elif(misServicios.buscarInsumo(idObjeto)):
+            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Insumo")
+        elif(misServicios.buscarLiquido(idObjeto)):
+            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Liquido")
+        else:
+            return redirect ('/Correcto')
     else:
         return redirect('/')
 
 @app.route("/guardarnovedad", methods=['POST'])
 def guardarnovedad():
     if session.get("loginCorrecto"):
-        idobjeto = request.form['id_objeto']
+        idobjeto = request.form['idobjeto']
         documento = session['documento']
         tipo = request.form['tipo']
         hora = datetime.now()
@@ -43,3 +52,19 @@ def novedades():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+    
+@app.route('/vermasNovedades/<id>')
+def vermasNovedades(id):
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misNovedades.buscar(id)
+            print(resultado)
+            return render_template('lideres/novedades/verMas.html', res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
+

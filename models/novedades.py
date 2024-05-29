@@ -11,13 +11,13 @@ class novedades:
         self.conexion.commit()
         
     def consultarNovedades(self):
-        sql = "SELECT * FROM novedades"
+        sql = "SELECT * FROM ( SELECT t.marca AS nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad FROM tractores AS t INNER JOIN novedades AS n ON t.idobjeto = n.idobjeto UNION ALL SELECT h.nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad FROM herramientas AS h INNER JOIN novedades AS n ON h.idobjeto = n.idobjeto UNION ALL SELECT c.nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad FROM consumibles AS c INNER JOIN novedades AS n ON c.idobjeto = n.idobjeto) AS combined_results ORDER BY fecha DESC;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
-    def buscar(self,idObjeto):
-        sql = f"SELECT * FROM novedades WHERE idObjeto={idObjeto}"
+    def buscar(self,id):
+        sql = f"SELECT * FROM (SELECT t.marca AS objeto_nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM tractores AS t INNER JOIN novedades AS n ON t.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento WHERE n.idnovedad = {id} UNION ALL SELECT h.nombre AS objeto_nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM herramientas AS h INNER JOIN novedades AS n ON h.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento WHERE n.idnovedad = {id} UNION ALL SELECT c.nombre AS objeto_nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM consumibles AS c INNER JOIN novedades AS n ON c.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento WHERE n.idnovedad = {id}) AS combined_results ORDER BY fecha DESC;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

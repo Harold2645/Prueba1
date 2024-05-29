@@ -11,15 +11,9 @@
     <div class="form-container">
         <form method="POST" action="/guardarnovedad" enctype="multipart/form-data">
 
-            <label for="id_objeto">ID Objeto:</label>
-            <input type="text" id="id_objeto" name="id_objeto" pattern="[0-9a-z]{5,15}" required minlength="5" maxlength="15">
+            <input type="hidden" name="idobjeto" value="{{id}}">
 
-            <label for="tipo">Tipo:</label>
-            <select id="tipo" name="tipo" required>
-                <option value="tractores">Tractores</option>
-                <option value="herramientas">Herramientas</option>
-                <option value="consumibles">Consumibles</option>
-            </select>
+            <input type="hidden" name="tipo" value="{{tipo}}">
 
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" name="descripcion" required minlength="10" maxlength="200"></textarea>
