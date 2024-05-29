@@ -27,6 +27,9 @@ figure{
         padding: 0;
         width: 100%;
     }
+    img{
+        width: 30px;
+    }
 body, html{
     margin: 0;
     padding: 0;
@@ -49,18 +52,26 @@ article#reservas{
         0 0 0 2px rgb(255, 255, 255),
         0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     padding: 10px;
-    position: relative;
+    font-size: 13px;
+}
+
+#cont-i{
+    float: left;
 }
 
 #cont_link{
     display: grid;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    gap: 30px;
-    padding: 10px;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 5px;
 }
 
-@media only screen and (min-width: 1000px){
+.btnmosa{
+    background-color: #39A900;
+    border-radius: 10px;
+    border: none;
+}
+
+@media only screen and (min-width: 100px){
     
 }
