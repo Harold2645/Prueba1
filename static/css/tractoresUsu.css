@@ -27,9 +27,6 @@ figure{
         padding: 0;
         width: 100%;
     }
-    img{
-        width: 30px;
-    }
 body, html{
     margin: 0;
     padding: 0;
@@ -39,7 +36,7 @@ body, html{
     text-align: center;
 }
 
-section#cont_paneles{
+div#cont_paneles{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 20px;
@@ -52,25 +49,43 @@ article#reservas{
         0 0 0 2px rgb(255, 255, 255),
         0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
     padding: 10px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 #cont-i{
     float: left;
+    padding-right: 90px;
 }
 
 #cont_link{
     display: grid;
     justify-content: flex-end;
     height: 100%;
-    gap: 5px;
+    gap: 20px;
 }
+
+.img-thumbnail{
+    height: 100px;
+    width: 150px;
+    box-shadow:
+        0 0 0 2px rgba(6, 8, 5, 0.582),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+    #img-bd{
+        width: 100%;
+        height: 100%;
+    }
 
 .btnmosa{
     background-color: #39A900;
     border-radius: 10px;
     border: none;
+    height: 65px;
 }
+    .img-icon{
+        width: 30px;
+        margin: 5px;
+    }
 
 @media only screen and (min-width: 100px){
     

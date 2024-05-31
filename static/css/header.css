@@ -86,7 +86,7 @@ header a{
 display: none;  
 }
 
-@media only screen and (min-width: 800px){
+@media only screen and (min-width: 855px){
     #menu_cont{
         display: block;
         background: none;
