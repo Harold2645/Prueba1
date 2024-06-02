@@ -88,6 +88,7 @@ article#reservas{
 .btnmosa{
     background: #39A900;
     padding: 10px;
+    border-radius: 10px;
 }
     .img-icon{
         width: 30px;
