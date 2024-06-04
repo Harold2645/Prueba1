@@ -35,6 +35,23 @@ def consultalarConsumibles():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+    
+
+
+
+
+@app.route('/buscarLiquido', methods=['GET', 'POST'])
+def buscarLiquido():
+    if request.method == "POST":
+        nombre = request.form['buscar_insumo']
+        resultado = misInsumos.buscarPornombre(nombre)
+        return render_template("lideres/insumos/insumos.html", res=resultado)
+    else:
+        return redirect('/')
+
+
+
+
 
 # agregar Consumibles
 @app.route("/agregarConsumibles")
@@ -123,11 +140,11 @@ def actualizarConsumibles():
     else:
         return redirect('/')
 
-@app.route('/buscarLiquido', methods=['POST'])
-def buscarLiquido():
-    if session.get("loginCorrecto"):
-        termino_busqueda = request.form.get('buscar_insumo', '').strip()
-        resultado = misInsumos.buscarPornombre(termino_busqueda)
-        return render_template("usuarios/insumos.html", res=resultado)
-    else:
-        return redirect('/')
+# @app.route('/buscarLiquido', methods=['POST'])
+# def buscarLiquido():
+#     if session.get("loginCorrecto"):
+#         termino_busqueda = request.form.get('buscar_insumo', '').strip()
+#         resultado = misInsumos.buscarPornombre(termino_busqueda)
+#         return render_template("usuarios/insumos.html", res=resultado)
+#     else:
+#         return redirect('/')

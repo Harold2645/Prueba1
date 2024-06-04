@@ -29,6 +29,18 @@ def consultalasHerramientas():
         return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
     else:
         return redirect('/')
+    
+
+
+@app.route('/buscarHerramientas', methods=['GET', 'POST'])
+def buscarHerramientas():
+    if request.method == "POST":
+        nombre = request.form['buscar_herramientas']
+        resultado = misHerramientas.buscarPornombre(nombre)
+        return render_template("usuarios/herramientas.html", res=resultado)
+    else:
+        return redirect('/')
+
 
 # agregar herramientas
 @app.route("/agregarHerramienta")
@@ -38,6 +50,7 @@ def agregarHerramienta():
         return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
     else:
         return redirect('/')
+
 
 @app.route("/guardarHerramienta" ,methods=['POST'])
 def guardarHerramienta():
