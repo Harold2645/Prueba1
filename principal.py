@@ -1,4 +1,4 @@
-from flask import render_template, send_from_directory, session
+from flask import render_template, send_from_directory, session, url_for
 from conexion import *
 from routes.usuarios import *
 from routes.novedades import *
@@ -21,6 +21,11 @@ def uploads(nombre):
 def index():
     session["logueado"] = False
     return render_template('/index.html') 
+
+@app.errorhandler(404)
+def not_found(error):
+    # return redirect(url_for('404.html'))
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port="5080")
