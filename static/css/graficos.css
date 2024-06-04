@@ -32,10 +32,10 @@
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: #04AA6D;
+    background-color: #39A900;
     border: none;
     border-radius: 6px;
-    box-shadow: 0 3px #04aa6d77;
+    /* box-shadow: 0 3px #04aa6d77; */
 }
 .botongra:hover {background-color: #3e8e41}
 
@@ -55,7 +55,7 @@
         font-size: 14px;
         border: 1px solid #04AA6D;
         border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
         outline: none;
         transition: border-color 0.3s, box-shadow 0.3s;
     }
@@ -63,10 +63,11 @@
     #btngrafico{
         font-size: 14px;
         color: #fff;
-        background-color: #04AA6D;
+        background-color: #39A900;
         border: none;
         border-radius: 6px;
-        box-shadow: 0 3px #999;
+        padding: 7px 7px;
+        /* box-shadow: 0 3px #999; */
     }
     .btngrafico:hover {background-color: #3e8e41}
 
@@ -101,7 +102,7 @@
         font-size: 14px;
         border: 1px solid #04AA6D;
         border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
         outline: none;
         transition: border-color 0.3s, box-shadow 0.3s;
     }
