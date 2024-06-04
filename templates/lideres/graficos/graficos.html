@@ -107,31 +107,36 @@
         
     </div>
 </header>
+    <main id="cuerpoo">
+        <H1 id="titulo">GRAFICOS</H1>
 
+            <div id="botones">
+                <div class="botongra"><a href="/grafConsu">Liquidos</a></div>
+            
+                <div class="botongra"><a href="/grafTrac">Tractores</a></div>
+            </div>
+           
+            <div id="cuerpografico">
+                <form id="formu" action="envioConsuPez" method="post" enctype="multipart/form-data">
 
-    <H1>GRAFICOS</H1>
-    <a href="/Correcto">Inicio</a>
-    <a href="/grafConsu">Liquidos</a>
-    <a href="/grafTrac">Tractores</a>
-    <form action="envioConsuPez" method="post" enctype="multipart/form-data">
+                    <label for="correoSub">Digita el correo para solitar Combustible</label>
+                    <input type="email" name="correoSub" id="correoSub" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="7" maxlength="50" required>
 
-        <label for="correoSub">Digita el correo para solitar Combustible</label>
-        <input type="email" name="correoSub" id="correoSub" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="7" maxlength="50">
+                    <button type="submit" id="btngrafico">Enviar</button>
 
-        <button type="submit">Enviar</button>
+                </form>
 
-    </form>
+                <div id="imgrafico">
+                    {% if img_base64 %}
+                        <img class="imgra" src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico">
+                    {% endif %}
+                </div>
+               
 
+            </div>
 
-    <!-- <a href="envioConsuPez">envio</a> -->
-    {% if img_base64 %}
-        <img class="imgra" src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico">
-    {% endif %}
-
-
-   
-
-
+          
+    </main>
 
 </body>
 </html>
