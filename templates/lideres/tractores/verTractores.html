@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
+    <link rel="stylesheet" href="../../../static/css/verTractores.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Tractores</title>
 </head>
@@ -109,57 +110,56 @@
     </div>
 </header>
 
-    <main id="cuerpo">
+<main id="cuerpo">
 
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo Sena</th>
+                <th>Categoria</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Foto</th>
+                <th>Disponibilidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trac in res %}
                 <tr>
-                    <th>Codigo Sena</th>
-                    <th>Categoria</th>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Foto</th>
-                    <th>Disponibilidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for trac in res %}
-                    <tr>
-                        <td>{{trac[2]}}</td>
-                        <td>{{trac[7]}}</td>
-                        <td>{{trac[0]}}</td>
-                        <td>{{trac[1]}}</td>
-                        <td>
-                            <figure class="img-thumbnail" >
-                                <img width="100" height="100"  src="../../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}">
-                            </figure>
-                        </td>
-                        
-
+                    <td data-label="Codigo Sena">{{trac[2]}}</td>
+                    <td data-label="Categoria">{{trac[7]}}</td>
+                    <td data-label="Marca">{{trac[0]}}</td>
+                    <td data-label="Modelo">{{trac[1]}}</td>
+                    <td data-label="Foto">
+                        <figure class="img-thumbnail">
+                            <img width="100" height="100"  src="../../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}">
+                        </figure>
+                    </td>
+                    <td data-label="Disponibilidad">
                         {% if trac[5] == '0' %}
-                            <td>No disponible</td>
+                            No disponible
                         {% elif trac[5] == '1' %}
-                            <td>Disponible</td>
+                            Disponible
                         {% elif trac[5] == '2' %}
-                            <td>Prestado</td>
+                            Prestado
                         {% else %}
-                            <td>NO ESTA</td>
+                            NO ESTA
                         {% endif %}
+                    </td>
+                    <td data-label="Acciones">
+                        <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
+                        <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
+                        <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')" href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}">Agregar novedad</a>
 
-                        <td>
-                            <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
-                        </td>
-                        <td>
-                            <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
-                        </td>
-                        <td>
-                            <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')" href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
 
 </body>
 </html>

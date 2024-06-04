@@ -5,6 +5,7 @@
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
+    <link rel="stylesheet" href="../../../static/css/verLiquidos.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Consumibles</title>
 </head>
@@ -108,38 +109,38 @@
     </div>
 </header>
 
-    <main id="cuerpo">
-        <table>
-            <thead>
+<main id="cuerpo">
+    <table>
+        <thead>
+            <tr>
+                <th>Identificador</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Estado</th>
+                <th>Disponibilidad</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cons in res %}
                 <tr>
-                    <th>Identificador</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Estado</th>
-                    <th>Disponibilidad</th>
-                    <th>Activo</th>
+                    <td data-label="Identificador">{{cons[0]}}</td>
+                    <td data-label="Nombre">{{cons[1]}}</td>
+                    <td data-label="Categoria">{{cons[2]}}</td>
+                    <td data-label="Estado">{{cons[5]}}</td>
+                    <td data-label="Disponibilidad">{{cons[4]}}</td>
+                    <td data-label="Activo">{{cons[8]}}</td>
+                    <td data-label="Acciones">
+                        <a href="editarLiquidos/{{cons[0]}}">Editar</a>
+                    </td>
+                    <td data-label="Acciones">
+                        <a href="borrarLiquidos/{{cons[0]}}">Eliminar</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for cons in res %}
-                    <tr>
-                        <td>{{cons[0]}}</td>
-                        <td>{{cons[1]}}</td>
-                        <td>{{cons[2]}}</td>
-                        <td>{{cons[5]}}</td>
-                        <td>{{cons[4]}}</td>
-                        <td>{{cons[8]}}</td>
-                        <td>
-                            <a href="editarLiquidos/{{cons[0]}}">Editar</a>
-                        </td>
-                        <td>
-                            <a href="borrarLiquidos/{{cons[0]}}">Eliminar</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 
 </body>
 </html>

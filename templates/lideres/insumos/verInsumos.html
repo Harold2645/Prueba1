@@ -5,6 +5,7 @@
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
+    <link rel="stylesheet" href="../../../static/css/verInsumos.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Consumibles</title>
 </head>
@@ -108,51 +109,50 @@
     </div>
 </header>
 
-    <main id="cuerpo">
-        <table>
-            <thead>
+<main id="cuerpo">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Cantidad</th>
+                <th>Foto</th>
+                <th>Disponibilidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cons in res %}
                 <tr>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                    <th>Cantidad</th>
-                    <th>Foto</th>
-                    <th>Disponibilidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cons in res %}
-                    <tr>
-                        <td>{{cons[1]}}</td>
-                        <td>{{cons[6]}}</td>
-                        <td>{{cons[2]}}</td>
-                        <td>
-                            <figure class="img-thumbnail" >
-                                <img width="100" height="100"  src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
-                            </figure>
-                        </td>
-
+                    <td data-label="Nombre">{{cons[1]}}</td>
+                    <td data-label="Categoria">{{cons[6]}}</td>
+                    <td data-label="Cantidad">{{cons[2]}}</td>
+                    <td data-label="Foto">
+                        <figure class="img-thumbnail">
+                            <img width="100" height="100" src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
+                        </figure>
+                    </td>
+                    <td data-label="Disponibilidad">
                         {% if cons[7] == '0' %}
-                            <td>No disponible</td>
+                            No disponible
                         {% elif cons[7] == '1' %}
-                            <td>Disponible</td>
+                            Disponible
                         {% elif cons[7] == '2' %}
-                            <td>Prestado</td>
+                            Prestado
                         {% else %}
-                            <td>NO ESTA</td>
+                            NO ESTA
                         {% endif %}
-
-                        <td>
-                            <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
-                        </td>
-                        <td>
-                            <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>                        
-
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
+                    </td>
+                    <td>
+                        <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
+                    </td>
+                    <td>
+                        <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,6 @@
     <title>Inicio</title>
 </head>
 <body>
-    
-
-    <main id="ppal">
 
 <header id="header">
 
@@ -114,43 +111,52 @@
 </header>
 
     <section id="cont_mayor">
-        <section id="links" class="Titulo">
-            <h2>Tractores</h2>
-        </section>
-        <section id="cont_paneles">
+            <h2 id="titulo">Tractores</h2>
+        <div id="cont_paneles">
             {% for trac in res %}
             <article class="mosaico" id="reservas">
-                <div>
-                    <h2>{{trac[0]}} {{trac[1]}}</h2>
-                    <h6>Id Tractor: {{trac[2]}}</h6>
-                    <h6>Categoria: {{trac[7]}} </h6>
-                    
-
-                    {% if trac[5] == '0' %}
-                        <h6>Disponibilidad: No disponible</h6>
-                    {% elif trac[5] == '1' %}
-                        <h6>Disponibilidad: Disponible</h6>
-                    {% elif trac[5] == '2' %}
-                        <h6>Disponibilidad: Prestado</h6>
-                    {% else %}
-                    <h6>Disponibilidad: NO ESTA</h6>
-                    {% endif %}
-                </div>
-                    <figure class="img-thumbnail" >
-                        <img width="100" height="100"  src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}">
+                <div id="cont-img">
+                    <figure class="img-thumbnail">
+                        <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
                     </figure>
-                    <section id="cont_link" >
-                        <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
-                        <a onclick="return confirm('¿Seguro elimina este tractor?')" href="borrarTractor/{{trac[2]}}">Eliminar</a>
-                        <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')"  href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
-                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}">Agregar Novedad</a>
-                    </section>
+                </div>
+                <div id="cont_bajo">
+                    <div id="cont-i">
+                        <h2>{{trac[0]}} {{trac[1]}}</h2>
+                    </div>
+                    <div id="cont_h5">
+                        <h5>Id Tractor: {{trac[2]}}</h5>
+                        <h5>Categoria: {{trac[7]}} </h5>
+                        
 
+                        {% if trac[5] == '0' %}
+                            <h5>Disponibilidad: No disponible</h5>
+                        {% elif trac[5] == '1' %}
+                            <h5>Disponibilidad: Disponible</h5>
+                        {% elif trac[5] == '2' %}
+                            <h5>Disponibilidad: Prestado</h5>
+                        {% else %}
+                        <h5>Disponibilidad: NO ESTA</h5>
+                        {% endif %}
+                    </div>
+                        <div id="cont_link">
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><img src="../../../static/img/editar (1).png" alt="" class="img-icon"></a>
+                            </div>
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Seguro elimina este tractor?')" href="borrarTractor/{{trac[2]}}"><img src="../../../static/img/basura.png" alt="" class="img-icon"></a>
+                            </div>
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')"  href="hojavidatractores/{{trac[2]}}"><img src="../../../static/img/publicacion.png" alt="" class="img-icon"></a>
+                            </div>
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}"><img src="../../../static/img/agregar (1).png" alt="" class="img-icon"></a>
+                            </div>
+                        </div>
+                </div>
             </article>
         {% endfor %}
-        </section>
+        </div>
     </section>
-    </main>
-
 </body>
 </html>
