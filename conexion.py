@@ -4,7 +4,7 @@ from random import randint
 from flask import Flask
 import mysql.connector
 
-conexion = mysql.connector.connect(user='root', password='', host='localhost', database='freedb_hangar0.2')
+conexion = mysql.connector.connect(user='root', password='', host='localhost', database='freedb_hangar0_2')
 
 app = Flask(__name__)
 app.secret_key=str(randint(10000,99999))

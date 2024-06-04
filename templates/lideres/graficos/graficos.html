@@ -108,11 +108,31 @@
     </div>
 </header>
 
+
     <H1>GRAFICOS</H1>
     <a href="/Correcto">Inicio</a>
     <a href="/grafConsu">Liquidos</a>
     <a href="/grafTrac">Tractores</a>
-    <a href="envioConsuPez">envio</a>
+    <form action="envioConsuPez" method="post" enctype="multipart/form-data">
+
+        <label for="correoSub">Digita el correo para solitar Combustible</label>
+        <input type="email" name="correoSub" id="correoSub" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="7" maxlength="50">
+
+        <button type="submit">Enviar</button>
+
+    </form>
+
+
+    <!-- <a href="envioConsuPez">envio</a> -->
+    {% if img_base64 %}
+        <img class="imgra" src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico">
+    {% endif %}
+
+
+   
+
+
+
 </body>
 </html>
 
