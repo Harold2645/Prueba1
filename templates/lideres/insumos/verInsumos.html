@@ -144,9 +144,8 @@
                     </td>
                     <td>
                         <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
-                    </td>
-                    <td>
                         <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este insumo?')"  href="agregarnovedad/{{cons[0]}}">Agregar Novedad</a>
                     </td>
                 </tr>
             {% endfor %}

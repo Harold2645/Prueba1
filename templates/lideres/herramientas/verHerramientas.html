@@ -118,8 +118,7 @@
                 <th data-label="Categoria">Categoria</th>
                 <th data-label="Foto">Foto</th>
                 <th data-label="Disponibilidad">Disponibilidad</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -146,9 +145,8 @@
 
                     <td>
                         <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}">Editar</a>
-                    </td>
-                    <td>
                         <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}">Eliminar</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}">Agregar Novedad</a>
                     </td>
                 </tr>
             {% endfor %}

@@ -119,6 +119,7 @@
                 <th>Estado</th>
                 <th>Disponibilidad</th>
                 <th>Activo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -132,9 +133,9 @@
                     <td data-label="Activo">{{cons[8]}}</td>
                     <td data-label="Acciones">
                         <a href="editarLiquidos/{{cons[0]}}">Editar</a>
-                    </td>
-                    <td data-label="Acciones">
                         <a href="borrarLiquidos/{{cons[0]}}">Eliminar</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{cons[0]}}">Agregar Novedad</a>
+
                     </td>
                 </tr>
             {% endfor %}
