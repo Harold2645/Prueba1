@@ -1,4 +1,6 @@
 from flask import redirect, render_template
+import matplotlib
+matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 import io
 import numpy as np
@@ -23,6 +25,7 @@ def guardagrafico():
     ax.set_xlabel('Tipos')
     ax.set_ylabel('Cantidad en Bodega')
     plt.savefig("grafico.pdf")
+   
 
 
 @app.route('/grafConsu')

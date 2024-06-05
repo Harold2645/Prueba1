@@ -20,7 +20,7 @@ def uploads(nombre):
 
 @app.route('/')
 def index():
-    session["logueado"] = False
+    session["loginCorrecto"] = False
     return render_template('/index.html') 
 
 @app.errorhandler(404)
