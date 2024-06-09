@@ -175,3 +175,19 @@ def mispedidos():
         return render_template("usuarios/pedidos.html",trac=tractores, titulo='Mis pedidos')
     else:
         return redirect('/')
+    
+@app.route('/vermasServicios/<id>')
+def vermasServicios(id):
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misServicios.buscar(id)
+            print(resultado)
+            return render_template('lideres/prestamos/verMas.html', res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
+

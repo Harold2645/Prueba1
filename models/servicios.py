@@ -85,7 +85,6 @@ class Servicios:
         self.conexion.commit()
 
     def prestado(self, servi):
-        print(servi)
         sql = f"UPDATE servicios  SET estadosalida='{servi[1]}', encargado='{servi[2]}', estado='P' WHERE idservicio='{servi[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
@@ -102,6 +101,12 @@ class Servicios:
 
     def consultarMios(self, id):
         sql = f"SELECT * FROM (SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.documento = {id} UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.documento = {id} UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.documento = {id}) AS combined_results ORDER BY fechasalida DESC;"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def buscar(self,id):
+        sql = f"SELECT * FROM (SELECT t.marca AS objeto_nombre, s.idobjeto, s.documento, s.fechaentrada AS fecha, s.descripcion, s.foto, s.tipo AS tipo, s.idservicio AS idservicio, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE s.idservicio = {id} UNION ALL SELECT h.nombre AS objeto_nombre, s.idobjeto, s.documento, s.fechaentrada AS fecha, s.descripcion, s.foto, s.tipo AS tipo, s.idservicio AS idservicio, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE s.idservicio = {id} UNION ALL SELECT c.nombre AS objeto_nombre, s.idobjeto, s.documento, s.fechaentrada AS fecha, s.descripcion, s.foto, s.tipo AS tipo, s.idservicio AS idservicio, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE s.idservicio = {id}) AS combined_results ORDER BY fecha DESC;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

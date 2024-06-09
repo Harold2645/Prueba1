@@ -160,6 +160,8 @@
                     <a href="/prestado/{{prest[8]}}">Entregar</a>
                 {% elif prest[7] == 'P' %}
                     <a href="/devolver/{{prest[8]}}">Devolver</a>
+                {% elif prest[7] == 'D' %}
+                    <a href="/vermasServicios/{{prest[8]}}">Ver mas</a>
                 {% else %}
                     &nbsp;
                 {% endif %}
