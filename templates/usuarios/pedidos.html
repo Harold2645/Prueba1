@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/principalLider.css">
     <link rel="stylesheet" href="../../static/css/header.css">
+    <link rel="stylesheet" href="../../static/css/verUsuariosPedidos.css">
     <title>Prestamos</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
         </div>
     </header>
 
-    <div id="prestamos">
+    <main id="prestamos">
         <h4>{{titulo}}</h4>
         
         <table>
@@ -43,43 +44,45 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Codigo sena</th>
-                    <th>Labor </th>
+                    <th>Labor</th>
                     <th>Ficha</th>    
-                    <th>Fecha </th>
+                    <th>Fecha</th>
                     <th>Estado</th>
-
                 </tr>
             </thead>
             <tbody>
             {% for prest in trac %}
             <tr>
-                <th>{{prest[0]}}</th>
-                <th>{{prest[2]}}</th>
-                <th>{{prest[3]}}</th>
-                {% if prest[5] == '0' %}
-                    <th>No hay</th>
-                {% else %}
-                    <th>{{prest[5]}}</th>
-                {% endif %}
-
-
-                <th>{{prest[6]}}</th>
-
-                {% if prest[7] == 'S' %}
-                    <th>Solicitado</th>
-                {% elif prest[7] == 'A' %}
-                    <th>Aceptado</th>
-                {% elif prest[7] == 'P' %}
-                    <th>Prestado</th>
-                {% elif prest[7] == 'D' %}
-                    <th>Devuelto</th>
-                {% elif prest[7] == 'R' %}
-                    <th>Rechazado</th>
-                {% else %}
-                    <th>NO ESTA</th>
-                {% endif %}
+                <td data-label="Nombre">{{prest[0]}}</td>
+                <td data-label="Codigo sena">{{prest[2]}}</td>
+                <td data-label="Labor">{{prest[3]}}</td>
+                <td data-label="Ficha">
+                    {% if prest[5] == '0' %}
+                        No hay
+                    {% else %}
+                        {{prest[5]}}
+                    {% endif %}
+                </td>
+                <td data-label="Fecha">{{prest[6]}}</td>
+                <td data-label="Estado">
+                    {% if prest[7] == 'S' %}
+                        Solicitado
+                    {% elif prest[7] == 'A' %}
+                        Aceptado
+                    {% elif prest[7] == 'P' %}
+                        Prestado
+                    {% elif prest[7] == 'D' %}
+                        Devuelto
+                    {% elif prest[7] == 'R' %}
+                        Rechazado
+                    {% else %}
+                        NO ESTA
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
-
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>

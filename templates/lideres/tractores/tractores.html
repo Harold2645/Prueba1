@@ -115,15 +115,13 @@
         <div id="cont_paneles">
             {% for trac in res %}
             <article class="mosaico" id="reservas">
-                <div id="cont-img">
                     <figure class="img-thumbnail">
                         <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
                     </figure>
-                </div>
-                <div id="cont_bajo">
                     <div id="cont-i">
                         <h2>{{trac[0]}} {{trac[1]}}</h2>
                     </div>
+                <div id="cont_bajo">
                     <div id="cont_h5">
                         <h5>Id Tractor: {{trac[2]}}</h5>
                         <h5>Categoria: {{trac[7]}} </h5>

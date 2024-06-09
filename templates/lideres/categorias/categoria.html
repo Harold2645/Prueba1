@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,6 @@
     <title>Categorias</title>
 </head>
 <body>
-    <main>
 
 <header id="header">
 
@@ -110,31 +109,33 @@
         
     </div>
 </header>
+
+<main id="cuerpo">
         
 <table>
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Descripción</th>
-            <th>Creador</th>
-            <th>Estado</th>
+            <th data-label="Codigo SENA">Nombre</th>
+            <th data-label="Tipo">Tipo</th>
+            <th data-label="Descripcion">Descripción</th>
+            <th data-label="Creador">Creador</th>
+            <th data-label="Estado">Estado</th>
         </tr>
     </thead>
     <tbody>
         {% for cate in res %}
         <tr>
-            <th>{{cate[1]}}</th>
-            <th>{{cate[2]}}</th>
-            <th>{{cate[3]}}</th>
-            <th>{{cate[5]}}</th>
+            <th data-label="Codigo SENA">{{cate[1]}}</th>
+            <th data-label="Tipo">{{cate[2]}}</th>
+            <th data-label="Descripcion">{{cate[3]}}</th>
+            <th data-label="Creador">{{cate[5]}}</th>
 
             {% if cate[6] == 0 %}
-                <td>Inactivo</td>
+                <td data-label="Estado">Inactivo</td>
             {% elif cate[6] == 1 %}
-                <td>Activo</td>
+                <td data-label="Estado">Activo</td>
             {% else %}
-                <th>NO ESTA</th>
+                <th data-label="Estado">NO ESTA</th>
             {% endif %}
 
             {% if cate[6] == 0 %}

@@ -38,15 +38,18 @@ body, html{
 
 div#cont_paneles{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
-    margin: 10px;
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+    grid-gap: 25px;
+    justify-content: center;
+    margin: 0% 5% 5%;
 }
 
 article#reservas{
     box-shadow:
             0 0 0 2px rgb(255, 255, 255),
             0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+    position: relative;
 }
 
 #cont_bajo{
@@ -56,6 +59,12 @@ article#reservas{
 
 #cont-i{
     text-align: center;
+    border: none;
+    border-bottom: 2px solid ;
+    color: white;
+    padding: 5px;
+    background-color: #39A900;
+    border-radius: 0 0 10px 10px;
 }
 
 #cont_h5{
@@ -65,16 +74,24 @@ article#reservas{
 
 #cont_link{
     display: flex;
+    justify-content: center;
     width: 100%;
     margin-top: 20px;
-    justify-content: center;
     gap: 5%;
 }
+    #cont-link, .btnmosa{
+        display: flex;
+        background: #39A900;
+        padding: 10px;
+        border-radius: 10px;
+    }
 
-#cont-img{
-    width: 100%;
-    height: 250px;
-}
+        #cont-link, .btnmosa:hover{
+            background-color: #00324D;
+        }
+            .img-icon{
+                width: 30px;
+            }
 
 .img-thumbnail{
     width: 100%;
@@ -83,19 +100,20 @@ article#reservas{
     #img-bd{
         width: 100%;
         height: 100%;
+        /* border-radius: 0px 0px 15px 15px; */
     }
 
-.btnmosa{
-    background: #39A900;
-    padding: 10px;
-    border-radius: 10px;
+@media only screen and (min-width: 768px){
+
+    div#cont_paneles{
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+    
 }
-    .img-icon{
-        width: 30px;
-    }
 
-@media only screen and (min-width: 1000px){
+@media only screen and (min-width: 1366px){
     div#cont_paneles{
         grid-template-columns: repeat(3, minmax(250px, 1fr));
+        
     }
 }

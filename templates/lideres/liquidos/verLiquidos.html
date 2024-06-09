@@ -113,29 +113,43 @@
     <table>
         <thead>
             <tr>
-                <th>Identificador</th>
                 <th>Nombre</th>
                 <th>Categoria</th>
-                <th>Estado</th>
+                <th>Cantidad</th>
+                <th>Foto</th>
                 <th>Disponibilidad</th>
-                <th>Activo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for cons in res %}
                 <tr>
-                    <td data-label="Identificador">{{cons[0]}}</td>
                     <td data-label="Nombre">{{cons[1]}}</td>
-                    <td data-label="Categoria">{{cons[2]}}</td>
-                    <td data-label="Estado">{{cons[5]}}</td>
-                    <td data-label="Disponibilidad">{{cons[4]}}</td>
-                    <td data-label="Activo">{{cons[8]}}</td>
+                    <td data-label="Categoria">{{cons[6]}}</td>
+                    <td data-label="Cantidad">{{cons[2]}}</td>
+                    <td data-label="Foto">
+                        <figure class="img-thumbnail">
+                            <img width="100" height="100" src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
+                        </figure>
+                    </td>
+                    <td data-label="Disponibilidad">
+                        {% if cons[7] == '0' %}
+                            No disponible
+                        {% elif cons[7] == '1' %}
+                            Disponible
+                        {% elif cons[7] == '2' %}
+                            Prestado
+                        {% else %}
+                            NO ESTA
+                        {% endif %}
+                        
+                    </td>
+                    
                     <td data-label="Acciones">
-                        <a href="editarLiquidos/{{cons[0]}}">Editar</a>
-                        <a href="borrarLiquidos/{{cons[0]}}">Eliminar</a>
-                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{cons[0]}}">Agregar Novedad</a>
-
+                        
+                        <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
+                        <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este insumo?')"  href="agregarnovedad/{{cons[0]}}">Agregar Novedad</a>
                     </td>
                 </tr>
             {% endfor %}

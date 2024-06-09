@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
+    <link rel="stylesheet" href="../../../static/css/verPrestamosPrestamos.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Prestamos</title>
 </head>
@@ -100,78 +101,74 @@
                 <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
                 <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
 
-
             </ul>
         </div>
-
-
         
     </div>
 </header>
 
-    <div id="prestamos">
-        <h4>{{titulo}}</h4>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Codigo sena</th>
-                    <th>Labor </th>
-                    <th>Quien lo pide</th>
-                    <th>Ficha</th>    
-                    <th>Fecha </th>
-                    <th>Estado</th>
-
-                </tr>
-            </thead>
-            <tbody>
-            {% for prest in trac %}
+<main id="prestamos">
+    <h4>{{titulo}}</h4>
+    <table>
+        <thead>
             <tr>
-                <th>{{prest[0]}}</th>
-                <th>{{prest[2]}}</th>
-                <th>{{prest[3]}}</th>
-                <th><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></th> 
-
-                {% if prest[5] == '0' %}
-                    <th>No hay</th>
-                {% else %}
-                    <th>{{prest[5]}}</th>
-                {% endif %}
-
-
-                <th>{{prest[6]}}</th>
-
-                {% if prest[7] == 'S' %}
-                    <th>Solicitado</th>
-                {% elif prest[7] == 'A' %}
-                    <th>Aceptado</th>
-                {% elif prest[7] == 'P' %}
-                    <th>Prestado</th>
-                {% elif prest[7] == 'D' %}
-                    <th>Devuelto</th>
-                {% elif prest[7] == 'R' %}
-                    <th>Rechazado</th>
-                {% else %}
-                    <th>NO ESTA</th>
-                {% endif %}
-
-                {% if prest[7] == 'S' %}
-                    <th><a href="/aceptarPedido/{{prest[8]}}">Aceptar</a></th>
-                    <th><a href="/rechazar/{{prest[8]}}">Rechazar</a></th>
-                {% elif prest[7] == 'A' %}
-                    <th><a href="/prestado/{{prest[8]}}">Entregar</a></th>
-                {% elif prest[7] == 'P' %}
-                    <th><a href="/devolver/{{prest[8]}}">Devolver</a></th>
-                {% else %}
-                    <th> </th>
-                {% endif %}
+                <th>Nombre</th>
+                <th>Codigo sena</th>
+                <th>Labor</th>
+                <th>Quien lo pide</th>
+                <th>Ficha</th>    
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
             </tr>
-            {% endfor %}
-
-            </tbody>
-        </table>
-    </div>
+        </thead>
+        <tbody>
+        {% for prest in trac %}
+        <tr>
+            <td data-label="Nombre">{{prest[0]}}</td>
+            <td data-label="Codigo sena">{{prest[2]}}</td>
+            <td data-label="Labor">{{prest[3]}}</td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></td> 
+            <td data-label="Ficha">
+                {% if prest[5] == '0' %}
+                    No hay
+                {% else %}
+                    {{prest[5]}}
+                {% endif %}
+            </td>
+            <td data-label="Fecha">{{prest[6]}}</td>
+            <td data-label="Estado">
+                {% if prest[7] == 'S' %}
+                    Solicitado
+                {% elif prest[7] == 'A' %}
+                    Aceptado
+                {% elif prest[7] == 'P' %}
+                    Prestado
+                {% elif prest[7] == 'D' %}
+                    Devuelto
+                {% elif prest[7] == 'R' %}
+                    Rechazado
+                {% else %}
+                    NO ESTA
+                {% endif %}
+            </td>
+            <td data-label="Acciones">
+                {% if prest[7] == 'S' %}
+                    <a href="/aceptarPedido/{{prest[8]}}">Aceptar</a> |
+                    <a href="/rechazar/{{prest[8]}}">Rechazar</a>
+                {% elif prest[7] == 'A' %}
+                    <a href="/prestado/{{prest[8]}}">Entregar</a>
+                {% elif prest[7] == 'P' %}
+                    <a href="/devolver/{{prest[8]}}">Devolver</a>
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
 
 </body>
 </html>

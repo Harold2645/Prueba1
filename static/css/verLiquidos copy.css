@@ -2,97 +2,74 @@ body, p, ul, li, figure {
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f7f7f7;
     color: #333;
     line-height: 1.6;
 }
-
 main#cuerpo {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-
 thead {
     background-color: #39A900;
     color: white;
 }
-
 thead th {
     padding: 10px;
     text-align: left;
     border-bottom: 2px solid #2E8B00;
 }
-
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 tbody tr:hover {
     background-color: #e2e2e2;
 }
-
 tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-
 tbody td a {
     color: #36A900;
     text-decoration: none;
     font-weight: bold;
-    margin: 9px;
-    
 }
-
 tbody td a {
     color: #2E8B00;
     text-decoration: underline;
     margin: 10px;
 }
-
-/* Estilo para el botón de editar,eliminar y hoja de vida */
-tbody td a[href*="editarTractor"]::before {
+/* Estilo para el botón de editar y eliminar */
+tbody td a[href*="editarLiquidos"]::before {
     content: "\270E ";
     color: #36A900;
 }
-
-tbody td a[href*="borrarTractor"]::before {
+tbody td a[href*="borrarLiquidos"]::before {
     content: "\1F5D1 ";
     color: #D9534F;
-}
-tbody td a[href*="hojavidatractores"]::before {
-    content: "\1F4C4";
-    color: #36A900;
 }
 tbody td a[href*="agregarnovedad"]::before {
     content: "\002B";
     color: #36A900;
 }
 
-
-
 /* Responsividad */
 @media (max-width: 768px) {
     thead {
         display: none;
     }
-
-    tbody tr{
+    tbody tr {
         display: block;
         margin-bottom: 15px;
-        margin: 10px;
     }
-
     tbody td {
         display: block;
         text-align: right;
@@ -100,7 +77,6 @@ tbody td a[href*="agregarnovedad"]::before {
         position: relative;
         border-bottom: 1px solid #ddd;
     }
-
     tbody td::before {
         content: attr(data-label);
         position: absolute;
@@ -111,7 +87,6 @@ tbody td a[href*="agregarnovedad"]::before {
         text-align: left;
         font-weight: bold;
     }
-
     tbody td:last-child {
         border-bottom: 0;
     }
