@@ -1,0 +1,81 @@
+:root{
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon:#CB7766;
+}
+
+*{
+    box-sizing: border-box;
+    transition: all 0,3s;
+}
+::placeholder, ::-moz-placeholder{
+    color: inherit;
+    font-family: inherit;
+}
+body{
+    height: 100vh;
+    background: url(/static/img/fondo1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+section#agregar{
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    height: 90vh;
+    margin: 0px 50px;
+}
+
+form#agregar_tractor{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    background: white;
+    padding: 10px;
+}
+    form#agregar_tractor h2, h4{
+        text-align: center;
+    }
+
+    form#agregar_tractor input{
+        margin-bottom: 20px;
+        padding: 8px;
+        border: 1px solid;
+    }
+    form#agregar_tractor label{
+        padding-bottom: 3px;
+    }
+    form#agregar_tractor select{
+        margin-bottom: 20px;
+        padding: 8px;
+    }
+    #fototrac{
+        background-color: white;
+        border: 1px solid;
+    }
+    form#agregar_tractor button{
+        padding: 10px;
+        font-size: 17px;
+        margin-top: 20px;
+        background-color: #39A900;
+        border: none;
+        color: white;
+    }
+    form#agregar_tractor button:hover{
+        background-color: #00324D;
+    }
+
+@media only screen and (min-width: 768px){
+    section#agregar{
+        justify-content: flex-end;
+    }
+    form#agregar_tractor{
+        padding: 20px 30px;
+    }
+}

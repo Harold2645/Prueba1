@@ -103,6 +103,23 @@ article#reservas{
         /* border-radius: 0px 0px 15px 15px; */
     }
 
+    /*Control del boton en interfaces de usuario !!!*/
+    .btnusuarios{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #39A900;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 100px;
+        font-size: 16px;
+    }
+    .btnusuarios:hover{
+        background-color: #00324D;
+    }
+
 @media only screen and (min-width: 768px){
 
     div#cont_paneles{
