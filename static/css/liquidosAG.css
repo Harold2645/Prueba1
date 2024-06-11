@@ -1,0 +1,123 @@
+
+
+ body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+
+section#agregar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    position: fixed; 
+    top: 120px; 
+    right: 80px; 
+    margin: 0 auto; 
+}
+
+
+section#agregar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+section#agregar h4 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+
+section#agregar label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+
+section#agregar input[type="text"],
+section#agregar input[type="number"],
+section#agregar input[type="file"],
+section#agregar select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+section#agregar button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+section#agregar button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+section#agregar a.cancel-button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    background-color: #d00000;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    width: 50%;
+    margin: 10px auto 0 auto;
+}
+
+section#agregar a.cancel-button:hover {
+    background-color: #ff1a1a;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 600px) {
+    section#agregar {
+        padding: 15px;
+        width: 90%; 
+        right: auto; 
+        left: 50%;
+        transform: translateX(-50%);
+        top: 100px; 
+    }
+
+    section#agregar h2 {
+        font-size: 1.5em;
+    }
+}
+
+
+@media (min-width: 600px) {
+    section#agregar {
+        top: 120px; 
+        right: 80px; 
+    }
+}
+

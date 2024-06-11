@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../../static/css/categoriaAG.css">
+        <link rel="stylesheet" href="../../../static/css/tractorAG.css">
         <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
         <link rel="stylesheet" href="../../../static/css/header.css">
         <script src="../../../static/js/menu.js"></script>
-         <title>Agregar Categoria</title> 
+         <title>Tractor AG</title> 
     </head>
     <body>
         
@@ -105,48 +105,57 @@
                 </div>
             </div>
         </header>
-<body>
-    
-    <main id="cuerpo">
-        
-        <header id="cabeza">
-            <!-- <h1>Categorias</h1> -->
-        </header>
 
-        <section id="agregar">
-            <form id="agregar_categorias" name="agregar_categorias" action="/guardarCategoria" method="post" enctype="multipart/form-data">
-                <h2>Agregar Categorias</h2>
+        <section class="formulario-agregar">
+            <form class="agregar-tractor" action="/agregarHoja" method="post">
+                <h2>Actualizar hoja de vida del Tractor</h2>
         
-                <label for="nombre_categoria">Nombre</label>
-                <input type="text" name="nombre_categoria" id="nombre_categoria" placeholder="Nombre de la categoria" required>
+                <input type="hidden" name="idObjetos" value="{{res[0]}}">
         
-                <label for="tipo_categoria">Tipo de categoria</label>
-                <select name="tipo_categoria" id="tipo_categoria" required>
-                    <option value="">--Selecciona--</option>
-                    <option value="Tractor">Tractor</option>
-                    <option value="Herramienta">Herramienta</option>
-                    <option value="Insumo">Insumo</option>
-                    <option value="Liquido">Liquido</option>
-                </select>
-        
-                <label for="descripcion">Descripcion:</label> 
-                <input type="text" name="descripcion" id="descripcion" list="descrip" placeholder="Descripcion de la categoria" required>
-                <datalist name="descrip" id="descrip" >
-                    {% for descri in descripciones %}
-                    <option value="{{ descri }}" {% if descri %} selected {% endif %}></option>
-                    {% endfor %}
-                </datalist>
-        
-                <div class="button-container">
-                    <button type="submit">Guardar</button>            
-                    <!-- <a href="/consultarCategorias" class="cancel-button">Cancelar</a> -->
-                    <a href="/consultarCategorias" class="cancel-button">Cancelar</a>
+                <div class="campo-formulario">
+                    <label for="nodstractor">No. De serie De Tractor</label>
+                    <input type="text" name="nodstractor" id="nodstractor" required>
                 </div>
+        
+                <div class="campo-formulario">
+                    <label for="nosmotor">No. Serie Motor</label>
+                    <input type="text" name="nosmotor" id="nosmotor" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="potenciadmotor">Potencia Del Motor (HP)</label>
+                    <input type="text" name="potenciadmotor" id="potenciadmotor" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="pasodtractor">Peso Del Tractor (KG)</label>
+                    <input type="text" name="pasodtractor" id="pasodtractor" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="numerodcilindro">Numero De Cilindro</label>
+                    <input type="text" name="numerodcilindro" id="numerodcilindro" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="tipodmotorlv">Tipo De Motor (Linea / V)</label>
+                    <input type="text" name="tipodmotorlv" id="tipodmotorlv" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="numerodcha">Numero De Cambio De Hacia Adelante</label>
+                    <input type="text" name="numerodcha" id="numerodcha" required>
+                </div>
+        
+                <div class="campo-formulario">
+                    <label for="numerodcer">Numero De Cambio En Reversa</label>
+                    <input type="text" name="numerodcer" id="numerodcer" required>
+                </div>
+        
+                <button type="submit">Siguiente</button>
             </form>
         </section>
         
-
     </main>
-
 </body>
 </html>

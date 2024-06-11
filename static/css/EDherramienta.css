@@ -1,0 +1,228 @@
+/* Estilos generales */
+body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+
+
+form#agregar_herramienta {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; 
+    position: absolute; 
+    top: 120px; 
+    right: 25px; 
+}
+
+form#agregar_herramienta h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+form#agregar_herramienta h4 {
+    color: #ff0000;
+    text-align: center;
+}
+
+form#agregar_herramienta label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+form#agregar_herramienta input,
+form#agregar_herramienta select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+form#agregar_herramienta input[type="file"] {
+    padding: 3px;
+}
+
+form#agregar_herramienta button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form#agregar_herramienta button:hover {
+    background-color: #218838;
+}
+
+/* Estilos para los botones */
+.btn-guardar {
+    width: 100%; 
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 2%;
+}
+
+.btn-cancelar {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    background-color: #d00000;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    width: 100%; 
+    margin: 10px auto 0 auto;
+}
+
+section {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 76%; 
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+select,
+input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="file"] {
+    padding: 8px;
+}
+
+.img-thumbnail {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.img-thumbnail img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"],
+a {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 2124px) and (min-width: 890px) {
+    
+    .container {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    header#header {
+        justify-content: space-between;
+    }
+
+    
+    form#agregar_herramienta {
+        width: 450px;
+        max-width: 410px; 
+        margin: 20px auto; 
+        margin-left: auto;
+        margin-right: auto; 
+        margin-left: 59%;
+    }
+
+    
+    section {
+        width: 450px; 
+        max-width: 410px;
+        margin: 20px auto; 
+        margin-left: auto; 
+        margin-right: auto; 
+        margin-left: 59%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .container {
+        padding: 100px;
+    }
+
+    form#agregar_herramienta,
+    section {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1300px) {
+    .container {
+        padding: 5px;
+    }
+
+    form#agregar_herramienta,
+    section {
+        width: 100%;
+        margin: 20px auto; 
+    }
+
+    .btn-guardar,
+    .btn-cancelar {
+        width: 100%;
+    }
+}

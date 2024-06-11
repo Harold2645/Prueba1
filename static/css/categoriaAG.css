@@ -1,0 +1,124 @@
+
+
+body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+
+
+/*css de categoria agregar*/
+
+
+#agregar {
+    margin-top: 20px; 
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: fixed; 
+    top: 120px; 
+    right: 20px; 
+    margin: 0 auto; 
+}
+
+
+
+form h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555555;
+    font-weight: bold;
+}
+
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049; 
+}
+
+
+a.cancel-button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    background-color: #d00000;
+    padding: 10px; 
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+a.cancel-button:hover {
+    background-color: #d00000; 
+}
+
+/* Adaptabilidad para dispositivos móviles */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        width: 90%; 
+        right: auto; 
+        left: 50%;
+        transform: translateX(-50%);
+        top: 100px; 
+    }
+
+    form h2 {
+        font-size: 1.5em;
+    }
+}
+
+
+@media (min-width: 600px) {
+    form {
+        top: 120px; 
+        right: 20px; 
+    }
+}

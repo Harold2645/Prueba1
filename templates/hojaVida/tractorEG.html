@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../../static/css/categoriaAG.css">
+        <link rel="stylesheet" href="../../../static/css/tractorED.css">
+        
         <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
         <link rel="stylesheet" href="../../../static/css/header.css">
         <script src="../../../static/js/menu.js"></script>
-         <title>Agregar Categoria</title> 
+         <title>Tractor EG</title> 
     </head>
     <body>
         
@@ -105,48 +106,53 @@
                 </div>
             </div>
         </header>
-<body>
-    
-    <main id="cuerpo">
-        
-        <header id="cabeza">
-            <!-- <h1>Categorias</h1> -->
-        </header>
 
-        <section id="agregar">
-            <form id="agregar_categorias" name="agregar_categorias" action="/guardarCategoria" method="post" enctype="multipart/form-data">
-                <h2>Agregar Categorias</h2>
-        
-                <label for="nombre_categoria">Nombre</label>
-                <input type="text" name="nombre_categoria" id="nombre_categoria" placeholder="Nombre de la categoria" required>
-        
-                <label for="tipo_categoria">Tipo de categoria</label>
-                <select name="tipo_categoria" id="tipo_categoria" required>
-                    <option value="">--Selecciona--</option>
-                    <option value="Tractor">Tractor</option>
-                    <option value="Herramienta">Herramienta</option>
-                    <option value="Insumo">Insumo</option>
-                    <option value="Liquido">Liquido</option>
-                </select>
-        
-                <label for="descripcion">Descripcion:</label> 
-                <input type="text" name="descripcion" id="descripcion" list="descrip" placeholder="Descripcion de la categoria" required>
-                <datalist name="descrip" id="descrip" >
-                    {% for descri in descripciones %}
-                    <option value="{{ descri }}" {% if descri %} selected {% endif %}></option>
-                    {% endfor %}
-                </datalist>
-        
-                <div class="button-container">
-                    <button type="submit">Guardar</button>            
-                    <!-- <a href="/consultarCategorias" class="cancel-button">Cancelar</a> -->
-                    <a href="/consultarCategorias" class="cancel-button">Cancelar</a>
-                </div>
-            </form>
-        </section>
-        
+    <section class="formulario">
+        <form class="formulario-hoja" action="/agregarHojaE" method="post" enctype="multipart/form-data">
+            <h2>Ingresa las imágenes</h2>
 
-    </main>
+            <input type="hidden" name="idObjetos" value="{{res[0]}}">
 
+
+            <div class="campo">
+                <label for="ftdrenaje">Drenaje de agua sistema de Combustible</label>
+                <input type="file" name="ftdrenaje" id="ftdrenaje" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftbateria">Batería</label>
+                <input type="file" name="ftbateria" id="ftbateria" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroac">Filtro de aceite de Motor</label>
+                <input type="file" name="ftfiltroac" id="ftfiltroac" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroar">Filtro de aire</label>
+                <input type="file" name="ftfiltroar" id="ftfiltroar" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltroachid">Filtro de aceite Hidráulico</label>
+                <input type="file" name="ftfiltroachid" id="ftfiltroachid" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftfiltrocomb">Filtro de Combustible</label>
+                <input type="file" name="ftfiltrocomb" id="ftfiltrocomb" required>
+            </div>
+
+            <div class="campo">
+                <label for="ftcabeza">Tractor</label>
+                <input type="file" name="ftcabeza" id="ftcabeza" required>
+            </div>
+
+            <div class="campo">
+                <button type="submit">Guardar</button>
+            </div>
+        </form>
+    </section>
 </body>
 </html>
