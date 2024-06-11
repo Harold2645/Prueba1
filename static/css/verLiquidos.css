@@ -42,9 +42,10 @@ tbody td a {
     text-decoration: none;
     font-weight: bold;
 }
-tbody td a:hover {
+tbody td a {
     color: #2E8B00;
     text-decoration: underline;
+    margin: 10px;
 }
 /* Estilo para el botón de editar y eliminar */
 tbody td a[href*="editarLiquidos"]::before {
@@ -54,6 +55,10 @@ tbody td a[href*="editarLiquidos"]::before {
 tbody td a[href*="borrarLiquidos"]::before {
     content: "\1F5D1 ";
     color: #D9534F;
+}
+tbody td a[href*="agregarnovedad"]::before {
+    content: "\002B";
+    color: #36A900;
 }
 
 /* Responsividad */

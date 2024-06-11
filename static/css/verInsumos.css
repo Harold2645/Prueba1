@@ -42,9 +42,10 @@ tbody td a {
     text-decoration: none;
     font-weight: bold;
 }
-tbody td a:hover {
+tbody td a {
     color: #2E8B00;
     text-decoration: underline;
+    margin: 10px;
 }
 tbody td figure {
     margin: 0;
@@ -64,7 +65,10 @@ tbody td a[href*="borrarConsumibles"]::before {
     content: "\1F5D1 ";
     color: #D9534F;
 }
-
+tbody td a[href*="agregarnovedad"]::before {
+    content: "\002B";
+    color: #36A900;
+}
 /* Responsividad */
 @media (max-width: 768px) {
     thead {

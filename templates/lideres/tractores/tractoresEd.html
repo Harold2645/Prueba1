@@ -1,24 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/modificarTractores.css">
-    <title>Modificar Tractor</title>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../../../static/css/tractoresED.css">
+            <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
+            <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+            <link rel="stylesheet" href="../../../static/css/header.css">
+            <script src="../../../static/js/menu.js"></script>
+            <title>Tractores ED</title>
+        </head>
+        <body>
+        
+        <header id="header">
+        
+            <figure>
+                <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+            </figure>
+        
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+        
+            <div id="menu_cont">
+        
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+        
+                <div class="menu">
+                    <ul class="interior" id="menu_ppal">
+        
+                        <li class="interior">
+                            <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
+                            <ul id="menu_usuarios" class="menu-n02">
+                                <li><a href="/usuarios" class="btn-n02">Personas registradas</a></li>
+                                <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar usuarios</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
+                            <ul id="menu_tractores" class="menu-n02">
+                                <li><a href="/consultarTractores" class="btn-n02">Todos los tractores</a></li>
+                                <li><a href="/tractores" class="btn-n02">Tractores disponibles</a></li>
+                                <li><a href="/agregarTractor" class="btn-n02">Agregar tractor</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
+                            <ul id="menu_herramienta" class="menu-n02">
+                                <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las herramientas</a></li>
+                                <li><a href="/consultarHerramientas" class="btn-n02">Herramientas disponibles</a></li>
+                                <li><a href="/agregarHerramienta" class="btn-n02">Agregar herramienta</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
+                            <ul id="menu_insumo" class="menu-n02">
+                                <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los insumos</a></li>
+                                <li><a href="/consultarConsumibles" class="btn-n02">Insumos disponibles</a></li>
+                                <li><a href="/agregarConsumibles" class="btn-n02">Agregar insumos</a></li>
+        
+                                <li>
+                                    <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
+                                    <ul id="menu_liquidos" class="menu-n03">
+                                        <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los liquidos</a></li>
+                                        <li><a href="/consultarLiquidos" class="btn-n03">Liquidos disponibles</a></li>
+                                        <li><a href="/agregarLiquidos" class="btn-n03">Agregar liquido</a></li>
+                                    </ul>
+                                </li>
+        
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_servicios">Servicios</a>
+                            <ul id="menu_servicios" class="menu-n02">
+                                <li><a href="/consultarTodosPedidos" class="btn-n02">Todos los pedidos</a></li>
+                                <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
+                                <li><a href="/consultarAceptado" class="btn-n02">Por entregar</a></li>
+                                <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
+                                <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
+                                <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
+                            <ul id="menu_categorias" class="menu-n02">
+                                <li><a href="/consultarCategorias" class="btn-n02">Categorias registradas</a></li>
+                                <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
+                            </ul>
+                        </li>
+        
+                        <li><a href="/novedades" class="btn-n02">Novedades</a></li>
+        
+                        <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
+                        <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
+        
+        
+                    </ul>
+                </div>
+        
+        
+                
+            </div>
+        </header>
+    <body>
     <main>
 
-        <header>
-            <h2>Modificar Tracores</h2>
-        </header>
 
         <section>
             <form action="/actualizarTractor" method="post" enctype="multipart/form-data">
-
+        
                 <label for="id_tractor">Codigo sena</label>
                 <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[3]}}">
-
+        
                 <label for="id_categoria">Categoria:</label>
                 <select name="id_categoria" id="id_categoria" value="{{tractor[1]}}">
                     <option value="{{tractor[7]}}">{{tractor[8]}}</option>
@@ -26,40 +128,42 @@
                     <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
-
+        
                 <label for="marca">Marca:</label>
-                <input type="text" name="marca" id="marca" value="{{tractor[0]}}" >
-
+                <input type="text" name="marca" id="marca" value="{{tractor[0]}}">
+        
                 <label for="modelo">Modelo</label>
                 <input type="text" name="modelo" id="modelo" value="{{tractor[1]}}">
-
+        
                 <label for="fechamodelo">Año</label>
                 <input type="text" name="fechamodelo" id="fechamodelo" value="{{tractor[2]}}">
-
-
+        
                 <label for="fototrac">Foto:</label>
                 <input type="file" name="fototrac" id="fototrac">
                 <input type="hidden" name="foto1" value="{{tractor[5]}}">
-
+        
                 {% if tractor[6] == '0' %}
-                    <label for="activo">Activar</label>
-                    <select name="activo" id="activo" required>
-                        <option value="0">Inactivo</option>
-                        <option value="1">Activo</option>
-                    </select>                
+                <label for="activo">Activar</label>
+                <select name="activo" id="activo" required>
+                    <option value="0">Inactivo</option>
+                    <option value="1">Activo</option>
+                </select>
                 {% else %}
-                    <input type="hidden" name="activo" value="{{tractor[6]}}">
+                <input type="hidden" name="activo" value="{{tractor[6]}}">
                 {% endif %}
-
-                <figure class="img-thumbnail" >
-                    <img width="100" height="100"  src="../../../uploads/{{tractor[5]}}" alt="{{tractor[0]}} {{tractor[1]}}">
+        
+                <figure class="img-thumbnail">
+                    <img width="100" height="100" src="../../../uploads/{{tractor[5]}}" alt="{{tractor[0]}} {{tractor[1]}}">
                 </figure>
-
-                <button type="submit">Guardar</button>
-                <a href="/tractores">Cancelar</a>
-
+        
+                <div class="button-container">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <a href="/tractores" class="btn-cancelar">Cancelar</a>
+                </div>
+        
             </form>
         </section>
+        
 
     </main>
 </body>
