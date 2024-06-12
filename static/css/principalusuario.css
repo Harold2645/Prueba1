@@ -74,10 +74,6 @@ body{
         text-decoration: none;
         color: white;
     }
-
-        .logo_sena{
-            
-        }
         #logo_sena{
             width: 90px;
             height: 80px;
@@ -105,18 +101,12 @@ body{
             h1#titulo1{
                 font-size: clamp(5px, 5vw, 15px);
             }
-            figure#foto_tractor{
-
-            }
                 img#foto_tractor{
                     width: 60px;
                     height: 50px;
                 }
             p#parrafo_tractores{
                 font-size: clamp(5px, 5vw, 12px);
-            }
-            form#form_tractores{
-
             }
                 button#button_tractores{
                     font-size: clamp(5px, 5vw, 12px);
@@ -139,16 +129,10 @@ body{
             h1#titulo2{
                 font-size: clamp(5px, 5vw, 15px);
             }
-            figure#foto_herramienta{
-
-            }
                 img#foto_herramienta{
                     width: 60px;
                     height: 50px;
                 }
-            form#form_herramientas{
-
-            }
                 input#buscar_herramientas{
                     font-size: clamp(5px, 5vw, 12px);
                     border-radius: 5px;
@@ -177,16 +161,10 @@ body{
             h1#titulo3{
                 font-size: clamp(5px, 5vw, 15px);
             }
-            figure#foto_insumo{
-
-            }
                 img#foto_insumo{
                     width: 60px;
                     height: 50px;
                 }
-            form#form_insumos{
-
-            }
                 input#buscar_insumo{
                     font-size: clamp(5px, 5vw, 12px);
                     border-radius: 5px;

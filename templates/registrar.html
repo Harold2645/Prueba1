@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/registrar.css">
+    <script src="../static/js/ocultar.js"></script>
     <title>Registrate</title>
 </head>
 <body id="cuerpo">
@@ -22,37 +23,38 @@
 
                 <h2 id="alerta">{{msg}}</h2>
                 <label for="documento">Documento:</label>
-                    <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
+                    <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9*]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
 
                 <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z]{2,32}" maxlength="32" minlength="2" placeholder="Nombre" tabindex="2" required >
+                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="2" placeholder="Nombre" tabindex="2" required title="Solo letras">
 
                 <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{2,32}" maxlength="32" minlength="2" placeholder="Apellido" tabindex="3" required>
+                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="2" placeholder="Apellido" tabindex="3" required title="Solo letras">
 
                 <label for="celular">Celular:</label>
                     <input type="tel" name="celular" id="celular" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Telefono" tabindex="4" required>
 
                 <label for="contrasena">Contraseña:</label>
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" pattern="[a-zA-Z0-9]{7,11}" maxlength="15" minlength="6" required>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" pattern="[0-9]{10,10}" maxlength="15" minlength="6" required title="Solo números" tabindex="5" required>
 
                     
                     <label for="rol">Rol:</label>
-                    <select name="rol" id="rol" required>
+                    <select name="rol" id="rol" tabindex="6" required>
                         <option value="">Selecione su rol</option>
                         <option value="Aprendiz">Aprendiz</option>
                         <option value="Instructor">Instructor</option>
-                        <option value="Practicante">Practicante</option>
                         <option value="Trabajador">Trabajador de planta</option>
                     </select>
-                    
-                    <label for="ficha">Ficha:</label>
-                    <input type="text" name="ficha" placeholder="Ficha" list="fichas">
-                    <datalist name="fichas" id="fichas" >
-                        {% for ficha in fichas %}
-                        <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
-                        {% endfor %}
-                    </datalist>
+                    <div id="cajaFicha">
+
+                        <label for="ficha">Ficha:</label>
+                        <input type="text" name="ficha" id="ficha" placeholder="Ficha" list="fichas" tabindex="7" required>
+                        <datalist name="fichas" id="fichas" >
+                            {% for ficha in fichas %}
+                            <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
                     
                     <div id="boton">
                         <button type="submit" id="registrar">GUARDAR</button>

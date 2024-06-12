@@ -82,6 +82,10 @@ input, select {
     border: none;
     border-bottom: solid 1px var(--negro);
 }
+div#cajaFicha{
+    display: none;
+    flex-direction: column;
+}
 
 div#boton{
     display: flex;
