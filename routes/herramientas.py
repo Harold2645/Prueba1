@@ -25,8 +25,14 @@ def consultaHerramientas():
 @app.route('/consultarlasHerramientas')
 def consultalasHerramientas():
     if session.get("loginCorrecto"):
-        resultado = misHerramientas.todaslasHerramientas()
-        return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misHerramientas.todaslasHerramientas()
+            return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
     
@@ -34,10 +40,13 @@ def consultalasHerramientas():
 
 @app.route('/buscarHerramientas', methods=['GET', 'POST'])
 def buscarHerramientas():
-    if request.method == "POST":
-        nombre = request.form['buscar_herramientas']
-        resultado = misHerramientas.buscarPornombre(nombre)
-        return render_template("usuarios/herramientas.html", res=resultado)
+    if session.get("loginCorrecto"):
+        if request.method == "POST":
+            nombre = request.form['buscar_herramientas']
+            resultado = misHerramientas.buscarPornombre(nombre)
+            return render_template("usuarios/herramientas.html", res=resultado)
+        else:
+            return redirect('/')
     else:
         return redirect('/')
 
@@ -46,8 +55,14 @@ def buscarHerramientas():
 @app.route("/agregarHerramienta")
 def agregarHerramienta():
     if session.get("loginCorrecto"):
-        categorias = misCategorias.categoriasHerramienta()
-        return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            categorias = misCategorias.categoriasHerramienta()
+            return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -55,28 +70,34 @@ def agregarHerramienta():
 @app.route("/guardarHerramienta" ,methods=['POST'])
 def guardarHerramienta():
     if session.get("loginCorrecto"):
-        documento = session['documento'] 
-        idobjeto = request.form['id_herramienta']
-        idcategoria = request.form.get('id_categoria')
-        nombre = request.form['nombre']
-        cantidad = request.form['cantidad']
-        foto = request.files['foto']
-        ahora = datetime.now()
-        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        creador = documento
-        if misHerramientas.buscar(idobjeto):
-            categorias = misCategorias.categoriasHerramienta()
-            return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            documento = session['documento'] 
+            idobjeto = request.form['id_herramienta']
+            idcategoria = request.form.get('id_categoria')
+            nombre = request.form['nombre']
+            cantidad = request.form['cantidad']
+            foto = request.files['foto']
+            ahora = datetime.now()
+            fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            creador = documento
+            if misHerramientas.buscar(idobjeto):
+                categorias = misCategorias.categoriasHerramienta()
+                return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
+            else:
+                fnombre,fextension = os.path.splitext(foto.filename)
+                nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+                foto.save("uploads/"+nombreFoto)
+                misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
+
+                movimiento = "AgregoHerramienta"
+                misMovimientos.agregar([creador, movimiento, idobjeto])
+
+                return redirect("/consultarHerramientas")
         else:
-            fnombre,fextension = os.path.splitext(foto.filename)
-            nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-            foto.save("uploads/"+nombreFoto)
-            misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
-
-            movimiento = "AgregoHerramienta"
-            misMovimientos.agregar([creador, movimiento, idobjeto])
-
-            return redirect("/consultarHerramientas")
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -84,14 +105,20 @@ def guardarHerramienta():
 @app.route('/borrarHerramienta/<idObjetos>')
 def borrarHerramienta(idObjetos):
     if session.get("loginCorrecto"):
-        misHerramientas.borrar(idObjetos)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            misHerramientas.borrar(idObjetos)
 
-        idobjeto = idObjetos
-        creador = session['documento'] 
-        movimiento = "BorroHerramienta"
-        misMovimientos.agregar([creador, movimiento, idobjeto])
-
-        return redirect('/consultarHerramientas')
+            idobjeto = idObjetos
+            creador = session['documento'] 
+            movimiento = "BorroHerramienta"
+            misMovimientos.agregar([creador, movimiento, idobjeto])
+            return redirect('/consultarHerramientas')
+            
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -99,34 +126,46 @@ def borrarHerramienta(idObjetos):
 @app.route('/editarHerramienta/<idObjeto>')
 def editarHerramienta(idObjeto):
     if session.get("loginCorrecto"):
-        herramienta = misHerramientas.buscar(idObjeto)
-        categorias = misCategorias.categoriasHerramienta()
-        return render_template("lideres/herramientas/herramientasEd.html",herramienta=herramienta[0], categorias=categorias)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            herramienta = misHerramientas.buscar(idObjeto)
+            categorias = misCategorias.categoriasHerramienta()
+            return render_template("lideres/herramientas/herramientasEd.html",herramienta=herramienta[0], categorias=categorias)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
     
 @app.route('/actualizarHerramienta', methods=['POST'])
 def actualizarHerramienta():
     if session.get("loginCorrecto"):
-        idObjeto = request.form['id_herramienta']
-        nombre = request.form['nombre']
-        categoria = request.form.get('id_categoria')
-        foto = request.files['foto']
-        activo = request.form['activo']
-        if foto.filename == '':
-            foto1 = request.form['foto1']
-            misHerramientas.modificar([idObjeto,nombre,categoria,foto1,activo])
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            idObjeto = request.form['id_herramienta']
+            nombre = request.form['nombre']
+            categoria = request.form.get('id_categoria')
+            foto = request.files['foto']
+            activo = request.form['activo']
+            if foto.filename == '':
+                foto1 = request.form['foto1']
+                misHerramientas.modificar([idObjeto,nombre,categoria,foto1,activo])
+            else:
+                ahora = datetime.now()
+                fnombre,fextension = os.path.splitext(foto.filename)
+                nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+                foto.save("uploads/"+nombreFoto)
+                misHerramientas.modificar([idObjeto,nombre,categoria,nombreFoto,activo])
+
+            creador = session['documento'] 
+            movimiento = "EditoHerramienta"
+            misMovimientos.agregar([creador, movimiento, idObjeto])
+
+            return redirect("/consultarHerramientas")
         else:
-            ahora = datetime.now()
-            fnombre,fextension = os.path.splitext(foto.filename)
-            nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-            foto.save("uploads/"+nombreFoto)
-            misHerramientas.modificar([idObjeto,nombre,categoria,nombreFoto,activo])
-
-        creador = session['documento'] 
-        movimiento = "EditoHerramienta"
-        misMovimientos.agregar([creador, movimiento, idObjeto])
-
-        return redirect("/consultarHerramientas")
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')

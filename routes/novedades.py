@@ -7,35 +7,47 @@ from models.servicios import misServicios
 @app.route("/agregarnovedad/<idObjeto>")
 def agregarnovedad(idObjeto):
     if session.get("loginCorrecto"):
-        if (misServicios.buscarTractor(idObjeto)):
-            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Tractor")
-        elif(misServicios.buscarHerramienta(idObjeto)):
-            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Herramienta")
-        elif(misServicios.buscarInsumo(idObjeto)):
-            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Insumo")
-        elif(misServicios.buscarLiquido(idObjeto)):
-            return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Liquido")
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            if (misServicios.buscarTractor(idObjeto)):
+                return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Tractor")
+            elif(misServicios.buscarHerramienta(idObjeto)):
+                return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Herramienta")
+            elif(misServicios.buscarInsumo(idObjeto)):
+                return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Insumo")
+            elif(misServicios.buscarLiquido(idObjeto)):
+                return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Liquido")
+            else:
+                return redirect ('/Correcto')
         else:
-            return redirect ('/Correcto')
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
 @app.route("/guardarnovedad", methods=['POST'])
 def guardarnovedad():
     if session.get("loginCorrecto"):
-        idobjeto = request.form['idobjeto']
-        documento = session['documento']
-        tipo = request.form['tipo']
-        hora = datetime.now()
-        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        descripcion = request.form['descripcion']  
-        foto = request.files['foto']
-        fnombre,fextension = os.path.splitext(foto.filename)  
-        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
-        foto.save("uploads/" + fotot)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            idobjeto = request.form['idobjeto']
+            documento = session['documento']
+            tipo = request.form['tipo']
+            hora = datetime.now()
+            fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            descripcion = request.form['descripcion']  
+            foto = request.files['foto']
+            fnombre,fextension = os.path.splitext(foto.filename)  
+            fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+            foto.save("uploads/" + fotot)
 
-        misNovedades.agregarNovedad([idobjeto, documento, tipo, fecha, descripcion, fotot])
-        return redirect('/Correcto')
+            misNovedades.agregarNovedad([idobjeto, documento, tipo, fecha, descripcion, fotot])
+            return redirect('/Correcto')
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
