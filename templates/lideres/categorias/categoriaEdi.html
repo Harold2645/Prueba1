@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,20 +108,16 @@
 <body>
     
     <main id="cuerpo">
-        
-        <!-- <header id="cabeza">
-            <h1>Categorias</h1> -->
-        </header>
 
         <section id="agregar">
             <form id="agregar_categorias" name="agregar_categorias" action="/guardarCategoria" method="post" enctype="multipart/form-data">
                 <h2>Modificar Categorias</h2>
 
                 <label for="nombre_categoria">Nombre</label>
-                <input type="text" name="nombre_categoria" id="nombre_categoria" placeholder="Nombre de la categoria" required>
+                <input type="text" name="nombre_categoria" id="nombre_categoria"  placeholder="Nombre de la categoria" pattern="[A-Za-z0-9\s*]{4,32}" maxlength="32" minlength="4" required title="Como minimo 4 y como maximo 32 letras" tabindex="1" autofocus required>
 
                 <label for="tipo_categoria">Tipo de categoria</label>
-                <select name="tipo_categoria" id="tipo_categoria" required>
+                <select name="tipo_categoria" id="tipo_categoria" required tabindex="2">
                     <option value="">--Selecciona--</option>
                     <option value="Tractor">Tractor</option>
                     <option value="Herramienta">Herramienta</option>
@@ -129,7 +125,7 @@
                 </select>
 
                 <label for="descripcion">Descripcion:</label> 
-                <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la categoria" required>
+                <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de la categoria" pattern="[A-Za-z0-9\s*]{10,50}" maxlength="50" minlength="10" required title="Como minimo 10 letras" tabindex="3" required>
 
                 <button type="submit">Guardar</button>            
                 <a href="/consultarCategorias">Cancelar</a>

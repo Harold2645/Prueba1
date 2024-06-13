@@ -116,9 +116,11 @@
             <input type="hidden" name="idobjeto" value="{{id}}">
             <input type="hidden" name="tipo" value="{{tipo}}">
             <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" required minlength="10" maxlength="200"></textarea>
+            <textarea id="descripcion" name="descripcion" placeholder="Descripcion de la novedad" pattern="[A-Za-z0-9\s*]{10,200}" maxlength="200" minlength="10" required title="Como minimo 10 letras" tabindex="1"autofocus required></textarea>
+
             <label for="foto">Foto:</label>
-            <input type="file" id="foto" name="foto">
+            <input type="file" id="foto" name="foto" required tabindex="2">
+
             <button type="submit" class="btn-submit">Agregar Novedad</button>
         </form>
     </div>

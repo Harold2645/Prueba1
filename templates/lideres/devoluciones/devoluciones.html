@@ -5,10 +5,10 @@
         <input type="hidden" name="idservicio" value="{{idservicio}}">
 
         <label for="descripcion">Descripcion de como entra el tractor</label>
-        <input type="text" name="descripcion" id="descripcion">
+        <input type="text" name="descripcion" id="descripcion" placeholder="Descripcion de como entra" pattern="[A-Za-z0-9\s*]{10,50}" maxlength="50" minlength="10" required title="Como minimo 10 letras" tabindex="1" autofocus required>
 
         <label for="foto">Foto</label>
-        <input type="file" name="foto" id="foto">
+        <input type="file" name="foto" id="foto" required>
 
         <button type="submit">Devolver</button>
 

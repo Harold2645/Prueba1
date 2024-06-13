@@ -119,37 +119,37 @@
             <form action="/actualizarTractor" method="post" enctype="multipart/form-data">
         
                 <label for="id_tractor">Codigo sena</label>
-                <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[3]}}">
+                <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[3]}}" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" required>
         
+                <label for="marca">Marca:</label>
+                <input type="text" name="marca" id="marca" value="{{tractor[0]}}" placeholder="Marca del tractor" pattern="[A-Za-z\s*]{5,15}" maxlength="15" minlength="5" required title="Debe poner la marca del tractor" tabindex="2"  required autofocus>
+        
+                <label for="modelo">Modelo</label>
+                <input type="text" name="modelo" id="modelo" value="{{tractor[1]}}" placeholder="Modelo del tractor" pattern="[A-Za-z0-9\s*]{4,15}" maxlength="15" minlength="10" required title="Debe poner el modelo del tractor" tabindex="3" required>
+        
+                <label for="fechamodelo">Año</label>
+                <input type="text" name="fechamodelo" id="fechamodelo" value="{{tractor[2]}}" placeholder="Año en que salio el tractor" pattern="[0-9\s*]{4}" maxlength="4" minlength="4" required title="Debe poner el año en el que salio el tractor" tabindex="4" required>
+
                 <label for="id_categoria">Categoria:</label>
-                <select name="id_categoria" id="id_categoria" value="{{tractor[1]}}">
+                <select name="id_categoria" id="id_categoria" value="{{tractor[1]}}" required tabindex="5">
                     <option value="{{tractor[7]}}">{{tractor[8]}}</option>
                     {% for categoria in categorias %}
                     <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
                     {% endfor %}
                 </select>
         
-                <label for="marca">Marca:</label>
-                <input type="text" name="marca" id="marca" value="{{tractor[0]}}">
-        
-                <label for="modelo">Modelo</label>
-                <input type="text" name="modelo" id="modelo" value="{{tractor[1]}}">
-        
-                <label for="fechamodelo">Año</label>
-                <input type="text" name="fechamodelo" id="fechamodelo" value="{{tractor[2]}}">
-        
                 <label for="fototrac">Foto:</label>
-                <input type="file" name="fototrac" id="fototrac">
+                <input type="file" name="fototrac" id="fototrac" tabindex="6">
                 <input type="hidden" name="foto1" value="{{tractor[5]}}">
         
                 {% if tractor[6] == '0' %}
-                <label for="activo">Activar</label>
-                <select name="activo" id="activo" required>
-                    <option value="0">Inactivo</option>
-                    <option value="1">Activo</option>
-                </select>
+                    <label for="activo">Activar</label>
+                    <select name="activo" id="activo" required tabindex="7">
+                        <option value="0">Inactivo</option>
+                        <option value="1">Activo</option>
+                    </select>
                 {% else %}
-                <input type="hidden" name="activo" value="{{tractor[6]}}">
+                    <input type="hidden" name="activo" value="{{tractor[6]}}">
                 {% endif %}
         
                 <figure class="img-thumbnail">

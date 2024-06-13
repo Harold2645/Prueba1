@@ -107,38 +107,32 @@
         </header>
 <body>
     <main>
-
-        <!-- <header>
-            <h2>Modificar Tracores</h2>
-        </header> -->
-
         <section>
             <form action="/actualizarConsumibles" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" id="idobjeto" name="idobjeto" value="{{ Consu[0] }}" >
 
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" value="{{Consu[1]}}" >
-
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" required value="{{Consu[2]}}">
-
+                <input type="text" name="nombre" id="nombre" value="{{Consu[1]}}" placeholder="Nombre del insumo" pattern="[A-Za-z\s*]{4,40}" maxlength="40" minlength="4" required title="Minimo 4 letras" tabindex="1" autofocus required>
                 
                 <label for="id_categoria">Categoria:</label>
-                <select name="id_categoria" id="id_categoria">
+                <select name="id_categoria" id="id_categoria" required tabindex="2">
                     <option value="{{Consu[6]}}">{{Consu[7]}}</option>
                     {% for categoria in categorias %}
                     <option value="{{ categoria[0] }}" {% if categoria[0] == Consu[2] %}selected{% endif %}>{{ categoria[1] }}</option>
                     {% endfor %}
-                </select>
+                    </select>
                 
-                <label for="foto"></label>
-                <input type="file" name="foto" id="foto">
-                <input type="hidden" name="foto1" value="{{Consu[3]}}">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" value="{{Consu[2]}}" min="1" max="99999" placeholder="Cantidad" pattern="[0-9\s*]{1,5}" maxlength="5" minlength="1" required title="Solo numeros" tabindex="3" required>
+                    
+                    <label for="foto">Foto:</label>
+                    <input type="file" name="foto" id="foto" tabindex="4">
+                    <input type="hidden" name="foto1" value="{{Consu[3]}}">
 
                 {% if Consu[8] == '0' %}
                 <label for="activo">Activar</label>
-                <select name="activo" id="activo" required>
+                <select name="activo" id="activo" required tabindex="5">
                     <option value="0">Inactivo</option>
                     <option value="1">Activo</option>
                 </select>
