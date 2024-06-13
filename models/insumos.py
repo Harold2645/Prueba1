@@ -12,11 +12,7 @@ class Insumos:
         return resultado
     
     def todoslosinsumos(self):
-<<<<<<< HEAD
         sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo';"
-=======
-        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo';"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -27,21 +23,13 @@ class Insumos:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-<<<<<<< HEAD
         sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND idObjeto='{idObjeto}';"
-=======
-        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND idObjeto='{idObjeto}';"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, insumos):
-<<<<<<< HEAD
         sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idcategoria='{insumos[2]}', cantidad='{insumos[3]}', foto='{insumos[4]}', activo='{insumos[5]}' WHERE idobjeto='{insumos[0]}'"
-=======
-        sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idcategoria='{insumos[2]}', cantidad='{insumos[3]}', foto='{insumos[4]}' WHERE idobjeto='{insumos[0]}'"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)        
         self.conexion.commit()
         

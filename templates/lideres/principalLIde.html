@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="stylesheet" href="../../static/css/principalLider.css">
     <script src="../../static/js/menu.js"></script>
     <title>Principal</title>
-=======
-    <link rel="stylesheet" href="../../static/css/principalLider.css">
-    <title>Princial</title>
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 </head>
 <body>
 
-<<<<<<< HEAD
 <header id="header">
 
     <figure>
@@ -27,29 +21,6 @@
     <button id="cont-disparador">
         <i class="lni lni-menu" id="disparador"></i>
     </button>
-=======
-        <header id="header">
-            <figure>
-                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
-            </figure>
-            <button id="cont-disparador">
-                <i class="lni lni-menu" id="disparador"></i>
-            </button>
-            <div id="menu_cont">
-                <button id="cont-close">
-                    <i class="lni lni-close" id="close"></i>
-                </button>
-                <div class="menu">
-                    <ul class="interior">
-                        <li><a href="/usuarios">Usuarios</a></li>
-                        <li><a href="/funciones">Funciones Admin</a></li>
-                        <li><a href="/consultarTodosPedidos">Todos los pedidos</a></li>
-                        <li><a href="/">CERRAR SESIÓN</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
     <div id="menu_cont">
 
@@ -134,47 +105,10 @@
             </ul>
         </div>
 
-<<<<<<< HEAD
 
         
     </div>
 </header>
-=======
-        <div id="novedad">
-            <h4>Usuarios por aceptar</h4>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Documento</th>
-                        <th>Nombre Completo</th>
-                        <th>Celular</th>
-                        <th>Rol</th>
-                        <th>Ficha</th>                    
-                    </tr>
-                </thead>
-                <tbody>
-                {% for usua in usu %}
-                <tr>
-                    <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
-                    <th>{{usua[1]}} {{usua[2]}}</th>
-                    <th>{{usua[3]}}</th>
-                    <th>{{usua[5]}}</th>
-
-                    {% if usua[6] == '0' or usua[6] ==  '' %}
-                        <th>No tiene</th>
-                    {% else %}
-                        <th>{{usua[6]}}</th>
-                    {% endif %}
-
-                    <th>{{usua[6]}}</th>
-                    <th><a href="/aceptarUsu/{{usua[0]}}">Aceptar</a></th>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
         <div id="prestamos">
             <h4>Prestamos pendientes</h4>
@@ -189,7 +123,6 @@
                         <th>Ficha</th>    
                         <th>Fecha </th>
                         <th>Estado</th>
-<<<<<<< HEAD
     
                     </tr>
                 </thead>
@@ -252,15 +185,11 @@
                         <th>Celular</th>
                         <th>Rol</th>
                         <th>Ficha</th>                    
-=======
-
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
                     </tr>
                 </thead>
                 <tbody>
                 {% for usua in usu[:5] %}
                 <tr>
-<<<<<<< HEAD
                     <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
                     <th>{{usua[1]}} {{usua[2]}}</th>
                     <th>{{usua[3]}}</th>
@@ -274,37 +203,6 @@
 
                     <th>{{usua[6]}}</th>
                     <th><a href="/aceptarUsu/{{usua[0]}}">Aceptar</a></th>
-=======
-                    <th>{{prest[0]}} {{prest[1]}}</th>
-                    <th>{{prest[2]}}</th>
-                    <th>{{prest[3]}}</th>
-                    <th><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></th> 
-
-                    {% if prest[5] == '0' %}
-                        <th>No hay</th>
-                    {% else %}
-                        <th>{{prest[5]}}</th>
-                    {% endif %}
-
-
-                    <th>{{prest[6]}}</th>
-
-                    {% if prest[7] == '0' %}
-                        <th>Rechazado</th>
-                    {% elif prest[7] == '1' %}
-                        <th>En espera</th>
-                    {% elif prest[7] == '2' %}
-                        <th>Prestado</th>
-                    {% elif prest[7] == '3' %}
-                    <th>Devuelto</th>
-                    {% elif prest[7] == '4' %}
-                    <th>Por entregar</th>
-                    {% else %}
-                    <th>NO ESTA</th>
-                    {% endif %}
-
-                    <th><a href="/aceptarPedido/{{prest[8]}}">Aceptar</a></th>
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
                 </tr>
                 {% endfor %}
                 </tbody>

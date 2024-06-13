@@ -112,7 +112,6 @@
             <form action="/actualizarHerramienta" method="post" enctype="multipart/form-data" id="form-medio">
 
                 <label for="id_herramienta">Codigo Sena</label>
-<<<<<<< HEAD
                 <input type="text" name="id_herramienta" id="id_herramienta" readonly value="{{herramienta[0]}}" required tabindex="1">
 
                 <label for="nombre">Nombre:</label>
@@ -120,15 +119,6 @@
 
                 <label for="id_categoria">Categoria:</label>
                 <select name="id_categoria" id="id_categoria" required tabindex="3">
-=======
-                <input type="text" name="id_herramienta" id="id_herramienta" readonly value="{{herramienta[0]}}">
-
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" value="{{herramienta[1]}}" >
-
-                <label for="id_categoria">Categoria:</label>
-                <select name="id_categoria" id="id_categoria">
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
                     <option value="{{herramienta[5]}}">{{herramienta[6]}}</option>
                     {% for categoria in categorias %}
                     <option value="{{ categoria[0] }}" {% if categoria[0] == herramienta[2] %}selected{% endif %}>{{ categoria[1] }}</option>
@@ -136,7 +126,6 @@
                 </select>
 
                 <label for="foto">Foto:</label>
-<<<<<<< HEAD
                 <input type="file" name="foto" id="foto" tabindex="4">
 
                 <input type="hidden" name="foto1" value="{{herramienta[2]}}">
@@ -150,13 +139,6 @@
                 {% else %}
                     <input type="hidden" name="activo" value="{{herramienta[7]}}">
                 {% endif %}
-=======
-                <input type="file" name="foto" id="foto">
-
-                <figure class="img-thumbnail" >
-                    <img width="100" height="100"  src="../../../uploads/{{herramienta[2]}}" alt="{{herramienta[1]}}">
-                </figure>
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
                 <figure class="img-thumbnail" >
                     <img width="100" height="100" src="../../../uploads/{{herramienta[2]}}" alt="{{herramienta[1]}}">

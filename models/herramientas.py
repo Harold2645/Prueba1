@@ -12,11 +12,7 @@ class Herramientas:
         return resultado
     
     def todaslasHerramientas(self):
-<<<<<<< HEAD
         sql = "SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, herramientas.activo FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria;"
-=======
-        sql = "SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria;"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -27,21 +23,13 @@ class Herramientas:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-<<<<<<< HEAD
         sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre, herramientas.activo FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE idobjeto = '{idObjeto}'"
-=======
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE herramientas.activo='1' AND idobjeto = '{idObjeto}'"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, herramienta):
-<<<<<<< HEAD
         sql = f"UPDATE herramientas SET nombre='{herramienta[1]}', idCategoria='{herramienta[2]}', foto='{herramienta[3]}', activo={herramienta[4]} WHERE idobjeto='{herramienta[0]}'"
-=======
-        sql = f"UPDATE herramientas SET nombre='{herramienta[1]}', idCategoria='{herramienta[2]}', foto='{herramienta[3]}' WHERE idobjeto='{herramienta[0]}'"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
         self.cursor.execute(sql)
         self.conexion.commit()
@@ -57,9 +45,6 @@ class Herramientas:
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
-<<<<<<< HEAD
 
-=======
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 misHerramientas = Herramientas(conexion)

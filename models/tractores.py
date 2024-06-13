@@ -12,30 +12,18 @@ class Tractores:
         return resultado
     
     def agregar(self, tractor):
-<<<<<<< HEAD
         sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo,fechamodelo) VALUES ('{tractor[0]}','{tractor[1]}','{tractor[2]}','1','{tractor[3]}','{tractor[4]}','{tractor[5]}','{tractor[6]}','{tractor[7]}')"
-=======
-        sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo) VALUES ('{tractor[0]}','{tractor[1]}','{tractor[2]}','1','{tractor[3]}','{tractor[4]}','{tractor[5]}','{tractor[6]}')"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-<<<<<<< HEAD
         sql = f"SELECT tractores.marca, tractores.modelo,tractores.fechamodelo ,tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor' AND idobjeto = '{idObjeto}';"        
-=======
-        sql = f"SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor' AND idobjeto = '{idObjeto}';"        
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, tractor):
-<<<<<<< HEAD
         sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}', fechamodelo='{tractor[5]}', activo='{tractor[6]}' WHERE idObjeto='{tractor[0]}'"
-=======
-        sql = f"UPDATE tractores SET idCategoria='{tractor[1]}', fototrac='{tractor[2]}',  marca='{tractor[3]}', modelo='{tractor[4]}' WHERE idObjeto='{tractor[0]}'"
->>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         self.conexion.commit()
         
