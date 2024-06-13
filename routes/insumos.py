@@ -5,10 +5,9 @@ from models.categorias import misCategorias
 from models.insumos import misInsumos
 from models.movimientos import misMovimientos
 
+# Consumibles
 
-#Consumibles
-
-#mostrar consumibles
+# mostrar consumibles
 @app.route('/consultarConsumibles')
 def consultaConsumibles():
     if session.get("loginCorrecto"):
@@ -22,7 +21,7 @@ def consultaConsumibles():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-    
+
 @app.route('/consultarlosConsumibles')
 def consultalarConsumibles():
     if session.get("loginCorrecto"):
@@ -37,7 +36,19 @@ def consultalarConsumibles():
     else:
         return redirect('/')
 
-#agregar Consumibles
+@app.route('/buscarLiquido', methods=['GET', 'POST'])
+def buscarLiquido():
+    if session.get("loginCorrecto"):
+        if request.method == "POST":
+            nombre = request.form['buscar_insumo']
+            resultado = misInsumos.buscarPornombre(nombre)
+            return render_template("lideres/insumos/insumos.html", res=resultado)
+        else:
+            return redirect('/')
+    else:
+        return redirect('/')
+
+# agregar Consumibles
 @app.route("/agregarConsumibles")
 def agregarConsumibles():
     if session.get("loginCorrecto"):
@@ -54,74 +65,97 @@ def agregarConsumibles():
 
 @app.route("/guardarConsumibles" ,methods=['POST'])
 def guardarConsumibles():
-    documento = session['documento'] 
-    idCategoria = request.form.get('id_categoria')
-    nombre = request.form['nombre']
-    cantidad = request.form['cantidad']
-    foto = request.files['foto']
-    ahora = datetime.now()
-    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    creador = documento
-    fnombre,fextension = os.path.splitext(foto.filename)
-    nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
-    foto.save("uploads/"+nombreFoto)
-    misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
-    print(idCategoria,nombre,cantidad,nombreFoto,fecha,creador)
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            documento = session['documento'] 
+            idCategoria = request.form.get('id_categoria')
+            nombre = request.form['nombre']
+            cantidad = request.form['cantidad']
+            foto = request.files['foto']
+            ahora = datetime.now()
+            fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            creador = documento
+            fnombre,fextension = os.path.splitext(foto.filename)
+            nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+            foto.save("uploads/"+nombreFoto)
+            misInsumos.agregar([idCategoria,nombre,cantidad,nombreFoto,fecha,creador])
 
-    movimiento = "AgregoInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarConsumibles")
+            movimiento = "AgregoInsumo"
+            misMovimientos.agregar([creador, movimiento, nombre])
+            return redirect("/consultarConsumibles")
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
 
-#borrar Consumibles 
+# borrar Consumibles 
 @app.route('/borrarConsumibles/<idObjetos>')
 def borrarConsumibles(idObjetos):
-    misInsumos.borrar(idObjetos)
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            misInsumos.borrar(idObjetos)
 
-    nombre = misInsumos.buscarnombre(idObjetos)
-    creador = session['documento'] 
-    movimiento = "BorroInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect('/consultarConsumibles')
+            nombre = misInsumos.buscarnombre(idObjetos)
+            creador = session['documento'] 
+            movimiento = "BorroInsumo"
+            misMovimientos.agregar([creador, movimiento, nombre])
+            return redirect('/consultarConsumibles')
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
 
-
-
-#Falta organizar
-
-
-
-
-#editar Consumibles
+# editar Consumibles
 @app.route('/editarConsumibles/<idObjeto>')
 def editarConsumibles(idObjeto):
     if session.get("loginCorrecto"):
-        Consu = misInsumos.buscar(idObjeto)
-        categorias = misCategorias.categoriasConsumibles()
-        return render_template("consumibles/modificarConsumibles.html",Consu=Consu[0], categorias=categorias)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            Consumible = misInsumos.buscar(idObjeto)
+            categorias = misCategorias.categoriasInsumos()
+            return render_template("lideres/insumos/insumosEd.html",Consu=Consumible[0], categorias=categorias)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
     
 @app.route('/actualizarConsumibles', methods=['POST'])
 def actualizarConsumibles():
-    idObjeto = request.form['id_Consumible']
-    nombre = request.form['nombre']
-    categoria = request.form.get('id_categoria')
-    estado = request.form['estado']
-    disponibilidad = request.form['disponibilidad']
-    activo = request.form['activo']
-    modif = [idObjeto,nombre,categoria,estado,disponibilidad,activo]
-    misInsumos.modificar(modif)
-
-    creador = session['documento'] 
-    movimiento = "EditoInsumo"
-    misMovimientos.agregar([creador, movimiento, nombre])
-    return redirect("/consultarConsumibles")
-
-
-@app.route('/buscarLiquido', methods=['POST'])
-def buscarLiquido():
     if session.get("loginCorrecto"):
-        termino_busqueda = request.form.get('buscar_insumo', '').strip()
-        resultado = misInsumos.buscarPornombre(termino_busqueda)
-        return render_template("usuarios/insumos.html", res=resultado)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            idobjeto = request.form['idobjeto']
+            nombre = request.form['nombre']
+            categoria = request.form.get('id_categoria')
+            cantidad = request.form['cantidad']
+            foto = request.files['foto']
+            activo = request.form['activo']
+            if foto.filename == '':
+                foto1 = request.form['foto1']
+                misInsumos.modificar([idobjeto,nombre,categoria,cantidad, foto1, activo])
+            else:
+                ahora = datetime.now()
+                fnombre,fextension = os.path.splitext(foto.filename)
+                nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+                foto.save("uploads/"+nombreFoto)
+                misInsumos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto, activo])
+
+            creador = session['documento'] 
+            movimiento = "EditoInsumo"
+            misMovimientos.agregar([creador, movimiento, nombre])
+            return redirect("/consultarConsumibles")
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+

@@ -7,13 +7,13 @@ class Liquidos:
         self.cursor = self.conexion.cursor()
         
     def consultarliquidos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='liquido' AND activo='1'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def todoslosliquidos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='liquido'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -25,22 +25,21 @@ class Liquidos:
 
         
     def buscar(self,idObjeto):
-        sql = f"SELECT * FROM consumibles WHERE idconsumible={idObjeto}"
+        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Liquido' AND idObjeto='{idObjeto}'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, liquidos):
-        sql = f"UPDATE consumibles SET nombre='{liquidos[1]}', idCategoria='{liquidos[2]}', cantidad='{liquidos[3]}', activo='{liquidos[4]}' WHERE idconsumible='{liquidos[0]}'"
+        sql = f"UPDATE consumibles SET nombre='{liquidos[1]}', idCategoria='{liquidos[2]}', cantidad='{liquidos[3]}', foto='{liquidos[4]}' WHERE idobjeto='{liquidos[0]}'"
         self.cursor.execute(sql)        
         self.conexion.commit()
 
         
     def borrar(self, idObjeto):
-        sql = f"UPDATE consumibles SET activo=0 WHERE idconsumible={idObjeto}"
+        sql = f"UPDATE consumibles SET activo=0 WHERE idobjeto={idObjeto}"
         self.cursor.execute(sql)        
         self.conexion.commit()
-
 
     def buscarnombre(self,idObjeto):
         sql = f"SELECT nombre FROM consumibles WHERE idObjeto={idObjeto}"

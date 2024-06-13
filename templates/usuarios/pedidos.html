@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/header.css">
+    <link rel="stylesheet" href="../../static/css/verUsuariosPedidos.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <script src="../../../static/js/menu.js"></script>
+    <title>Prestamos</title>
+</head>
+<body>
+    
+    <header id="header">
+        <figure>
+            <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+        </figure>
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
+        </button>
+        <div id="menu_cont">
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+
+            <div class="menu">
+                <ul class="interior">
+                    <li><a href="/Correcto">Inicio</a></li>
+                    <li><a href="/consultarHerramientas">Herramientas</a></li>
+                    <li><a href="/consultarConsumibles">Insumos</a></li>
+                    <li><a href="/tractores">Tractores</a></li>
+                    <li><a href="/perfilPropio">Mi perfil</a></li>
+
+                    <li><a href="/">CERRAR SESIÓN</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main id="prestamos">
+        <h4>{{titulo}}</h4>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Codigo sena</th>
+                    <th>Labor</th>
+                    <th>Ficha</th>    
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for prest in trac %}
+            <tr>
+                <td data-label="Nombre">{{prest[0]}}</td>
+                <td data-label="Codigo sena">{{prest[2]}}</td>
+                <td data-label="Labor">{{prest[3]}}</td>
+                <td data-label="Ficha">
+                    {% if prest[5] == '0' %}
+                        No hay
+                    {% else %}
+                        {{prest[5]}}
+                    {% endif %}
+                </td>
+                <td data-label="Fecha">{{prest[6]}}</td>
+                <td data-label="Estado">
+                    {% if prest[7] == 'S' %}
+                        Solicitado
+                    {% elif prest[7] == 'A' %}
+                        Aceptado
+                    {% elif prest[7] == 'P' %}
+                        Prestado
+                    {% elif prest[7] == 'D' %}
+                        Devuelto
+                    {% elif prest[7] == 'R' %}
+                        Rechazado
+                    {% else %}
+                        NO ESTA
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

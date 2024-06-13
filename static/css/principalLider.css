@@ -1,0 +1,49 @@
+:root{
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon: #CB7766;
+    --blanco: #fefefe;
+    --negro: #070707;
+}
+
+*{
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+h4{
+    text-align: center;
+}
+
+div#novedad{
+    
+}
+    div#novedad table{
+        
+    }
+    div#novedad thead{
+        
+    }
+    div#novedad thead tr{
+        
+    }
+        div#novedad thead th{
+            
+        }
+    div#novedad tbody{
+        
+    }
+    div#novedad tbody th{
+        
+    }
+    div#novedad tbody tr{
+
+    }

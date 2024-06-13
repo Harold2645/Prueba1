@@ -4,20 +4,20 @@ from flask import redirect, render_template, request, session
 from conexion import *
 from models.usuarios import misUsuarios
 from models.novedades import misNovedades
-# from models.funciones import misPrestamos
+from models.servicios import misServicios
 
-
-#Interfaz registrar usuarios
+# Interfaz para registrar usuarios
 @app.route('/registrar')
 def registrar():    
-    session["logueado"] = False
+    session["loginCorrecto"] = False
     fichas = misUsuarios.buscarFicha()
     vFicha = [ficha[0] for ficha in fichas ]
-    return render_template("registrar.html",fichas=vFicha)
+    return render_template("registrar.html", fichas=vFicha)
 
-# Funcion Guardar Usuarios
+# Función para guardar usuarios
 @app.route("/guardarUsarios", methods=['POST'])
 def guardarUsuarios():
+    session["loginCorrecto"] = False
     documento = request.form['documento']
     nombre = request.form['nombre']
     apellido = request.form['apellido']
@@ -32,34 +32,35 @@ def guardarUsuarios():
     if existente:
         return render_template("registrar.html", msg="Documento ya existe")
     else:
-        misUsuarios.agregar([documento,nombre,apellido,celular,cifrada,rol,ficha,fecha])
+        misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
         return redirect('/')
 
-#Funcion Login
+
+# Función para el login
 @app.route("/login", methods=['POST'])
 def login():
     documento = request.form['documento']
     contrasena = request.form['contrasena']
     cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-    cur = conexion.cursor(dictionary=True)
     sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
+    cur = conexion.cursor()
     cur.execute(sql)
     resultado = cur.fetchone()
     if resultado is None:
         return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
     else:
-        documento = resultado['documento']
-        nombre = resultado['nombre']
-        apellido = resultado['apellido']
-        rol = resultado['rol']
+        documento = resultado[0]
+        nombre = resultado[1]
+        apellido = resultado[2]
+        rol = resultado[3]
         nombre_completo = f"{nombre} {apellido}"
         session['loginCorrecto'] = True
         session['documento'] = documento
         session['nombreUsuario'] = nombre_completo
         session['rol'] = rol
         return redirect("/Correcto")
-    
-#Login correcto 
+
+# Página de inicio después del login
 @app.route('/Correcto')
 def redireccion():
     if session.get("loginCorrecto"):
@@ -67,88 +68,89 @@ def redireccion():
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return render_template('usuarios/principalUsu.html')
         elif rol == 'Admin' or rol == 'Practicante':
-            resultado = misNovedades.consultarNovedades()
             usuarios = misUsuarios.consultAcepta()
-            # prestamos= misPrestamos.consultar()
-            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios)
-        # ,pres=prestamos
+            tractores = misServicios.consultarSolicitados()
+            return render_template('lideres/principalLIde.html', usu=usuarios, trac=tractores)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-    
 
-#Aceptar usuario
-@app.route('/aceptar/<documento_parm>')
-def aceptar(documento_parm):
-    misUsuarios.aceptarSi(documento_parm)
-    return redirect('/Correcto')
+# Aceptar usuario
+@app.route('/aceptarUsu/<documento_parm>')
+def aceptarUsu(documento_parm):
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect("/Correcto")
+        elif rol == 'Admin' or rol == 'Practicante':
+            misUsuarios.aceptarSi(documento_parm)
+            return redirect('/Correcto')
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
 
-#Interfaz solo para aceptar Usuarios
+# Interfaz para aceptar usuarios
 @app.route('/aceptarUsuarios')
 def aceptarUsuario():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect ('/Correcto')
+            return redirect('/Correcto')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
             return render_template("lideres/usuariosAcep.html", usu=usuarios)
         else:
-                return render_template("index.html", msg="Rol no reconocido")
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
-
-#Interfaz Perfil
+# Interfaz del perfil propio
 @app.route('/perfilPropio')
 def perfilpropio():
     if session.get("loginCorrecto"):
-        documento = session['documento']
-        if misUsuarios.buscar(documento):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador' or rol == 'Admin' or rol == 'Practicante':
+            documento = session['documento']
+            if misUsuarios.buscar(documento):
                 resultado1 = misUsuarios.buscar(documento)
                 return render_template("perfil.html", res=resultado1)
+            else:
+                return redirect('/Correcto')
         else:
-            return redirect('/login')
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-        
-#Perfil
+
+# Perfil de usuario
 @app.route('/perfil/<documento_parm>')
 def perfil(documento_parm):
     if session.get("loginCorrecto"):
         rol = session.get('rol')
         if rol == 'Admin':
             if misUsuarios.buscar(documento_parm):
-                    resultado1 = misUsuarios.buscar(documento_parm)
-                    return render_template("perfil.html", res=resultado1)
+                resultado1 = misUsuarios.buscar(documento_parm)
+                return render_template("perfil.html", res=resultado1)
             else:
                 return redirect('/')
         else:
-            documento = session['documento']
-            if misUsuarios.buscar(documento):
-                    resultado1 = misUsuarios.buscar(documento)
-                    return render_template("perfil.html", res=resultado1)
-            else:
-                return redirect('/')
+            return redirect('/perfilPropio')
     else:
-            return redirect('/')
-    
+        return redirect('/')
 
-#mostar usuarios de la base de datos que estan activos
+# Mostrar usuarios activos
 @app.route('/usuarios')
 def clientes():
     if session.get("loginCorrecto"):
-        resultado = misUsuarios.consultar()
-        return render_template("usuarios.html", res=resultado)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misUsuarios.consultar()
+            return render_template("usuarios.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-    
 
-#Interfaz de usuarios normales 
-@app.route("/principalusuarios")
-def usuarios():
-    if session.get("loginCorrecto"):
-        return render_template('usuarios/principalUsu.html')
-    else:
-            return redirect('/')

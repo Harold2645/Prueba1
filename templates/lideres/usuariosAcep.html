@@ -3,56 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/novedades.css">
-    <title>Princial</title>
+    <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../../static/css/verUsuariosAcep.css">
+    <script src="../static/js/menu.js"></script>
+    <title>Principal</title>
 </head>
 <body>
-    <main>
+<main>
 
-        <header id="cabeza">
+<header id="header">
 
-            <!-- <figure id="marca">
-                <img src="../../static/img/LogoSenaSinFondo.png" alt="SENA logotipo">
-            </figure> -->
+    <figure>
+        <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+    </figure>
 
-            <h1>Hangar</h1>
-            <nav id="menu_admor">
-                <i class="lni lni-menu" id="disparador"></i>
-                <ul id="opcs_menu">
-                    <li><a href="/usuarios">Usuarios</a></li>
-                    <li><a href="/funciones">Funciones Admin</a></li>
-                    <li><a href="/agregarTractor" >Agregar Tractores</a></li>
-                    <li><a href="/">CERRAR SESIÓN</a></li>
-                </ul>
-            </nav>
-        </header>
-        <div id="Usuarios">
-            <h4>Usuarios por aceptar</h4>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Documento</th>
-                        <th>Nombre Completo</th>
-                        <th>Celular</th>
-                        <th>Rol</th>
-                        <th>Ficha</th>                    
-                    </tr>
-                </thead>
-                <tbody>
-                {% for usua in usu %}
-                <tr>
-                    <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
-                    <th>{{usua[1]}} {{usua[2]}}</th>
-                    <th>{{usua[3]}}</th>
-                    <th>{{usua[5]}}</th>
-                    <th>{{usua[6]}}</th>
-                    <th><a href="/aceptar/{{usua[0]}}">Aceptar</a></th>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <button id="cont-disparador">
+        <i class="lni lni-menu" id="disparador"></i>
+    </button>
+
+    <div id="menu_cont">
+
+        <button id="cont-close">
+            <i class="lni lni-close" id="close"></i>
+        </button>
+
+        <div class="menu">
+            <ul class="interior" id="menu_ppal">
+
+                <li class="interior">
+                    <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
+                    <ul id="menu_usuarios" class="menu-n02">
+                        <li><a href="/usuarios" class="btn-n02">Personas registradas</a></li>
+                        <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar usuarios</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
+                    <ul id="menu_tractores" class="menu-n02">
+                        <li><a href="/consultarTractores" class="btn-n02">Todos los tractores</a></li>
+                        <li><a href="/tractores" class="btn-n02">Tractores disponibles</a></li>
+                        <li><a href="/agregarTractor" class="btn-n02">Agregar tractor</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
+                    <ul id="menu_herramienta" class="menu-n02">
+                        <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las herramientas</a></li>
+                        <li><a href="/consultarHerramientas" class="btn-n02">Herramientas disponibles</a></li>
+                        <li><a href="/agregarHerramienta" class="btn-n02">Agregar herramienta</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
+                    <ul id="menu_insumo" class="menu-n02">
+                        <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los insumos</a></li>
+                        <li><a href="/consultarConsumibles" class="btn-n02">Insumos disponibles</a></li>
+                        <li><a href="/agregarConsumibles" class="btn-n02">Agregar insumos</a></li>
+
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
+                            <ul id="menu_liquidos" class="menu-n03">
+                                <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los liquidos</a></li>
+                                <li><a href="/consultarLiquidos" class="btn-n03">Liquidos disponibles</a></li>
+                                <li><a href="/agregarLiquidos" class="btn-n03">Agregar liquido</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"  class="btn-n01" id="btn_servicios">Servicios</a>
+                    <ul id="menu_servicios" class="menu-n02">
+                        <li><a href="/consultarTodosPedidos" class="btn-n02">Todos los pedidos</a></li>
+                        <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
+                        <li><a href="/consultarAceptado" class="btn-n02">Por entregar</a></li>
+                        <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
+                        <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
+                        <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
+                    <ul id="menu_categorias" class="menu-n02">
+                        <li><a href="/consultarCategorias" class="btn-n02">Categorias registradas</a></li>
+                        <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/novedades" class="btn-n02">Novedades</a></li>
+
+                <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
+                <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
+
+            </ul>
         </div>
-    </main>
+    </div>
+</header>
+
+<main id="Usuarios">
+    <h4>Usuarios por aceptar</h4>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Documento</th>
+                <th>Nombre Completo</th>
+                <th>Celular</th>
+                <th>Rol</th>
+                <th>Ficha</th> 
+                <th>Acciones</th>                   
+            </tr>
+        </thead>
+        <tbody>
+        {% for usua in usu %}
+        <tr>
+            <td data-label="Documento"><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></td>                    
+            <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
+            <td data-label="Celular">{{usua[3]}}</td>
+            <td data-label="Rol">{{usua[5]}}</td>
+            <td data-label="Ficha">{{usua[6]}}</td>
+            <td data-label="Acción"><a href="/aceptarUsuS/{{usua[0]}}">Aceptar</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
 </body>
 </html>

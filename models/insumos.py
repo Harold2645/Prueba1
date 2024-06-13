@@ -6,13 +6,13 @@ class Insumos:
         self.cursor = self.conexion.cursor()
         
     def consultarinsumos(self):
-        sql =  f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def todoslosinsumos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='Insumo'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -23,23 +23,21 @@ class Insumos:
         self.conexion.commit()
         
     def buscar(self,idObjeto):
-        sql = f"SELECT * FROM consumibles WHERE idObjeto={idObjeto}"
+        sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.idcategoria, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND idObjeto='{idObjeto}';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
 
     def modificar(self, insumos):
-        sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idCategoria='{insumos[2]}', cantidad='{insumos[3]}', activo='{insumos[4]}', foto='{insumos[5]}' WHERE idconsumible='{insumos[0]}'"
+        sql = f"UPDATE consumibles SET nombre='{insumos[1]}', idcategoria='{insumos[2]}', cantidad='{insumos[3]}', foto='{insumos[4]}', activo='{insumos[5]}' WHERE idobjeto='{insumos[0]}'"
         self.cursor.execute(sql)        
         self.conexion.commit()
         
     def borrar(self, idObjeto):
-        sql = f"UPDATE consumibles SET activo=0 WHERE idconsumible={idObjeto}"
+        sql = f"UPDATE consumibles SET activo=0 WHERE idobjeto='{idObjeto}'"
         self.cursor.execute(sql)        
         self.conexion.commit()
 
-
-    #urbano aqui hago la funcion para mostrar solo lo que el usuario necesita
 
     def buscarPornombre(self, nombre):
         sql = f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.nombre LIKE '%{nombre}%' AND consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
@@ -53,6 +51,4 @@ class Insumos:
         resultado = self.cursor.fetchall()
         return resultado
 
-
 misInsumos = Insumos(conexion)
-

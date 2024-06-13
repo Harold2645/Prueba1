@@ -31,163 +31,106 @@ body, html{
     margin: 0;
     padding: 0;
 }
-body{
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 16px;
-    min-height: 100vh;
-    width: 100vw;
+
+#titulo{
+    text-align: center;
 }
-header#header{
-    background-color: green;
-    display: flex;
-    align-items: center;
+
+div#cont_paneles{
+    display: grid;
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+    grid-gap: 25px;
+    justify-content: center;
+    margin: 0% 5% 5%;
 }
-#menu_cont{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    height: 100vh;
-    width: 160px;
-    box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
-    background-color: green;
-    display: none;
+
+article#reservas{
+    box-shadow:
+            0 0 0 2px rgb(255, 255, 255),
+            0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+    position: relative;
 }
-#menu_cont.visible{
-    display: block;
+
+#cont_bajo{
+    display: grid;
+    margin: 10px;
 }
-#cont-disparador{
-    position: absolute;
-    right: 20px;
-    background: none;
+
+#cont-i{
+    text-align: center;
     border: none;
-}
-#disparador{
+    border-bottom: 2px solid ;
     color: white;
-    font-size: 30px;
-}
-#cont-close{
-    background: none;
-    border: none;
-    padding: 10px;
-}
-#close{
-    color: white;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-li{
-    white-space: nowrap;
-    padding: 15px;
-    list-style-type: none;
-    display: inline-block;
-    margin-right: 10px;
-}
-header a{
-    text-decoration: none;
-    color: white;
-}
-#logo_sena{
-    width: 90px;
-    height: 80px;
+    padding: 5px;
+    background-color: #39A900;
+    border-radius: 0 0 10px 10px;
 }
 
+#cont_h5{
+    display: grid;
+    justify-content: center;
+}
 
-
-section#cont_mayor{
-    background-color:var(--crema);
-    margin: 0;
-    padding: 11px 16px;
+#cont_link{
+    display: flex;
+    justify-content: center;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 20px;
+    gap: 5%;
 }
-        h2 {
-            padding: 10px;
-            color: var(--logo-sena);
-        }
-    #titulo{
-    font-size: 16px;
-    margin-bottom: 20px;
-    }
-
-    section#cont_paneles{
-        background-color:var(--crema);
-        margin: 0;
-        padding: 2em 1em;
-        width: 100%;
+    #cont-link, .btnmosa{
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: flex-start;
-        align-content: space-evenly; 
+        background: #39A900;
+        padding: 10px;
+        border-radius: 10px;
     }
-        section#cont_link {
-            display: flex;
-        }
 
-.mosaico{
-    background-color: var(--logo-sena);
-    border-radius: 16px;
-    box-shadow: 0 2px 11px rgba(9, 13, 17, 0.33);
-    margin: 0 0 2em 0;
-    padding: 1em;
-    width: clamp(308px, 92%, 400px);
+        #cont-link, .btnmosa:hover{
+            background-color: #00324D;
+        }
+            .img-icon{
+                width: 30px;
+            }
+
+.img-thumbnail{
+    width: 100%;
+    height: 250px;
 }
-    .mosaico h2{
-        color: #000;
-        font-size: 2.1em;
-        line-height: 1em;
-        margin: 0 0 13px 0;
-    }
-    .mosaico h6{
-        color: var(--azul-dark) ;
-        font-size: 1em;
-        line-height: 1em;
-        margin: 0 0 13px 0;
-    }
-    .mosaico form{
-        position: relative;
-        z-index: 1;
-        margin: 0 0 21px 0;
-    }
-    .mosaico a{
-        background-color: var(--salmon);
-        border-radius: 2em;
-        color: var(--crema);
-        font-size: 1.5em;
-        font-weight: 600;
-        margin: 0px;
-        padding: 13px 0;
-        text-decoration: none;
+    #img-bd{
         width: 100%;
+        height: 100%;
+        /* border-radius: 0px 0px 15px 15px; */
+    }
+
+    /*Control del boton en interfaces de usuario !!!*/
+    .btnusuarios{
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #39A900;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 100px;
+        font-size: 16px;
+    }
+    .btnusuarios:hover{
+        background-color: #00324D;
+    }
+
+@media only screen and (min-width: 768px){
+
+    div#cont_paneles{
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
     }
     
+}
 
-@media only screen and (min-width: 1000px){
-    #menu_cont{
-        display: block;
-        background: none;
-        box-shadow: none;
+@media only screen and (min-width: 1366px){
+    div#cont_paneles{
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        
     }
-    #cont-disparador, #cont-close{
-        display: none;
-    }
-    .interior{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }  
-    .mosaico {
-    width: calc(33.33% - 20px); /* Ajusta según tus necesidades */
-    }
-    }
+}
