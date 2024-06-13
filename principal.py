@@ -10,7 +10,12 @@ from routes.liquidos import *
 from routes.graficos import *
 from routes.enviosConsu import *
 from routes.servicios import *
+<<<<<<< HEAD
 from prueba_json import *
+=======
+
+
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 @app.route('/uploads/<nombre>')
 def uploads(nombre):

@@ -10,6 +10,7 @@ figure{
     padding: 0;
     margin: 0;
 }
+<<<<<<< HEAD
 html{
     height: 100%;
 }
@@ -24,6 +25,22 @@ body{
         "header" 100px
         "tresuno"
         "footer" 50px;
+=======
+body{
+    background: url(../img/fondo1.png);
+
+}
+
+section#cont_paneles{
+    margin: 0;
+    padding: 2em 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: space-evenly; 
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 }
     header#header{
         display: flex;

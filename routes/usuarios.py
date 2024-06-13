@@ -69,13 +69,20 @@ def redireccion():
             return render_template('usuarios/principalUsu.html')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
+<<<<<<< HEAD
             tractores = misServicios.consultarSolicitados()
             return render_template('lideres/principalLIde.html', usu=usuarios, trac=tractores)
+=======
+            prestamos= misServicios.consultarPedidos()
+            return render_template('lideres/principalLIde.html', res=resultado, usu=usuarios,pres=prestamos)
+        
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
+<<<<<<< HEAD
 # Aceptar usuario
 @app.route('/aceptarUsu/<documento_parm>')
 def aceptarUsu(documento_parm):
@@ -90,6 +97,13 @@ def aceptarUsu(documento_parm):
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+=======
+#Aceptar usuario
+@app.route('/aceptarUsu/<documento_parm>')
+def aceptarUsu(documento_parm):
+    misUsuarios.aceptarSi(documento_parm)
+    return redirect('/Correcto')
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 # Interfaz para aceptar usuarios
 @app.route('/aceptarUsuarios')

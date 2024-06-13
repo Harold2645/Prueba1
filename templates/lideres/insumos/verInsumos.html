@@ -152,10 +152,35 @@
                         <a onclick="return confirm('¿Desea agregarle una novedad a este insumo?')"  href="agregarnovedad/{{cons[0]}}">Agregar Novedad</a>
                     </td>
                 </tr>
+<<<<<<< HEAD
             {% endfor %}
         </tbody>
     </table>
 </main>
+=======
+            </thead>
+            <tbody>
+                {% for cons in res %}
+                    <tr>
+                        <td>{{cons[0]}}</td>
+                        <td>{{cons[1]}}</td>
+                        <td>{{cons[2]}}</td>
+                        <td>{{cons[5]}}</td>
+                        <td>{{cons[4]}}</td>
+                        <td>{{cons[8]}}</td>
+                        <td>
+                            <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
+                        </td>
+                        <td>
+                            <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>                        
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 </body>
 </html>

@@ -7,7 +7,12 @@ from models.movimientos import misMovimientos
 
 
 
+<<<<<<< HEAD
 # herramientas
+=======
+
+#herramientas
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 @app.route('/consultarHerramientas')
 def consultaHerramientas():
     if session.get("loginCorrecto"):
@@ -69,6 +74,7 @@ def agregarHerramienta():
 
 @app.route("/guardarHerramienta" ,methods=['POST'])
 def guardarHerramienta():
+<<<<<<< HEAD
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
@@ -91,6 +97,30 @@ def guardarHerramienta():
                 nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
                 foto.save("uploads/"+nombreFoto)
                 misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
+=======
+    documento = session['documento'] 
+    idobjeto = request.form['id_herramienta']
+    idcategoria = request.form.get('id_categoria')
+    nombre = request.form['nombre']
+    cantidad = request.form['cantidad']
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    creador = documento
+    if misHerramientas.buscar(idobjeto):
+        categorias = misCategorias.categoriasHerramienta()
+        return render_template("lideres/herramientas/herramientasAg.html", msg="Id ya existente", categorias=categorias)
+    else:
+        fnombre,fextension = os.path.splitext(foto.filename)
+        nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+        foto.save("uploads/"+nombreFoto)
+        misHerramientas.agregar([idobjeto,idcategoria,nombre,cantidad,nombreFoto,fecha,creador])
+
+        movimiento = "AgregoHerramienta"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
+
+        return redirect("/consultarHerramientas")
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
                 movimiento = "AgregoHerramienta"
                 misMovimientos.agregar([creador, movimiento, idobjeto])
@@ -111,6 +141,7 @@ def borrarHerramienta(idObjetos):
         elif rol == 'Admin' or rol == 'Practicante':
             misHerramientas.borrar(idObjetos)
 
+<<<<<<< HEAD
             idobjeto = idObjetos
             creador = session['documento'] 
             movimiento = "BorroHerramienta"
@@ -121,6 +152,14 @@ def borrarHerramienta(idObjetos):
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+=======
+    idobjeto = idObjetos
+    creador = session['documento'] 
+    movimiento = "BorroHerramienta"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
+
+    return redirect('/consultarHerramientas')
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 # editar Herramientas
 @app.route('/editarHerramienta/<idObjeto>')
@@ -140,6 +179,30 @@ def editarHerramienta(idObjeto):
     
 @app.route('/actualizarHerramienta', methods=['POST'])
 def actualizarHerramienta():
+<<<<<<< HEAD
+=======
+    idObjeto = request.form['id_herramienta']
+    nombre = request.form['nombre']
+    categoria = request.form.get('id_categoria')
+    foto = request.files['foto']
+    ahora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)
+    nombreFoto = "H"+ahora.strftime("%Y%m%d%H%M%S")+fextension
+    foto.save("uploads/"+nombreFoto)
+    misHerramientas.modificar([idObjeto,nombre,categoria,nombreFoto])
+
+    creador = session['documento'] 
+    movimiento = "EditoHerramienta"
+    misMovimientos.agregar([creador, movimiento, idObjeto])
+
+    return redirect("/consultarHerramientas")
+
+
+#urbano aqui hago la funcion para mostrar solo lo que el usuario 
+
+@app.route('/buscarHerramientas', methods=['POST'])
+def buscarHerramientas():
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':

@@ -1,5 +1,6 @@
 from conexion import *
 
+<<<<<<< HEAD
     #Solicitado     =   S
     #Aceptado       =   A
     #Por entregar   =   E
@@ -8,12 +9,15 @@ from conexion import *
     #Rechazado      =   R
 
 
+=======
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 class Servicios:
     def __init__(self, conexion):
         self.conexion = conexion
         self.cursor = self.conexion.cursor()
 
     def consultar(self):
+<<<<<<< HEAD
         sql = "SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' ORDER BY fechasalida DESC;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
@@ -34,11 +38,27 @@ class Servicios:
 
     def consultarPrestado(self):
         sql = "SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'P' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'P' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'P' ORDER BY fechasalida DESC;"
+=======
+        sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' "
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarPedidos(self):
+        sql = "SELECT t.marca, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = '1';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarPrestado(self):
+        sql = "SELECT * FROM servicios WHERE estado='2'"
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def consultarDevuelto(self):
+<<<<<<< HEAD
         sql = "SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'D' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'D' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'D' ORDER BY fechasalida DESC;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
@@ -46,10 +66,28 @@ class Servicios:
 
     def consultarRechazado(self):
         sql = "SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'R' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'R' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'R' ORDER BY fechasalida DESC;"
+=======
+        sql = "SELECT * FROM servicios WHERE estado='3'"
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
+<<<<<<< HEAD
+=======
+    def consultarPorEntregar(self):
+        sql = "SELECT * FROM servicios WHERE estado='4'"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def consultarCancelado(self):
+        sql = "SELECT * FROM servicios WHERE estado='0'"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
     def buscarTractor(self, idObjeto):
         sql = f"SELECT idobjeto, marca FROM tractores WHERE idObjeto='{idObjeto}'"
         self.cursor.execute(sql)
@@ -63,6 +101,7 @@ class Servicios:
         return resultado
 
     def buscarInsumo(self, idObjeto):
+<<<<<<< HEAD
         sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Insumo'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
@@ -70,16 +109,24 @@ class Servicios:
     
     def buscarLiquido(self, idObjeto):
         sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Liquido'"
+=======
+        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}'"
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def pedir(self, pedir):
+<<<<<<< HEAD
         sql = f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado) VALUES ('{pedir[0]}','{pedir[1]}','{pedir[2]}','{pedir[3]}','{pedir[4]}','{pedir[5]}','{pedir[6]}','S')"
+=======
+        sql = f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado) VALUES ('{pedir[0]}','{pedir[1]}','{pedir[2]}','{pedir[3]}','{pedir[4]}','{pedir[5]}','{pedir[6]}','1')"
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         self.cursor.execute(sql)
         self.conexion.commit()
 
     def aceptarPrestamo(self, id):
+<<<<<<< HEAD
         sql = f"UPDATE servicios  SET estado='A' WHERE idservicio='{id}'"
         self.cursor.execute(sql)
         self.conexion.commit()
@@ -116,5 +163,12 @@ class Servicios:
     #Prestado       =   P
     #Devuelto       =   D
     #Rechazado      =   R
+=======
+        sql = f"UPDATE servicios  SET estado='4' WHERE idservicio={id}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
+
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 misServicios = Servicios(conexion)

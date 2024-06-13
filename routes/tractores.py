@@ -55,6 +55,7 @@ def agregaarticulo():
 
 @app.route("/guardarTractor",   methods=['POST'])
 def agregarTrac():
+<<<<<<< HEAD
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
@@ -85,6 +86,28 @@ def agregarTrac():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+=======
+    creador = session['documento'] 
+    idobjeto = request.form['idobjeto']
+    categoria = request.form['idcategoria']
+    foto = request.files['fototrac']
+    hora = datetime.now()
+    fechacreacion = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    marca = request.form['marca']
+    modelo = request.form['modelo']
+    if misTracores.buscar(idobjeto):
+        categorias = misCategorias.categoriasTractor()
+        return render_template("lideres/tractores/tractoresAg.html", categorias=categorias, msg="Id ya existente")
+    else:
+        fnombre,fextension = os.path.splitext(foto.filename)  
+        fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+        foto.save("uploads/" + fotot)
+        misTracores.agregar([idobjeto, categoria, fotot, fechacreacion, creador,marca, modelo])
+                #funcion de guardar en tabla movimientos
+        movimiento = "AgregoTractor"
+        misMovimientos.agregar([creador, movimiento, idobjeto])
+        return redirect("/tractores")
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 
 #editar tractores
@@ -105,6 +128,7 @@ def editarTractor(idObjeto):
     
 @app.route('/actualizarTractor', methods=['POST'])
 def actualizarTractor():
+<<<<<<< HEAD
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
@@ -135,10 +159,28 @@ def actualizarTractor():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+=======
+    idobjeto = request.form['id_tractor']
+    categoria = request.form['id_categoria']
+    marca = request.form['marca']
+    modelo = request.form['modelo']
+    foto = request.files['fototrac']
+    hora = datetime.now()
+    fnombre,fextension = os.path.splitext(foto.filename)  
+    fotot = "T"+hora.strftime("%Y%m%d%H%M%S")+fextension        
+    foto.save("uploads/" + fotot)
+    misTracores.modificar([idobjeto, categoria, fotot, marca, modelo])
+
+    creador = session['documento'] 
+    movimiento = "EditoTractor"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
+    return redirect("/consultarTractores")
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
 #borrar tractores 
 @app.route('/borrarTractor/<idObjetos>')
 def borrarTractor(idObjetos):
+<<<<<<< HEAD
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
@@ -417,3 +459,12 @@ def agregarE():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+=======
+    misTracores.borrar(idObjetos)
+
+    idobjeto = idObjetos
+    creador = session['documento'] 
+    movimiento = "BorroTractor"
+    misMovimientos.agregar([creador, movimiento, idobjeto])
+    return redirect('/tractores')
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c

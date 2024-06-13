@@ -7,7 +7,14 @@ from models.movimientos import misMovimientos
 
 # Liquidos
 
+<<<<<<< HEAD
 # mostrar Liquidos
+=======
+
+#Liquidos
+
+#mostrar Liquidos
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 @app.route('/consultarLiquidos')
 def consultaLiquidos():
     if session.get("loginCorrecto"):

@@ -10,7 +10,11 @@
     <main id="ppal">
 
         <header id="cabeza">
+<<<<<<< HEAD
             <h2>Solicitar</h2>
+=======
+            <h2>Pedir</h2>
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
         </header>
 
         <section id="cuerpo">
@@ -21,14 +25,21 @@
                     <img src="../static/img/logoSena.png" alt="Logo Sena">
                 </figure>
 
+<<<<<<< HEAD
                 <input type="hidden" name="idobjeto" value="{{res[0]}}" required>
 
                 <input type="hidden" name="tipo" value="{{tipo}}" required>
+=======
+                <input type="hidden" name="idobjeto" value="{{res[0]}}">
+
+                <input type="hidden" name="tipo" value="{{tipo}}">
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
 
                 <label for="nombre">Nombre:</label>
                     <input type="text" readonly value="{{res[1]}}" required>
 
                 <label for="labor">Labor:</label>
+<<<<<<< HEAD
                     <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="1" required pattern="[A-Za-z0-9\s*]+" autofocus minlength="4" maxlength="50" title="Minimo 4 letras">
 
                 <label for="ficha">Ficha:</label>
@@ -40,6 +51,19 @@
                 {% if tipo=='Insumo' or tipo=='Liquido'  %}
                     <label for="cantidad">Cantidad:</label>
                     <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,3}" minlength="1" maxlength="4" tabindex="4" required >
+=======
+                    <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="3" required>
+
+                <label for="ficha">Ficha:</label>
+                <input type="text" name="ficha" id="ficha" placeholder="Ficha donde se usara" pattern="[0-9]{5,12}" minlength="5" maxlength="12" tabindex="3">
+                                        
+                <label for="fecha">Fecha que lo necesita:</label>
+                <input type="date" name="fecha" id="fecha">
+
+                {% if tipo=='Insumo' %}
+                    <label for="cantidad" pattern="[0-9]{1,3}" minlength="1" maxlength="3" tabindex="4" required >Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad">
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
                 {% endif %}
                     
                     <div id="boton">

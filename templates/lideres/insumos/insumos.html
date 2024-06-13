@@ -114,6 +114,7 @@
         <div id="cont_paneles">
             {% for cons in res %}
             <article class="mosaico" id="reservas">
+<<<<<<< HEAD
                 <figure class="img-thumbnail" >
                     <img src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}" id="img-bd">
                 </figure>
@@ -138,6 +139,20 @@
                         </div>
                     </div>
                 </div>
+=======
+                <h2>{{cons[1]}}</h2>
+                <h6>Cantidad: {{cons[3]}}</h6>
+                <h6>Categoria: {{cons[6]}} </h6>
+                <h6>Descripcion: {{cons[5]}}</h6>
+                    <figure class="img-thumbnail" >
+                        <img width="100" height="100"  src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
+                    </figure>
+
+                <section id="cont_link" >
+                    <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}">Editar</a>
+                    <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}">Eliminar</a>
+                </section>
+>>>>>>> bb083afb6324e7935dfd6f5e195c65d67200a90c
             </article>
             {% endfor %}
         </div>
