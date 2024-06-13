@@ -9,7 +9,7 @@ from models.servicios import misServicios
 # Interfaz para registrar usuarios
 @app.route('/registrar')
 def registrar():    
-    session["logueado"] = False
+    session["loginCorrecto"] = False
     fichas = misUsuarios.buscarFicha()
     vFicha = [ficha[0] for ficha in fichas ]
     return render_template("registrar.html", fichas=vFicha)
@@ -17,6 +17,7 @@ def registrar():
 # Función para guardar usuarios
 @app.route("/guardarUsarios", methods=['POST'])
 def guardarUsuarios():
+    session["loginCorrecto"] = False
     documento = request.form['documento']
     nombre = request.form['nombre']
     apellido = request.form['apellido']
@@ -79,8 +80,14 @@ def redireccion():
 @app.route('/aceptarUsu/<documento_parm>')
 def aceptarUsu(documento_parm):
     if session.get("loginCorrecto"):
-        misUsuarios.aceptarSi(documento_parm)
-        return redirect('/Correcto')
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect("/Correcto")
+        elif rol == 'Admin' or rol == 'Practicante':
+            misUsuarios.aceptarSi(documento_parm)
+            return redirect('/Correcto')
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -103,12 +110,16 @@ def aceptarUsuario():
 @app.route('/perfilPropio')
 def perfilpropio():
     if session.get("loginCorrecto"):
-        documento = session['documento']
-        if misUsuarios.buscar(documento):
-            resultado1 = misUsuarios.buscar(documento)
-            return render_template("perfil.html", res=resultado1)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador' or rol == 'Admin' or rol == 'Practicante':
+            documento = session['documento']
+            if misUsuarios.buscar(documento):
+                resultado1 = misUsuarios.buscar(documento)
+                return render_template("perfil.html", res=resultado1)
+            else:
+                return redirect('/Correcto')
         else:
-            return redirect('/login')
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
@@ -124,12 +135,7 @@ def perfil(documento_parm):
             else:
                 return redirect('/')
         else:
-            documento = session['documento']
-            if misUsuarios.buscar(documento):
-                resultado1 = misUsuarios.buscar(documento)
-                return render_template("perfil.html", res=resultado1)
-            else:
-                return redirect('/')
+            return redirect('/perfilPropio')
     else:
         return redirect('/')
 
@@ -137,15 +143,14 @@ def perfil(documento_parm):
 @app.route('/usuarios')
 def clientes():
     if session.get("loginCorrecto"):
-        resultado = misUsuarios.consultar()
-        return render_template("usuarios.html", res=resultado)
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
+            resultado = misUsuarios.consultar()
+            return render_template("usuarios.html", res=resultado)
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
 
-# Interfaz de usuarios normales 
-@app.route("/principalusuarios")
-def usuarios():
-    if session.get("loginCorrecto"):
-        return render_template('usuarios/principalUsu.html')
-    else:
-        return redirect('/')

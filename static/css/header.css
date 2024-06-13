@@ -86,7 +86,12 @@ header a{
 display: none;  
 }
 
-@media only screen and (min-width: 855px){
+/* aqui comienza el css de mi interfas */
+
+
+
+
+@media only screen and (min-width: 800px){
     #menu_cont{
         display: block;
         background: none;
@@ -148,7 +153,7 @@ display: none;
             position: absolute;
         }
     #menu_servicios{
-        bottom: -270px;
+        bottom: -290px;
         left: 50%;
         width: 135px;
     }
@@ -158,5 +163,6 @@ display: none;
         width: 160px;
     }
 
+   
 }
 

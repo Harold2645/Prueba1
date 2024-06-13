@@ -1,0 +1,86 @@
+/* Estilos generales */
+body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+
+form#agregar_herramienta {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto; 
+    position: absolute;
+    top: 120px; 
+    right: 25px; 
+}
+
+form#agregar_herramienta h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+form#agregar_herramienta h4 {
+    color: #ff0000;
+    text-align: center;
+}
+
+form#agregar_herramienta label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+form#agregar_herramienta input,
+form#agregar_herramienta select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+form#agregar_herramienta input[type="file"] {
+    padding: 3px;
+}
+
+form#agregar_herramienta button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form#agregar_herramienta button:hover {
+    background-color: #218838;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 1300px) {
+    form#agregar_herramienta {
+        width: 80%;
+        margin: 0 auto; 
+    }
+}
+
+@media (max-width: 600px) {
+    form#agregar_herramienta {
+        width: 90%;
+    }
+}

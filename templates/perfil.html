@@ -41,10 +41,18 @@
                 <th>Rol:</th>
                 <td>{{ res[0][5] }}</td>
             </tr>
-            <tr>
-                <th>Ficha:</th>
-                <td>{{ res[0][6] }}</td>
-            </tr>
+            
+            {% if res[0][6] %}
+            
+                <tr>
+                    <th>Ficha:</th>
+                    <td>{{ res[0][6] }}</td>
+                </tr>
+
+            {% else %} 
+            
+            {% endif %}
+
         </table>
     </section>
 </main>

@@ -6,8 +6,9 @@
     <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../../static/css/verUsuariosAcep.css">
     <script src="../static/js/menu.js"></script>
-    <title>Princial</title>
+    <title>Principal</title>
 </head>
 <body>
 <main>
@@ -101,16 +102,12 @@
                 <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
                 <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
 
-
             </ul>
         </div>
-
-
-        
     </div>
 </header>
 
-<div id="Usuarios">
+<main id="Usuarios">
     <h4>Usuarios por aceptar</h4>
     
     <table>
@@ -120,23 +117,23 @@
                 <th>Nombre Completo</th>
                 <th>Celular</th>
                 <th>Rol</th>
-                <th>Ficha</th>                    
+                <th>Ficha</th> 
+                <th>Acciones</th>                   
             </tr>
         </thead>
         <tbody>
         {% for usua in usu %}
         <tr>
-            <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
-            <th>{{usua[1]}} {{usua[2]}}</th>
-            <th>{{usua[3]}}</th>
-            <th>{{usua[5]}}</th>
-            <th>{{usua[6]}}</th>
-            <th><a href="/aceptarUsuS/{{usua[0]}}">Aceptar</a></th>
+            <td data-label="Documento"><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></td>                    
+            <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
+            <td data-label="Celular">{{usua[3]}}</td>
+            <td data-label="Rol">{{usua[5]}}</td>
+            <td data-label="Ficha">{{usua[6]}}</td>
+            <td data-label="Acción"><a href="/aceptarUsuS/{{usua[0]}}">Aceptar</a></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
-</div>
 </main>
 </body>
 </html>

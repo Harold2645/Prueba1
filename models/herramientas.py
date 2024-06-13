@@ -41,9 +41,10 @@ class Herramientas:
         self.conexion.commit()
 
     def buscarPornombre(self, nombre):
-        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.nombre = herramientas.nombre WHERE herramientas.nombre LIKE '%{nombre}%' AND activo='1';"
+        sql = f"SELECT herramientas.idobjeto, herramientas.nombre, herramientas.foto, categorias.tipo, categorias.descripcion FROM herramientas INNER JOIN categorias ON categorias.idcategoria = herramientas.idcategoria WHERE herramientas.nombre LIKE '%{nombre}%' AND herramientas.activo='1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
+
 
 misHerramientas = Herramientas(conexion)

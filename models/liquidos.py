@@ -7,13 +7,13 @@ class Liquidos:
         self.cursor = self.conexion.cursor()
         
     def consultarliquidos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='liquido' AND activo='1'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def todoslosliquidos(self):
-        sql = "SELECT * FROM consumibles WHERE tipo='liquido'"
+        sql = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre, consumibles.activo FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo';"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

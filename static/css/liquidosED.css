@@ -1,0 +1,123 @@
+
+body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+
+
+
+
+section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    position: absolute; 
+    top: 120px; 
+    right: 80px; 
+    margin: 0 auto; 
+}
+
+
+section label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+
+section input[type="text"],
+section input[type="number"],
+section input[type="file"],
+section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+section button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+section button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+section a.cancel-button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    background-color: #d00000;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    width: 100%;
+    margin: 10px auto 0 auto;
+}
+
+section a.cancel-button:hover {
+    background-color: #d00000;
+}
+
+
+section figure.img-thumbnail {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+section figure.img-thumbnail img {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 15px;
+        width: calc(100% - 40px); 
+        right: auto; 
+        left: 20px; 
+        top: 100px; 
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+}
+
+
+@media (min-width: 600px) {
+    section {
+        top: 120px; 
+        right: 80px; 
+    }
+}
