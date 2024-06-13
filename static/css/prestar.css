@@ -1,0 +1,61 @@
+body {
+    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Ancho del formulario */
+    max-width: 350px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centrar el formulario horizontalmente */
+    margin-right: 5%;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 600px) {
+    form {
+        width: 90%; /* Ancho del formulario en dispositivos móviles */
+        float: none; /* Elimina la alineación a la derecha en dispositivos móviles */
+        margin: 20px auto; /* Centra el formulario en dispositivos móviles */
+    }
+}
