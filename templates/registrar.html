@@ -48,7 +48,7 @@
 
                     <div id="cajaFicha">
                         <label for="ficha">Ficha:</label>
-                        <input type="text" name="ficha" id="ficha" placeholder="Ficha" list="fichas" tabindex="7" required pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
+                        <input type="text" name="ficha" id="ficha" placeholder="Ficha" list="fichas" tabindex="7" pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
                         <datalist name="fichas" id="fichas" >
                             {% for ficha in fichas %}
                             <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
