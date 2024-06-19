@@ -5,18 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/perfil.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <script src="../static/js/menu.js"></script>
     <title>Perfil de Usuario</title>
 </head>
 <body>
-
-    <main id="ppal">
-
-        <header id="cabeza">
-            <figure id="logo">
-                <img src="../static/img/logoSena.png" alt="Logo-Sena">
+        <header id="header">
+            <figure>
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
             </figure>
-            <a href="/Correcto">Inicio</a>
-        </header >
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+            <div id="menu_cont">
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+                <div class="menu">
+                    <ul class="interior">
+                        <li><a href="/Correcto">Inicio</a></li>
+                        <li><a href="/tractores">Tractores</a></li>
+                        <li><a href="/consultarConsumibles">Insumos</a></li>
+                        <li><a href="/consultarHerramientas">Herramientas</a></li>
+                        <li><a href="/mispedidos">Mis pedidos</a></li>
+                        <li><a href="/perfilPropio">Mi perfil</a></li>
+                        <li><a href="/">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
         
         <section id="cuerpo">
             <h2>Perfil de Usuario</h2>
@@ -55,6 +73,5 @@
 
         </table>
     </section>
-</main>
 </body>
 </html>
