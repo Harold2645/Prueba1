@@ -111,13 +111,18 @@ def aceptarUsuario():
 def perfilpropio():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
-        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador' or rol == 'Admin' or rol == 'Practicante':
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            documento = session['documento']
+            if misUsuarios.buscar(documento):
+                resultado1 = misUsuarios.buscar(documento)
+                return render_template("perfilUsuario.html", res=resultado1)
+            else:
+                return redirect('/Correcto')
+        elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento']
             if misUsuarios.buscar(documento):
                 resultado1 = misUsuarios.buscar(documento)
                 return render_template("perfil.html", res=resultado1)
-            else:
-                return redirect('/Correcto')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -128,7 +133,7 @@ def perfilpropio():
 def perfil(documento_parm):
     if session.get("loginCorrecto"):
         rol = session.get('rol')
-        if rol == 'Admin':
+        if rol == 'Admin' or rol == 'Practicante':
             if misUsuarios.buscar(documento_parm):
                 resultado1 = misUsuarios.buscar(documento_parm)
                 return render_template("perfil.html", res=resultado1)

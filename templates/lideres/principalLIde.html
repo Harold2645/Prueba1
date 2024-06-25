@@ -1,114 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../static/css/header.css">
-    <link rel="stylesheet" href="../../static/css/principalLider.css">
+    <link rel="stylesheet" href="../../static/css/PrinciplaLider.css">
     <script src="../../static/js/menu.js"></script>
     <title>Principal</title>
 </head>
 <body>
 
-<header id="header">
+        <header id="header">
 
-    <figure>
-        <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
-    </figure>
-
-    <button id="cont-disparador">
-        <i class="lni lni-menu" id="disparador"></i>
-    </button>
-
-    <div id="menu_cont">
-
-        <button id="cont-close">
-            <i class="lni lni-close" id="close"></i>
-        </button>
-
-        <div class="menu">
-            <ul class="interior" id="menu_ppal">
-
-                <li class="interior">
-                    <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
-                    <ul id="menu_usuarios" class="menu-n02">
-                        <li><a href="/usuarios" class="btn-n02">Personas registradas</a></li>
-                        <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar usuarios</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
-                    <ul id="menu_tractores" class="menu-n02">
-                        <li><a href="/consultarTractores" class="btn-n02">Todos los tractores</a></li>
-                        <li><a href="/tractores" class="btn-n02">Tractores disponibles</a></li>
-                        <li><a href="/agregarTractor" class="btn-n02">Agregar tractor</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
-                    <ul id="menu_herramienta" class="menu-n02">
-                        <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las herramientas</a></li>
-                        <li><a href="/consultarHerramientas" class="btn-n02">Herramientas disponibles</a></li>
-                        <li><a href="/agregarHerramienta" class="btn-n02">Agregar herramienta</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
-                    <ul id="menu_insumo" class="menu-n02">
-                        <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los insumos</a></li>
-                        <li><a href="/consultarConsumibles" class="btn-n02">Insumos disponibles</a></li>
-                        <li><a href="/agregarConsumibles" class="btn-n02">Agregar insumos</a></li>
-
-                        <li>
-                            <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
-                            <ul id="menu_liquidos" class="menu-n03">
-                                <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los liquidos</a></li>
-                                <li><a href="/consultarLiquidos" class="btn-n03">Liquidos disponibles</a></li>
-                                <li><a href="/agregarLiquidos" class="btn-n03">Agregar liquido</a></li>
+            <figure>
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+            </figure>
+        
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+        
+            <div id="menu_cont">
+        
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+        
+                <div class="menu">
+                    <ul class="interior" id="menu_ppal">
+        
+                        <li class="interior">
+                            <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
+                            <ul id="menu_usuarios" class="menu-n02">
+                                <li><a href="/usuarios" class="btn-n02">Personas registradas</a></li>
+                                <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar usuarios</a></li>
                             </ul>
                         </li>
-
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_servicios">Servicios</a>
-                    <ul id="menu_servicios" class="menu-n02">
-                        <li><a href="/consultarTodosPedidos" class="btn-n02">Todos los pedidos</a></li>
-                        <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
-                        <li><a href="/consultarAceptado" class="btn-n02">Por entregar</a></li>
-                        <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
-                        <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
-                        <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
-                    <ul id="menu_categorias" class="menu-n02">
-                        <li><a href="/consultarCategorias" class="btn-n02">Categorias registradas</a></li>
-                        <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="/novedades" class="btn-n02">Novedades</a></li>
-
-                <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
-                <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
-
-
-            </ul>
-        </div>
-
-
         
-    </div>
-</header>
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
+                            <ul id="menu_tractores" class="menu-n02">
+                                <li><a href="/consultarTractores" class="btn-n02">Todos los tractores</a></li>
+                                <li><a href="/tractores" class="btn-n02">Tractores disponibles</a></li>
+                                <li><a href="/agregarTractor" class="btn-n02">Agregar tractor</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
+                            <ul id="menu_herramienta" class="menu-n02">
+                                <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las herramientas</a></li>
+                                <li><a href="/consultarHerramientas" class="btn-n02">Herramientas disponibles</a></li>
+                                <li><a href="/agregarHerramienta" class="btn-n02">Agregar herramienta</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
+                            <ul id="menu_insumo" class="menu-n02">
+                                <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los insumos</a></li>
+                                <li><a href="/consultarConsumibles" class="btn-n02">Insumos disponibles</a></li>
+                                <li><a href="/agregarConsumibles" class="btn-n02">Agregar insumos</a></li>
+        
+                                <li>
+                                    <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
+                                    <ul id="menu_liquidos" class="menu-n03">
+                                        <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los liquidos</a></li>
+                                        <li><a href="/consultarLiquidos" class="btn-n03">Liquidos disponibles</a></li>
+                                        <li><a href="/agregarLiquidos" class="btn-n03">Agregar liquido</a></li>
+                                    </ul>
+                                </li>
+        
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_servicios">Servicios</a>
+                            <ul id="menu_servicios" class="menu-n02">
+                                <li><a href="/consultarTodosPedidos" class="btn-n02">Todos los pedidos</a></li>
+                                <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
+                                <li><a href="/consultarAceptado" class="btn-n02">Por entregar</a></li>
+                                <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
+                                <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
+                                <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
+                            </ul>
+                        </li>
+        
+                        <li>
+                            <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
+                            <ul id="menu_categorias" class="menu-n02">
+                                <li><a href="/consultarCategorias" class="btn-n02">Categorias registradas</a></li>
+                                <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
+                            </ul>
+                        </li>
+        
+                        <li><a href="/novedades" class="btn-n02">Novedades</a></li>
+                        <li><a href="/perfilPropio" class="btn-n02">Mi perfil</a></li>
+
+                        <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
+                        <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
+        
+        
+                    </ul>
+                </div>
+        
+        
+                
+            </div>
+        </header>
 
         <div id="prestamos">
             <h4>Prestamos pendientes</h4>
@@ -123,56 +124,56 @@
                         <th>Ficha</th>    
                         <th>Fecha </th>
                         <th>Estado</th>
-    
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for prest in trac[:5] %}
                 <tr>
-                    <th>{{prest[0]}} {{prest[1]}}</th>
-                    <th>{{prest[2]}}</th>
-                    <th>{{prest[3]}}</th>
-                    <th><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></th> 
-    
-                    {% if prest[5] == '0' %}
-                        <th>No hay</th>
-                    {% else %}
-                        <th>{{prest[5]}}</th>
-                    {% endif %}
-    
-    
-                    <th>{{prest[6]}}</th>
-    
-                    {% if prest[7] == 'S' %}
-                        <th>Solicitado</th>
-                    {% elif prest[7] == 'A' %}
-                        <th>Aceptado</th>
-                    {% elif prest[7] == 'P' %}
-                        <th>Prestado</th>
-                    {% elif prest[7] == 'D' %}
-                        <th>Devuelto</th>
-                    {% elif prest[7] == 'R' %}
-                        <th>Rechazado</th>
-                    {% else %}
-                        <th>NO ESTA</th>
-                    {% endif %}
-    
-                    {% if prest[7] == 'S' %}
-                        <th><a href="/aceptarPedido/{{prest[8]}}">Aceptar</a></th>
-                        <th><a href="/rechazar/{{prest[8]}}">Rechazar</a></th>
-                    {% elif prest[7] == 'A' %}
-                        <th><a href="/prestado/{{prest[8]}}">Entregar</a></th>
-                    {% elif prest[7] == 'P' %}
-                        <th><a href="/devolver/{{prest[8]}}">Devolver</a></th>
-                    {% else %}
-                        <th> </th>
-                    {% endif %}
+                    <td data-label="Nombre">{{prest[0]}} {{prest[1]}}</td>
+                    <td data-label="Codigo sena">{{prest[2]}}</td>
+                    <td data-label="Labor">{{prest[3]}}</td>
+                    <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></td> 
+                    <td data-label="Ficha">
+                        {% if prest[5] == '0' %}
+                            No hay
+                        {% else %}
+                            {{prest[5]}}
+                        {% endif %}
+                    </td>
+                    <td data-label="Fecha">{{prest[6]}}</td>
+                    <td data-label="Estado">
+                        {% if prest[7] == 'S' %}
+                            Solicitado
+                        {% elif prest[7] == 'A' %}
+                            Aceptado
+                        {% elif prest[7] == 'P' %}
+                            Prestado
+                        {% elif prest[7] == 'D' %}
+                            Devuelto
+                        {% elif prest[7] == 'R' %}
+                            Rechazado
+                        {% else %}
+                            NO ESTA
+                        {% endif %}
+                    </td>
+                    <td data-label="Acciones">
+                        {% if prest[7] == 'S' %}
+                            <a href="/aceptarPedido/{{prest[8]}}">Aceptar</a>
+                            <a href="/rechazar/{{prest[8]}}">Rechazar</a>
+                        {% elif prest[7] == 'A' %}
+                            <a href="/prestado/{{prest[8]}}">Entregar</a>
+                        {% elif prest[7] == 'P' %}
+                            <a href="/devolver/{{prest[8]}}">Devolver</a>
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}    
                 </tbody>
             </table>
         </div>
-
 
         <h4>Usuarios por aceptar</h4>
         <div id="novedad">
@@ -184,25 +185,27 @@
                         <th>Nombre Completo</th>
                         <th>Celular</th>
                         <th>Rol</th>
-                        <th>Ficha</th>                    
+                        <th>Ficha</th> 
+                        <th>Acciones</th>                   
                     </tr>
                 </thead>
                 <tbody>
                 {% for usua in usu[:5] %}
                 <tr>
-                    <th><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></th>                    
-                    <th>{{usua[1]}} {{usua[2]}}</th>
-                    <th>{{usua[3]}}</th>
-                    <th>{{usua[5]}}</th>
-
-                    {% if usua[6] == '0' or usua[6] ==  '' %}
-                        <th>No tiene</th>
-                    {% else %}
-                        <th>{{usua[6]}}</th>
-                    {% endif %}
-
-                    <th>{{usua[6]}}</th>
-                    <th><a href="/aceptarUsu/{{usua[0]}}">Aceptar</a></th>
+                    <td data-label="Documento"><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></td>                    
+                    <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
+                    <td data-label="Celular">{{usua[3]}}</td>
+                    <td data-label="Rol">{{usua[5]}}</td>
+                    <td data-label="Ficha">
+                        {% if usua[6] == '0' or usua[6] ==  '' %}
+                            No tiene
+                        {% else %}
+                            {{usua[6]}}
+                        {% endif %}
+                    </td>
+                    <td data-label="Acciones">
+                        <a href="/aceptarUsu/{{usua[0]}}">Aceptar</a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>

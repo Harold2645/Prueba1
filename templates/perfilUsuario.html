@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/perfil.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <script src="../static/js/menu.js"></script>
+    <title>Perfil de Usuario</title>
+</head>
+<body>
+        <header id="header">
+            <figure>
+                <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+            </figure>
+            <button id="cont-disparador">
+                <i class="lni lni-menu" id="disparador"></i>
+            </button>
+            <div id="menu_cont">
+                <button id="cont-close">
+                    <i class="lni lni-close" id="close"></i>
+                </button>
+                <div class="menu">
+                    <ul class="interior">
+                        <li><a href="/Correcto">Inicio</a></li>
+                        <li><a href="/tractores">Tractores</a></li>
+                        <li><a href="/consultarConsumibles">Insumos</a></li>
+                        <li><a href="/consultarHerramientas">Herramientas</a></li>
+                        <li><a href="/mispedidos">Mis pedidos</a></li>
+                        <li><a href="/">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        
+        <section id="cuerpo">
+            <h2>Perfil de Usuario</h2>
+            <table>
+                <tr>
+                    <th>Documento:</th>
+                    <td>{{ res[0][0] }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre:</th>
+                    <td>{{ res[0][1] }}</td>
+                </tr>
+                <tr>
+                    <th>Apellido:</th>
+                    <td>{{ res[0][2] }}</td>
+            </tr>
+            <tr>
+                <th>Celular:</th>
+                <td>{{ res[0][3] }}</td>
+            </tr>
+            <tr>
+                <th>Rol:</th>
+                <td>{{ res[0][5] }}</td>
+            </tr>
+            
+            {% if res[0][6] %}
+            
+                <tr>
+                    <th>Ficha:</th>
+                    <td>{{ res[0][6] }}</td>
+                </tr>
+
+            {% else %} 
+            
+            {% endif %}
+
+        </table>
+    </section>
+</body>
+</html>
