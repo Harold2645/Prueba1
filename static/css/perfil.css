@@ -20,7 +20,7 @@ section#cuerpo {
 
 section#cuerpo h2 {
     margin-bottom: 50px;
-    padding: 20px;
+    padding: 10px;
 }
 
 table {
@@ -33,7 +33,7 @@ table:hover{
 
 td{
     padding: 20px;
-    border-bottom: 1px solid #ddd;
+    border: 2px solid #ddd;
 }
 td:hover{
     background-color: rgb(185, 185, 185);
@@ -44,4 +44,5 @@ th {
     font-weight: bold;
     background-color: rgb(185, 185, 185);
     padding: 20px;
+    width: 200px;
 }
