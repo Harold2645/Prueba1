@@ -127,7 +127,7 @@ def actualizarLiquidos():
             categoria = request.form.get('id_categoria')
             cantidad = request.form['cantidad']
             foto = request.files['foto']
-            activo = request.files['activo']
+            activo = request.form['activo']
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, foto1,activo])
