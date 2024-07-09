@@ -29,7 +29,7 @@
                     <input type="text" readonly value="{{res[1]}}" required>
 
                 <label for="labor">Labor:</label>
-                    <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="1" required pattern="[A-Za-z0-9\s*]+" autofocus minlength="4" maxlength="50" title="Minimo 4 letras">
+                    <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="1" required pattern="[A-Za-z0-9\s*]+{4,50}" autofocus minlength="4" maxlength="50" title="Minimo 4 letras">
 
                 <label for="ficha">Ficha:</label>
                 <input type="text" name="ficha" id="ficha" placeholder="Ficha donde se usara" tabindex="2" pattern="[0-9*]{7}" minlength="7" maxlength="7" title="Solo números" >
@@ -39,7 +39,7 @@
 
                 {% if tipo=='Insumo' or tipo=='Liquido'  %}
                     <label for="cantidad">Cantidad:</label>
-                    <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,3}" minlength="1" maxlength="4" tabindex="4" required >
+                    <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,4}" minlength="1" maxlength="4" tabindex="4" required >
                 {% endif %}
                     
                     <div id="boton">

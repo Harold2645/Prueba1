@@ -26,16 +26,16 @@
                     <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9*]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
 
                 <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="2" placeholder="Nombre" tabindex="2" required title="Solo letras">
+                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="3" placeholder="Nombre" tabindex="2" required title="Solo letras">
 
                 <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="2" placeholder="Apellido" tabindex="3" required title="Solo letras">
+                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="3" placeholder="Apellido" tabindex="3" required title="Solo letras">
 
                 <label for="celular">Celular:</label>
                     <input type="tel" name="celular" id="celular" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Telefono" tabindex="4" required>
 
                 <label for="contrasena">Contraseña:</label>
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" pattern="[0-9]{10,10}" maxlength="15" minlength="6" required title="Solo números" tabindex="5" required>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" pattern="[0-9]{10}" maxlength="10" minlength="0" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
 
                     
                     <label for="rol">Rol:</label>
