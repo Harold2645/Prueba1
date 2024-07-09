@@ -42,7 +42,7 @@ def buscarLiquido():
         if request.method == "POST":
             nombre = request.form['buscar_insumo']
             resultado = misInsumos.buscarPornombre(nombre)
-            return render_template("lideres/insumos/insumos.html", res=resultado)
+            return render_template("usuarios/insumos.html", res=resultado)
         else:
             return redirect('/')
     else:
