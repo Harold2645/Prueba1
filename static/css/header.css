@@ -61,7 +61,6 @@ header#header{
 #disparador{
     color: white;
     font-size: 30px;
-    cursor: pointer;
 }
 #cont-close{
     background: none;
@@ -70,7 +69,6 @@ header#header{
 }
 #close{
     color: white;
-    cursor: pointer;
 }
 header li{
     padding: 15px;
@@ -93,7 +91,7 @@ display: none;
 
 
 
-@media only screen and (min-width: 800px){
+@media only screen and (min-width: 900px){
     #menu_cont{
         display: block;
         background: none;
@@ -128,42 +126,42 @@ display: none;
         z-index: 2;
     }
     #menu_tractores{
-        top: 60px;
+        bottom: -130px;
         left: 0%;
         width: 160px;
     }
     #menu_usuarios{
-        top: 60px;
+        bottom: -85px;
         left: 0%;
         width: 150px;
     }
     #menu_herramienta{
-        top: 60px;
+        bottom: -130px;
         left: 0%;
         width: 180px;
     }
     #menu_insumo{
-        top: 60px;
+        bottom: -180px;
         left: 0%;
         width: 150px;
     }
         #menu_liquidos{
             background-color: #287902;
+            bottom: -100px;
             left: 50%;
             width: 150px;
             position: absolute;
         }
     #menu_servicios{
-        top: 60px;
+        bottom: -290px;
         left: 50%;
         width: 135px;
     }
     #menu_categorias, #menu_novedad{
-        top: 60px;
+        bottom: -85px;
         left: 0%;
         width: 160px;
     }
 
    
 }
-
