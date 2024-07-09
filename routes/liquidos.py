@@ -89,11 +89,11 @@ def borrarLiquidos(idObjetos):
         elif rol == 'Admin' or rol == 'Practicante':
             misLiquidos.borrar(idObjetos)
 
-            nombre = misLiquidos.buscarnombre(idObjetos)
-            creador = session['documento'] 
-            movimiento = "BorroLiquido"
-            misMovimientos.agregar([creador, movimiento, nombre])
-            return redirect('/consultarLiquidos')
+            # nombre = misLiquidos.buscarnombre(idObjetos)
+            # creador = session['documento'] 
+            # movimiento = "BorroLiquido"
+            # misMovimientos.agregar([creador, movimiento, nombre])
+            # return redirect('/consultarLiquidos')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -127,15 +127,16 @@ def actualizarLiquidos():
             categoria = request.form.get('id_categoria')
             cantidad = request.form['cantidad']
             foto = request.files['foto']
+            activo = request.files['activo']
             if foto.filename == '':
                 foto1 = request.form['foto1']
-                misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, foto1])
+                misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, foto1,activo])
             else:
                 ahora = datetime.now()
                 fnombre,fextension = os.path.splitext(foto.filename)
                 nombreFoto = "I"+ahora.strftime("%Y%m%d%H%M%S")+fextension
                 foto.save("uploads/"+nombreFoto)
-                misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto])
+                misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, nombreFoto,activo])
 
             creador = session['documento'] 
             movimiento = "EditoLiquido"

@@ -101,11 +101,11 @@ def borrarConsumibles(idObjetos):
         elif rol == 'Admin' or rol == 'Practicante':
             misInsumos.borrar(idObjetos)
 
-            nombre = misInsumos.buscarnombre(idObjetos)
-            creador = session['documento'] 
-            movimiento = "BorroInsumo"
-            misMovimientos.agregar([creador, movimiento, nombre])
-            return redirect('/consultarConsumibles')
+            # nombre = misInsumos.buscarnombre(idObjetos)
+            # creador = session['documento'] 
+            # movimiento = "BorroInsumo"
+            # misMovimientos.agregar([creador, movimiento, nombre])
+            # return redirect('/consultarConsumibles')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
