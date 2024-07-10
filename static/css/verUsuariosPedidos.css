@@ -30,7 +30,7 @@ thead {
 }
 thead th {
     padding: 10px;
-    text-align: left;
+    text-align:center;
     border-bottom: 2px solid #2E8B00;
 }
 tbody tr:nth-child(even) {
@@ -44,10 +44,10 @@ tbody td, tbody th {
     border-bottom: 1px solid #ddd;
 }
 tbody th {
-    text-align: left;
+    text-align:center;
 }
 tbody td {
-    text-align: left;
+    text-align:center;
 }
 tbody td a {
     color: #36A900;

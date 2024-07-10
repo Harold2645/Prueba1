@@ -105,7 +105,7 @@ def borrarConsumibles(idObjetos):
             # creador = session['documento'] 
             # movimiento = "BorroInsumo"
             # misMovimientos.agregar([creador, movimiento, nombre])
-            # return redirect('/consultarConsumibles')
+            return redirect('/consultarConsumibles')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

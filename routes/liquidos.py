@@ -93,7 +93,7 @@ def borrarLiquidos(idObjetos):
             # creador = session['documento'] 
             # movimiento = "BorroLiquido"
             # misMovimientos.agregar([creador, movimiento, nombre])
-            # return redirect('/consultarLiquidos')
+            return redirect('/consultarLiquidos')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
