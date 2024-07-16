@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600&display=swap');
-
 :root{
     --logo-sena: #39A900;
     --azul-dark: #00324D;
@@ -37,7 +35,6 @@ body, html{
     align-items: center;
     color: white;
 }
-
 section#cont_mayor{
     display: flex;
     align-items: center;
@@ -72,6 +69,7 @@ article#reservas{
 #cont_bajo{
     display: flex;
     align-items: center;
+    gap: 2px;
     justify-content: space-between;
 }
     div#cont_bot{
@@ -130,30 +128,30 @@ article#reservas{
         display: flex;
         justify-content: center;
     }
-    #cont_h5{
+    #cont_h5_herra{
         font-size: 15px;
+        height: 120px;
+        overflow-y: auto;
     }
-
-#cont_link{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0px 0px;
-}
-    #cont-link, .btnmosatwo{
-       background-color: #00324D;
-       padding: 10px;
-       border-radius: 10px;
-       width: 120px;
-       color: white;
-       text-align: center;
-       transition: all 0.1s;
-       cursor: pointer;
+    #cont_h5_insu{
+        font-size: 15px;
+        height: 150px;
+        overflow-y: auto;
     }
-
-        #cont-link, .btnmosatwo:hover{
-            background-color: #00111a;
+    #cont_link{
+        margin: 15px 0 0;
+    }
+        #cont-link, .btnmosatwo{
+           background-color: #00324D;
+           padding: 10px;
+           text-align: center;
+           color: white;
+           border-radius: 10px;
         }
+    
+            #cont-link, .btnmosatwo:hover{
+                background-color: #00111a;
+            }
 
 @media only screen and (min-width: 768px){
 
@@ -166,6 +164,5 @@ article#reservas{
 @media only screen and (min-width: 1366px){
     div#cont_paneles{
         grid-template-columns: repeat(3, 270px);
-        gap: 30px;
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/tractoresUsu.css">
+    <link rel="stylesheet" href="../../static/css/vercartasusuarioinsu.css">
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
@@ -12,8 +12,9 @@
 </head>
 <body>
         <header id="header">
-            <figure>
+            <figure id="header_logo">
                 <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+                    <h2 id="titulo">Insumos</h2>
             </figure>
             <button id="cont-disparador">
                 <i class="lni lni-menu" id="disparador"></i>
@@ -35,11 +36,6 @@
             </div>
         </header>
     <section id="cont_mayor">
-        <section id="links" class="Titulo">
-            <a href="/tractores"><i class="lni lni-chevron-left" id="left"></i></a>
-            <h2 id="titulo">Insumos</h2>
-            <a href="/consultarHerramientas"><i class="lni lni-chevron-right"></i></a>
-        </section>
         <div id="cont_paneles">
             {% for cons in res %}
             <article class="mosaico" id="reservas">
@@ -57,8 +53,8 @@
                     </div>
                 </div>
                     <div id="cont_link" >
-                        <div class="btnusuarios">
-                            <a href="pedir/{{cons[0]}}">¡Solicitar!</a>
+                        <div class="btnmosatwo">
+                            <a href="pedir/{{cons[0]}}">Solicitar</a>
                         </div>
                     </div>
             </article>

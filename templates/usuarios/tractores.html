@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/tractoresUsu.css">
+    <link rel="stylesheet" href="../../static/css/vercartasusuario.css">
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="../../../static/js/menu.js"></script>
     <title>Inicio</title>
 </head>
 <body>
         <header id="header">
-            <figure>
+            <figure id="header_logo">
                 <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+                <h2 id="titulo">Tractores</h2>
             </figure>
             <button id="cont-disparador">
                 <i class="lni lni-menu" id="disparador"></i>
@@ -35,7 +37,6 @@
             </div>
         </header>
     <section id="cont_mayor">
-            <h2 id="titulo">Tractores</h2>
         <div id="cont_paneles">
             {% for trac in res %}
                 <article class="mosaico" id="reservas">
@@ -63,8 +64,8 @@
                         </div>
                     </div>
                         <div id="cont_link">
-                            <div class="btnusuarios">
-                                <a href="pedir/{{trac[2]}}">¡Solicitar!</a> 
+                            <div class="btnmosatwo">
+                                <a href="pedir/{{trac[2]}}">Solicitar</a> 
                             </div>
                         </div>
                 </article>

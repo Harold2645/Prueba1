@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/tractoresUsu.css">
+    <link rel="stylesheet" href="../../static/css/vercartasusuarioherra.css">
     <link rel="stylesheet" href="../../static/css/header.css">
     <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
@@ -10,8 +10,9 @@
 </head>
 <body>
         <header id="header">
-            <figure>
+            <figure id="header_logo">
                 <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+                <h2 id="titulo">Herramientas</h2>
             </figure>
             <button id="cont-disparador">
                 <i class="lni lni-menu" id="disparador"></i>
@@ -33,7 +34,6 @@
             </div>
         </header>
         <section id="cont_mayor">
-            <h2 id="titulo">Herramientas</h2>
         <div id="cont_paneles">
             {% for herra in res %}
             <article class="mosaico" id="reservas">
@@ -48,10 +48,10 @@
                         <h5>Categoria: {{herra[3]}} </h5>
                         <h5>Descripción: {{herra[4]}}</h5>
                     </div>
-                    <div id="cont_link" >
-                        <div class="btnusuarios">
-                            <a href="pedir/{{herra[0]}}">¡Solicitar!</a>
-                        </div>
+                </div>
+                <div id="cont_link" >
+                    <div class="btnmosatwo">
+                        <a href="pedir/{{herra[0]}}">Solicitar</a>
                     </div>
                 </div>
             </article>

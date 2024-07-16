@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
-    <link rel="stylesheet" href="../../../static/css/tractoresUsu.css">
+    <link rel="stylesheet" href="../../../static/css/vercartas.css">
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../../static/css/header.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Inicio</title>
@@ -15,8 +16,9 @@
     
 <header id="header">
 
-    <figure>
+    <figure id="header_logo">
         <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        <h2 id="titulo">Herramientas</h2>
     </figure>
 
     <button id="cont-disparador">
@@ -113,7 +115,6 @@
 </header>
 
         <section id="cont_mayor">
-                <h2 id="titulo">Herramientas</h2>
             <div id="cont_paneles">
                 {% for herra in res %}
                 <article class="mosaico" id="reservas">
@@ -124,21 +125,22 @@
                         <h2>{{herra[1]}}</h2>
                     </div>
                     <div id="cont_bajo">
-                    <div id="cont_h5">
-                        <h5>Categoria: {{herra[3]}} </h5>
-                        <h5>Descripción: {{herra[4]}}</h5>    
+                        <div id="cont_h5_herra">
+                            <h5>Categoria: {{herra[3]}} </h5>
+                            <h5>Descripción: {{herra[4]}}</h5>    
+                        </div>
+                        <div id="cont_bot">
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}"><i class='bx bx-trash' id="delete"><p id="tooltip1">Eliminar</p></i></a>
+                            </div>
+                            <div class="btnmosa">
+                                <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
+                            </div>
+                        </div>
                     </div>
-                        <div id="cont_link">
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}"><img src="../../../static/img/editar (1).png" alt="" class="img-icon"></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}"><img src="../../../static/img/basura.png" alt="" class="img-icon"></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}"><img src="../../../static/img/agregar (1).png" alt="" class="img-icon"></a>
-                            </div>
-
+                    <div id="cont_link">
+                        <div class="btnmosatwo">
+                            <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}">Agregar novedad</a>
                         </div>
                     </div>
                 </article>

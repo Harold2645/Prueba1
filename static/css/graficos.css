@@ -10,8 +10,10 @@
     --negro: #070707;
 }
 
-h1#titulo{
-    text-align: center;
+#header_logo{
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 div#botones{
@@ -22,7 +24,7 @@ div#botones{
 }
     div#botones .botongra{
         padding: 10px;
-        background-color: #39A900;
+        background-color: #00324D;
         color: white;
         border-radius: 10px;
         border: none;
@@ -32,10 +34,7 @@ div#botones{
         transition: 0.5 ease-out;
     }
         div#botones .botongra:hover{
-            background: none;
-            color: black;
-            border: 2px solid #39A900;
-            padding: 25px;
+            background-color: #070707;
         }
 
 
@@ -55,18 +54,18 @@ form#formu{
         height: 35px;
         background: none;
         border-radius: 10px;
-        border-color: #39A900;
+        border-color: #00324D;
     }
     form#formu button{
         border-radius: 10px;
         padding: 10px;
         border: none;
+        cursor: pointer;
         color: white;
-        background-color: #39A900;
+        background-color: #00324D;
     }
     form#formu button:hover{
-        background: #00324D;
-        cursor: pointer;
+        background: #070707;
     }
 div#imgrafico{
     display: flex;

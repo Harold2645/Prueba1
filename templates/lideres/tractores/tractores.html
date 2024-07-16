@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../../static/css/tractoresUsu.css">
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../../static/css/header.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Inicio</title>
@@ -14,8 +15,9 @@
 
 <header id="header">
 
-    <figure>
+    <figure id="header_logo">
         <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        <h2 id="titulo">Tractores</h2>
     </figure>
 
     <button id="cont-disparador">
@@ -112,7 +114,6 @@
 </header>
 
     <section id="cont_mayor">
-            <h2 id="titulo">Tractores</h2>
         <div id="cont_paneles">
             {% for trac in res %}
             <article class="mosaico" id="reservas">
@@ -138,20 +139,22 @@
                         <h5>Disponibilidad: NO ESTA</h5>
                         {% endif %}
                     </div>
-                        <div id="cont_link">
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><img src="../../../static/img/editar (1).png" alt="" class="img-icon"></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Seguro elimina este tractor?')" href="borrarTractor/{{trac[2]}}"><img src="../../../static/img/basura.png" alt="" class="img-icon"></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')"  href="hojavidatractores/{{trac[2]}}"><img src="../../../static/img/publicacion.png" alt="" class="img-icon"></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}"><img src="../../../static/img/agregar (1).png" alt="" class="img-icon"></a>
-                            </div>
+                    <div id="cont_bot">
+                        <div class="btnmosa">
+                            <a onclick="return confirm('¿Seguro elimina este tractor?')" href="borrarTractor/{{trac[2]}}"><i class='bx bx-trash' id="delete"><p id="tooltip1">Eliminar</p></i></a>
                         </div>
+                        <div class="btnmosa">
+                            <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="cont_link">
+                    <div class="btnmosatwo">
+                        <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')"  href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
+                    </div>
+                    <div class="btnmosatwo">
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}">Agregar novedad</a>
+                    </div>
                 </div>
             </article>
         {% endfor %}
