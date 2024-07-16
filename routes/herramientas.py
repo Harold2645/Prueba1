@@ -149,7 +149,12 @@ def actualizarHerramienta():
             nombre = request.form['nombre']
             categoria = request.form.get('id_categoria')
             foto = request.files['foto']
-            activo = request.form['activo']
+
+            if len(request.form['activo']) == 0:
+                activo = 1
+            else:
+                 activo = request.form['activo']   
+                          
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misHerramientas.modificar([idObjeto,nombre,categoria,foto1,activo])

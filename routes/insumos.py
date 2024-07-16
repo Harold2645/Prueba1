@@ -139,7 +139,13 @@ def actualizarConsumibles():
             categoria = request.form.get('id_categoria')
             cantidad = request.form['cantidad']
             foto = request.files['foto']
-            activo = request.form['activo']
+            
+            if len(request.form['activo']) == 0:
+                activo = 1
+            else:
+                 activo = request.form['activo']
+
+
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misInsumos.modificar([idobjeto,nombre,categoria,cantidad, foto1, activo])
