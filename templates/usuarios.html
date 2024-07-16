@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/usuarios.css">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/verUsuarios.css">
     <script src="../static/js/menu.js"></script>
 
     <title>Gestión de clientes</title>
@@ -129,22 +129,22 @@
         <tbody>
             {% for usu in res %}
             <tr>
-                <td>{{usu[0]}}</td>
-                <td>{{usu[1]}} {{usu[2]}}</td>
-                <td>{{usu[3]}} </td>
-                <td>{{usu[5]}}</td>
-                <td>{{usu[6]}}</td>
-                <td>{{usu[7]}}</td>
+                <td data-label="Documento">{{usu[0]}}</td>
+                <td data-label="Nombre Completo">{{usu[1]}} {{usu[2]}}</td>
+                <td data-label="Celular">{{usu[3]}}</td>
+                <td data-label="Rol">{{usu[5]}}</td>
+                <td data-label="Ficha">{{usu[6]}}</td>
+                <td data-label="Fecha de Registro">{{usu[7]}}</td>
 
                 {% if usu[8] == '0' %}
-                    <th>Inactivo</th>
+                    <td data-label="Estado">Inactivo</td>
                 {% elif usu[8] == '1' %}
-                    <th>Activo</th>
+                    <td data-label="Estado">Activo</td>
                 {% elif usu[8] == '2' %}
-                    <th>En espera</th>
-                    <th><a href="/aceptarUsuS/{{usua[0]}}">Aceptar</a></th>
+                    <td data-label="Estado">En espera</td>
+                    <td data-label="Acciones"><a href="/aceptarUsuS/{{usua[0]}}">Aceptar</a></td>
                 {% else %}
-                    <th>NO ESTA</th>
+                    <td data-label="Estado">NO ESTA</td>
                 {% endif %}
 
             </tr>
@@ -153,8 +153,6 @@
     </table>
 </main>
 
-    <footer>
-        <p>© 2024 Hangar - Todos los derechos reservados</p>
-    </footer>
+    
 </body>
 </html>

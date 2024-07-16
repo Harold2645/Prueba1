@@ -130,18 +130,12 @@
                             <h5>Descripción: {{herra[4]}}</h5>    
                         </div>
                         <div id="cont_bot">
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}"><i class='bx bx-trash' id="delete"><p id="tooltip1">Eliminar</p></i></a>
-                            </div>
-                            <div class="btnmosa">
-                                <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
-                            </div>
+                            <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
                         </div>
                     </div>
                     <div id="cont_link">
-                        <div class="btnmosatwo">
-                            <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}">Agregar novedad</a>
-                        </div>
+                        <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}"><i class='bx bx-trash' id="delete"><p id="tooltip3">Eliminar</p></i></a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}"  class="btnmosatwo">Agregar novedad</a>
                     </div>
                 </article>
                 {% endfor %}

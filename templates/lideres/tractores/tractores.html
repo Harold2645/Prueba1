@@ -140,21 +140,13 @@
                         {% endif %}
                     </div>
                     <div id="cont_bot">
-                        <div class="btnmosa">
-                            <a onclick="return confirm('¿Seguro elimina este tractor?')" href="borrarTractor/{{trac[2]}}"><i class='bx bx-trash' id="delete"><p id="tooltip1">Eliminar</p></i></a>
-                        </div>
-                        <div class="btnmosa">
+                            <a href="hojavidatractores/{{trac[2]}}"><i class="lni lni-clipboard"><p id="tooltip1">Hoja de vida</p></i></a>
                             <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
-                        </div>
                     </div>
                 </div>
                 <div id="cont_link">
-                    <div class="btnmosatwo">
-                        <a href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
-                    </div>
-                    <div class="btnmosatwo">
-                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}">Agregar novedad</a>
-                    </div>
+                        <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}"><i class='bx bx-trash' id="delete"><p id="tooltip3">Eliminar</p></i></a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}" class="btnmosatwo">Agregar novedad</a>
                 </div>
             </article>
         {% endfor %}

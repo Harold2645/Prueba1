@@ -80,7 +80,7 @@ article#reservas{
         gap: 10px;
     }  
     div#cont_bot a i{
-        font-size: 25px;
+        font-size: 22px;
         background-color: #00324D;
         color: white;
         padding: 8px;
@@ -89,18 +89,19 @@ article#reservas{
         position: relative;
     }
         div#cont_bot a i p#tooltip1, p#tooltip2{
-            padding: 13.5px;
-            font-size: 14px;
+            padding: 13px;
+            font-size: 12px;
             border-radius: 10px 0px 0px 10px;
             opacity: 0;
             pointer-events: none;
         }
         div#cont_bot a i p#tooltip1{
             position: absolute;
-            top: -14px;
-            right: 40px;
-            color: red;
-            background-color: #b8b8b8;
+            top: -12px;
+            right: 38px;
+            width: 110px;
+            text-align: center;
+            background-color: #00324D;
         }
             div#cont_bot a i:hover p#tooltip1{
                 opacity: 1;
@@ -108,8 +109,8 @@ article#reservas{
             }
         div#cont_bot a i p#tooltip2{
             position: absolute;
-            bottom: -14px;
-            right: 40px;
+            bottom: -12px;
+            right: 35px;
             background-color: #00324D;
         }
             div#cont_bot a i:hover p#tooltip2{
@@ -138,13 +139,13 @@ article#reservas{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0px 0px;
+    margin: 5px 0px 0px;
 }
     #cont-link, .btnmosatwo{
        background-color: #00324D;
-       padding: 10px;
+       padding: 11px;
+       font-size: 12px;
        border-radius: 10px;
-       width: 120px;
        color: white;
        text-align: center;
        transition: all 0.1s;
@@ -154,18 +155,49 @@ article#reservas{
         #cont-link, .btnmosatwo:hover{
             background-color: #00111a;
         }
+    #cont_link a i{
+        font-size: 20px;
+        background-color: #b8b8b8;
+        color: red;
+        padding: 8px;
+        border-radius: 10px;
+        transition: all 0.1s;
+        position: relative;
+    }
+        #cont_link a i:hover{
+            border-radius: 10px 0px 0px 10px;
+        }
+    div#cont_link a i p#tooltip3{
+        position: absolute;
+        top: -14px;
+        font-size: 14px;
+        text-align: center;
+        width: 85px;
+        border-radius: 0px 10px 10px 0px;
+        left: 36px;
+        padding: 11px;
+        text-align: center;
+        background-color: #b8b8b8;
+        opacity: 0;
+        pointer-events: none;
+    }
+    div#cont_link a i:hover p#tooltip3{
+        opacity: 1;
+        pointer-events: auto;
+    }
 
 @media only screen and (min-width: 768px){
 
     div#cont_paneles{
         grid-template-columns: repeat(2, 270px);
+        gap: 35px;
     }
     
 }
 
-@media only screen and (min-width: 1366px){
+@media only screen and (min-width: 1280px){
     div#cont_paneles{
         grid-template-columns: repeat(3, 270px);
-        gap: 30px;
+        gap: 45px;
     }
 }
