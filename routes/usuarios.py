@@ -58,10 +58,10 @@ def login():
         session['documento'] = documento
         session['nombreUsuario'] = nombre_completo
         session['rol'] = rol
-        return redirect("/Correcto")
+        return redirect("/panel")
 
 # Página de inicio después del login
-@app.route('/Correcto')
+@app.route('/panel')
 def redireccion():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
@@ -82,10 +82,10 @@ def aceptarUsu(documento_parm):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect("/Correcto")
+            return redirect("/panel")
         elif rol == 'Admin' or rol == 'Practicante':
             misUsuarios.aceptarSi(documento_parm)
-            return redirect('/Correcto')
+            return redirect('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -97,7 +97,7 @@ def aceptarUsuario():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
             return render_template("lideres/usuariosAcep.html", usu=usuarios)
@@ -117,7 +117,7 @@ def perfilpropio():
                 resultado1 = misUsuarios.buscar(documento)
                 return render_template("perfilUsuario.html", res=resultado1)
             else:
-                return redirect('/Correcto')
+                return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento']
             if misUsuarios.buscar(documento):
@@ -150,7 +150,7 @@ def clientes():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misUsuarios.consultar()
             return render_template("usuarios.html", res=resultado)

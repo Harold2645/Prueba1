@@ -29,7 +29,7 @@ def consultaTractores():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misTracores.todoslosTractores()
             return render_template("lideres/tractores/verTractores.html", res=resultado)
@@ -44,7 +44,7 @@ def agregaarticulo():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasTractor()
             return render_template("lideres/tractores/tractoresAg.html", categorias=categorias)
@@ -58,7 +58,7 @@ def agregarTrac():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             creador = session['documento'] 
             idobjeto = request.form['idobjeto']
@@ -93,7 +93,7 @@ def editarTractor(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractor = misTracores.buscar(idObjeto)
             categorias = misCategorias.categoriasTractor()
@@ -108,7 +108,7 @@ def actualizarTractor():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idobjeto = request.form['id_tractor']
             categoria = request.form['id_categoria']
@@ -142,7 +142,7 @@ def borrarTractor(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misTracores.borrar(idObjetos)
             idobjeto = idObjetos
@@ -162,7 +162,7 @@ def tractor(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misFichas.consultarTractor(idObjetos)
             return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
@@ -176,7 +176,7 @@ def agregar(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
             return render_template('lideres/hojaVida/tractorAG.html', res=resultado[0])
@@ -190,7 +190,7 @@ def agregarA():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjetos = request.form['idObjetos']
             nodstractor = request.form['nodstractor']
@@ -215,7 +215,7 @@ def agregarBG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
             return render_template('lideres/hojaVida/tractorBG.html', res=resultado[0])
@@ -229,7 +229,7 @@ def agregarB():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjetos = request.form['idObjetos']
             tipodtraccion = request.form["tipodtraccion"]
@@ -262,7 +262,7 @@ def agregarCG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
             return render_template('lideres/hojaVida/tractorCG.html', res=resultado[0])
@@ -276,7 +276,7 @@ def agregarC():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjetos = request.form['idObjetos']
             tipodidcncr = request.form["tipodidcncr"]
@@ -306,7 +306,7 @@ def agregarDG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
             return render_template('lideres/hojaVida/tractorDG.html', res=resultado[0])
@@ -320,7 +320,7 @@ def agregarD():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjetos = request.form['idObjetos']
             aceitemotor = request.form["aceitemotor"]
@@ -351,7 +351,7 @@ def agregarEG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
             return render_template('lideres/hojaVida/tractoreG.html', res=resultado[0])
@@ -365,7 +365,7 @@ def agregarE():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjetos = request.form['idObjetos']
             ftdrenaje = request.files["ftdrenaje"]

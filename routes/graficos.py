@@ -15,7 +15,7 @@ def graficos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             return render_template('lideres/graficos/graficos.html')
         else:
@@ -31,7 +31,7 @@ def guardagrafico():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
                
             data = misGraficos.datosConsumibles()
@@ -61,7 +61,7 @@ def grafConsu():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             data = misGraficos.datosConsumibles()
 
@@ -93,7 +93,7 @@ def grafTrac():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             
             data = misGraficos.datosTractores()

@@ -20,7 +20,7 @@ def envioConsuPez():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             data = misEnvios.datoacpm()
             correoSub = request.form['correoSub']

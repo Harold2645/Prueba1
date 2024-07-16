@@ -10,7 +10,7 @@ def consultarTodosPedidos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultar()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Todos los prestamos')
@@ -26,7 +26,7 @@ def consultarSolicitados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarSolicitados()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Solicitados')
@@ -42,7 +42,7 @@ def consultarAceptado():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarAceptado()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Falta entregar')
@@ -57,7 +57,7 @@ def consultarprestados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarPrestado()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Prestados')
@@ -72,7 +72,7 @@ def consultarDevueltos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarDevuelto()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Devueltos')
@@ -87,7 +87,7 @@ def consultarRechazados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarRechazado()
             return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Rechazados')
@@ -133,7 +133,7 @@ def devolver(idservicio):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             return render_template("lideres/devoluciones/devoluciones.html", idservicio=idservicio)
         else:
@@ -147,7 +147,7 @@ def devolucion():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             id = request.form['idservicio']
             descripcion = request.form['descripcion']
@@ -158,7 +158,7 @@ def devolucion():
             foto.save("uploads/" + fotot)
             envio=[id,hora,descripcion,fotot]
             misServicios.devuelto(envio)
-            return redirect("/Correcto")
+            return redirect("/panel")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -169,7 +169,7 @@ def prestado(idservicio):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             return render_template("lideres/prestamos/prestar.html", idservicio=idservicio)
         else:
@@ -183,14 +183,14 @@ def pedido():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             id = request.form['idservicio']
             estadosalida = request.form['estado']
             encargado = session['documento']
             envio=[id,estadosalida,encargado]
             misServicios.prestado(envio)
-            return redirect("/Correcto")
+            return redirect("/panel")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -217,7 +217,7 @@ def prestamo():
             tipo = request.form['tipo']
             agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo]
             misServicios.pedir(agg)
-            return redirect("/Correcto")
+            return redirect("/panel")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -230,10 +230,10 @@ def aceptarPedido(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misServicios.aceptarPrestamo(id)
-            return redirect('/Correcto')
+            return redirect('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -245,10 +245,10 @@ def rechazar(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misServicios.rechazarPrestamo(id)
-            return redirect('/Correcto')
+            return redirect('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -273,7 +273,7 @@ def vermasServicios(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscar(id)
             print(resultado)

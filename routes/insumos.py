@@ -27,7 +27,7 @@ def consultalarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misInsumos.todoslosinsumos()
             return render_template("lideres/insumos/verInsumos.html", res=resultado)
@@ -54,7 +54,7 @@ def agregarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasInsumos()
             return render_template("lideres/insumos/insumosAg.html", categorias=categorias)
@@ -68,7 +68,7 @@ def guardarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento'] 
             idCategoria = request.form.get('id_categoria')
@@ -97,7 +97,7 @@ def borrarConsumibles(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misInsumos.borrar(idObjetos)
 
@@ -117,7 +117,7 @@ def editarConsumibles(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             Consumible = misInsumos.buscar(idObjeto)
             categorias = misCategorias.categoriasInsumos()
@@ -132,7 +132,7 @@ def actualizarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idobjeto = request.form['idobjeto']
             nombre = request.form['nombre']

@@ -27,7 +27,7 @@ def consultalasHerramientas():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misHerramientas.todaslasHerramientas()
             return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
@@ -57,7 +57,7 @@ def agregarHerramienta():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasHerramienta()
             return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
@@ -72,7 +72,7 @@ def guardarHerramienta():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento'] 
             idobjeto = request.form['id_herramienta']
@@ -107,7 +107,7 @@ def borrarHerramienta(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misHerramientas.borrar(idObjetos)
 
@@ -128,7 +128,7 @@ def editarHerramienta(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             herramienta = misHerramientas.buscar(idObjeto)
             categorias = misCategorias.categoriasHerramienta()
@@ -143,7 +143,7 @@ def actualizarHerramienta():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idObjeto = request.form['id_herramienta']
             nombre = request.form['nombre']

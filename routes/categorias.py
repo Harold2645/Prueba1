@@ -11,7 +11,7 @@ def consultaCategorias():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misCategorias.consultarCategorias()
             return render_template("lideres/categorias/categoria.html", res=resultado)
@@ -26,7 +26,7 @@ def agregarCategoria():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             descripcion = misCategorias.buscarCate()
             descri = [descrip[0] for descrip in descripcion]
@@ -41,7 +41,7 @@ def guardarCategoria():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             nombre = request.form['nombre_categoria']
             tipo = request.form['tipo_categoria']
@@ -63,7 +63,7 @@ def borrarCategoria(idCategoria):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misCategorias.borrarCategoria(idCategoria)
             return redirect('/consultarCategorias')
@@ -78,7 +78,7 @@ def activarCategoria(idCategoria):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misCategorias.activarCategoria(idCategoria)
             return redirect('/consultarCategorias')

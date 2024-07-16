@@ -9,7 +9,7 @@ def agregarnovedad(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             if (misServicios.buscarTractor(idObjeto)):
                 return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Tractor")
@@ -20,7 +20,7 @@ def agregarnovedad(idObjeto):
             elif(misServicios.buscarLiquido(idObjeto)):
                 return render_template('lideres/novedades/novedadesAg.html', id=idObjeto, tipo="Liquido")
             else:
-                return redirect ('/Correcto')
+                return redirect ('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -31,7 +31,7 @@ def guardarnovedad():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idobjeto = request.form['idobjeto']
             documento = session['documento']
@@ -45,7 +45,7 @@ def guardarnovedad():
             foto.save("uploads/" + fotot)
 
             misNovedades.agregarNovedad([idobjeto, documento, tipo, fecha, descripcion, fotot])
-            return redirect('/Correcto')
+            return redirect('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -56,7 +56,7 @@ def novedades():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.consultarNovedades()
             return render_template('lideres/novedades/novedades.html', res=resultado)
@@ -70,7 +70,7 @@ def vermasNovedades(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.buscar(id)
             print(resultado)

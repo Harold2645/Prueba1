@@ -13,7 +13,7 @@ def consultaLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect ('/Correcto')
+            return redirect ('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misLiquidos.consultarliquidos()
             return render_template("lideres/liquidos/liquidos.html", res=resultado)
@@ -27,7 +27,7 @@ def consultalarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misLiquidos.todoslosliquidos()
             return render_template("lideres/liquidos/verLiquidos.html", res=resultado)
@@ -42,7 +42,7 @@ def agregarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasLiquidos()
             return render_template("lideres/liquidos/liquidosAg.html", categorias=categorias)
@@ -56,7 +56,7 @@ def guardarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento'] 
             idCategoria = request.form.get('id_categoria')
@@ -85,7 +85,7 @@ def borrarLiquidos(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             misLiquidos.borrar(idObjetos)
 
@@ -105,7 +105,7 @@ def editarLiquidos(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             Consu = misLiquidos.buscar(idObjeto)
             categorias = misCategorias.categoriasLiquidos()
@@ -120,7 +120,7 @@ def actualizarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/Correcto')
+            return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             idobjeto = request.form['idobjeto']
             nombre = request.form['nombre']
