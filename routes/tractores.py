@@ -116,7 +116,12 @@ def actualizarTractor():
             modelo = request.form['modelo']
             foto = request.files['fototrac']
             fechamodelo = request.form['fechamodelo']
-            activo = request.form['activo']
+
+            if len(request.form['activo']) == 0:
+                activo = 1
+            else:
+                 activo = request.form['activo']
+                 
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misTracores.modificar([idobjeto, categoria, foto1, marca, modelo, fechamodelo,activo])
