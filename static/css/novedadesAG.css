@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-image: url('https://vengyt.com/wp-content/uploads/2018/08/maxresdefault.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@ body {
     width: 450px; 
     margin-top: 16px;
     background-color: rgb(245, 245, 245); 
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px; 
     margin-left: 64%; 
@@ -52,7 +52,7 @@ textarea, input[type="file"] {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
@@ -62,17 +62,17 @@ textarea {
 
 button[type="submit"] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #00324D;
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #00324D;
 }
 
 /* Media Queries para Responsividad */

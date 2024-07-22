@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-image: url('https://mecaluxco.cdnwm.com/blog/img/zona-de-almacenaje-almacen-tradicional.1.0.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -20,7 +20,7 @@ body {
 
 form {
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 350px;
@@ -56,7 +56,7 @@ select {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #dddddd;
-    border-radius: 4px;
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
@@ -75,17 +75,17 @@ figure img {
 
 button[type="submit"] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #00324D;
     color: white;
     border: none;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #00324D;
 }
 
 a {
@@ -108,7 +108,7 @@ a.cancel-button {
     color: white;
     background-color: #d00000;
     padding: 8px 10px;
-    border-radius: 4px;
+    border-radius: 0px;
     text-decoration: none;
     font-size: 14px;
     width: 100%;

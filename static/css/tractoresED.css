@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://s1.1zoom.me/b5564/928/England_Fields_Sky_557992_1920x1080.jpg'); 
+    background-image: url('https://www.agrotecnico.co/fotos/Image/blog/10_1_633.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@ section {
     margin: 20px 0;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     right: 8%;
@@ -48,7 +48,7 @@ input[type="file"] {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
@@ -63,7 +63,7 @@ a.btn-cancelar {
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
     text-align: center;
@@ -72,12 +72,12 @@ a.btn-cancelar {
 }
 
 button[type="submit"].btn-guardar {
-    background-color: #4CAF50;
+    background-color: #00324D;
     color: white;
 }
 
 button[type="submit"].btn-guardar:hover {
-    background-color: #45a049;
+    background-color: #00324D;
 }
 
 a.btn-cancelar {

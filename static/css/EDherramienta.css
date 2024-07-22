@@ -15,7 +15,7 @@ body {
 
 form#agregar_herramienta {
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 350px;
@@ -50,7 +50,7 @@ form#agregar_herramienta select {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 0px;
     width: 100%;
 }
 
@@ -62,21 +62,21 @@ form#agregar_herramienta button {
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #28a745;
+    background-color: #00324D;
     border: none;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 form#agregar_herramienta button:hover {
-    background-color: #218838;
+    background-color: #00324D;
 }
 
 /* Estilos para los botones */
 .btn-guardar {
     width: 100%; 
-    background-color: #28a745;
+    background-color: #00324D;
     color: #fff;
     padding: 10px;
     font-size: 16px;
@@ -90,7 +90,7 @@ form#agregar_herramienta button:hover {
     color: white;
     background-color: #d00000;
     padding: 8px 10px;
-    border-radius: 4px;
+    border-radius: 0px;
     text-decoration: none;
     font-size: 14px;
     width: 100%; 
@@ -103,7 +103,7 @@ section {
     max-width: 450px;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 76%; 
     
@@ -131,7 +131,7 @@ input[type="file"] {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 0px;
     width: 100%;
 }
 
@@ -154,7 +154,7 @@ input[type="file"] {
 button[type="submit"],
 a {
     border: none;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -162,7 +162,7 @@ a {
 }
 
 button[type="submit"]:hover {
-    background-color: #218838;
+    background-color:#00324D;
 }
 
 /* Media Queries para Responsividad */

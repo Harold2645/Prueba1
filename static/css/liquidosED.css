@@ -1,6 +1,6 @@
 
 body {
-    background-image: url('https://s1.1zoom.me/b5050/165/Creative_Tools_wrenches_iron_nut_Nest_Bokeh_593029_1366x768.jpg'); 
+    background-image: url('https://ldhsa.com/wp-content/uploads/2023/07/servicio-almacenamiento-productos-inflamables-1.jpg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@ body {
 section {
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 0px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 350px;
     max-width: 100%; 
@@ -46,7 +46,7 @@ section select {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 0px;
     box-sizing: border-box;
 }
 
@@ -56,17 +56,17 @@ section button[type="submit"] {
     margin-bottom: 10px;
     text-align: center;
     display: block;
-    background-color: #4CAF50;
+    background-color: #00324D;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
 
 section button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #00324D;
 }
 
 
@@ -77,7 +77,7 @@ section a.cancel-button {
     color: white;
     background-color: #d00000;
     padding: 8px 10px;
-    border-radius: 4px;
+    border-radius: 0px;
     text-decoration: none;
     font-size: 14px;
     width: 100%;
@@ -96,7 +96,7 @@ section figure.img-thumbnail {
 }
 
 section figure.img-thumbnail img {
-    border-radius: 5px;
+    border-radius: 0px;
     border: 1px solid #ccc;
 }
 

@@ -12,7 +12,7 @@ body {
 
 form#agregar_herramienta {
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 350px;
@@ -47,7 +47,7 @@ form#agregar_herramienta select {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 0px;
     width: 100%;
 }
 
@@ -59,17 +59,17 @@ form#agregar_herramienta button {
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #28a745;
+    background-color: #00324D;
     width: 100%;
     border: none;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-form#agregar_herramienta button:hover {
+/* form#agregar_herramienta button:hover {
     background-color: #218838;
-}
+} */
 
 /* Media Queries para Responsividad */
 @media (max-width: 1300px) {
