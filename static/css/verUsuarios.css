@@ -39,6 +39,11 @@ tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+
+th, td {
+    padding: 8px;
+    text-align: center; /* Centra el contenido en las celdas */
+}
 .acciones{
     color: #39A900;
     display: flex;
