@@ -28,8 +28,8 @@ body{
     header#header{
         display: flex;
         align-items: center;
+        justify-content: space-between;
         grid-area: header;
-        position: relative;
     }
     #menu_cont{
         display: flex;
@@ -38,9 +38,9 @@ body{
         position: absolute;
         right: 0px;
         top: 0px;
-        height: 100vh;
-        width: 160px;
-        box-shadow: 0 0 0 90vmax rgba(0, 0, 0, 0.5);
+        min-height: 100vh;
+        width: 40%;
+        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
         background-color: #39A900;
         display: none;
         z-index: 2;
@@ -208,10 +208,12 @@ body{
 @media only screen and (min-width: 1000px){
     #menu_cont{
         display: block;
+        align-items: center;
         background: none;
         box-shadow: none;
-        height: 100px;
         width: 100%;
+        min-height: 0px;
+        margin-top: 5px;
     }
     #cont-disparador, #cont-close{
         display: none;
@@ -219,5 +221,6 @@ body{
     .interior{
         display: flex;
         justify-content: flex-end;
+        align-items: center;
     }
 }

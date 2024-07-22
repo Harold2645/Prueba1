@@ -18,14 +18,14 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
+} 
 thead {
     background-color: #39A900;
     color: white;
 }
 thead th {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 2px solid #2E8B00;
 }
 tbody tr:nth-child(even) {
@@ -38,28 +38,24 @@ tbody td, tbody th {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-tbody td a {
-    color: #36A900;
-    text-decoration: none;
-    font-weight: bold;
+
+.acciones{
+    color: #39A900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
 }
-tbody td a:hover {
-    color: #2E8B00;
-    text-decoration: underline;
-}
+    .acciones i{
+        font-size: 20px;
+    }
 
 /* Estilo para el botón de acciones */
 tbody td a[href*="aceptarPedido"]::before,
-tbody td a[href*="rechazar"]::before,
-tbody td a[href*="entregar"]::before,
-tbody td a[href*="devolver"]::before,
 tbody td a[href*="aceptarUsu"]::before {
-    content: "\2713 "; 
     color: #36A900;
-}
-tbody td a[href*="rechazar"]::before {
-    content: "\2717 "; 
-    color: #D9534F;
 }
 
 /* Responsividad */

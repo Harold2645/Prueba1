@@ -29,12 +29,6 @@ body, html{
     margin: 0;
     padding: 0;
 }
-
-#header_logo{
-    display: flex;
-    align-items: center;
-    color: white;
-}
 section#cont_mayor{
     display: flex;
     align-items: center;
@@ -49,7 +43,6 @@ div#cont_paneles{
 }
 
 article#reservas{
-    padding: 10px;
     border: none;
     background-color: white;
     box-shadow:
@@ -71,6 +64,7 @@ article#reservas{
     align-items: center;
     gap: 2px;
     justify-content: space-between;
+    padding: 0px 10px;
 }
     div#cont_bot{
         display: flex;
@@ -106,7 +100,7 @@ article#reservas{
             }
         div#cont_bot a i p#tooltip2{
             position: absolute;
-            bottom: -11.5px;
+            bottom: -12px;
             right: 37px;
             background-color: #00324D;
         }
@@ -129,25 +123,20 @@ article#reservas{
         justify-content: center;
         
     }
-    #cont_h5_herra{
+    #cont_h5{
         font-size: 15px;
-        height: 110px;
-        overflow-y: auto;
-    }
-    #cont_h5_insu{
-        font-size: 15px;
-        height: 150px;
+        height: 120px;
         overflow-y: auto;
     }
     #cont_link{
-        margin: 10px 0 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 10px;
     }
         #cont-link, .btnmosatwo{
            background-color: #00324D;
-           padding: 11px;
+           padding: 12.2px;
            font-size: 12px;
            text-align: center;
            color: white;
@@ -163,7 +152,7 @@ article#reservas{
         font-size: 20px;
         background-color: #b8b8b8;
         color: red;
-        padding: 8px;
+        padding: 9px;
         border-radius: 10px;
         transition: all 0.1s;
         position: relative;
@@ -173,13 +162,13 @@ article#reservas{
         }
     div#cont_link a i p#tooltip3{
         position: absolute;
-        top: -14px;
-        font-size: 14px;
+        top: -12px;
+        font-size: 12px;
         text-align: center;
         width: 85px;
         border-radius: 0px 10px 10px 0px;
         left: 36px;
-        padding: 11px;
+        padding: 13px;
         text-align: center;
         background-color: #b8b8b8;
         opacity: 0;
@@ -194,6 +183,7 @@ article#reservas{
 
     div#cont_paneles{
         grid-template-columns: repeat(2, 270px);
+        gap: 35px;
     }
     
 }
@@ -201,5 +191,6 @@ article#reservas{
 @media only screen and (min-width: 1366px){
     div#cont_paneles{
         grid-template-columns: repeat(3, 270px);
+        gap: 40px;
     }
 }

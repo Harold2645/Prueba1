@@ -49,7 +49,6 @@ div#cont_paneles{
 }
 
 article#reservas{
-    padding: 10px;
     border: none;
     background-color: white;
     box-shadow:
@@ -65,15 +64,22 @@ article#reservas{
         width: 100%;
         height: 100%;
     }
+#cont-i{
+    text-align: center;
+}
+#cont_bajo{
+    padding: 10px;
+    text-align: center;
+}
 #cont_h5{
     font-size: 14px;
     height: 120px;
     overflow-y: auto;
 }
 #cont_link{
-    margin: 15px 0 0;
+    padding: 0px 10px 12px;
 }
-    #cont-link, .btnmosatwo{
+    #cont_link .btnmosatwo{
        background-color: #00324D;
        padding: 10px;
        text-align: center;
@@ -81,7 +87,7 @@ article#reservas{
        border-radius: 10px;
     }
 
-        #cont-link, .btnmosatwo:hover{
+        #cont_link .btnmosatwo:hover{
             background-color: #00111a;
         }
 
@@ -89,6 +95,7 @@ article#reservas{
 
     div#cont_paneles{
         grid-template-columns: repeat(2, 270px);
+        gap: 35px;
     }
     
 }
@@ -96,5 +103,6 @@ article#reservas{
 @media only screen and (min-width: 1366px){
     div#cont_paneles{
         grid-template-columns: repeat(3, 270px);
+        gap: 40px;
     }
 }

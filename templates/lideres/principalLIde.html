@@ -14,8 +14,9 @@
 
         <header id="header">
 
-            <figure>
+            <figure id="header_logo">
                 <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+                <h2>Prestamos pendientes</h2>
             </figure>
         
             <button id="cont-disparador">
@@ -110,10 +111,10 @@
                 
             </div>
         </header>
+        
+        <main>
 
         <div id="prestamos">
-            <h4>Prestamos pendientes</h4>
-            
             <table>
                 <thead>
                     <tr>
@@ -159,12 +160,12 @@
                     </td>
                     <td data-label="Acciones">
                         {% if prest[7] == 'S' %}
-                            <a href="/aceptarPedido/{{prest[8]}}">Aceptar</a>
-                            <a href="/rechazar/{{prest[8]}}">Rechazar</a>
+                            <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a>
+                            <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
                         {% elif prest[7] == 'A' %}
-                            <a href="/prestado/{{prest[8]}}">Entregar</a>
+                            <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
                         {% elif prest[7] == 'P' %}
-                            <a href="/devolver/{{prest[8]}}">Devolver</a>
+                            <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
                         {% else %}
                             &nbsp;
                         {% endif %}
@@ -193,7 +194,7 @@
                 <tbody>
                 {% for usua in usu[:5] %}
                 <tr>
-                    <td data-label="Documento"><a href="/perfil/{{ usua[0] }}">{{ usua[0] }}</a></td>                    
+                    <td data-label="Documento"><a href="/perfil/{{ usua[0] }}"class="acciones">{{ usua[0] }}</a></td>                    
                     <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
                     <td data-label="Celular">{{usua[3]}}</td>
                     <td data-label="Rol">{{usua[5]}}</td>
@@ -205,7 +206,7 @@
                         {% endif %}
                     </td>
                     <td data-label="Acciones">
-                        <a href="/aceptarUsu/{{usua[0]}}">Aceptar</a>
+                        <a href="/aceptarUsu/{{usua[0]}}"class="acciones">Aceptar</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -213,5 +214,6 @@
                 <tbody>
             </table>
         </div>
+        </main>
 </body>
 </html>

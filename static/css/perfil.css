@@ -24,7 +24,7 @@ section#cuerpo h2 {
 }
 
 table {
-    width: 50%;
+    width: 100%;
     border-collapse: collapse;
 }
 table:hover{
@@ -45,4 +45,10 @@ th {
     background-color: rgb(185, 185, 185);
     padding: 20px;
     width: 200px;
+}
+
+@media only screen and (min-width: 1366px){
+    table {
+        width: 60%;
+    }
 }

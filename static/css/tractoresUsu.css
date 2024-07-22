@@ -31,13 +31,6 @@ body, html{
     margin: 0;
     padding: 0;
 }
-
-#header_logo{
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
 section#cont_mayor{
     display: flex;
     align-items: center;
@@ -52,7 +45,6 @@ div#cont_paneles{
 }
 
 article#reservas{
-    padding: 10px;
     border: none;
     background-color: white;
     box-shadow:
@@ -73,6 +65,7 @@ article#reservas{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0px 10px;
 }
     div#cont_bot{
         display: flex;
@@ -85,7 +78,7 @@ article#reservas{
         color: white;
         padding: 8px;
         border-radius: 10px;
-        transition: all 0.1s;
+        transition: all 0.2s;
         position: relative;
     }
         div#cont_bot a i p#tooltip1, p#tooltip2{
@@ -98,7 +91,7 @@ article#reservas{
         div#cont_bot a i p#tooltip1{
             position: absolute;
             top: -12px;
-            right: 38px;
+            right: 35px;
             width: 110px;
             text-align: center;
             background-color: #00324D;
@@ -139,29 +132,28 @@ article#reservas{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 5px 0px 0px;
+    padding: 0 10px 10px;
 }
-    #cont-link, .btnmosatwo{
+    #cont_link .btnmosatwo{
        background-color: #00324D;
-       padding: 11px;
+       padding: 12.2px;
        font-size: 12px;
        border-radius: 10px;
        color: white;
        text-align: center;
-       transition: all 0.1s;
-       cursor: pointer;
+       transition: all 0.2s;
     }
 
-        #cont-link, .btnmosatwo:hover{
+        #cont_link .btnmosatwo:hover{
             background-color: #00111a;
         }
     #cont_link a i{
-        font-size: 20px;
+        font-size: 22px;
         background-color: #b8b8b8;
         color: red;
         padding: 8px;
         border-radius: 10px;
-        transition: all 0.1s;
+        transition: all 0.2s;
         position: relative;
     }
         #cont_link a i:hover{
@@ -169,13 +161,13 @@ article#reservas{
         }
     div#cont_link a i p#tooltip3{
         position: absolute;
-        top: -14px;
-        font-size: 14px;
+        top: -12px;
+        font-size: 12px;
         text-align: center;
         width: 85px;
         border-radius: 0px 10px 10px 0px;
         left: 36px;
-        padding: 11px;
+        padding: 13px;
         text-align: center;
         background-color: #b8b8b8;
         opacity: 0;
@@ -198,6 +190,6 @@ article#reservas{
 @media only screen and (min-width: 1280px){
     div#cont_paneles{
         grid-template-columns: repeat(3, 270px);
-        gap: 45px;
+        gap: 40px;
     }
 }

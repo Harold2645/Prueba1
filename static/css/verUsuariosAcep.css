@@ -49,15 +49,32 @@ tbody th {
 tbody td {
     text-align: center;
 }
-tbody td a {
-    color: #36A900;
-    text-decoration: none;
-    font-weight: bold;
-}
-tbody td a:hover {
-    color: #2E8B00;
-    text-decoration: underline;
-}
+    .acciones{
+        color: #39A900;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+    }
+        .acciones i{
+            font-size: 20px;
+        }
+    
+    #btn_delete{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px;
+        margin: 25px 45px 10px 5px;
+        border-radius: 10px;
+        color: red;
+    }
+    
+    #btn_delete i{
+        font-size: 20px;
+    }
 
 /* Responsividad */
 @media (max-width: 768px) {

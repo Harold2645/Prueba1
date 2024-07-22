@@ -14,8 +14,9 @@
     
 <header id="header">
 
-    <figure>
+    <figure id="header_logo">
         <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        <h2>{{titulo}}</h2>
     </figure>
 
     <button id="cont-disparador">
@@ -109,7 +110,6 @@
 </header>
 
 <main id="prestamos">
-    <h4>{{titulo}}</h4>
     <table>
         <thead>
             <tr>
@@ -155,14 +155,14 @@
             </td>
             <td data-label="Acciones">
                 {% if prest[7] == 'S' %}
-                    <a href="/aceptarPedido/{{prest[8]}}">Aceptar</a> |
-                    <a href="/rechazar/{{prest[8]}}">Rechazar</a>
+                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
+                    <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
                 {% elif prest[7] == 'A' %}
-                    <a href="/prestado/{{prest[8]}}">Entregar</a>
+                    <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
                 {% elif prest[7] == 'P' %}
-                    <a href="/devolver/{{prest[8]}}">Devolver</a>
+                    <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
                 {% elif prest[7] == 'D' %}
-                    <a href="/vermasServicios/{{prest[8]}}">Ver mas</a>
+                    <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
                 {% else %}
                     &nbsp;
                 {% endif %}

@@ -37,15 +37,31 @@ tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-tbody td a {
-    color: #36A900;
-    text-decoration: none;
-    font-weight: bold;
+.acciones{
+    color: #39A900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
 }
-tbody td a {
-    color: #2E8B00;
-    text-decoration: underline;
-    margin: 10px;
+    .acciones i{
+        font-size: 20px;
+    }
+
+#btn_delete{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    margin: 25px 45px 10px 5px;
+    border-radius: 10px;
+    color: red;
+}
+
+#btn_delete i{
+    font-size: 20px;
 }
 tbody td figure {
     margin: 0;
@@ -55,20 +71,10 @@ tbody td figure img {
     max-width: 100px;
     max-height: 100px;
     object-fit: cover;
-}
+} 
 /* Estilo para el botón de editar y eliminar */
-tbody td a[href*="editarConsumibles"]::before {
-    content: "\270E ";
-    color: #36A900;
-}
-tbody td a[href*="borrarConsumibles"]::before {
-    content: "\1F5D1 ";
-    color: #D9534F;
-}
-tbody td a[href*="agregarnovedad"]::before {
-    content: "\002B";
-    color: #36A900;
-}
+
+
 /* Responsividad */
 @media (max-width: 768px) {
     thead {

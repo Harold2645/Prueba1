@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../../static/css/header.css">
     <link rel="stylesheet" href="../../../static/css/verTractores.css">
     <script src="../../../static/js/menu.js"></script>
@@ -14,8 +15,9 @@
 
 <header id="header">
 
-    <figure>
+    <figure id="header_logo">
         <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        <h2 id="titulo">Tractores disponibles</h2>
     </figure>
 
     <button id="cont-disparador">
@@ -149,10 +151,10 @@
                         {% endif %}
                     </td>
                     <td data-label="Acciones">
-                        <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}">Editar</a>
-                        <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}">Eliminar</a>                        
-                        <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')" href="hojavidatractores/{{trac[2]}}">Hoja de vida</a>
-                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}">Agregar novedad</a>
+                        <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}" class="acciones"><i class='bx bx-edit'></i>Editar</a>                        
+                        <a onclick="return confirm('¿Desea ver la hoja de vida a este tractor?')" href="hojavidatractores/{{trac[2]}}" class="acciones"><i class="lni lni-clipboard"></i>Hoja de vida</a>
+                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}" class="acciones"><i class="lni lni-circle-plus"></i>Agregar novedad</a>
+                        <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}" id="btn_delete"><i class='bx bx-trash' id="delete"></i>Eliminar</a>
                     </td>
                 </tr>
             {% endfor %}

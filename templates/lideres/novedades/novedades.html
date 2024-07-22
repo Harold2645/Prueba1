@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
+    <link rel="stylesheet" href="../../../static/css/tNovedades.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Novedades</title>
 </head>
@@ -16,6 +17,7 @@
 
     <figure>
         <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        <h2 id="titulo">Novedades</h2>
     </figure>
 
     <button id="cont-disparador">
@@ -111,37 +113,41 @@
     </div>
 </header>
 
-    <main id="cuerpo">
-        <table>
-            <thead>
-                <tr>
-
-                    <th data-label="Nombre del objeto">Nombre del objeto</th>                    
-                    <th data-label="Fecha">Fecha</th>                    
-                    <th data-label="Descripcion">Descripcion</th>
-                    <th data-label="Tipo">Tipo</th>
-                    <th data-label="Foto">Foto</th>
-                    <th data-label="Quien la creo">Quien la creo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for nove in res %}
-                <tr>
-                    <th>{{nove[0]}}</th>
-                    <th>{{nove[3]}}</th>
-                    <th>{{nove[4]}}</th>
-                    <th>{{nove[6]}}</th>
-                    <th>
-                        <figure class="img-thumbnail" >
-                            <img width="100" height="100"  src="../../../uploads/{{nove[5]}}" alt="{{nove[0]}}">
-                        </figure>
-                    </th>
-                    <th><a href="/perfil/{{ nove[2] }}">{{ nove[2] }}</a></th>
-                    <th><a href="/vermasNovedades/{{nove[7]}}">Ver mas</a></th>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
+<main id="cuerpo">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del objeto</th>                    
+                <th>Fecha</th>                    
+                <th>Descripcion</th>
+                <th>Tipo</th>
+                <th>Foto</th>
+                <th>Quien la creo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nove in res %}
+            <tr>
+                <td data-label="Nombre del objeto">{{nove[0]}}</td>
+                <td data-label="Fecha">{{nove[3]}}</td>
+                <td data-label="Descripcion">{{nove[4]}}</td>
+                <td data-label="Tipo">{{nove[6]}}</td>
+                <td data-label="Foto">
+                    <figure class="img-thumbnail">
+                        <img width="100" height="100" src="../../../uploads/{{nove[5]}}" alt="{{nove[0]}}">
+                    </figure>
+                </td>
+                <td data-label="Quien la creo">
+                    <a href="/perfil/{{ nove[2] }}">{{ nove[2] }}</a>
+                </td>
+                <td data-label="Acciones">
+                    <a href="/vermasNovedades/{{nove[7]}}"class="acciones">Ver más</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
