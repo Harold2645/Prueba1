@@ -60,27 +60,6 @@ tbody td a {
     margin: 10px;
 }
 
-/* Estilo para el botón de editar,eliminar y hoja de vida */
-tbody td a[href*="editarTractor"]::before {
-    content: "\270E ";
-    color: #36A900;
-}
-
-tbody td a[href*="borrarTractor"]::before {
-    content: "\1F5D1 ";
-    color: #D9534F;
-}
-tbody td a[href*="hojavidatractores"]::before {
-    content: "\1F4C4";
-    color: #36A900;
-}
-tbody td a[href*="agregarnovedad"]::before {
-    content: "\002B";
-    color: #36A900;
-}
-
-
-
 /* Responsividad */
 @media (max-width: 768px) {
     thead {
