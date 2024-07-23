@@ -1,0 +1,110 @@
+body {
+    background-image: url('../img/pedido.jpeg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+form#Pedir #form_title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form#Pedir #form_title h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+#cuerpo {
+    display: flex;
+    justify-content: flex-end; 
+    padding: 20px;
+}
+
+form#Pedir {
+    background-color: #ffffff;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+form#Pedir h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+form#Pedir h4 {
+    text-align: center;
+    color: #ff4d4d; 
+    margin-bottom: 20px;
+}
+
+form#Pedir label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555555;
+    font-weight: bold;
+}
+
+form#Pedir input[type="text"],
+form#Pedir input[type="number"],
+form#Pedir input[type="date"],
+form#Pedir select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+form#Pedir button[type="submit"] {
+    width: 100%;
+    background-color: #00324D; 
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+form#Pedir button[type="submit"]:hover {
+    background-color: #00324D; 
+}
+
+@media (max-width: 1300px) {
+    #cuerpo {
+        padding: 20px;
+    }
+    
+    form#Pedir {
+        width: 80%;
+        margin: 0 auto; 
+    }
+}
+
+@media (max-width: 600px) {
+    form#Pedir {
+        width: 90%;
+        padding: 15px;
+    }
+
+    form#Pedir h2 {
+        font-size: 1.5em;
+    }
+
+    form#Pedir h4 {
+        font-size: 1.2em;
+    }
+}
