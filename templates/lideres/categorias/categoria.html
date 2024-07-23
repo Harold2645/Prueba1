@@ -131,7 +131,7 @@
             <th data-label="Codigo SENA">{{cate[1]}}</th>
             <th data-label="Tipo">{{cate[2]}}</th>
             <th data-label="Descripcion">{{cate[3]}}</th>
-            <th data-label="Creador">{{cate[5]}}</th>
+            <th data-label="Creador"> <a href="/perfil/{{ cate[5] }}">{{ cate[7] }} {{cate[8]}}</a> </th>
 
             {% if cate[6] == 0 %}
                 <td data-label="Estado">Inactivo</td>

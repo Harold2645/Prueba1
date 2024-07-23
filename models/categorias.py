@@ -6,7 +6,7 @@ class Categorias:
         self.cursor = self.conexion.cursor()
         
     def consultarCategorias(self):
-        sql = "SELECT * FROM categorias"
+        sql = "SELECT c.idcategoria, c.nombre, c.tipo, c.descripcion, c.fecha, c.creador, c.activo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM categorias AS c INNER JOIN usuarios AS u ON c.creador = u.documento;"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

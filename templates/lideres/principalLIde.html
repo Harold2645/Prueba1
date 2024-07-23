@@ -131,40 +131,40 @@
                 <tbody>
                 {% for prest in trac[:5] %}
                 <tr>
-                    <td data-label="Nombre">{{prest[0]}} {{prest[1]}}</td>
-                    <td data-label="Codigo sena">{{prest[2]}}</td>
-                    <td data-label="Labor">{{prest[3]}}</td>
-                    <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[4] }}</a></td> 
+                    <td data-label="Nombre">{{prest[0]}}</td>
+                    <td data-label="Codigo sena">{{prest[1]}}</td>
+                    <td data-label="Labor">{{prest[2]}}</td>
+                    <td data-label="Quien lo pide"><a href="/perfil/{{ prest[3] }}">{{ prest[9] }} {{prest[10]}}</a></td> 
                     <td data-label="Ficha">
-                        {% if prest[5] == '0' %}
+                        {% if prest[4] == '0' %}
                             No hay
                         {% else %}
-                            {{prest[5]}}
+                            {{prest[4]}}
                         {% endif %}
                     </td>
-                    <td data-label="Fecha">{{prest[6]}}</td>
+                    <td data-label="Fecha">{{prest[5]}}</td>
                     <td data-label="Estado">
-                        {% if prest[7] == 'S' %}
+                        {% if prest[6] == 'S' %}
                             Solicitado
-                        {% elif prest[7] == 'A' %}
+                        {% elif prest[6] == 'A' %}
                             Aceptado
-                        {% elif prest[7] == 'P' %}
+                        {% elif prest[6] == 'P' %}
                             Prestado
-                        {% elif prest[7] == 'D' %}
+                        {% elif prest[6] == 'D' %}
                             Devuelto
-                        {% elif prest[7] == 'R' %}
+                        {% elif prest[6] == 'R' %}
                             Rechazado
                         {% else %}
                             NO ESTA
                         {% endif %}
                     </td>
                     <td data-label="Acciones">
-                        {% if prest[7] == 'S' %}
+                        {% if prest[6] == 'S' %}
                             <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a>
                             <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
-                        {% elif prest[7] == 'A' %}
+                        {% elif prest[6] == 'A' %}
                             <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
-                        {% elif prest[7] == 'P' %}
+                        {% elif prest[6] == 'P' %}
                             <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
                         {% else %}
                             &nbsp;
