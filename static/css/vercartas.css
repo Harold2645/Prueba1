@@ -43,6 +43,7 @@ div#cont_paneles{
 }
 
 article#reservas{
+    padding: 10px;
     border: none;
     background-color: white;
     box-shadow:
@@ -64,7 +65,6 @@ article#reservas{
     align-items: center;
     gap: 2px;
     justify-content: space-between;
-    padding: 0px 10px;
 }
     div#cont_bot{
         display: flex;
@@ -132,7 +132,6 @@ article#reservas{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
     }
         #cont-link, .btnmosatwo{
            background-color: #00324D;

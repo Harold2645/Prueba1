@@ -158,7 +158,7 @@ def devolucion():
             foto.save("uploads/" + fotot)
             envio=[id,hora,descripcion,fotot]
             misServicios.devuelto(envio)
-            return redirect("/panel")
+            return redirect("/consultarTodosPedidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -183,14 +183,14 @@ def pedido():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/panel')
+            return redirect('/consultarTodosPedidos')
         elif rol == 'Admin' or rol == 'Practicante':
             id = request.form['idservicio']
             estadosalida = request.form['estado']
             encargado = session['documento']
             envio=[id,estadosalida,encargado]
             misServicios.prestado(envio)
-            return redirect("/panel")
+            return redirect("/consultarTodosPedidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -217,12 +217,11 @@ def prestamo():
             tipo = request.form['tipo']
             agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo]
             misServicios.pedir(agg)
-            return redirect("/panel")
+            return redirect("/consultarTodosPedidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-
 
 #Aceptar pedido 
 @app.route('/aceptarPedido/<id>')
@@ -230,10 +229,10 @@ def aceptarPedido(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/panel')
+            return redirect('/consultarTodosPedidos')
         elif rol == 'Admin' or rol == 'Practicante':
             misServicios.aceptarPrestamo(id)
-            return redirect('/panel')
+            return redirect('/consultarTodosPedidos')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -245,10 +244,10 @@ def rechazar(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return redirect('/panel')
+            return redirect('/consultarTodosPedidos')
         elif rol == 'Admin' or rol == 'Practicante':
             misServicios.rechazarPrestamo(id)
-            return redirect('/panel')
+            return redirect('/consultarTodosPedidos')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

@@ -49,6 +49,7 @@ div#cont_paneles{
 }
 
 article#reservas{
+    padding: 10px;
     border: none;
     background-color: white;
     box-shadow:
@@ -66,7 +67,6 @@ article#reservas{
     }
 #cont_bajo{
     text-align: center;
-    padding: 0px 10px;
 }
 #cont-i{
     text-align: center;
@@ -75,9 +75,6 @@ article#reservas{
     font-size: 14px;
     height: 100px;
     overflow-y: auto;
-}
-#cont_link{
-    padding: 10px;
 }
     #cont_link .btnmosatwo{
        background-color: #00324D;
