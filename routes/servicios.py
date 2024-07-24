@@ -45,7 +45,7 @@ def consultarAceptado():
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarAceptado()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Falta entregar')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Por Entregar')
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../../../static/css/tractoresED.css">
-<link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
-<link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
-<link rel="stylesheet" href="../../../static/css/header.css">
-<script src="../../../static/js/menu.js"></script>
-<title>Editar Tractor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <script src="../static/js/menu.js"></script>
+    <title>Document</title>
 </head>
 <body>
 
-
+    Header de admin 
 <header id="header">
 
     <figure id="header_logo">
         <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
-        <h2 id="titulo">Tractores</h2>
+        <h2 id="titulo">Agregar Prestamos</h2>
     </figure>
 
 
@@ -80,9 +77,9 @@
                 </li>
 
                 <li>
-                    <a href="#"  class="btn-n01" id="btn_servicios">Ordenes</a>
+                    <a href="#"  class="btn-n01" id="btn_servicios">Servicios</a>
                     <ul id="menu_servicios" class="menu-n02">
-                        <li><a href="/consultarTodosPedidos" class="btn-n02">Todas las Ordenes</a></li>
+                        <li><a href="/consultarTodosPedidos" class="btn-n02">Todos los Pedidos</a></li>
                         <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
                         <li><a href="/consultarAceptado" class="btn-n02">Por Entregar</a></li>
                         <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
@@ -111,60 +108,32 @@
     </div>
 </header>
 
-<main>
+header de instructor 
 
+<header id="header">
+    <figure id="header_logo">
+        <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+        <h2 id="titulo">Herramientas</h2>
+    </figure>
+    <button id="cont-disparador">
+        <i class="lni lni-menu" id="disparador"></i>
+    </button>
+    <div id="menu_cont">
+        <button id="cont-close">
+            <i class="lni lni-close" id="close"></i>
+        </button>
+        <div class="menu">
+            <ul class="interior">
+                <li><a href="/panel">Inicio</a></li>
+                <li><a href="/tractores">Tractores</a></li>
+                <li><a href="/consultarConsumibles">Insumos</a></li>
+                <li><a href="/mispedidos">Mis pedidos</a></li>
+                <li><a href="/perfilPropio">Mi perfil</a></li>
+                <li><a href="/">Cerrar Sesion</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
 
-    <section>
-        <form action="/actualizarTractor" method="post" enctype="multipart/form-data">
-            <h2>Editar Tractor</h2>
-    
-            <label for="id_tractor">Codigo sena</label>
-            <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[3]}}" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" required>
-    
-            <label for="marca">Marca:</label>
-            <input type="text" name="marca" id="marca" value="{{tractor[0]}}" placeholder="Marca del tractor" pattern="[A-Za-z\s*]{5,15}" maxlength="15" minlength="5" required title="Debe poner la marca del tractor" tabindex="2"  required autofocus>
-    
-            <label for="modelo">Modelo</label>
-            <input type="text" name="modelo" id="modelo" value="{{tractor[1]}}" placeholder="Modelo del tractor" pattern="[A-Za-z0-9\s*]{4,15}" maxlength="15" minlength="10" required title="Debe poner el modelo del tractor" tabindex="3" required>
-    
-            <label for="fechamodelo">Año</label>
-            <input type="text" name="fechamodelo" id="fechamodelo" value="{{tractor[2]}}" placeholder="Año en que salio el tractor" pattern="[0-9\s*]{4}" maxlength="4" minlength="4" required title="Debe poner el año en el que salio el tractor" tabindex="4" required>
-
-            <label for="id_categoria">Categoria:</label>
-            <select name="id_categoria" id="id_categoria" value="{{tractor[1]}}" required tabindex="5">
-                <option value="{{tractor[7]}}">{{tractor[8]}}</option>
-                {% for categoria in categorias %}
-                <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
-                {% endfor %}
-            </select>
-    
-            <label for="fototrac">Foto:</label>
-            <input type="file" name="fototrac" id="fototrac" tabindex="6">
-            <input type="hidden" name="foto1" value="{{tractor[5]}}">
-    
-            {% if tractor[6] == '0' %}
-                <label for="activo">Activar</label>
-                <select name="activo" id="activo" required tabindex="7">
-                    <option value="0">Inactivo</option>
-                    <option value="1">Activo</option>
-                </select>
-            {% else %}
-                <input type="hidden" name="activo" value="{{tractor[6]}}">
-            {% endif %}
-    
-            <figure class="img-thumbnail">
-                <img width="100" height="100" src="../../../uploads/{{tractor[5]}}" alt="{{tractor[0]}} {{tractor[1]}}">
-            </figure>
-    
-            <div class="button-container">
-                <button type="submit" class="btn-guardar">Guardar</button>
-                <a href="/tractores" class="btn-cancelar">Cancelar</a>
-            </div>
-    
-        </form>
-    </section>
-    
-
-</main>
 </body>
 </html>

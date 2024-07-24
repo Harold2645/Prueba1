@@ -12,13 +12,16 @@ body {
 form {
     background-color: #f5f5f5;
     padding: 20px;
-    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%; /* Ancho del formulario */
     max-width: 350px; /* Ancho máximo del formulario */
     margin: 20px auto; /* Centrar el formulario horizontalmente */
     margin-right: 5%;
 }
+#titular{
+    display: flex;
+    justify-content: center;
+}
+
 
 label {
     display: block;
