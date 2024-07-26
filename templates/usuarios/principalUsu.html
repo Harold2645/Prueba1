@@ -16,7 +16,7 @@
             <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
         </figure>
         <button id="cont-disparador">
-            <i class="lni lni-menu" id="disparador"></i>
+            <i class="lni lni-arrow-right-circle" id="disparador"></i>
         </button>
         <div id="menu_cont">
             <button id="cont-close">
@@ -24,69 +24,63 @@
             </button>
             <div class="menu">
                 <ul class="interior">
-                    <li><a href="/mispedidos">Mis pedidos</a></li>
-                    <li><a href="/perfilPropio">Mi perfil</a></li>
-                    <li><a href="/">Cerrar Sesion</a></li>
+                    <li><a href="/mispedidos"><i class="lni lni-text-align-right"></i>Mis pedidos</a></li>
+                    <li><a href="/perfilPropio"><i class="lni lni-user"></i>Mi perfil</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/"><i class="lni lni-exit"></i>Cerrar Sesion</a></li>
                 </ul>
             </div>
         </div>
     </header>
-    <div class="tresuno">
+    <div id="tresuno">
 
-        <article id="art_tractores">
-            <h1 id="titulo1">TRACTORES</h1>
-            <figure id="foto_tractor">
-                <img src="../../static/img/tractor.png" alt="" id="foto_tractor">
+        <article class="mosaicos">
+            <h2 class="titulo">TRACTORES</h2>
+            <figure class="foto">
+                <img src="../../static/img/tractor.png" alt="" class="foto_interior">
             </figure>
-            <p id="parrafo_tractores">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus maxime,
-                in neque alias culpa quas minus animi sunt id sint. Eaque hic quam suscipit modi sequi id laboriosam
-                officiis temporibus.</p>
-            <button id="button_tractores"><a href="/tractores">Ver tractores</a></button>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/tractores" class="button">Ver tractores</a>
         </article>
 
 
         <!-- urbano aqui hago la funcion para mostrar solo lo que el usuario necesita -->
 
 
-        <article id="art_herramientas">
-            <h1 id="titulo2">HERRAMIENTAS</h1>
-            <figure id="foto_herramienta">
-                <img src="../../static/img/herramientas.png" alt="" id="foto_herramienta">
+        <article class="mosaicos">
+            <h2 class="titulo">HERRAMIENTAS</h2>
+            <figure class="foto">
+                <img src="../../static/img/herramientas.png" alt="" class="foto_interior">
             </figure>
-            <form action="/buscarHerramientas" method="post" id="form_herramientas" name="form_herramientas">
-                <input type="search" name="buscar_herramientas" id="buscar_herramientas" placeholder="Buscar..."
+            <form action="/buscarHerramientas" method="post" class="form_busqueda" name="form_herramientas">
+                <input type="search" name="buscar_herramientas" class="buscar" placeholder="Buscar..."
                     required>
-                <button type="submit" id="button_herramientas" name="">
+                <button type="submit" class="button_buscar" name="">
                     <i class="lni lni-keyword-research" id="icono_buscar"></i>
                 </button>
             </form>
-            <p id="parrafo_herramientas">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus
-                maxime, in neque alias culpa quas minus animi sunt id sint. Eaque hic quam suscipit modi sequi id
-                laboriosam officiis temporibus.</p>
-            <button id="button_tractores"><a href="/consultarHerramientas">Ver herramientas</a></button>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/consultarHerramientas" class="button">Ver herramientas</a>
         </article>
 
 
         <!-- urbano aqui hago la funcion para mostrar solo lo que el usuario necesita -->
-        <article id="art_insumos">
-            <h1 id="titulo3">INSUMOS</h1>
-            <figure id="foto_insumo">
-                <img src="../../static/img/logistica.png" alt="" id="foto_insumo">
+        <article class="mosaicos">
+            <h1 class="titulo">INSUMOS</h1>
+            <figure class="foto">
+                <img src="../../static/img/logistica.png" alt="" class="foto_interior">
             </figure>
-            <form action="/buscarLiquido" method="post" id="form_insumos" name="form_insumos">
-                <input type="search" name="buscar_insumo" id="buscar_insumo" placeholder="Buscar..." required>
-                <button type="submit" id="button_insumos" name="button_insumos">
+            <form action="/buscarLiquido" method="post" class="form_busqueda" name="form_insumos">
+                <input type="search" name="buscar_insumo" class="buscar" placeholder="Buscar..." required>
+                <button type="submit" class="button_buscar" name="button_insumos">
                     <i class="lni lni-keyword-research" id="icono_buscar"></i>
                 </button>
             </form>
-            <p id="parrafo_insumos">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut quas laborum unde iste.
-                Esse, similique possimus soluta necessitatibus a rem laborum sapiente aspernatur hic, assumenda nam
-                fugiat</p>
-            <button id="button_tractores"><a href="/consultarConsumibles">Ver insumos</a></button>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/consultarConsumibles" class="button">Ver insumos</a>
         </article>
     </div>
-    <footer id="footer">@Julphsoft2024</footer>
-    <script src="../../static/js/menuh.js"></script>
+    <script src="../../static/js/menu.js"></script>
 </body>
-
 </html>

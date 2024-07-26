@@ -10,217 +10,207 @@ figure{
     padding: 0;
     margin: 0;
 }
-html{
-    height: 100%;
+figure img{
+    width: 100px;
 }
 body{
     background: url(../img/fondo1.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    min-height: 100%;
-    display: grid;
-    grid-template: 
-        "header" 100px
-        "tresuno"
-        "footer" 50px;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
 }
-    header#header{
+header#header{
+   /*  backdrop-filter: blur(5px); */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+#cont-disparador{
+    background: none;
+    color: white;
+    border: none;
+}
+#disparador{
+    font-size: 30px;
+    cursor: pointer;
+}
+#menu_cont{
+    display: none;
+    position: absolute;
+    min-height: 100vh;
+    width: 250px;
+    top: 0px;
+    left: 0;
+    font-weight: bold;
+    backdrop-filter: blur(20px);
+    z-index: 3;
+    animation: slide-in 0.3s ease-in;
+}
+#menu_cont.visible{
+    display: block;
+}
+    @keyframes slide-in{
+        from{
+            transform: translateX(-50vw);
+        }
+        to{
+            transform: translateX(0);
+        }
+    }
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 92vh;
+    font-size: 18px;
+}
+.interior{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#menu_cont li{
+    list-style: none;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+#menu_cont li a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+#cont-close{
+    background: none;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+#close{
+    font-size: 20px;
+    cursor: pointer;
+}
+#tresuno{
+    display: grid;
+    height: 100%;
+    gap: 2px;
+    padding: 10px 0px;
+}
+
+article.mosaicos{
+    background: rgb(255, 255, 255, 0.9);
+    padding: 15px;
+    max-width: 340px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: center;
+}
+    article.mosaicos .titulo{
+        margin: 5px;
+    }
+    article.mosaicos figure img{
+        width: 55px;
+    }
+    article.mosaicos .parrafo{
+        height: 80px;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+    article.mosaicos .button{
+        background-color: #00324D;
+        color: white;
+        text-decoration: none;
+        padding: 8px;
+        border-radius: 5px;
+    }
+    article.mosaicos .form_busqueda{
+        padding-top: 8px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        grid-area: header;
+        gap: 5px;
+        position: relative;
+    }
+        article.mosaicos .form_busqueda input{
+            padding: 5px;
+            background: none;
+            border: 2px solid #00324D;
+            border-radius: 5px;
+        }
+        article.mosaicos .form_busqueda button{
+            background-color: #00324D;
+            color: white;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            border: none;
+        }
+
+
+@media only screen and (min-width: 768px){
+    figure img#logo_sena{
+        width: 150px;
+    }
+    header#header{
+        width: 300px;
+        backdrop-filter: blur(20px);
+        animation: slide-in 0.3s ease-in;
     }
     #menu_cont{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        min-height: 100vh;
-        width: 40%;
-        box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
-        background-color: #39A900;
-        display: none;
-        z-index: 2;
-    }
-    #menu_cont.visible{
         display: block;
+        position: static;
+        animation: none;
+        backdrop-filter: none;
+        min-height: 0vh;
     }
-    #cont-disparador{
-        position: absolute;
-        right: 20px;
-        background: none;
-        border: none;
-    }
-    #disparador{
-        color: white;
-        font-size: 30px;
+    .menu{
+        height: 83vh;
     }
     #cont-close{
-        background: none;
-        border: none;
-        padding: 10px;
-    }
-    #close{
-        color: white;
-    }
-    header li{
-        padding: 15px;
-        list-style-type: none;
-    }
-    header a{
-        text-decoration: none;
-        color: white;
-    }
-        #logo_sena{
-            width: 90px;
-            height: 80px;
-        }
-    .tresuno{
-        grid-area: tresuno;
-        display: grid;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        grid-template-columns: 300px;
-        gap: 0.5%;
-    }
-        article#art_tractores{
-            display: flex;
-            place-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-            border-radius: 5px;
-            /* box-shadow:
-            0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-            h1#titulo1{
-                font-size: clamp(5px, 5vw, 15px);
-            }
-                img#foto_tractor{
-                    width: 60px;
-                    height: 50px;
-                }
-            p#parrafo_tractores{
-                font-size: clamp(5px, 5vw, 12px);
-            }
-                button#button_tractores{
-                    font-size: clamp(5px, 5vw, 12px);
-                    padding: 7px;
-                    border-radius: 5px;
-                }
-        
-        article#art_herramientas{
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            place-content: center;
-            padding: 20px;
-            border-radius: 5px;
-            /* box-shadow:
-            0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-            h1#titulo2{
-                font-size: clamp(5px, 5vw, 15px);
-            }
-                img#foto_herramienta{
-                    width: 60px;
-                    height: 50px;
-                }
-                input#buscar_herramientas{
-                    font-size: clamp(5px, 5vw, 12px);
-                    border-radius: 5px;
-                    padding: 3px;
-                }
-                button#button_iconoh{
-                    font-size: clamp(5px, 5vw, 12px);
-                    border-radius: 5px;
-                    padding: 3px;
-                }
-            p#parrafo_herramientas{
-                font-size: clamp(5px, 5vw, 12px);
-            }
-        article#art_insumos{
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            place-content: center;
-            padding: 20px;
-            border-radius: 5px;
-            /* box-shadow:
-            0 0 0 2px rgb(255, 255, 255),
-            0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-            h1#titulo3{
-                font-size: clamp(5px, 5vw, 15px);
-            }
-                img#foto_insumo{
-                    width: 60px;
-                    height: 50px;
-                }
-                input#buscar_insumo{
-                    font-size: clamp(5px, 5vw, 12px);
-                    border-radius: 5px;
-                    padding: 3px;
-                }
-                button#button_iconoi{
-                    font-size: clamp(5px, 5vw, 12px);
-                    border-radius: 5px;
-                    padding: 3px;
-                }
-            p#parrafo_insumos{
-                font-size: clamp(5px, 5vw, 12px);
-            }
-
-        article button{
-            border: none;
-            background-color: #00324D;
-            font-size: clamp(5px, 5vw, 12px);
-            border-radius: 5px;
-            padding: 7px;
-        }
-            article button:hover{
-                background-color: #00111a;
-            }
-        article a{
-            text-decoration: none;
-            color: white;
-        }
-        #iconocolor{
-            color: white;
-            padding: 2px;
-        }
-        #icono_buscar{
-            color: white;
-            cursor: pointer;
-        }
-#footer{
-    color: white;
-    place-content: center;
-}
-@media only screen and (min-width: 1000px){
-    #menu_cont{
-        display: block;
-        align-items: center;
-        background: none;
-        box-shadow: none;
-        width: 100%;
-        min-height: 0px;
-        margin-top: 5px;
-    }
-    #cont-disparador, #cont-close{
         display: none;
     }
-    .interior{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+    #cont-disparador{
+        display: none;
+    }
+}
+@media only screen and (min-width: 1000px){
+    header#header{
+        width: 350px;
+    }
+}
+
+@media only screen and (max-height: 895px){
+    .parrafo{
+        display: none;
+    }
+    #tresuno{
+        gap: 2%;
+        overflow: hidden;
+        overflow-y: auto;
+        margin: 0;
+    }
+    article.mosaicos .button{
+        margin-top: 15px;
+    }
+    .menu{
+        height: 78vh; 
+    }
+}
+@media only screen and (min-height: 1000px){
+    #tresuno{
+        gap: 2%;
     }
 }
