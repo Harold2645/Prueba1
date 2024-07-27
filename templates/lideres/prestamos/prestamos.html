@@ -128,7 +128,7 @@
         <tbody>
         {% for prest in trac %}
         <tr>
-            <td data-label="Fecha">{{prest[6]}}</td>
+            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Codigo sena">{{prest[2]}}</td>
             <td data-label="Labor">{{prest[3]}}</td>

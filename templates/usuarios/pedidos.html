@@ -44,19 +44,18 @@
         <table>
             <thead>
                 <tr>
+                    <th>Fecha</th>
                     <th>Nombre</th>
-                    <th>Codigo sena</th>
                     <th>Labor</th>
                     <th>Ficha</th>    
-                    <th>Fecha</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
             {% for prest in trac %}
             <tr>
+                <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
                 <td data-label="Nombre">{{prest[0]}}</td>
-                <td data-label="Codigo sena">{{prest[2]}}</td>
                 <td data-label="Labor">{{prest[3]}}</td>
                 <td data-label="Ficha">
                     {% if prest[5] == '0' %}
@@ -65,7 +64,6 @@
                         {{prest[5]}}
                     {% endif %}
                 </td>
-                <td data-label="Fecha">{{prest[6]}}</td>
                 <td data-label="Estado">
                     {% if prest[7] == 'S' %}
                         Solicitado
