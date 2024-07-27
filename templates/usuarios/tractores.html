@@ -48,18 +48,18 @@
                     </div>
                     <div id="cont-bajo">
                         <div id="cont_h5">
-                            <h5>Id Tractor: {{trac[2]}}</h5>
+                            <h5>Codigo Sena: {{trac[2]}}</h5>
                             <h5>Categoria: {{trac[7]}} </h5>
                         
 
                         {% if trac[5] == '0' %}
-                            <h5>Disponibilidad: Ocupado</h5>
+                            <h5>Estado: Ocupado</h5>
                         {% elif trac[5] == '1' %}
-                            <h5>Disponibilidad: Disponible</h5>
+                            <h5>Estado: Disponible</h5>
                         {% elif trac[5] == '2' %}
-                            <h5>Disponibilidad: Prestado</h5>
+                            <h5>Estado: Prestado</h5>
                         {% else %}
-                        <h5>Disponibilidad: NO ESTA</h5>
+                        <h5>Estado: NO ESTA</h5>
                         {% endif %}
                         </div>
                     </div>

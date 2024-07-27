@@ -116,7 +116,7 @@
     <thead>
         <tr>
             <th data-label="Codigo SENA">Nombre</th>
-            <th data-label="Tipo">Tipo</th>
+            <th data-label="Uso">Uso</th>
             <th data-label="Descripcion">Descripción</th>
             <th data-label="Creador">Creador</th>
             <th data-label="Estado">Estado</th>
@@ -126,7 +126,7 @@
         {% for cate in res %}
         <tr>
             <th data-label="Codigo SENA">{{cate[1]}}</th>
-            <th data-label="Tipo">{{cate[2]}}</th>
+            <th data-label="Uso">{{cate[2]}}</th>
             <th data-label="Descripcion">{{cate[3]}}</th>
             <th data-label="Creador"> <a href="/perfil/{{ cate[5] }}">{{ cate[7] }} {{cate[8]}}</a> </th>
 
