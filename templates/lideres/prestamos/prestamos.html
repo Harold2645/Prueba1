@@ -113,62 +113,157 @@
 
 <main id="prestamos">
     <table>
+
+        <!-- {% if titulo == 'Todos los prestamos' %}
+            Aqui hay Todos los prestamos 
+        {% elif titulo == 'Solicitados' %}
+            Aqui hay Solicitudes
+        {% elif titulo == 'Por Entregar' %}
+            Aqui hay Por Entregar
+        {% elif titulo == 'Prestados' %}
+            Aqui hay Prestados 
+        {% elif titulo == 'Devueltos' %}
+            Aqui hay Devueltos
+        {% elif titulo == 'Rechazados' %}
+            Aqui hay Rechazados
+        {% else %}
+            No funciona
+        {% endif %} -->
+
         <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Nombre</th>
-                <th>Codigo sena</th>
-                <th>Labor</th>
-                <th>Quien lo pide</th>
-                <th>Ficha</th>    
-                <th>Estado</th>
-                <th>Acciones</th>
+                {% if titulo == 'Todos los prestamos' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Codigo sena</th>
+                    <th>Labor</th>
+                    <th>Quien lo pide</th>
+                    <th>Ficha</th>    
+                    <th>Estado</th>
+                    <th>Acciones</th>                
+                {% elif titulo == 'Solicitados' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Codigo sena</th>
+                    <th>Labor</th>
+                    <th>Quien lo pide</th>
+                    <th>Acciones</th>                  
+                {% elif titulo == 'Por Entregar' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Codigo sena</th>
+                    <th>Quien lo pide</th>
+                    <th>Acciones</th>
+                {% elif titulo == 'Prestados' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Quien lo pide</th>
+                    <th>Acciones</th>  
+                {% elif titulo == 'Devueltos' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Quien lo pide</th>
+                    <th>Acciones</th>  
+                {% elif titulo == 'Rechazados' %}
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Quien lo pide</th>
+                {% else %}
+                    No funciona
+                {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for prest in trac %}
         <tr>
+            {% if titulo == 'Todos los prestamos' %}
+                <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+                <td data-label="Nombre">{{prest[0]}}</td>
+                <td data-label="Codigo sena">{{prest[2]}}</td>
+                <td data-label="Labor">{{prest[3]}}</td>
+                <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
+                <td data-label="Ficha">
+                    {% if prest[5] == '0' %}
+                        No hay
+                    {% else %}
+                        {{prest[5]}}
+                    {% endif %}
+                </td>
+                <td data-label="Estado">
+                    {% if prest[7] == 'S' %}
+                        Solicitado
+                    {% elif prest[7] == 'A' %}
+                        Aceptado
+                    {% elif prest[7] == 'P' %}
+                        Prestado
+                    {% elif prest[7] == 'D' %}
+                        Devuelto
+                    {% elif prest[7] == 'R' %}
+                        Rechazado
+                    {% else %}
+                        NO ESTA
+                    {% endif %}
+                </td>
+                <td data-label="Acciones">
+                    {% if prest[7] == 'S' %}
+                        <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
+                        <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
+                    {% elif prest[7] == 'A' %}
+                        <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
+                    {% elif prest[7] == 'P' %}
+                        <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
+                    {% elif prest[7] == 'D' %}
+                        <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                </td>            
+                <!-- ------------------------------------------------------------- -->
+            {% elif titulo == 'Solicitados' %}
             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Codigo sena">{{prest[2]}}</td>
             <td data-label="Labor">{{prest[3]}}</td>
-            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
-            <td data-label="Ficha">
-                {% if prest[5] == '0' %}
-                    No hay
-                {% else %}
-                    {{prest[5]}}
-                {% endif %}
-            </td>
-            <td data-label="Estado">
-                {% if prest[7] == 'S' %}
-                    Solicitado
-                {% elif prest[7] == 'A' %}
-                    Aceptado
-                {% elif prest[7] == 'P' %}
-                    Prestado
-                {% elif prest[7] == 'D' %}
-                    Devuelto
-                {% elif prest[7] == 'R' %}
-                    Rechazado
-                {% else %}
-                    NO ESTA
-                {% endif %}
-            </td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> >
             <td data-label="Acciones">
-                {% if prest[7] == 'S' %}
-                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
-                    <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
-                {% elif prest[7] == 'A' %}
-                    <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
-                {% elif prest[7] == 'P' %}
-                    <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
-                {% elif prest[7] == 'D' %}
-                    <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
-                {% else %}
-                    &nbsp;
-                {% endif %}
+                <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
+                <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
             </td>
+            <!-- ------------------------------------------------------ -->
+            {% elif titulo == 'Por Entregar' %}
+            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+            <td data-label="Nombre">{{prest[0]}}</td>
+            <td data-label="Codigo sena">{{prest[2]}}</td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
+            <td data-label="Acciones">
+                    <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
+            </td>
+            <!-- ------------------------------------------------------ -->
+            {% elif titulo == 'Prestados' %}
+            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+            <td data-label="Nombre">{{prest[0]}}</td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
+            <td data-label="Acciones">
+                    <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
+            </td>
+            <!-- ------------------------------------------------------ -->
+            {% elif titulo == 'Devueltos' %}
+            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+            <td data-label="Nombre">{{prest[0]}}</td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
+            <td data-label="Acciones">
+                    <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
+            </td>
+            <!-- ------------------------------------------------------ -->
+            {% elif titulo == 'Rechazados' %}
+            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+            <td data-label="Nombre">{{prest[0]}}</td>
+            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
+            <!-- ------------------------------------------------------ -->
+            {% else %}
+                Esta equivocado
+            {% endif %}
+
         </tr>
         {% endfor %}
         </tbody>
