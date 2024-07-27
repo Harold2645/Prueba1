@@ -142,7 +142,7 @@
                             {{prest[5]}}
                         {% endif %}
                     </td>
-                    <td data-label="Fecha">{{prest[6]}}</td>
+                    <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
                     <td data-label="Estado">
                         {% if prest[7] == 'S' %}
                             Solicitado

@@ -120,7 +120,7 @@
                     <th>Categoria</th>
                     <th>Cantidad</th>
                     <th>Foto</th>
-                    <th>Disponibilidad</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -135,9 +135,9 @@
                                 <img width="100" height="100" src="../../../uploads/{{cons[3]}}" alt="{{cons[1]}}">
                             </figure>
                         </td>
-                        <td data-label="Disponibilidad">
+                        <td data-label="Estado">
                             {% if cons[7] == '0' %}
-                                No disponible
+                                No Disponible
                             {% elif cons[7] == '1' %}
                                 Disponible
                             {% elif cons[7] == '2' %}
