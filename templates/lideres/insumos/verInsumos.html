@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="../../../static/css/header.css">
-        <link rel="stylesheet" href="../../../static/css/verInsumos.css">
+        <link rel="stylesheet" href="../../../static/css/verHerramientas.css">
         <script src="../../../static/js/menu.js"></script>
         <title>Insumos</title>
     </head>
@@ -148,7 +148,7 @@
                             
                         </td>
     
-                        <td data-label="Acciones">
+                        <td data-label="Acciones" id="cont_acciones">
                             <a onclick="return confirm('¿Desea editar este insumo?')" href="editarConsumibles/{{cons[0]}}" class="acciones"><i class='bx bx-edit'></i>Editar</a>                        
                             <a onclick="return confirm('¿Desea agregarle una novedad a este insumo?')"  href="agregarnovedad/{{cons[0]}}" class="acciones"><i class="lni lni-circle-plus"></i>Agregar novedad</a>
                             <a onclick="return confirm('¿Desea eliminar este insumo?')" href="borrarConsumibles/{{cons[0]}}" id="btn_delete"><i class='bx bx-trash' id="delete"></i>Eliminar</a>

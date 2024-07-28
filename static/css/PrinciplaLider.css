@@ -34,11 +34,11 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e2e2e2;
 }
-tbody td, tbody th {
+tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
-
 
 .acciones{
     color: #39A900;
@@ -48,6 +48,7 @@ tbody td, tbody th {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
+    justify-content: center;
 }
     .acciones i{
         font-size: 20px;
@@ -87,5 +88,8 @@ tbody td a[href*="aceptarUsu"]::before {
     }
     tbody td:last-child, tbody th:last-child {
         border-bottom: 0;
+    }
+    .acciones{
+        justify-content: flex-end;
     }
 }

@@ -11,7 +11,7 @@ body {
 }
 main#prestamos {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 main#prestamos h4 {
@@ -39,20 +39,42 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #e2e2e2;
 }
-tbody td, tbody th {
+tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-}
-tbody th {
     text-align: center;
 }
-tbody td {
-    text-align: center;
+
+.cont_botones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.cont_botones a#aceptar{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+.cont_botones a#rechazar{
+    color: white;
+    background-color: #00324D;
+    padding: 9.8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.cont_botones a#rechazar i{
+    font-size: 14px;
+}
+
 .acciones{
     color: #39A900;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 5px;
     margin: 5px;
@@ -61,6 +83,8 @@ tbody td {
     .acciones i{
         font-size: 20px;
     }
+
+
 
 /* Responsividad */
 @media (max-width: 768px) {

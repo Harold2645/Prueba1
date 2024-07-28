@@ -206,8 +206,10 @@
                 </td>
                 <td data-label="Acciones">
                     {% if prest[7] == 'S' %}
-                        <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
-                        <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
+                    <div class="cont_botones">
+                        <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                        <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                    </div>
                     {% elif prest[7] == 'A' %}
                         <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
                     {% elif prest[7] == 'P' %}
@@ -226,8 +228,10 @@
             <td data-label="Labor">{{prest[3]}}</td>
             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> >
             <td data-label="Acciones">
-                <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a> |
-                <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
+                <div class="cont_botones">
+                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                </div>
             </td>
             <!-- ------------------------------------------------------ -->
             {% elif titulo == 'Por Entregar' %}

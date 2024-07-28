@@ -58,6 +58,7 @@ tbody td {
     color: #39A900;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 5px;
     margin: 5px;
@@ -107,5 +108,8 @@ a:hover {
     tbody td img {
         max-width: 80px;
         height: auto;
+    }
+    .acciones{
+        justify-content: flex-end;
     }
 }

@@ -147,7 +147,7 @@
                         {% endif %}
                             
     
-                        <td data-label="Acciones">
+                        <td data-label="Acciones" id="cont_acciones">
                             <a onclick="return confirm('¿Desea editar esta herramienta?')" href="editarHerramienta/{{herra[0]}}" class="acciones"><i class='bx bx-edit'></i>Editar</a>                        
                             <a onclick="return confirm('¿Desea eliminar esta herramienta?')" href="borrarHerramienta/{{herra[0]}}" class="acciones"><i class="lni lni-circle-plus"></i>Agregar Novedad</a>
                             <a onclick="return confirm('¿Desea agregarle una novedad a esta herramienta?')"  href="agregarnovedad/{{herra[0]}}" id="btn_delete"><i class='bx bx-trash' id="delete"></i>Eliminar</a>
