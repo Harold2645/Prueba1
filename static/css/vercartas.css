@@ -43,7 +43,7 @@ div#cont_paneles{
 }
 
 article#reservas{
-    padding: 10px;
+    padding: 18px;
     border: none;
     background-color: white;
     box-shadow:
@@ -52,12 +52,13 @@ article#reservas{
 }
 
 .img-thumbnail{
-    height: 150px;
     width: 100%;
+    height: 150px;
 }
     #img-bd{
         width: 100%;
         height: 100%;
+        object-fit: contain;
     }
 
 #cont_bajo{
@@ -124,14 +125,15 @@ article#reservas{
         
     }
     #cont_h5{
-        font-size: 15px;
-        height: 120px;
+        font-size: 17px;
+        height: 150px;
         overflow-y: auto;
     }
     #cont_link{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 10px 0 0px;
     }
         #cont-link, .btnmosatwo{
            background-color: #00324D;
@@ -150,7 +152,7 @@ article#reservas{
     #cont_link a i{
         font-size: 20px;
         background-color: #b8b8b8;
-        color: red;
+        color: #545454;
         padding: 9px;
         border-radius: 10px;
         transition: all 0.1s;
@@ -164,7 +166,7 @@ article#reservas{
         top: -12px;
         font-size: 12px;
         text-align: center;
-        width: 85px;
+        width: 70px;
         border-radius: 0px 10px 10px 0px;
         left: 36px;
         padding: 13px;
