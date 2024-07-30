@@ -19,7 +19,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: work, calibri;
+    font-family: 'work', 'calibri';
 }
 a {
     color: inherit;

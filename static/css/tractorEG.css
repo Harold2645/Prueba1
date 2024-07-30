@@ -18,7 +18,7 @@
 }
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'work', 'calibri';
     background: url(../img/fondofondo.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
