@@ -10,6 +10,7 @@ from routes.liquidos import *
 from routes.graficos import *
 from routes.enviosConsu import *
 from routes.servicios import *
+from ionic import *
 
 @app.route('/uploads/<nombre>')
 def uploads(nombre):
