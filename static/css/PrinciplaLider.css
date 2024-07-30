@@ -29,7 +29,7 @@ body {
 }
 main {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 table {
@@ -58,13 +58,44 @@ tbody td {
     text-align: center;
 }
 
+.cont_botones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cont_botones a#aceptar{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+.cont_botones a#rechazar{
+    color: white;
+    background-color: #00324D;
+    padding: 9.8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.cont_botones a#rechazar i{
+    font-size: 14px;
+}
+#acepusu{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
 .acciones{
     color: #39A900;
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px;
-    margin: 5px;
     border-radius: 10px;
     justify-content: center;
 }

@@ -180,12 +180,10 @@ article#reservas{
         position: absolute;
         top: -12px;
         font-size: 12px;
-        text-align: center;
         width: 70px;
         border-radius: 0px 10px 10px 0px;
         left: 36px;
         padding: 13px;
-        text-align: center;
         background-color: #b8b8b8;
         opacity: 0;
         pointer-events: none;

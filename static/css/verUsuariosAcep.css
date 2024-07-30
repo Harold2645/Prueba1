@@ -71,10 +71,9 @@ tbody td {
         color: #39A900;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         padding: 5px;
-        margin: 5px;
-        border-radius: 10px;
     }
         .acciones i{
             font-size: 20px;
@@ -92,6 +91,14 @@ tbody td {
     
     #btn_delete i{
         font-size: 20px;
+    }
+    #acepusu{
+        background-color: #00324D;
+        padding: 8px;
+        font-size: 11px;
+        color: white;
+        border-radius: 5px;
+        border: none;
     }
 
 /* Responsividad */

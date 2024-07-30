@@ -19,6 +19,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: work, calibri;
 }
 a {
     color: inherit;
@@ -180,17 +181,17 @@ header a{
         top: 45px;
     }
     #menu_tractores{
-        width: 160px;
+        width: 170px;
     }
     #menu_usuarios{
-        width: 160px;
+        width: 170px;
         left: 10px;
     }
     #menu_herramienta{
-        width: 180px;
+        width: 200px;
     }
     #menu_insumo{
-        width: 150px;
+        width: 170px;
     }
         #menu_liquidos{
             width: 150px;
@@ -200,11 +201,11 @@ header a{
             top: 10px;
         }
     #menu_servicios{
-        width: 135px;
+        width: 150px;
     }
     #menu_categorias, #menu_novedad{
         
-        width: 170px;
+        width: 180px;
     }
 
     #header_logo{

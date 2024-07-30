@@ -160,8 +160,10 @@
                     </td>
                     <td data-label="Acciones">
                         {% if prest[7] == 'S' %}
-                            <a href="/aceptarPedido/{{prest[8]}}"class="acciones">Aceptar</a>
-                            <a href="/rechazar/{{prest[8]}}"class="acciones">Rechazar</a>
+                        <div class="cont_botones">
+                            <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                            <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                        </div>
                         {% elif prest[7] == 'A' %}
                             <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
                         {% elif prest[7] == 'P' %}
@@ -205,8 +207,8 @@
                             {{usua[6]}}
                         {% endif %}
                     </td>
-                    <td data-label="Acciones">
-                        <a href="/aceptarUsu/{{usua[0]}}"class="acciones">Aceptar</a>
+                    <td data-label="Acciones" class="acciones">
+                        <a href="/aceptarUsu/{{usua[0]}}" id="acepusu">Aceptar</a>
                     </td>
                 </tr>
                 {% endfor %}
