@@ -52,7 +52,7 @@ header#header{
     align-items: center;
     justify-content: space-between;
     grid-area: header;
-    background-color: #36A900;
+    background-color: #00324D;
 }
 #header_logo{
     display: flex;
@@ -173,7 +173,7 @@ header a{
     }
 
     #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
-        background-color: rgb(53, 153, 7);
+        background-color: #012a41;
         box-shadow: 0px 5px 16px rgba(11,3,43,0.3);
         color: aliceblue;
         position: absolute;
@@ -194,9 +194,9 @@ header a{
         width: 170px;
     }
         #menu_liquidos{
-            width: 150px;
+            width: 170px;
             position: absolute;
-            background-color: #2f8904;
+            background-color: #001d2e;
             left: 90px;
             top: 10px;
         }

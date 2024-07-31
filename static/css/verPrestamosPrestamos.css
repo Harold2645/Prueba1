@@ -87,15 +87,21 @@ tbody td {
     font-size: 14px;
 }
 
+#acepusu{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
 .acciones{
     color: #39A900;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 10px;
+    border-radius: 0px;
 }
     .acciones i{
         font-size: 20px;

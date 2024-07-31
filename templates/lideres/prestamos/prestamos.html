@@ -211,11 +211,17 @@
                         <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
                     </div>
                     {% elif prest[7] == 'A' %}
-                        <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
+                    <div class="acciones">
+                        <a href="/prestado/{{prest[8]}}" id="acepusu">Entregar</a>
+                    </div>
                     {% elif prest[7] == 'P' %}
-                        <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
+                    <div class="acciones">
+                        <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                    </div>
                     {% elif prest[7] == 'D' %}
-                        <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
+                    <div class="acciones">
+                        <a href="/vermasServicios/{{prest[8]}}" id="acepusu">Ver mas</a>
+                    </div>
                     {% else %}
                         &nbsp;
                     {% endif %}
@@ -239,8 +245,8 @@
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Codigo sena">{{prest[2]}}</td>
             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
-            <td data-label="Acciones">
-                    <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
+            <td data-label="Acciones" class="acciones">
+                <a href="/prestado/{{prest[8]}}" id="acepusu">Entregar</a>
             </td>
             <!-- ------------------------------------------------------ -->
             {% elif titulo == 'Prestados' %}
@@ -255,8 +261,8 @@
             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
-            <td data-label="Acciones">
-                    <a href="/vermasServicios/{{prest[8]}}"class="acciones">Ver mas</a>
+            <td data-label="Acciones" class="acciones">
+                    <a href="/vermasServicios/{{prest[8]}}" id="acepusu">Ver mas</a>
             </td>
             <!-- ------------------------------------------------------ -->
             {% elif titulo == 'Rechazados' %}

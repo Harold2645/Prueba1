@@ -156,6 +156,10 @@ article.mosaicos{
         padding: 8px;
         border-radius: 5px;
     }
+    article.mosaicos .button:hover{
+        background-color: rgb(243, 243, 243);
+        color: #36A900;
+    }
     article.mosaicos .form_busqueda{
         padding-top: 8px;
         display: flex;
@@ -175,8 +179,13 @@ article.mosaicos{
             align-items: center;
             border-radius: 5px;
             border: none;
+            cursor: pointer;
         }
 
+            article.mosaicos .form_busqueda button:hover{
+                background-color: rgb(243, 243, 243);
+                color: #36A900;  
+            }
 
 @media only screen and (min-width: 768px){
     figure img#logo_sena{

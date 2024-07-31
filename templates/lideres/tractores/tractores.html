@@ -119,34 +119,36 @@
                     <figure class="img-thumbnail">
                         <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
                     </figure>
-                    <div id="cont-i">
-                        <h2>{{trac[0]}} {{trac[1]}}</h2>
+                    <div id="cont_abajo">
+                            <div id="cont-i">
+                                <h2>{{trac[0]}} {{trac[1]}}</h2>
+                            </div>
+                        <div id="cont_bajo">
+                            <div id="cont_h5">
+                                
+                                {% if trac[5] == '0' %}
+                                <h5>Estado: No disponible</h5>
+                                {% elif trac[5] == '1' %}
+                                <h5>Estado: Disponible</h5>
+                                {% elif trac[5] == '2' %}
+                                <h5>Estado: Prestado</h5>
+                                {% else %}
+                                <h5>Estado: NO ESTA</h5>
+                                {% endif %}
+                                
+                                <h5>Categoria: {{trac[7]}} </h5>
+                                <h5>Codigo Sena: {{trac[2]}}</h5>
+                            </div>
+                            <div id="cont_bot">
+                                    <a href="hojavidatractores/{{trac[2]}}"><i class="lni lni-files"><p id="tooltip1">Hoja de Vida</p></i></a>
+                                    <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
+                            </div>
+                        </div>
+                        <div id="cont_link">
+                                <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}"><i class='bx bx-trash' id="delete"><p id="tooltip3">Eliminar</p></i></a>
+                                <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}" class="btnmosatwo">Agregar Novedad</a>
+                        </div>
                     </div>
-                <div id="cont_bajo">
-                    <div id="cont_h5">
-                        
-                        {% if trac[5] == '0' %}
-                        <h5>Estado: No disponible</h5>
-                        {% elif trac[5] == '1' %}
-                        <h5>Estado: Disponible</h5>
-                        {% elif trac[5] == '2' %}
-                        <h5>Estado: Prestado</h5>
-                        {% else %}
-                        <h5>Estado: NO ESTA</h5>
-                        {% endif %}
-                        
-                        <h5>Categoria: {{trac[7]}} </h5>
-                        <h5>Codigo Sena: {{trac[2]}}</h5>
-                    </div>
-                    <div id="cont_bot">
-                            <a href="hojavidatractores/{{trac[2]}}"><i class="lni lni-files"><p id="tooltip1">Hoja de Vida</p></i></a>
-                            <a onclick="return confirm('¿Desea editar este tractor?')" href="editarTractor/{{trac[2]}}"><i class='bx bx-edit'><p id="tooltip2">Editar</p></i></a>
-                    </div>
-                </div>
-                <div id="cont_link">
-                        <a onclick="return confirm('¿Seguro eliminar este tractor?')" href="borrarTractor/{{trac[2]}}"><i class='bx bx-trash' id="delete"><p id="tooltip3">Eliminar</p></i></a>
-                        <a onclick="return confirm('¿Desea agregarle una novedad a este tractor?')"  href="agregarnovedad/{{trac[2]}}" class="btnmosatwo">Agregar Novedad</a>
-                </div>
             </article>
         {% endfor %}
         </div>
