@@ -63,13 +63,13 @@ class Servicios:
         return resultado
 
     def buscarInsumo(self, idObjeto):
-        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Insumo'"
+        sql = f"SELECT idobjeto, nombre, cantidad FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Insumo'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
     
     def buscarLiquido(self, idObjeto):
-        sql = f"SELECT idobjeto, nombre FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Liquido'"
+        sql = f"SELECT idobjeto, nombre, cantidad FROM consumibles WHERE idobjeto='{idObjeto}' AND tipo='Liquido'"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
@@ -110,6 +110,38 @@ class Servicios:
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
+    
+    def buscardescuento(self, idservicio):
+        sql = f"SELECT c.nombre, s.cantidad FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE s.idservicio = {idservicio};"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        print(resultado)
+        return resultado
+    
+    def buscardescuentoherramienta(self, idservicio):
+        sql = f"SELECT h.nombre, s.cantidad FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE s.idservicio = {idservicio}"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def buscardescuentotractor(self, idservicio):
+        sql = f"SELECT t.marca, s.cantidad FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE s.idservicio = {idservicio};"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchall()
+        return resultado
+    
+    def descuentoinsumos(self, envio):
+        sql = f"UPDATE consumibles SET cantidad= cantidad - '{envio[0]}' WHERE nombre = '{envio[1]}'"
+        print(sql)
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
+    def descuento(self, envio):
+        print(envio)
+        sql = f"UPDATE consumibles SET cantidad= cantidad - '{envio[0]}' WHERE nombre = '{envio[1]}'"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+        
 
     #Solicitado     =   S
     #Aceptado       =   A

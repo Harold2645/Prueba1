@@ -107,6 +107,7 @@ def pedir(idobjeto):
             hoyDos = hoy + timedelta(days=2)
             hoySemana = hoy + timedelta(days=9)
             minformateada = hoyDos.strftime('%Y-%m-%d')
+            hoyformateada = hoy.strftime('%Y-%m-%d')
             maxformateada = hoySemana.strftime('%Y-%m-%d')
 
             if misServicios.buscarTractor(idobjeto):
@@ -114,13 +115,13 @@ def pedir(idobjeto):
                 return render_template("pedir.html", res=resultado[0], tipo='Tractor', min=minformateada, max=maxformateada)
             elif misServicios.buscarInsumo(idobjeto):
                 resultado = misServicios.buscarInsumo(idobjeto)
-                return render_template("pedir.html", res=resultado[0], tipo='Insumo', min=minformateada, max=maxformateada)
+                return render_template("pedir.html", res=resultado[0], tipo='Insumo', min=hoyformateada, max=maxformateada)
             elif misServicios.buscarLiquido(idobjeto):
                 resultado = misServicios.buscarLiquido(idobjeto)
-                return render_template("pedir.html", res=resultado[0], tipo='Liquido', min=minformateada, max=maxformateada)
+                return render_template("pedir.html", res=resultado[0], tipo='Liquido', min=hoyformateada, max=maxformateada)
             elif misServicios.buscarHerramienta(idobjeto):
                 resultado = misServicios.buscarHerramienta(idobjeto)
-                return render_template("pedir.html", res=resultado[0], tipo='Herramienta', min=minformateada, max=maxformateada)
+                return render_template("pedir.html", res=resultado[0], tipo='Herramienta', min=hoyformateada, max=maxformateada)
             else:
                 return redirect('/')
         else:
@@ -171,7 +172,18 @@ def prestado(idservicio):
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template("lideres/prestamos/prestar.html", idservicio=idservicio)
+            if misServicios.buscardescuentotractor(idservicio):
+                tractor = misServicios.buscardescuentotractor(idservicio)
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, trac = 'tractor')
+            elif misServicios.buscardescuento(idservicio):
+                cantidad = misServicios.buscardescuento(idservicio)
+                print(cantidad)
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'insumo')
+            elif misServicios.buscardescuentoherramienta(idservicio):
+                cantidad = misServicios.buscardescuentoherramienta(idservicio)
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'herramienta')
+            else:
+                return redirect("/consultarTodosPedidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -188,9 +200,28 @@ def pedido():
             id = request.form['idservicio']
             estadosalida = request.form['estado']
             encargado = session['documento']
-            envio=[id,estadosalida,encargado]
-            misServicios.prestado(envio)
-            return redirect("/consultarTodosPedidos")
+            if request.form['tipo'] == "tractor" :
+                cantidad = request.form['cantidadt']
+                nombre = 'ACPM'
+                cantidades = [cantidad,nombre]
+                misServicios.descuento(cantidades)
+                envio=[id,estadosalida,encargado]
+                misServicios.prestado(envio)
+                return redirect("/consultarTodosPedidos")
+            elif request.form['tipo'] == "insumo" :
+                cantidad = request.form['cantidadi']
+                nombre = request.form['nombre']
+                can =[cantidad,nombre]
+                print([cantidad,nombre])
+                print(can)
+                misServicios.descuento(can)
+                envio=[id,estadosalida,encargado]
+                misServicios.prestado(envio)
+                return redirect("/consultarTodosPedidos")
+            else:
+                envio=[id,estadosalida,encargado]
+                misServicios.prestado(envio)
+                return redirect("/consultarTodosPedidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

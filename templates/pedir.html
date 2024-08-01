@@ -42,7 +42,7 @@
             
             <!-- Título dentro del formulario -->
             <div id="form_title">
-                <h1>Agregar Pedido</h1>
+                <h1>Solicitar</h1>
             </div>
 
 
@@ -64,11 +64,11 @@
 
                 {% if tipo=='Insumo' or tipo=='Liquido'  %}
                     <label for="cantidad">Cantidad:</label>
-                    <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,4}" minlength="1" maxlength="4" tabindex="4" required >
+                    <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,4}" minlength="1" maxlength="4" tabindex="4" required min="1" max="{{res[2]}}">
                 {% endif %}
                     
                     <div id="boton">
-                        <button type="submit" id="registrar">GUARDAR</button>
+                        <button type="submit" id="registrar">SOLICITAR</button>
                     </div>
                     <!-- <a href="/panel" id="cancelar">Cancelar</a> -->
             </form>
