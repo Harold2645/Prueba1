@@ -118,7 +118,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Fecha </th>
+                        <th>Fecha Registro</th>
+                        <th>Fecha Uso</th>                        
                         <th>Nombre</th>
                         <th>Codigo sena</th>
                         <th>Labor </th>
@@ -131,6 +132,7 @@
                 <tbody>
                 {% for prest in trac[:5] %}
                 <tr>
+                    <td data-label="Fecha Registro">{{prest[12]}}</td>
                     <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
                     <td data-label="Nombre">{{prest[0]}}</td>
                     <td data-label="Codigo sena">{{prest[2]}}</td>

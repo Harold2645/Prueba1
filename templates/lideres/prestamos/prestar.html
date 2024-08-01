@@ -118,7 +118,7 @@
             <h2 id="titular">Entrega</h2>
     
             <input type="hidden" name="idservicio" value="{{idservicio}}">
-            <input type="text" name="nombre" value="{{cantidad[0]}}">
+            <input type="hidden" name="nombre" value="{{cantidad[0]}}">
             <input type="hidden" name="tipo" value="{{trac}}">
     
             <label for="estado">Estado de salida</label>
@@ -126,9 +126,10 @@
 
             {% if trac == 'tractor' %}
             <label for="cantidad">Cantidad:</label>
-            <input type="number" name="cantidadt" id="cantidadt" placeholder="Cantidad de gasolina" pattern="[0-9]{1,5}" maxlength="5" minlength="1" required title="Como minimo 5 letras" tabindex="2" required>
+            <input type="number" name="cantidadt" id="cantidadt" placeholder="Cantidad de gasolina" pattern="[0-9]{1,5}" maxlength="5" minlength="1" required title="Como minimo 5 letras" tabindex="2" required min="1" >
+            <!-- max="{{maxtrac}}" -->
             {% elif trac == 'insumo' %}
-                <input type="text" name="cantidadi" value="{{cantidad[1]}}">
+                <input type="hidden" name="cantidadi" value="{{cantidad[1]}}">
             {% endif %}
     
             <button type="submit">Entregar</button>

@@ -177,7 +177,6 @@ def prestado(idservicio):
                 return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, trac = 'tractor')
             elif misServicios.buscardescuento(idservicio):
                 cantidad = misServicios.buscardescuento(idservicio)
-                print(cantidad)
                 return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'insumo')
             elif misServicios.buscardescuentoherramienta(idservicio):
                 cantidad = misServicios.buscardescuentoherramienta(idservicio)
@@ -212,11 +211,9 @@ def pedido():
                 cantidad = request.form['cantidadi']
                 nombre = request.form['nombre']
                 can =[cantidad,nombre]
-                print([cantidad,nombre])
-                print(can)
                 misServicios.descuento(can)
                 envio=[id,estadosalida,encargado]
-                misServicios.prestado(envio)
+                misServicios.prestadoinsu(envio)
                 return redirect("/consultarTodosPedidos")
             else:
                 envio=[id,estadosalida,encargado]
@@ -246,7 +243,9 @@ def prestamo():
             else:
                 cantidad = '1'
             tipo = request.form['tipo']
-            agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo]
+            hora = datetime.now()
+            fechasoli = hora.strftime("%Y%m%d%H%M%S")
+            agg=[idobjeto,labor,documento,ficha,fecha,cantidad,tipo,fechasoli]
             misServicios.pedir(agg)
             return redirect("/consultarTodosPedidos")
         else:
@@ -306,7 +305,6 @@ def vermasServicios(id):
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscar(id)
-            print(resultado)
             return render_template('lideres/prestamos/verMas.html', res=resultado)
         else:
             return render_template("index.html", msg="Rol no reconocido")
