@@ -77,6 +77,24 @@ h2#alerta {
     color: #df1c1c; 
     font-size: 15px;
 }
+#noregistrado{
+    color: #df1c1c; 
+    font-size: 15px;
+    display: none;
+}
+#siregistrado{
+    color: var(--logo-sena); 
+    font-size: 15px;
+    display: none;
+}
+#registrado{
+    color: var(--logo-sena); 
+    font-size: 15px;
+    display: none;
+}
+#cajacontra{
+    display: none;
+}
 label {
     display: block;
     margin: 10px 0 5px;

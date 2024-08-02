@@ -120,7 +120,6 @@ class Servicios:
         sql = f"SELECT c.nombre, s.cantidad FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE s.idservicio = {idservicio};"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchone()
-        print(resultado[00])
         return resultado
     
     def buscardescuentoherramienta(self, idservicio):

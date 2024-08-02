@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/principal.css">
+    <script src="../static/js/rol.js"></script>
     <title>SENA HANGAR - Bienvenido</title>
 </head>
 <body>
@@ -18,12 +19,19 @@
 
         <h2 id="alerta">{{msg}}</h2>
 
-        <label for="documento">Documento</label>
-        <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" minlength="7" maxlength="15" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus tabindex="1"  required>
-
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" required pattern="[0-9]{7,11}" maxlength="15" minlength="6" tabindex="2" placeholder="Numero de celular">
-
+        <div id="cajadocumento">
+            <label for="documento">Documento</label>
+            <span id="noregistrado">Usuario no registrado</span>
+            <span id="siregistrado">Puede inicar sin Contraseña</span>
+            <span id="registrado">Debe poner su Contraseña</span>
+            <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" minlength="7" maxlength="15" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus tabindex="1"  required>
+        </div>
+            
+        <div id="cajacontra">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" pattern="[0-9]{7,11}" maxlength="15" minlength="6" tabindex="2" placeholder="Numero de celular">
+        </div>
+            
         <div id="boton">
             <button type="submit">INICIAR</button>
         </div>

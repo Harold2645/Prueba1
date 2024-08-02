@@ -73,7 +73,6 @@ def vermasNovedades(id):
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misNovedades.buscar(id)
-            print(resultado)
             return render_template('lideres/novedades/verMas.html', res=resultado)
         else:
             return render_template("index.html", msg="Rol no reconocido")
