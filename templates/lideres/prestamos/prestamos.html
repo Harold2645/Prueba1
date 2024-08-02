@@ -257,8 +257,8 @@
             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
-            <td data-label="Acciones">
-                    <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
+            <td data-label="Acciones" class="acciones">
+                    <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
             </td>
             <!-- ------------------------------------------------------ -->
             {% elif titulo == 'Devueltos' %}

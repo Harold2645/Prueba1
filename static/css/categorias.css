@@ -21,82 +21,104 @@ body, p, ul, li, figure {
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: 'work', 'calibri';
     background-color: #f7f7f7;
     color: #333;
     line-height: 1.6;
 }
-
-main#cuerpo {
+main#prestamos {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 }
-
+main#prestamos h4 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #36A900;
+}
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-
 thead {
     background-color: #39A900;
     color: white;
 }
-
 thead th {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 2px solid #2E8B00;
 }
-
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
 tbody tr:hover {
     background-color: #e2e2e2;
 }
-
 tbody td {
-    padding: 10px;
+    padding: 15px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
-tbody td a {
-    color: #36A900;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 9px;
-    
+.cont_botones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cont_botones a#aceptar{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+    .cont_botones a#aceptar:hover{
+        background-color: rgba(243, 243, 243);
+        color: #36A900;
+    }
+.cont_botones a#rechazar{
+    color: white;
+    background-color: #00324D;
+    padding: 9.8px;
+    border-radius: 5px;
+    border: none;
+}
+    .cont_botones a#rechazar:hover{
+        background-color: rgba(243, 243, 243);
+        color: #36A900;
+    }
+
+.cont_botones a#rechazar i{
+    font-size: 14px;
 }
 
-tbody td a {
-    color: #2E8B00;
-    text-decoration: underline;
-    margin: 10px;
+#acepusu{
+    background-color: #00324D;
+    padding: 8px;
+    font-size: 11px;
+    color: white;
+    border-radius: 5px;
+    border: none;
 }
+    #acepusu:hover{
+        background-color: rgba(243, 243, 243);
+        color: #36A900;
+    }
 
-/* Estilo para el botón de editar,eliminar y hoja de vida */
-tbody td a[href*="editarTractor"]::before {
-    content: "\270E ";
-    color: #36A900;
+.acciones{
+    color: #39A900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
 }
-
-tbody td a[href*="borrarTractor"]::before {
-    content: "\1F5D1 ";
-    color: #D9534F;
-}
-tbody td a[href*="hojavidatractores"]::before {
-    content: "\1F4C4";
-    color: #36A900;
-}
-tbody td a[href*="agregarnovedad"]::before {
-    content: "\002B";
-    color: #36A900;
-}
+    .acciones i{
+        font-size: 20px;
+    }
 
 
 
@@ -105,22 +127,18 @@ tbody td a[href*="agregarnovedad"]::before {
     thead {
         display: none;
     }
-
-    tbody tr{
+    tbody tr {
         display: block;
         margin-bottom: 15px;
-        margin: 10px;
     }
-
-    tbody td {
+    tbody th, tbody td {
         display: block;
         text-align: right;
         padding-left: 50%;
         position: relative;
         border-bottom: 1px solid #ddd;
     }
-
-    tbody td::before {
+    tbody th::before, tbody td::before {
         content: attr(data-label);
         position: absolute;
         left: 10px;
@@ -130,8 +148,7 @@ tbody td a[href*="agregarnovedad"]::before {
         text-align: left;
         font-weight: bold;
     }
-
-    tbody td:last-child {
+    tbody th:last-child, tbody td:last-child {
         border-bottom: 0;
     }
 }

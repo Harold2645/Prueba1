@@ -169,7 +169,7 @@ article#reservas{
     }
 
         #cont_link .btnmosatwo:hover{
-            background-color: rgba(243, 243, 243, 0.5);
+            background-color: rgba(243, 243, 243);
             color: #39A900;
         }
     #cont_link a i{

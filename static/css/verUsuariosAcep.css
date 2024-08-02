@@ -100,6 +100,10 @@ tbody td {
         border-radius: 5px;
         border: none;
     }
+        #acepusu:hover{
+            background-color: rgb(243, 243, 243);
+            color: #36A900;
+        }
 
 /* Responsividad */
 @media (max-width: 768px) {
@@ -129,5 +133,8 @@ tbody td {
     }
     tbody th:last-child, tbody td:last-child {
         border-bottom: 0;
+    }
+    .acciones{
+        justify-content: end;
     }
 }

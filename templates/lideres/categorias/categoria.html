@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../static/css/categorias.css">
+    <link rel="stylesheet" href="../../../static/css/verUsuariosAcep.css">
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
@@ -110,7 +110,7 @@
         </div>
     </header>
 
-<main id="cuerpo">
+<main id="Usuarios">
         
 <table>
     <thead>
@@ -120,15 +120,16 @@
             <th data-label="Descripcion">Descripción</th>
             <th data-label="Creador">Creador</th>
             <th data-label="Estado">Estado</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         {% for cate in res %}
         <tr>
-            <th data-label="Codigo SENA">{{cate[1]}}</th>
-            <th data-label="Uso">{{cate[2]}}</th>
-            <th data-label="Descripcion">{{cate[3]}}</th>
-            <th data-label="Creador"> <a href="/perfil/{{ cate[5] }}">{{ cate[7] }} {{cate[8]}}</a> </th>
+            <td data-label="Codigo SENA">{{cate[1]}}</td>
+            <td data-label="Uso">{{cate[2]}}</td>
+            <td data-label="Descripcion">{{cate[3]}}</td>
+            <td data-label="Creador"> <a href="/perfil/{{ cate[5] }}">{{ cate[7] }} {{cate[8]}}</a> </td>
 
             {% if cate[6] == 0 %}
                 <td data-label="Estado">Inactivo</td>
@@ -139,12 +140,12 @@
             {% endif %}
 
             {% if cate[6] == 0 %}
-            <th>
-                <a onclick="return confirm('¿Desea activar esta categortia?')" href="activarCategoria/{{cate[0]}}">Activar</a>
+            <th class="acciones">
+                <a onclick="return confirm('¿Desea activar esta categortia?')" href="activarCategoria/{{cate[0]}}" id="acepusu">Activar</a>
             </th>
             {% elif cate[6] == 1 %}
-            <th>
-                <a onclick="return confirm('¿Desea eliminar esta categortia?')" href="borrarCategoria/{{cate[0]}}">Eliminar</a>
+            <th class="acciones">
+                <a onclick="return confirm('¿Desea eliminar esta categortia?')" href="borrarCategoria/{{cate[0]}}" id="acepusu">Eliminar</a>
             </th>
             {% endif %}
 

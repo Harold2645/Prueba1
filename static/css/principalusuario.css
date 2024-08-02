@@ -157,7 +157,7 @@ article.mosaicos{
         border-radius: 5px;
     }
     article.mosaicos .button:hover{
-        background-color: rgb(243, 243, 243);
+        background-color: rgba(243, 243, 243);
         color: #36A900;
     }
     article.mosaicos .form_busqueda{

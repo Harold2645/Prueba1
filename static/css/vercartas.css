@@ -174,7 +174,8 @@ article#reservas{
         }
     
             #cont-link, .btnmosatwo:hover{
-                background-color: #00111a;
+                background-color: rgb(243, 243, 243);
+                color: #39A900;
             }
     #cont_link a i{
         font-size: 20px;
