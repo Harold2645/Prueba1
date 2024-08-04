@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/categorias.css">
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
-    <link rel="stylesheet" href="../../../static/css/tNovedades.css">
+    <link rel="stylesheet" href="../../../static/css/verUsuariosAcep.css">
     <script src="../../../static/js/menu.js"></script>
     <title>Novedades</title>
 </head>
@@ -112,7 +111,7 @@
     </div>
 </header>
 
-<main id="cuerpo">
+<main id="Usuarios">
     <table>
         <thead>
             <tr>
@@ -138,8 +137,8 @@
                 <td data-label="Quien la creo">
                     <a href="/perfil/{{ nove[2] }}">{{ nove[8] }} {{ nove[9] }}</a>
                 </td>
-                <td data-label="Acciones">
-                    <a href="/vermasNovedades/{{nove[7]}}"class="acciones">Ver más</a>
+                <td data-label="Acciones" class="acciones">
+                    <a href="/vermasNovedades/{{nove[7]}}" id="acepusu">Ver más</a>
                 </td>
             </tr>
             {% endfor %}

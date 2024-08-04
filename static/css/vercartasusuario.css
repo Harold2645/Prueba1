@@ -105,7 +105,8 @@ article#reservas{
     }
 
         #cont_link .btnmosatwo:hover{
-            background-color: #00111a;
+            background-color: rgb(243, 243, 243);
+            color: #39A900;
         }
 
 @media only screen and (min-width: 768px){

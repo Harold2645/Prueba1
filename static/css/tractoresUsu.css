@@ -72,13 +72,13 @@ article#reservas{
 }
 
 .img-thumbnail{
-    height: 150px;
     width: 100%;
+    height: 150px;
     padding: 10px;
 }
     #img-bd{
-        height: 100%;
         width: 100%;
+        height: 100%;
         object-fit: contain;
     }
 

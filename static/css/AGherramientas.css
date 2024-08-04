@@ -18,46 +18,52 @@
 }
 /* Estilos generales */
 body {
+    font-family: 'work', 'calibri';
     background-image: url(../img/fndhrr.jpg); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-
-
-
-form#agregar_herramienta {
-    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #agregar {
+    max-width: 500px; 
+    margin: 20px 0; 
+    background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    position: relative; 
+    right: 8%; 
+    float: right; 
+  }
+  #agregar_herramienta{
     padding: 20px;
-    width: 350px;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto; 
-    position: absolute;
-    top: 120px; 
-    right: 25px; 
-}
-
-form#agregar_herramienta h2 {
+  }
+  
+  #agregar h2 {
+    text-align: center;
     margin-bottom: 20px;
+    background-color: #36A900;
+    margin-top: 0;
+    padding: 10px;
+    color: white;
+  }
+  
+  #agregar h4 {
+    text-align: center;
     color: #333;
-    text-align: center;
-}
-
-form#agregar_herramienta h4 {
-    color: #ff0000;
-    text-align: center;
-}
-
-form#agregar_herramienta label {
-    margin-bottom: 5px;
-    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
     color: #555;
-}
+    font-weight: bold;
+  }
 
 form#agregar_herramienta input,
 form#agregar_herramienta select {

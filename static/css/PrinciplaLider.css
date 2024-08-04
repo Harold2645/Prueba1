@@ -109,7 +109,7 @@ tbody td {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 10px;
+    border-radius: 0px;
     justify-content: center;
 }
     .acciones i{

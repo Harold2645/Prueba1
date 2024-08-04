@@ -92,7 +92,7 @@ article#reservas{
 }
 #cont_h5{
     font-size: 17px;
-    height: 140px;
+    height: 120px;
     overflow-y: auto;
 }
 #cont_link{
@@ -107,7 +107,8 @@ article#reservas{
     }
 
         #cont_link .btnmosatwo:hover{
-            background-color: #00111a;
+            background-color: rgb(243, 243, 243);
+            color: #39A900;
         }
 
 @media only screen and (min-width: 768px){
