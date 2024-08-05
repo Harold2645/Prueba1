@@ -14,7 +14,6 @@ def consulta_supervisor():
         column_names = [column[0] for column in cursor.description]
         datos = cursor.fetchall()
         cursor.close()
-        connection.close()
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
@@ -31,7 +30,6 @@ def inserta_cajero():
         cursor.execute("INSERT INTO usuario (documento, nombre, apellido, celular) VALUES (%s, %s, %s, %s)", (data['documento'], data['nombre'], data['apellido'], data['celular']))
         connection.commit()
         cursor.close()
-        connection.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
         return jsonify({"error": str(e)})  
