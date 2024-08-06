@@ -17,52 +17,61 @@
   font-weight: normal;
 }
 body {
-    font-family: 'work', 'calibri';
-    background-image: url(../img/fndtractor.jpg); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-  }
-  
-  #agregar {
-    max-width: 500px; 
-    margin: 20px 0; 
-    background-color: rgba(255, 255, 255, 0.9); 
-    border-radius: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    position: relative; 
-    right: 8%; 
-    float: right; 
-  }
-  #agregar_tractor{
-    padding: 20px;
-  }
-  
-  #agregar h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: #36A900;
-    margin-top: 0;
-    padding: 10px;
-    color: white;
-  }
-  
-  #agregar h4 {
-    text-align: center;
-    color: #333;
-    font-size: 1em;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: bold;
-  }
+  background-image: url(../img/fndtractor.jpg); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: 'work', 'calibri';
+}
+
+
+#agregar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0; 
+  padding: 0px 50px;
+  height: 85vh;
+}
+
+form {
+  background-color: #ffffff;
+  border-radius: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 350px;
+  box-sizing: border-box;
+}
+
+form h2 {
+  margin-top: 0;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #36A900;
+}
+
+form h4 {
+  text-align: center;
+  color: #ff4d4d; 
+  margin-bottom: 20px;
+}
+
+#medio{
+  padding: 0px 20px 20px;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555555;
+  font-weight: bold;
+}
   
   input[type="text"],
   select,
@@ -113,12 +122,9 @@ body {
     }
   }
   
-  @media (min-width: 601px) and (max-width: 1024px) {
+  @media (min-width: 768px) {
     #agregar {
-      max-width: 80%; 
-      margin: 20px auto; 
-      right: 0; 
-      float: none; 
+      justify-content: flex-end;
     }
   
     input[type="text"],

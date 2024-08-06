@@ -17,8 +17,8 @@
     font-weight: normal;
 }
 
- body {
-    background-image: url(../img/fndlqd.jpg); 
+body {
+    background-image: url(../img/fndInsu.jpg); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -29,39 +29,48 @@
 }
 
 
+#agregar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0; 
+    padding: 0px 50px;
+    height: 85vh;
+}
 
-section#agregar {
+form {
     background-color: #ffffff;
-    padding: 20px;
     border-radius: 0px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    max-width: 100%; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 350px;
     box-sizing: border-box;
-    position: fixed; 
-    top: 120px; 
-    right: 80px; 
-    margin: 0 auto; 
 }
 
-
-section#agregar h2 {
+form h2 {
+    margin-top: 0;
     text-align: center;
+    color: white;
+    padding: 10px;
     margin-bottom: 20px;
-    color: #333;
+    background-color: #36A900;
 }
 
-section#agregar h4 {
+form h4 {
     text-align: center;
+    color: #ff4d4d; 
     margin-bottom: 20px;
-    color: #777;
+}
+
+#medio{
+    padding: 0px 20px 20px;
 }
 
 
-section#agregar label {
+label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #555555;
     font-weight: bold;
 }
 
@@ -92,7 +101,8 @@ section#agregar button[type="submit"] {
 }
 
 section#agregar button[type="submit"]:hover {
-    background-color: #00324D;
+    background-color: rgb(243, 243, 243);
+    color: #36A900;
 }
 
 

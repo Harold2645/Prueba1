@@ -115,32 +115,34 @@
     <main id="cuerpo">
 
         <section id="agregar">
-            <h2>Agregar Herramienta</h2>
             <form id="agregar_herramienta" name="agregar_herramienta" action="/guardarHerramienta" method="post" enctype="multipart/form-data">
-                <h4>{{msg}}</h4>
+                <h2>Agregar Herramienta</h2>
+                <div id="medio">
+                    <h4>{{msg}}</h4>
 
-                <label for="id_herramienta">Codigo Sena:</label>
-                <input type="text" name="id_herramienta" id="id_herramienta" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena" tabindex="1" autofocus required>
+                    <label for="id_herramienta">Codigo Sena:</label>
+                    <input type="text" name="id_herramienta" id="id_herramienta" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena" tabindex="1" autofocus required>
 
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre de la herramienta" pattern="[A-Za-z\s*]{4,40}" maxlength="40" minlength="4" required title="Minimo 4 letras" tabindex="2" required>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre de la herramienta" pattern="[A-Za-z\s*]{4,40}" maxlength="40" minlength="4" required title="Minimo 4 letras" tabindex="2" required>
 
-                <label for="id_categoria">Categoría:</label>
-                <select name="id_categoria" id="id_categoria" required tabindex="3">
-                    <option value="">--Seleccione--</option>
-                    {% for categoria in categorias %}
-                        <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
-                    {% endfor %}
-                </select>
+                    <label for="id_categoria">Categoría:</label>
+                    <select name="id_categoria" id="id_categoria" required tabindex="3">
+                        <option value="">--Seleccione--</option>
+                        {% for categoria in categorias %}
+                            <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                        {% endfor %}
+                    </select>
 
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" pattern="[0-9*]{1}" maxlength="1" minlength="1" required title="Solo una herramienta" tabindex="4" required>
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" pattern="[0-9*]{1}" maxlength="1" minlength="1" required title="Solo una herramienta" tabindex="4" required>
 
-                <label for="foto">Foto:</label>
-                <input type="file" name="foto" id="foto" required>
+                    <label for="foto">Foto:</label>
+                    <input type="file" name="foto" id="foto" required>
 
-                <button type="submit">Guardar</button>
+                    <button type="submit">Guardar</button>
 
+                </div>
             </form>
         </section>
 

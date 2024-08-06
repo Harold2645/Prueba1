@@ -114,34 +114,37 @@
     <main id="cuerpo">
         
         <section id="agregar">
-            <h2>Agregar Tractor</h2>
             <form id="agregar_tractor" name="agregar_tractor" action="/guardarTractor" method="post" enctype="multipart/form-data">
-                <h4>{{msg}}</h4>
+                <h2>Agregar Tractor</h2>
+                <div id="medio">
 
-                <label for="idobjeto">Codigo sena:</label>
-                <input type="text" name="idobjeto" id="idobjeto" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" autofocus required>
+                    <h4>{{msg}}</h4>
 
-                <label for="marca">Marca</label>
-                <input type="text" name="marca" id="marca" placeholder="Marca del tractor" pattern="[A-Za-z\s*]{5,15}" maxlength="15" minlength="5" required title="Debe poner la marca del tractor" tabindex="2"  required>
+                    <label for="idobjeto">Codigo sena:</label>
+                    <input type="text" name="idobjeto" id="idobjeto" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" autofocus required>
 
-                <label for="modelo">Modelo:</label>
-                <input type="text" name="modelo" id="modelo"  placeholder="Modelo del tractor" pattern="[A-Za-z0-9\s*]{4,15}" maxlength="15" minlength="4" required title="Debe poner el modelo del tractor" tabindex="3" required>
+                    <label for="marca">Marca</label>
+                    <input type="text" name="marca" id="marca" placeholder="Marca del tractor" pattern="[A-Za-z\s*]{5,15}" maxlength="15" minlength="5" required title="Debe poner la marca del tractor" tabindex="2"  required>
 
-                    <label for="fechamodelo">Año:</label>
-                    <input type="text" name="fechamodelo" id="fechamodelo" placeholder="Año en que salio el tractor" pattern="[0-9\s*]{4}" maxlength="4" minlength="4" required title="Debe poner el año en el que salio el tractor" tabindex="4" required>
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" name="modelo" id="modelo"  placeholder="Modelo del tractor" pattern="[A-Za-z0-9\s*]{4,15}" maxlength="15" minlength="4" required title="Debe poner el modelo del tractor" tabindex="3" required>
 
-                <label for="idcategoria">Categoria:</label>
-                <select name="idcategoria" id="idcategoria" required tabindex="5">
-                    <option value="">--Seleccione--</option>
-                    {% for categoria in categorias %}
-                        <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
-                    {% endfor %}
-                </select>
+                        <label for="fechamodelo">Año:</label>
+                        <input type="text" name="fechamodelo" id="fechamodelo" placeholder="Año en que salio el tractor" pattern="[0-9\s*]{4}" maxlength="4" minlength="4" required title="Debe poner el año en el que salio el tractor" tabindex="4" required>
 
-                <label for="fototrac">Foto:</label>
-                <input type="file" name="fototrac" id="fototrac" required tabindex="6">
+                    <label for="idcategoria">Categoria:</label>
+                    <select name="idcategoria" id="idcategoria" required tabindex="5">
+                        <option value="">--Seleccione--</option>
+                        {% for categoria in categorias %}
+                            <option value="{{ categoria[0] }}">{{ categoria[1] }}</option>
+                        {% endfor %}
+                    </select>
 
-                <button type="submit">Guardar</button>
+                    <label for="fototrac">Foto:</label>
+                    <input type="file" name="fototrac" id="fototrac" required tabindex="6">
+
+                    <button type="submit">Guardar</button>
+                </div>
 
             </form>
         </section>

@@ -106,6 +106,10 @@ header#header{
     gap: 10px;
     text-decoration: none;
     color: white;
+    transition: all 0.2s ease-in;
+}
+#menu_cont li a:hover{
+    color: #36A900;
 }
 
 #cont-close{

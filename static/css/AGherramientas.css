@@ -18,7 +18,6 @@
 }
 /* Estilos generales */
 body {
-    font-family: 'work', 'calibri';
     background-image: url(../img/fndhrr.jpg); 
     background-size: cover; 
     background-position: center; 
@@ -26,44 +25,55 @@ body {
     background-attachment: fixed;
     margin: 0;
     padding: 0;
-  }
-  
-  #agregar {
-    max-width: 500px; 
-    margin: 20px 0; 
-    background-color: rgba(255, 255, 255, 0.9); 
+    font-family: 'work', 'calibri';
+}
+
+
+#agregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0; 
+    padding: 0px 50px;
+    height: 85vh;
+}
+
+form {
+    background-color: #ffffff;
     border-radius: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    position: relative; 
-    right: 8%; 
-    float: right; 
-  }
-  #agregar_herramienta{
-    padding: 20px;
-  }
-  
-  #agregar h2 {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+form h2 {
+    margin-top: 0;
     text-align: center;
+    color: white;
+    padding: 10px;
     margin-bottom: 20px;
     background-color: #36A900;
-    margin-top: 0;
-    padding: 10px;
-    color: white;
-  }
-  
-  #agregar h4 {
+}
+
+form h4 {
     text-align: center;
-    color: #333;
-    font-size: 1em;
+    color: #ff4d4d; 
     margin-bottom: 20px;
-  }
-  
-  label {
+}
+
+#medio{
+    padding: 0px 20px 20px;
+}
+
+
+label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #555555;
     font-weight: bold;
-  }
+}
+
 
 form#agregar_herramienta input,
 form#agregar_herramienta select {
@@ -91,20 +101,20 @@ form#agregar_herramienta button {
     transition: background-color 0.3s;
 }
 
-/* form#agregar_herramienta button:hover {
-    background-color: #218838;
-} */
+form#agregar_herramienta button:hover {
+    background-color: rgb(243, 243, 243);
+    color: #36A900;
+}
 
 /* Media Queries para Responsividad */
 @media (max-width: 1300px) {
     form#agregar_herramienta {
-        width: 80%;
-        margin: 0 auto; 
+        width: 80%; 
     }
 }
 
-@media (max-width: 600px) {
-    form#agregar_herramienta {
-        width: 90%;
+@media (min-width: 768px) {
+    #agregar{
+        justify-content: flex-end;
     }
 }
