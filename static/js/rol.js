@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log(etiqueta.target.value)
             consu = etiqueta.target.value
-            if (consu.length > 7 && consu.length < 16){
+            if (consu.length > 6 && consu.length < 16){
 
-                const respuesta = await fetch('http://localhost:5004/consultarol', {
+                const respuesta = await fetch('http://10.206.80.87:5004/consultarol', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

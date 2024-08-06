@@ -174,7 +174,8 @@ def prestado(idservicio):
         elif rol == 'Admin' or rol == 'Practicante':
             if misServicios.buscardescuentotractor(idservicio):
                 tractor = misServicios.buscardescuentotractor(idservicio)
-                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, trac = 'tractor')
+                maxtrac = misServicios.combustible()
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, maxtrac = maxtrac, trac = 'tractor')
             elif misServicios.buscardescuento(idservicio):
                 cantidad = misServicios.buscardescuento(idservicio)
                 return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'insumo')

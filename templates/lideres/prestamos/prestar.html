@@ -111,7 +111,7 @@
     </div>
 </header>
 
-    <div>
+    <div id="cuerpo">
 
         <form action="/pedido" method="post" enctype="multipart/form-data">
 
@@ -121,13 +121,13 @@
             <input type="hidden" name="nombre" value="{{cantidad[0]}}">
             <input type="hidden" name="tipo" value="{{trac}}">
     
-            <label for="estado">Estado de salida</label>
-            <input type="text" name="estado" id="estado" placeholder="Estado al salir" pattern="[A-Za-z0-9\s*]{5,50}" maxlength="50" minlength="5" required title="Como minimo 5 letras" tabindex="1" autofocus required>
+            <label for="estado">Estado al entregar</label>
+            <input type="text" name="estado" id="estado" class="estado" placeholder="Estado al salir" pattern="[A-Za-z0-9\s*]{5,50}" maxlength="50" minlength="5" required title="Como minimo 5 letras" tabindex="1" autofocus required>
 
             {% if trac == 'tractor' %}
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" name="cantidadt" id="cantidadt" placeholder="Cantidad de gasolina" pattern="[0-9]{1,5}" maxlength="5" minlength="1" required title="Como minimo 5 letras" tabindex="2" required min="1" >
-            <!-- max="{{maxtrac}}" -->
+            <label for="cantidad">Combustible:</label>
+            <input type="number" name="cantidadt" id="cantidadt" class="estado" placeholder="Medida en Galones" pattern="[0-9]{1,5}" required tabindex="2" required min="1" max="{{maxtrac[0]}}">
+            
             {% elif trac == 'insumo' %}
                 <input type="hidden" name="cantidadi" value="{{cantidad[1]}}">
             {% endif %}

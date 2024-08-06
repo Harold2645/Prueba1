@@ -134,6 +134,12 @@ class Servicios:
         resultado = self.cursor.fetchone()
         return resultado
     
+    def combustible(self):
+        sql = f"SELECT cantidad FROM consumibles WHERE nombre = 'ACPM';"
+        self.cursor.execute(sql)
+        resultado = self.cursor.fetchone()
+        return resultado
+    
     def descuentoinsumos(self, envio):
         sql = f"UPDATE consumibles SET cantidad= cantidad - '{envio[0]}' WHERE nombre = '{envio[1]}'"
         self.cursor.execute(sql)

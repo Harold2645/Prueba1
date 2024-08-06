@@ -111,10 +111,12 @@
     </header>
 
     <main>
-        <div>
+        <div id="cuerpo">
             <form action="/devolucion" method="post" enctype="multipart/form-data">
+                <h2 id="titular">Devoluciones</h2>
+
                 <input type="hidden" name="idservicio" value="{{idservicio}}">
-                <label for="descripcion">Descripcion de como entra el tractor o herramineta</label>
+                <label for="descripcion">Descripcion</label>
                 <input type="text" name="descripcion" id="descripcion">
                 <label for="foto">Foto</label>
                 <input type="file" name="foto" id="foto">

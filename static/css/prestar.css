@@ -35,6 +35,11 @@ form {
     margin: 20px auto; /* Centrar el formulario horizontalmente */
     margin-right: 5%;
 }
+div#cuerpo{
+    height: 82vh;
+    display: flex;
+    align-items: center;
+}
 #titular{
     display: flex;
     justify-content: center;
@@ -48,7 +53,7 @@ label {
     font-weight: bold;
 }
 
-input[type="text"] {
+.estado {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
