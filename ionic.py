@@ -1,3 +1,4 @@
+import base64
 from conexion import *
 from flask import Flask, jsonify, request
 from flask_cors import CORS
