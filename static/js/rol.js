@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             consu = etiqueta.target.value
             if (consu.length > 6 && consu.length < 16){
 
-                const respuesta = await fetch('http://10.206.80.87:5004/consultarol', {
+                const respuesta = await fetch('http://192.168.12.18:5004/consultarol', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

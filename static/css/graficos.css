@@ -95,6 +95,57 @@ div#imgrafico{
     width: 100%;
 }
 
+
+#telonCarga {
+    background-color: #38a90041;
+    backdrop-filter: blur(8px);
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    place-items: center;
+}
+
+.cargando {
+    width: 100px;
+    height: 100px;
+    border: solid 5px #39A900;
+    border-top: solid 5px #385C57;
+    border-radius: 50px;
+    animation: cargando .8s linear infinite;
+}
+@keyframes cargando {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.mensaje {
+    color: #00324D;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    animation: mensaje 1s alternate infinite ease-in-out;
+    font-size: 20px;
+}
+@keyframes mensaje {
+    0%{
+        opacity: .2;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
 @media only screen and (min-width: 768px){
     .imgra{
         width: 70%;

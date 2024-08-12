@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <script src="../../../static/js/menu.js"></script>
+    <script src="../../../static/js/modal.js"></script>
 </head>
 
 <body>
@@ -116,14 +117,9 @@
 
         <div id="botones">
 
-
             <a class="botongra" href="/grafConsu">Liquidos</a>
 
-
-
             <a class="botongra" href="/grafTrac">Tractores</a>
-
-
 
         </div>
 
@@ -135,6 +131,12 @@
                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="7" maxlength="50" required placeholder="Email para petición de combustible">
 
                 <button type="submit" id="btngrafico">Enviar</button>
+
+                <div id="telonCarga">
+                    <div class="cargando" id="cargando"></div>
+                    <i class="lni lni-checkmark-circle" id="checkmark" style="display: none; color: #39A900; font-size: 100px;"></i>
+                    <p class="mensaje" id="mensaje">Enviando Correo...</p>
+                </div>
 
             </form>
 

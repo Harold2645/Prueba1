@@ -158,6 +158,9 @@ def devolucion():
             fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
             foto.save("uploads/" + fotot)
             envio=[id,hora,descripcion,fotot]
+            #error
+            #error#error
+            #error
             misServicios.devuelto(envio)
             return redirect("/consultarTodosPedidos")
         else:

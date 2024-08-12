@@ -6,7 +6,7 @@ from email.mime.image import MIMEImage
 from email.mime.base import MIMEBase
 from email import encoders
 from email.mime.multipart import MIMEMultipart
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, jsonify
 from models.enviosConsu import misEnvios
 from routes.graficos import *
 from conexion import *
@@ -84,11 +84,17 @@ def envioConsuPez():
             smtp.sendmail(remitente, destinatario, email.as_string())
             smtp.quit()
 
-            return redirect('/graficos')
+    #         return redirect('/graficos')
+    #     else:
+    #         return render_template("index.html", msg="Rol no reconocido")
+    # else:
+    #     return redirect('/')
+            
+            return jsonify({"status": "success", "message": "Correo enviado correctamente"})
         else:
-            return render_template("index.html", msg="Rol no reconocido")
+            return jsonify({"status": "error", "message": "Rol no reconocido"})
     else:
-        return redirect('/')
+        return jsonify({"status": "error", "message": "No autorizado"})
 
 
     

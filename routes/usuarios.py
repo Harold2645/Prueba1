@@ -93,11 +93,52 @@ def login():
 
     
 
-# Página de inicio después del login
+# # Página de inicio después del login
+# @app.route('/panel')
+# def redireccion():
+#     if session.get("loginCorrecto"):
+#         rol = session['rol'] 
+
+#         cur = conexion.cursor()
+        
+        
+#         cur.execute("SELECT cantidad FROM consumibles WHERE nombre LIKE '%acpm%' OR nombre LIKE '%ACMP%' OR nombre LIKE '%A.C.P.M%'")
+#         cantidad_acpm = cur.fetchone()[0]
+        
+#         # Si la cantidad de ACPM es menor o igual a 20 guarda la alerta en la sesión
+#         if cantidad_acpm <= 20:
+#             session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
+#         else:
+#             session.pop('alerta_acpm', None)
+
+#         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+#             return render_template('usuarios/principalUsu.html')
+#         elif rol == 'Admin' or rol == 'Practicante':
+#             usuarios = misUsuarios.consultAcepta()
+#             tractores = misServicios.consultarSolicitados()
+#             return render_template('lideres/principalLIde.html', usu=usuarios, trac=tractores)
+#         else:
+#             return render_template("index.html", msg="Rol no reconocido")
+#     else:
+#         return redirect('/')
+
+
 @app.route('/panel')
 def redireccion():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+
+        cur = conexion.cursor()
+        
+        cur.execute("SELECT cantidad FROM consumibles WHERE nombre LIKE '%acpm%' OR nombre LIKE '%ACMP%' OR nombre LIKE '%A.C.P.M%'")
+        cantidad_acpm = cur.fetchone()[0]
+        
+        # Si la cantidad de ACPM es menor o igual a 20 guarda la alerta en la sesión
+        if cantidad_acpm <= 20:
+            session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
+        else:
+            session.pop('alerta_acpm', None)
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return render_template('usuarios/principalUsu.html')
         elif rol == 'Admin' or rol == 'Practicante':
@@ -108,6 +149,7 @@ def redireccion():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
+
 
 # Aceptar usuario
 @app.route('/aceptarUsu/<documento_parm>')
