@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../static/css/tractores.css">
-    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
@@ -122,6 +122,9 @@
             </th>
             <th>
                 Datos
+                <button>
+                    <a href="/agregar/{{ trac[0] }}"><i class='bx bx-edit'></i>Editar</a>
+                </button>
 
             </th>
             <!-- <th>Segunda tabla fotos</th> -->
@@ -195,6 +198,10 @@
             </th>
             <th>
                 Datos
+
+                <button>
+                    <a href="/agregarBG/{{ trac[0] }}"><i class='bx bx-edit'></i>Editar</a>
+                </button>
 
             </th>
            
@@ -279,6 +286,11 @@
             <th>
                 Datos
 
+                
+                <button>
+                    <a href="/agregarCG/{{ trac[0] }}"><i class='bx bx-edit'></i>Editar</a>
+                </button>
+
             </th>
            
         </tr>
@@ -347,6 +359,10 @@
             </th>
             <th>
                 Datos
+
+                <button>
+                    <a href="/agregarDG/{{ trac[0] }}"><i class='bx bx-edit'></i>Editar</a>
+                </button>
 
             </th>
           
@@ -420,6 +436,11 @@
             </th>
             <th>
                 Fotos
+
+                <button>
+                    <a href="/agregarEG/{{ trac[0] }}"><i class='bx bx-edit'></i>Editar</a>
+                </button>
+
             </th>
             
         </tr>
@@ -463,9 +484,7 @@
         </table>
 </div>
 
-    <button>
-        <a href="/agregar/{{ trac[0] }}">Actualizar Tractor</a>
-    </button>
+
 
     </main>
 

@@ -209,7 +209,7 @@ def agregarA():
 
             misFichas.agregarA([idObjetos,nodstractor, nosmotor, potenciadmotor, pasodtractor, numerodcilindro,tipodmotorlv,numerodcha,numerodcer])
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractorBG.html", res=resultado[0])
+            return redirect (f"/hojavidatractores/{idObjetos}")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -253,8 +253,7 @@ def agregarB():
             tomafrtrm = request.form["tomafrtrm"]
             agr = [idObjetos,tipodtraccion,distanciaeejes,alturadpacded,alturatotal,alturadetatdlc,alturamlb,longitudtilbdt,anchototalf,anchototalg,alturadpaddl,alturadpadtn,distanciadpato,tomafnde,tomafrtrm]
             misFichas.agregarB(agr)
-            resultado = misServicios.buscarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractorCG.html", res=resultado[0])
+            return redirect (f"/hojavidatractores/{idObjetos}")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -297,14 +296,12 @@ def agregarC():
             desgastesdlrd  = request.form["desgastesdlrd"]
             agr  = [idObjetos,tipodidcncr,marcadlbdi,referenciadlbdin,tensionesdlltsr,tencionmdllt,cargampslrt,desgastedlrt,dimesionesdlldsr,presionmdlld,cargampslrd,desgastesdlrd]
             misFichas.agregarC(agr)
-            resultado = misServicios.buscarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractorDG.html", res=resultado[0])
+            return redirect (f"/hojavidatractores/{idObjetos}")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-
-
+    
 
 @app.route('/agregarDG/<idObjetos>')
 def agregarDG(idObjetos):
@@ -343,8 +340,7 @@ def agregarD():
             numerodpelrt = request.form["numerodpelrt"]
             
             misFichas.agregarD([idObjetos,aceitemotor,aceitehidraulico,aceitetransmision,aceiteddd,aceiteldf,filtrodammr,filtrodcmr,filtrodahmr,filtrodapmr,filtrodasmr,bateriamr,numerodpelrta,numerodpelrt])
-            resultado = misServicios.buscarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractorEG.html", res=resultado[0])
+            return redirect (f"/hojavidatractores/{idObjetos}")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -416,8 +412,7 @@ def agregarE():
 
             misFichas.agregarE(fotos)
                 
-            resultado = misFichas.consultarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+            return redirect (f"/hojavidatractores/{idObjetos}")
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
