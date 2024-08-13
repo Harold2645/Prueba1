@@ -147,8 +147,8 @@ tbody td a[href*="aceptarUsu"]::before {
 }
 
 #bt a:hover {
-    background-color: #36a900; 
-    color: white; 
+    background-color: rgb(243, 243, 243); 
+    color: #36A900;
 }
 
 .modal {
@@ -214,6 +214,7 @@ tbody td a[href*="aceptarUsu"]::before {
     tbody tr {
         display: block;
         margin-bottom: 15px;
+        background-color: #e2e2e2;
     }
     tbody td, tbody th {
         display: block;
@@ -235,7 +236,11 @@ tbody td a[href*="aceptarUsu"]::before {
     tbody td:last-child, tbody th:last-child {
         border-bottom: 0;
     }
+    tbody tr:nth-child(even) {
+        background-color: #e2e2e2;
+    }
     .acciones{
         justify-content: flex-end;
+        color: black;
     }
 }

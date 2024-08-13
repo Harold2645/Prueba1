@@ -81,8 +81,9 @@ header#header{
     position: absolute;
     right: 0px;
     top: 0px;
-    min-height: 100vh;
-    width: 40%;
+    height: 100vh;
+    overflow-x: auto;
+    width: 300px;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
     background-color: #00324D;
     display: none;
@@ -91,6 +92,9 @@ header#header{
 #menu_cont.visible{
     display: block;
     animation: slide-in2 0.3s ease-out;
+}
+#menu_cont.remove{
+    display: none;
 }
     @keyframes slide-in2{
         from{
@@ -111,6 +115,9 @@ header#header{
     color: white;
     font-size: 30px;
 }
+    #disparador:hover{
+        color: #36A900;
+    }
 #cont-close{
     background: none;
     border: none;
@@ -120,6 +127,9 @@ header#header{
 #close{
     color: white;
 }
+    #close:hover{
+        color: #36A900;
+    }
 header li{
     padding: 10px;
     margin: 10px;
@@ -154,8 +164,12 @@ header a:hover{
         background: none;
         box-shadow: none;
         width: 100%;
-        min-height: 0;
-        position: relative;
+        height: 0px;
+        overflow-x: visible;
+        margin-top: auto;
+    }
+    #menu_cont.remove{
+        display: block;
     }
     #cont-disparador, #cont-close{
         display: none;
@@ -164,6 +178,7 @@ header a:hover{
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        height: 83.55px;
     }
 
     figure#logo{

@@ -6,7 +6,7 @@ from flask_cors import CORS
 import mysql.connector
 
 #conexion = mysql.connector.connect(user='hangar', password='H4ng4r', host='85.31.231.136', database='hangarbd')
-conexion = mysql.connector.connect(user='root', password='', host='localhost', database='hangarbd') 
+conexion = mysql.connector.connect(user='root', password='', host='localhost', database='hangarbd')
 
 app = Flask(__name__)
 CORS(app)

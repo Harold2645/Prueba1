@@ -116,13 +116,13 @@
         <main>
 
             {% if session.get('alerta_acpm') %}
-                <div id="alerta_acpm" class="alerta">
+                <span id="alerta_acpm" class="alerta">
                     {{ session['alerta_acpm'] }} <div id="bt"><a href="/graficos">Solicitar</a></div>
-                </div>
+                </span>
             {% endif %}
 
 
-            <div id="alerta_acpm_modal" class="modal">
+            <!-- <div id="alerta_acpm_modal" class="modal">
                 <div class="modal-content">
                     <div>
                         <span class="close">&times;</span>
@@ -131,7 +131,7 @@
                     
                     <a href="/graficos" class="btn-solicitar">Solicitar</a>
                 </div>
-            </div>
+            </div> -->
 
 
         <div id="prestamos">

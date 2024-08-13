@@ -68,7 +68,6 @@ tbody td {
     text-align: center;
 }
     .acciones{
-        color: #39A900;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,6 +76,10 @@ tbody td {
     }
         .acciones i{
             font-size: 20px;
+        }
+
+        .acciones h2{
+            display: none;
         }
     
     #btn_delete{
@@ -113,6 +116,10 @@ tbody td {
     tbody tr {
         display: block;
         margin-bottom: 15px;
+        background-color: #e2e2e2;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #e2e2e2;
     }
     tbody th, tbody td {
         display: block;
@@ -135,6 +142,11 @@ tbody td {
         border-bottom: 0;
     }
     .acciones{
-        justify-content: end;
+        justify-content: flex-end;
+        color: black;
+    }
+    .acciones h2{
+        display: flex;
+        font-size: 13px;
     }
 }

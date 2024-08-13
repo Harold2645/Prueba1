@@ -146,13 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
 const nav = document.querySelector("#menu_cont");
 const abrir = document.querySelector("#disparador");
 const cerrar = document.querySelector("#close")
+const notscroll = document.querySelector('body')
 
 abrir.addEventListener("click", () => {
     nav.classList.add("visible");
+    if(nav.className = "visible"){
+        notscroll.style.overflow = "hidden"
+    }
 })
 
 cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
+    nav.classList.add("remove")
+
+    if(nav.className = "remove"){
+        notscroll.style.overflow = "scroll"
+    }
 })
     
 

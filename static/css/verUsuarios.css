@@ -62,7 +62,6 @@ th, td {
     text-align: center; /* Centra el contenido en las celdas */
 }
 .acciones{
-    color: #39A900;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -83,6 +82,10 @@ th, td {
     tbody tr {
         display: block;
         margin-bottom: 15px;
+        background-color: #e2e2e2;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #e2e2e2;
     }
     tbody td {
         display: block;
@@ -103,5 +106,8 @@ th, td {
     }
     tbody td:last-child {
         border-bottom: 0;
+    }
+    .acciones{
+        color: black;
     }
 }

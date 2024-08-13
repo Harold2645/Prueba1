@@ -128,7 +128,11 @@ tbody td {
     }
     tbody tr {
         display: block;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
+        background-color: #e2e2e2;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #e2e2e2;
     }
     tbody th, tbody td {
         display: block;
@@ -152,5 +156,6 @@ tbody td {
     }
     .acciones{
         justify-content: flex-end;
+        color: black;
     }
 }

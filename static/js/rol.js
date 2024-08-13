@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (consu.length > 6 && consu.length < 16){
 
                 // const respuesta = await fetch('http://85.31.231.136:5004/consultarol', {
-                const respuesta = await fetch('http://192.168.0.14:5004/consultarol', {
+                const respuesta = await fetch('http://192.168.45.170:5004/consultarol', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

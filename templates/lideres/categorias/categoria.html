@@ -120,7 +120,7 @@
             <th data-label="Descripcion">Descripción</th>
             <th data-label="Creador">Creador</th>
             <th data-label="Estado">Estado</th>
-            <th>Acciones</th>
+            <th data-label="Acciones">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -140,13 +140,13 @@
             {% endif %}
 
             {% if cate[6] == 0 %}
-            <th class="acciones">
+            <td class="acciones" data-label="Acciones">
                 <a onclick="return confirm('¿Desea activar esta categortia?')" href="activarCategoria/{{cate[0]}}" id="acepusu">Activar</a>
-            </th>
+            </td>
             {% elif cate[6] == 1 %}
-            <th class="acciones">
+            <td class="acciones" data-label="Acciones">
                 <a onclick="return confirm('¿Desea eliminar esta categortia?')" href="borrarCategoria/{{cate[0]}}" id="acepusu">Eliminar</a>
-            </th>
+            </td>
             {% endif %}
 
         </tr>
