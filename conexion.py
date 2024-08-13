@@ -11,7 +11,7 @@ conexion = mysql.connector.connect(user='root', password='', host='localhost', d
 app = Flask(__name__)
 CORS(app)
 app.secret_key=str(randint(10000,99999))
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes = 15)
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(hours= 1)
 
 CARPETAU = os.path.join('uploads')
 app.config['CARPETAU']=CARPETAU

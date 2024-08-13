@@ -12,11 +12,11 @@
     <main id="ppal">
 
         <header id="cabeza">
-            <h2>Regìstrate</h2>
+            <h2>Regístrate</h2>
         </header>
 
         <section id="cuerpo">
-            <form id="registrar" name="registrar" action="/guardarUsarios" method="post" enctype="multipart/form-data">
+            <form id="registrar" name="registrar" action="/guardarUsarios" method="post" enctype="multipart/form-data" onsubmit="mensaje()">
 
                 <figure id="logo">
                     <img src="../static/img/logoSena.png" alt="Logo Sena">
@@ -36,7 +36,7 @@
                     <input type="tel" name="celular" id="celular" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Telefono" tabindex="4" required>
 
                 <label for="contrasena">Contraseña:</label>
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" pattern="[0-9]{10}" maxlength="10" minlength="0" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Recomendado: Número móvil" pattern="[0-9]{10}" maxlength="10" minlength="10" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
 
                     
                     <label for="rol">Rol:</label>

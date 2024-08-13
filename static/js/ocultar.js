@@ -1,4 +1,7 @@
 
+function mensaje(){
+    alert("Espera 12 horas a ser activado")
+}
 
 document.addEventListener("DOMContentLoaded", ()=>{
 

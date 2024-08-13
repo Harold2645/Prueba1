@@ -219,7 +219,7 @@
                     </div>
                     {% elif prest[7] == 'P' %}
                     <div class="acciones">
-                        <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                        <a href="/devolver/{{prest[8]}}" id="acepusu">Recibir</a>
                     </div>
                     {% elif prest[7] == 'D' %}
                     <div class="acciones">
@@ -258,7 +258,7 @@
             <td data-label="Nombre">{{prest[0]}}</td>
             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td> 
             <td data-label="Acciones" class="acciones">
-                    <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                    <a href="/devolver/{{prest[8]}}" id="acepusu">Recibir</a>
             </td>
             <!-- ------------------------------------------------------ -->
             {% elif titulo == 'Devueltos' %}

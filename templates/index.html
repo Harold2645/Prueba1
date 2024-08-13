@@ -21,10 +21,12 @@
 
         <div id="cajadocumento">
             <label for="documento">Documento</label>
+            <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" minlength="7" maxlength="15" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus tabindex="1"  required>
+        </div>
+
+        <div>         
             <span id="noregistrado">Usuario no registrado</span>
             <span id="siregistrado">Puede inicar sin Contraseña</span>
-            <span id="registrado">Debe poner su Contraseña</span>
-            <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" minlength="7" maxlength="15" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus tabindex="1"  required>
         </div>
             
         <div id="cajacontra">
@@ -35,7 +37,7 @@
         <div id="boton">
             <button type="submit">INICIAR</button>
         </div>
-        <a href="/registrar" id="registrar">Registrar</a>
+        <a href="/registrar" id="registrar">Regístrar</a>
         
 
         </form>

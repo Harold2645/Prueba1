@@ -19,6 +19,7 @@
 *{
     box-sizing: border-box;
     transition: all 0.3s;
+    font-family: 'work', 'calibri';
 }
 body, html{
     margin: 0;

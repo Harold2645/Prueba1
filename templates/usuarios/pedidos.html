@@ -66,13 +66,13 @@
                 </td>
                 <td data-label="Estado">
                     {% if prest[7] == 'S' %}
-                        Solicitado
+                        Esperando Autorización
                     {% elif prest[7] == 'A' %}
-                        Aceptado
+                        Por Recoger
                     {% elif prest[7] == 'P' %}
-                        Prestado
+                        En tu Poder
                     {% elif prest[7] == 'D' %}
-                        Devuelto
+                        Regresado
                     {% elif prest[7] == 'R' %}
                         Rechazado
                     {% else %}

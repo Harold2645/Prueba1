@@ -129,15 +129,19 @@
                                 {% if trac[5] == '0' %}
                                 <h5>Estado: No disponible</h5>
                                 {% elif trac[5] == '1' %}
-                                <h5>Estado: Disponible</h5>
+                                <h5>
+                                    <span>
+                                    Estado:
+                                    </span>
+                                 Disponible</h5>
                                 {% elif trac[5] == '2' %}
                                 <h5>Estado: Prestado</h5>
                                 {% else %}
                                 <h5>Estado: NO ESTA</h5>
                                 {% endif %}
                                 
-                                <h5>Categoria: {{trac[7]}} </h5>
-                                <h5>Codigo Sena: {{trac[2]}}</h5>
+                                <h5><span>Categoría:</span> {{trac[7]}} </h5>
+                                <h5><span>Código SENA:</span> {{trac[2]}}</h5>
                             </div>
                             <div id="cont_bot">
                                     <a href="hojavidatractores/{{trac[2]}}"><i class="lni lni-files"><p id="tooltip1">Hoja de Vida</p></i></a>
