@@ -135,7 +135,6 @@ def misPedidos(id):
             return jsonify({"msg":"notFound"})
         else:
             cursor.close()
-            connection.close()
             return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})  
