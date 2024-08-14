@@ -83,7 +83,7 @@ header#header{
     top: 0px;
     height: 100vh;
     overflow-x: auto;
-    width: 300px;
+    width: 70%;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
     background-color: #00324D;
     display: none;
@@ -152,10 +152,11 @@ header a:hover{
     display: none;
 }
 
-/* aqui comienza el css de mi interfas */
-
-
-
+@media only screen and (min-width: 768px){
+    #menu_cont{
+        width: 40%;
+    }
+}
 
 @media only screen and (min-width: 1366px){
     #menu_cont{
@@ -233,7 +234,5 @@ header a:hover{
     header li{
         padding: 15px;
         margin: 0px;
-    }
-
-   
+    }  
 }

@@ -79,12 +79,12 @@ h2#alerta {
 }
 #noregistrado{
     color: #df1c1c; 
-    font-size: 15px;
+    font-size: 12px;
     display: none;
 }
 #siregistrado{
     color: var(--logo-sena); 
-    font-size: 15px;
+    font-size: 12px;
     display: none;
 }
 #registrado{
@@ -104,7 +104,7 @@ label {
 input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 5px;
     border: none;
     border-bottom: solid 1px var(--negro);
 }

@@ -67,7 +67,6 @@ div#cont_paneles{
 }
 
 article#reservas{
-    padding: 18px;
     border: none;
     background-color: white;
     box-shadow:
@@ -78,6 +77,7 @@ article#reservas{
 .img-thumbnail{
     height: 150px;
     width: 100%;
+    padding: 10px;
 }
     #img-bd{
         width: 100%;
@@ -85,7 +85,10 @@ article#reservas{
         object-fit: contain;
     }
 #cont-i{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: #39A900;
+    color: white;
 }
 #cont-bajo{
     text-align: center;
@@ -95,6 +98,7 @@ article#reservas{
 }
 #cont_link{
     margin: 15px 0 0;
+    padding: 18px;
 }
     #cont_link .btnmosatwo{
        background-color: #00324D;
@@ -106,7 +110,7 @@ article#reservas{
 
         #cont_link .btnmosatwo:hover{
             background-color: rgb(243, 243, 243);
-            color: #39A900;
+            color: #36A900;
         }
 
 @media only screen and (min-width: 768px){
