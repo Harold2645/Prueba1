@@ -30,14 +30,13 @@ body {
 main {
     display: flex;
     justify-content: flex-end; 
-    padding: 20px;
+    padding: 10px;
 }
 
 form {
-    max-width: 450px; 
+    max-width: 330px;
     margin: 20px 0; 
     background-color: rgba(255, 255, 255, 0.9); 
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     width: 100%; 
@@ -47,10 +46,17 @@ div#cuerpo{
     height: 82vh;
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 #titular{
-    display: flex;
-    justify-content: center;
+    background-color: #36a900;
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    padding: 10px;
+}
+#cont_bajo{
+    padding: 20px;
 }
 
 label {

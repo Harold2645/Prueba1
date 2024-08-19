@@ -29,20 +29,26 @@ body {
 
 form {
     background-color: #f5f5f5;
-    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 350px; /* Ancho máximo del formulario */
-    margin: 20px auto; /* Centrar el formulario horizontalmente */
+    width: 320px;
+    margin: 20px auto;
     margin-right: 5%;
+}
+#cont_bajo{
+    padding: 20px;
 }
 div#cuerpo{
     height: 82vh;
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 #titular{
-    display: flex;
-    justify-content: center;
+    margin-top: 0;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color: #39A900;
 }
 
 
@@ -74,14 +80,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #00324D;
+    background-color: rgb(243, 243, 243);
+    color: #39A900;
 }
 
-/* Media Queries para Responsividad */
 @media (max-width: 600px) {
     form {
-        width: 90%; /* Ancho del formulario en dispositivos móviles */
-        float: none; /* Elimina la alineación a la derecha en dispositivos móviles */
-        margin: 20px auto; /* Centra el formulario en dispositivos móviles */
+        float: none;
+        margin: 20px auto;
     }
 }

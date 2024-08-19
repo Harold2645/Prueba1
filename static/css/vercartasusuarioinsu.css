@@ -91,12 +91,15 @@ article#reservas{
     color: white;
 }
 #cont_bajo{
-    text-align: center;
+    padding: 0 18px;
 }
 #cont_h5{
     font-size: 17px;
     height: 150px;
     overflow-y: auto;
+}
+#cont_h5 h5 span{
+    font-weight: normal;
 }
 #cont_link{
     padding: 18px;

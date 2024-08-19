@@ -114,18 +114,21 @@
 </header>
 
     <main id="cuerpoo">
-
-        <div id="botones">
-
-            <a class="botongra" href="/grafConsu">Liquidos</a>
-
-            <a class="botongra" href="/grafTrac">Tractores</a>
-
-        </div>
-
-        <div id="cuerpografico">
             <form id="formu" action="envioConsuPez" method="post" enctype="multipart/form-data">
+                <div id="cont_medio">
+                    <div id="botones">
 
+                        <a class="botongra" href="/grafConsu">Liquidos</a>
+            
+                        <a class="botongra" href="/grafTrac">Tractores</a>
+            
+                    </div>
+                    <div id="imgrafico">
+                        {% if img_base64 %}
+                        <img class="imgra" src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico">
+                        {% endif %}
+                    </div>
+                </div>
                 <label for="correoSub">Ingresa el correo para envío del informe de solicitud de combustible:</label>
                 <input type="email" name="correoSub" id="correoSub"
                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="7" maxlength="50" required placeholder="Email para petición de combustible">
@@ -139,17 +142,6 @@
                 </div>
 
             </form>
-
-            <div id="imgrafico">
-                {% if img_base64 %}
-                <img class="imgra" src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico">
-                {% endif %}
-            </div>
-
-
-        </div>
-
-
     </main>
 
 </body>

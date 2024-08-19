@@ -35,11 +35,18 @@
     color: white;
 }
 
+div#cont_medio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 div#botones{
     display: flex;
     justify-content: center;
     padding: 18px;
-    height: 80px;
+    gap: 30px;
 }
     div#botones .botongra{
         padding: 10px;
@@ -48,12 +55,13 @@ div#botones{
         border-radius: 10px;
         border: none;
         display: flex;
-        margin: 0px 30px;
         align-items: center;
         transition: 0.5 ease-out;
+        padding: 15px;
     }
         div#botones .botongra:hover{
-            background-color: #070707;
+            color: #39A900;
+            background-color: rgb(243, 243, 243);
         }
 
 
@@ -63,14 +71,13 @@ form#formu{
     justify-content: center;
     align-items: center;
     padding: 10px;
-    margin-top: 15px;
-    gap: 5px;
+    gap: 10px;
 }
  
     form#formu #correoSub{
         font-size: 14px;
         padding: 10px;
-        min-width: 50%;
+        width: 300px;
         height: 35px;
         background: none;
         border-radius: 10px;
@@ -85,7 +92,8 @@ form#formu{
         background-color: #00324D;
     }
     form#formu button:hover{
-        background: #070707;
+        background: rgb(243, 243, 243);
+        color: #39A900;
     }
 div#imgrafico{
     display: flex;
@@ -148,11 +156,17 @@ div#imgrafico{
 
 @media only screen and (min-width: 768px){
     .imgra{
-        width: 70%;
+        width: 80%;
+    }
+    div#cont_medio{
+        flex-direction: row;
+    }
+    div#botones{
+        flex-direction: column;
+        gap: 50px;
     }
     form#formu{
         gap: 10px;
-        flex-direction: row;
     }
         form#formu #correoSub{
             font-size: 14px;
@@ -168,9 +182,6 @@ div#imgrafico{
 }
 
 @media only screen and (min-width: 1200px){
-    .imgra{
-        width: 50%;
-    }
     form#formu{
         gap: 15px;
     }
