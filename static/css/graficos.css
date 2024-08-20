@@ -72,6 +72,7 @@ form#formu{
     align-items: center;
     padding: 10px;
     gap: 10px;
+    height: 85vh;
 }
  
     form#formu #correoSub{
@@ -156,7 +157,7 @@ div#imgrafico{
 
 @media only screen and (min-width: 768px){
     .imgra{
-        width: 80%;
+        width: 90%;
     }
     div#cont_medio{
         flex-direction: row;
