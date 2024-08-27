@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/pedir.css">
+    <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
+    <link rel="stylesheet" href="../static/css/header.css">
+    <script src="../static/js/menu.js"></script>
+    <title>Solicitar</title>
+</head>
+<body>
+    
+    <header id="header">
+        <figure id="header_logo">
+            <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+            <h2 id="titulo">Solicitar</h2>
+        </figure>
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
+        </button>
+        <div id="menu_cont">
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+            <div class="menu">
+                <ul class="interior">
+                    <li><a href="/panel">Inicio</a></li>
+                    <li><a href="/tractores">Tractores</a></li>
+                    <li><a href="/consultarConsumibles">Insumos</a></li>
+                    <li><a href="/mispedidos">Mis pedidos</a></li>
+                    <li><a href="/perfilPropio">Mi perfil</a></li>
+                    <li><a href="/">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="cuerpo">
+        <form id="Pedir" name="Pedir" action="/prestamo" method="post" enctype="multipart/form-data">
+            
+            <!-- Título dentro del formulario -->
+            <div id="form_title">
+                <h1>Solicitar</h1>
+            </div>
+
+
+                <input type="hidden" name="idobjeto" value="{{res[0]}}" required>
+
+                <input type="hidden" name="tipo" value="{{tipo}}" required>
+
+                <label for="nombre">Nombre:</label>
+                    <input type="text" readonly value="{{res[1]}}" required>
+
+                <label for="labor">Labor:</label>
+                    <input type="text" name="labor" id="labor" placeholder="Labor a realizar" tabindex="1" required pattern="[A-Za-z0-9\s*]+{4,50}" autofocus minlength="4" maxlength="50" title="Minimo 4 letras">
+
+                <label for="ficha">Ficha:</label>
+                <input type="text" name="ficha" id="ficha" placeholder="Ficha que lo usara" tabindex="2" pattern="[0-9*]{7}" minlength="7" maxlength="7" title="Solo números" >
+                                        
+                <label for="fecha">Fecha que lo necesita:</label>
+                <input type="date" name="fecha" id="fecha" tabindex="3" required max="{{max}}" min="{{min}}">
+
+                {% if tipo=='Insumo' or tipo=='Liquido'  %}
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad"  pattern="[0-9]{1,4}" minlength="1" maxlength="4" tabindex="4" required min="1" max="{{res[2]}}">
+                {% endif %}
+                    
+                    <div id="boton">
+                        <button type="submit" id="registrar">SOLICITAR</button>
+                    </div>
+                    <!-- <a href="/panel" id="cancelar">Cancelar</a> -->
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>
