@@ -12,11 +12,12 @@ from models.movimientos import misMovimientos
 def consultaHerramientas():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         resultado = misHerramientas.consultarHerramientas()
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/herramientas.html', res=resultado)
+            return render_template('usuarios/herramientas.html', res=resultado,nombreusu=nombre  , rolusu=rol)
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template("lideres/herramientas/herramientas.html", res=resultado)
+            return render_template("lideres/herramientas/herramientas.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -26,11 +27,12 @@ def consultaHerramientas():
 def consultalasHerramientas():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misHerramientas.todaslasHerramientas()
-            return render_template("lideres/herramientas/verHerramientas.html", res=resultado)
+            return render_template("lideres/herramientas/verHerramientas.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -55,12 +57,13 @@ def buscarHerramientas():
 @app.route("/agregarHerramienta")
 def agregarHerramienta():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasHerramienta()
-            return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias)
+            return render_template("lideres/herramientas/herramientasAg.html", categorias=categorias,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -127,12 +130,13 @@ def borrarHerramienta(idObjetos):
 def editarHerramienta(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             herramienta = misHerramientas.buscar(idObjeto)
             categorias = misCategorias.categoriasHerramienta()
-            return render_template("lideres/herramientas/herramientasEd.html",herramienta=herramienta[0], categorias=categorias)
+            return render_template("lideres/herramientas/herramientasEd.html",herramienta=herramienta[0], categorias=categorias,nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -153,8 +157,8 @@ def actualizarHerramienta():
             if len(request.form['activo']) == 0:
                 activo = 1
             else:
-                 activo = request.form['activo']   
-                          
+                activo = request.form['activo']   
+                        
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misHerramientas.modificar([idObjeto,nombre,categoria,foto1,activo])

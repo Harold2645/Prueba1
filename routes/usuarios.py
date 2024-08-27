@@ -127,6 +127,7 @@ def login():
 def redireccion():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario'] 
 
         cur = conexion.cursor()
         
@@ -140,11 +141,11 @@ def redireccion():
             session.pop('alerta_acpm', None)
 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/principalUsu.html')
+            return render_template('usuarios/principalUsu.html',nombreusu=nombre  , rolusu=rol )
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
             tractores = misServicios.consultarSolicitados()
-            return render_template('lideres/principalLIde.html', usu=usuarios, trac=tractores)
+            return render_template('lideres/principalLIde.html',nombreusu=nombre  , rolusu=rol , usu=usuarios, trac=tractores)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -171,11 +172,13 @@ def aceptarUsu(documento_parm):
 def aceptarUsuario():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             usuarios = misUsuarios.consultAcepta()
-            return render_template("lideres/usuariosAcep.html", usu=usuarios)
+            return render_template("lideres/usuariosAcep.html", usu=usuarios,nombreusu=nombre  , rolusu=rol )
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -185,19 +188,21 @@ def aceptarUsuario():
 @app.route('/perfilPropio')
 def perfilpropio():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             documento = session['documento']
             if misUsuarios.buscar(documento):
                 resultado1 = misUsuarios.buscar(documento)
-                return render_template("perfilUsuario.html", res=resultado1)
+                return render_template("perfilUsuario.html", res=resultado1,nombreusu=nombre  , rolusu=rol)
             else:
                 return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             documento = session['documento']
             if misUsuarios.buscar(documento):
                 resultado1 = misUsuarios.buscar(documento)
-                return render_template("perfil.html", res=resultado1)
+                return render_template("perfil.html", res=resultado1,nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -207,11 +212,13 @@ def perfilpropio():
 @app.route('/perfil/<documento_parm>')
 def perfil(documento_parm):
     if session.get("loginCorrecto"):
-        rol = session.get('rol')
+        rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Admin' or rol == 'Practicante':
             if misUsuarios.buscar(documento_parm):
                 resultado1 = misUsuarios.buscar(documento_parm)
-                return render_template("perfil.html", res=resultado1)
+                return render_template("perfil.html", res=resultado1,nombreusu=nombre  , rolusu=rol )
             else:
                 return redirect('/')
         else:
@@ -223,12 +230,14 @@ def perfil(documento_parm):
 @app.route('/usuarios')
 def clientes():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misUsuarios.consultar()
-            return render_template("usuarios.html", res=resultado)
+            return render_template("usuarios.html", res=resultado,nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

@@ -14,10 +14,11 @@ def graficos():
 
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template('lideres/graficos/graficos.html')
+            return render_template('lideres/graficos/graficos.html',nombreusu=nombre  , rolusu=rol )
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -60,6 +61,7 @@ def grafConsu():
 
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
@@ -80,7 +82,7 @@ def grafConsu():
 
             plt.close(fig)
 
-            return render_template('lideres/graficos/graficos.html', img_base64=img_base64)
+            return render_template('lideres/graficos/graficos.html', img_base64=img_base64,nombreusu=nombre  , rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -92,6 +94,7 @@ def grafTrac():
 
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
@@ -129,7 +132,7 @@ def grafTrac():
 
             plt.close(fig)
 
-            return render_template('lideres/graficos/graficos.html', img_base64=img_base64)
+            return render_template('lideres/graficos/graficos.html', img_base64=img_base64,nombreusu=nombre  , rolusu=rol )
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

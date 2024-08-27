@@ -14,11 +14,13 @@ from models.servicios import misServicios
 def tractores():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         resultado = misTracores.mostarTractores()
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/tractores.html', res=resultado)
+            return render_template('usuarios/tractores.html', res=resultado,nombreusu=nombre, rolusu=rol)
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template('lideres/tractores/tractores.html', res=resultado)
+            return render_template('lideres/tractores/tractores.html', res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -27,12 +29,14 @@ def tractores():
 @app.route('/consultarTractores')
 def consultaTractores():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misTracores.todoslosTractores()
-            return render_template("lideres/tractores/verTractores.html", res=resultado)
+            return render_template("lideres/tractores/verTractores.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -43,11 +47,13 @@ def consultaTractores():
 def agregaarticulo():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasTractor()
-            return render_template("lideres/tractores/tractoresAg.html", categorias=categorias)
+            return render_template("lideres/tractores/tractoresAg.html", categorias=categorias, nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -92,12 +98,14 @@ def agregarTrac():
 def editarTractor(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractor = misTracores.buscar(idObjeto)
             categorias = misCategorias.categoriasTractor()
-            return render_template("lideres/tractores/tractoresEd.html",tractor=tractor[0], categorias=categorias)
+            return render_template("lideres/tractores/tractoresEd.html",tractor=tractor[0], categorias=categorias,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -120,8 +128,8 @@ def actualizarTractor():
             if len(request.form['activo']) == 0:
                 activo = 1
             else:
-                 activo = request.form['activo']
-                 
+                activo = request.form['activo']
+                
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misTracores.modificar([idobjeto, categoria, foto1, marca, modelo, fechamodelo,activo])
@@ -166,11 +174,13 @@ def borrarTractor(idObjetos):
 def tractor(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misFichas.consultarTractor(idObjetos)
-            return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0])
+            return render_template("lideres/hojaVida/tractores.html",res=resultado, trac=resultado[0],nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -180,11 +190,13 @@ def tractor(idObjetos):
 def agregar(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template('lideres/hojaVida/tractorAG.html', res=resultado[0])
+            return render_template('lideres/hojaVida/tractorAG.html', res=resultado[0],nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -219,11 +231,13 @@ def agregarA():
 def agregarBG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template('lideres/hojaVida/tractorBG.html', res=resultado[0])
+            return render_template('lideres/hojaVida/tractorBG.html', res=resultado[0],nombreusu=nombre  , rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -265,11 +279,13 @@ def agregarB():
 def agregarCG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template('lideres/hojaVida/tractorCG.html', res=resultado[0])
+            return render_template('lideres/hojaVida/tractorCG.html', res=resultado[0],nombreusu=nombre  , rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -307,11 +323,13 @@ def agregarC():
 def agregarDG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template('lideres/hojaVida/tractorDG.html', res=resultado[0])
+            return render_template('lideres/hojaVida/tractorDG.html', res=resultado[0],nombreusu=nombre  , rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -351,11 +369,13 @@ def agregarD():
 def agregarEG(idObjetos):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscarTractor(idObjetos)
-            return render_template('lideres/hojaVida/tractoreG.html', res=resultado[0])
+            return render_template('lideres/hojaVida/tractoreG.html', res=resultado[0],nombreusu=nombre  , rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

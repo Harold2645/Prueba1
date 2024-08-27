@@ -14,10 +14,22 @@
 
     <header id="header">
 
-        <figure id="header_logo">
-            <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
-            <h2 id="titulo">Perfil de Usuario</h2>
-        </figure>
+        <div id="contenedortitulo">
+            <figure id="header_logo">
+                <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+            </figure>
+            <div id="contenidotitulo">
+                <h2 id="titulo">Perfil de Usuario</h2>
+                <div id="contenidonombre">
+                    <h4>{{nombreusu}}</h4>
+                    {% if rolusu == 'Trabajador'%}
+                        <h4>Trabajador de Planta</h4>
+                    {% else %}
+                        <h4>{{rolusu}}</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     
     
         <button id="cont-disparador">

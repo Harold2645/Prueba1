@@ -12,11 +12,12 @@ from models.movimientos import misMovimientos
 def consultaLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect ('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misLiquidos.consultarliquidos()
-            return render_template("lideres/liquidos/liquidos.html", res=resultado)
+            return render_template("lideres/liquidos/liquidos.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -26,11 +27,12 @@ def consultaLiquidos():
 def consultalarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misLiquidos.todoslosliquidos()
-            return render_template("lideres/liquidos/verLiquidos.html", res=resultado)
+            return render_template("lideres/liquidos/verLiquidos.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -41,11 +43,12 @@ def consultalarLiquidos():
 def agregarLiquidos():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasLiquidos()
-            return render_template("lideres/liquidos/liquidosAg.html", categorias=categorias)
+            return render_template("lideres/liquidos/liquidosAg.html", categorias=categorias,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -104,12 +107,13 @@ def borrarLiquidos(idObjetos):
 def editarLiquidos(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             Consu = misLiquidos.buscar(idObjeto)
             categorias = misCategorias.categoriasLiquidos()
-            return render_template("lideres/liquidos/liquidosEd.html",Consu=Consu[0], categorias=categorias)
+            return render_template("lideres/liquidos/liquidosEd.html",Consu=Consu[0], categorias=categorias,nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -131,8 +135,8 @@ def actualizarLiquidos():
             if len(request.form['activo']) == 0:
                 activo = 1
             else:
-                 activo = request.form['activo']
-                             
+                activo = request.form['activo']
+                            
             if foto.filename == '':
                 foto1 = request.form['foto1']
                 misLiquidos.modificar([idobjeto,nombre,categoria,cantidad, foto1,activo])

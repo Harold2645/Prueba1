@@ -12,11 +12,12 @@ from models.movimientos import misMovimientos
 def consultaConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         resultado = misInsumos.consultarinsumos()
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-            return render_template('usuarios/insumos.html', res=resultado)
+            return render_template('usuarios/insumos.html', res=resultado,nombreusu=nombre, rolusu=rol)
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template("lideres/insumos/insumos.html", res=resultado)
+            return render_template("lideres/insumos/insumos.html", res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -26,11 +27,12 @@ def consultaConsumibles():
 def consultalarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misInsumos.todoslosinsumos()
-            return render_template("lideres/insumos/verInsumos.html", res=resultado)
+            return render_template("lideres/insumos/verInsumos.html", res=resultado,nombreusu=nombre, rolusu=rol ,)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -53,11 +55,12 @@ def buscarLiquido():
 def agregarConsumibles():
     if session.get("loginCorrecto"):
         rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             categorias = misCategorias.categoriasInsumos()
-            return render_template("lideres/insumos/insumosAg.html", categorias=categorias)
+            return render_template("lideres/insumos/insumosAg.html", categorias=categorias,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -116,12 +119,13 @@ def borrarConsumibles(idObjetos):
 def editarConsumibles(idObjeto):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             Consumible = misInsumos.buscar(idObjeto)
             categorias = misCategorias.categoriasInsumos()
-            return render_template("lideres/insumos/insumosEd.html",Consu=Consumible[0], categorias=categorias)
+            return render_template("lideres/insumos/insumosEd.html",Consu=Consumible[0], categorias=categorias,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

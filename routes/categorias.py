@@ -9,12 +9,13 @@ from models.categorias import misCategorias
 @app.route('/consultarCategorias')
 def consultaCategorias():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misCategorias.consultarCategorias()
-            return render_template("lideres/categorias/categoria.html", res=resultado)
+            return render_template("lideres/categorias/categoria.html", res=resultado,nombreusu=nombre  , rolusu=rol )
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -24,13 +25,14 @@ def consultaCategorias():
 @app.route('/agregarCategoria')
 def agregarCategoria():
     if session.get("loginCorrecto"):
-        rol = session['rol'] 
+        rol = session['rol']
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             descripcion = misCategorias.buscarCate()
             descri = [descrip[0] for descrip in descripcion]
-            return render_template("lideres/categorias/categoriaAg.html", descripciones=descri)
+            return render_template("lideres/categorias/categoriaAg.html", descripciones=descri,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

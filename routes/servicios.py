@@ -9,11 +9,13 @@ from models.servicios import misServicios
 def consultarTodosPedidos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultar()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Todos los prestamos')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Todos los prestamos',nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -25,11 +27,13 @@ def consultarTodosPedidos():
 def consultarSolicitados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarSolicitados()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Solicitados')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Solicitados',nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -41,11 +45,13 @@ def consultarSolicitados():
 def consultarAceptado():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarAceptado()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Por Entregar')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Por Entregar',nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -56,11 +62,13 @@ def consultarAceptado():
 def consultarprestados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarPrestado()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Prestados')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Prestados',nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -71,11 +79,13 @@ def consultarprestados():
 def consultarDevueltos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarDevuelto()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Devueltos')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Devueltos',nombreusu=nombre  , rolusu=rol )
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -86,11 +96,13 @@ def consultarDevueltos():
 def consultarRechazados():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             tractores = misServicios.consultarRechazado()
-            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Rechazados')
+            return render_template("lideres/prestamos/prestamos.html", trac=tractores, titulo='Rechazados',nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -133,10 +145,12 @@ def pedir(idobjeto):
 def devolver(idservicio):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
-            return render_template("lideres/devoluciones/devoluciones.html", idservicio=idservicio)
+            return render_template("lideres/devoluciones/devoluciones.html", idservicio=idservicio,nombreusu=nombre  , rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -158,9 +172,6 @@ def devolucion():
             fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
             foto.save("uploads/" + fotot)
             envio=[id,hora,descripcion,fotot]
-            #error
-            #error#error
-            #error
             misServicios.devueltoinsu(envio)
             return redirect("/consultarTodosPedidos")
         else:
@@ -172,19 +183,21 @@ def devolucion():
 def prestado(idservicio):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             if misServicios.buscardescuentotractor(idservicio):
                 tractor = misServicios.buscardescuentotractor(idservicio)
                 maxtrac = misServicios.combustible()
-                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, maxtrac = maxtrac, trac = 'tractor')
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = tractor, maxtrac = maxtrac, trac = 'tractor',nombreusu=nombre, rolusu=rol )
             elif misServicios.buscardescuento(idservicio):
                 cantidad = misServicios.buscardescuento(idservicio)
-                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'insumo')
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'insumo',nombreusu=nombre, rolusu=rol)
             elif misServicios.buscardescuentoherramienta(idservicio):
                 cantidad = misServicios.buscardescuentoherramienta(idservicio)
-                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'herramienta')
+                return render_template("lideres/prestamos/prestar.html", idservicio=idservicio, cantidad = cantidad, trac = 'herramienta',nombreusu=nombre, rolusu=rol)
             else:
                 return redirect("/consultarTodosPedidos")
         else:
@@ -292,10 +305,12 @@ def rechazar(id):
 def mispedidos():
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
+
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador' or rol == 'Admin' or rol == 'Practicante':
             id = session['documento']
             tractores = misServicios.consultarMios(id)
-            return render_template("usuarios/pedidos.html",trac=tractores, titulo='Mis pedidos')
+            return render_template("usuarios/pedidos.html",trac=tractores, titulo='Mis pedidos',nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
@@ -305,11 +320,12 @@ def mispedidos():
 def vermasServicios(id):
     if session.get("loginCorrecto"):
         rol = session['rol'] 
+        nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
             resultado = misServicios.buscar(id)
-            return render_template('lideres/prestamos/verMas.html', res=resultado)
+            return render_template('lideres/prestamos/verMas.html', res=resultado,nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:

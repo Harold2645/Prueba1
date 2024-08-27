@@ -46,6 +46,7 @@ html, body{
 figure{
     padding: 0;
     margin: 0;
+    border-right: 2px solid white;
 }
 header#header{
     display: flex;
@@ -54,17 +55,28 @@ header#header{
     grid-area: header;
     background-color: #00324D;
 }
-#header_logo{
+#contenedortitulo{
     display: flex;
     align-items: center;
     color: white;
     animation: slide-in 0.4s ease-in;
+    padding: 10px 10px 10px 20px;
 }
-    #header_logo h2{
+#contenidotitulo{
+    margin-left: 15px;
+}
+#contenedortitulo h2{
+    margin: 0;
+}
+    h2#titulo{
         border: none;
-        border-left: 2px solid white;
-        padding: 10px 10px 10px 20px;
     }
+#contenidonombre h4{
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+}
+
 @keyframes slide-in{
     from{
         transform: translateX(-50vw);
