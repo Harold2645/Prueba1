@@ -1,0 +1,113 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+  }
+  @font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+  }
+/* Reset de estilos básicos */
+body, p, ul, li, figure {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+thead {
+    background-color: #39A900;
+    color: white;
+}
+thead th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #2E8B00;
+}
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tbody tr:hover {
+    background-color: #e2e2e2;
+}
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center; /* Centra el contenido en las celdas */
+}
+.acciones{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+    .acciones i{
+        font-size: 20px;
+    }
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+    thead {
+        display: none;
+    }
+    tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        background-color: #e2e2e2;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #e2e2e2;
+    }
+    tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+    tbody td:last-child {
+        border-bottom: 0;
+    }
+    .acciones{
+        color: black;
+    }
+}
