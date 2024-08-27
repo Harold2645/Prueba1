@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/principalusuario.css">
+    <script src="../../static/js/menu.js"></script>
+    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
+    <title>PRINCIPAL USUARIOS</title>
+</head>
+
+<body>
+    <header id="header">
+        <figure>
+            <img src="../../static/img/LogoSenaSinFondo.png" alt="" id="logo_sena">
+        </figure>
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
+        </button>
+        <div id="menu_cont">
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+            <div class="menu">
+                <ul class="interior">
+                    <li><a href="/mispedidos"><i class="lni lni-text-align-right"></i>Mis pedidos</a></li>
+                    <li><a href="/perfilPropio"><i class="lni lni-user"></i>Mi perfil</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/"><i class="lni lni-exit"></i>Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="tresuno">
+
+        <article class="mosaicos">
+            <h2 class="titulo">TRACTORES</h2>
+            <figure class="foto">
+                <img src="../../static/img/tractor.png" alt="" class="foto_interior">
+            </figure>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/tractores" class="button">Ver tractores</a>
+        </article>
+
+
+        <!-- urbano aqui hago la funcion para mostrar solo lo que el usuario necesita -->
+
+
+        <article class="mosaicos">
+            <h2 class="titulo">HERRAMIENTAS</h2>
+            <figure class="foto">
+                <img src="../../static/img/herramientas.png" alt="" class="foto_interior">
+            </figure>
+            <form action="/buscarHerramientas" method="post" class="form_busqueda" name="form_herramientas">
+                <input type="search" name="buscar_herramientas" class="buscar" placeholder="Buscar..."
+                    required>
+                <button type="submit" class="button_buscar" name="">
+                    <i class="lni lni-keyword-research" id="icono_buscar"></i>
+                </button>
+            </form>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/consultarHerramientas" class="button">Ver herramientas</a>
+        </article>
+
+
+        <!-- urbano aqui hago la funcion para mostrar solo lo que el usuario necesita -->
+        <article class="mosaicos">
+            <h1 class="titulo">INSUMOS</h1>
+            <figure class="foto">
+                <img src="../../static/img/logistica.png" alt="" class="foto_interior">
+            </figure>
+            <form action="/buscarLiquido" method="post" class="form_busqueda" name="form_insumos">
+                <input type="search" name="buscar_insumo" class="buscar" placeholder="Buscar..." required>
+                <button type="submit" class="button_buscar" name="button_insumos">
+                    <i class="lni lni-keyword-research" id="icono_buscar"></i>
+                </button>
+            </form>
+            <p class="parrafo">"Los tractores son vehículos fundamentales en la agricultura y la construcción. Con su potencia y versatilidad, facilitan tareas como el arado, la siembra y la cosecha, así como el transporte de materiales pesados. Su robustez y eficiencia los convierten en herramientas esenciales para el trabajo en el campo y en obras."</p>
+            <a href="/consultarConsumibles" class="button">Ver insumos</a>
+        </article>
+    </div>
+    <script src="../../static/js/menu.js"></script>
+</body>
+</html>

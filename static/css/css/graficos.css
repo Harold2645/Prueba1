@@ -1,0 +1,189 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+
+:root{
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon: #CB7766;
+    --blanco: #fefefe;
+    --negro: #070707;
+}
+
+#header_logo{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+div#cont_medio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div#botones{
+    display: flex;
+    justify-content: center;
+    padding: 18px;
+    gap: 30px;
+}
+    div#botones .botongra{
+        padding: 10px;
+        background-color: #00324D;
+        color: white;
+        border-radius: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        transition: 0.5 ease-out;
+        padding: 15px;
+    }
+        div#botones .botongra:hover{
+            color: #39A900;
+            background-color: rgb(243, 243, 243);
+        }
+
+
+form#formu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    height: 85vh;
+}
+ 
+    form#formu #correoSub{
+        font-size: 14px;
+        padding: 10px;
+        width: 300px;
+        height: 35px;
+        background: none;
+        border-radius: 10px;
+        border-color: #00324D;
+    }
+    form#formu button{
+        border-radius: 10px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        background-color: #00324D;
+    }
+    form#formu button:hover{
+        background: rgb(243, 243, 243);
+        color: #39A900;
+    }
+div#imgrafico{
+    display: flex;
+    justify-content: center;
+}
+.imgra{
+    width: 100%;
+}
+
+
+#telonCarga {
+    background-color: #38a90041;
+    backdrop-filter: blur(8px);
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    place-items: center;
+}
+
+.cargando {
+    width: 100px;
+    height: 100px;
+    border: solid 5px #39A900;
+    border-top: solid 5px #385C57;
+    border-radius: 50px;
+    animation: cargando .8s linear infinite;
+}
+@keyframes cargando {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.mensaje {
+    color: #00324D;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    animation: mensaje 1s alternate infinite ease-in-out;
+    font-size: 20px;
+}
+@keyframes mensaje {
+    0%{
+        opacity: .2;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+
+@media only screen and (min-width: 768px){
+    .imgra{
+        width: 90%;
+    }
+    div#cont_medio{
+        flex-direction: row;
+    }
+    div#botones{
+        flex-direction: column;
+        gap: 50px;
+    }
+    form#formu{
+        gap: 10px;
+    }
+        form#formu #correoSub{
+            font-size: 14px;
+            padding: 10px;
+        }
+    div#imgrafico{
+        display: flex;
+        justify-content: center;
+    }
+    div#botones .botongra{
+        margin: 0px 50px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    form#formu{
+        gap: 15px;
+    }
+}

@@ -1,0 +1,136 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+
+body {
+    background-image: url(../img/fndlqd.jpg); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: 'work', 'calibri';
+}
+
+section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    position: absolute; 
+    top: 120px; 
+    right: 80px; 
+    margin: 0 auto; 
+}
+
+
+section label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+
+section input[type="text"],
+section input[type="number"],
+section input[type="file"],
+section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+section button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    background-color: #00324D;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+section button[type="submit"]:hover {
+    background-color: #00324D;
+}
+
+
+section a.cancel-button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    background-color: #d00000;
+    padding: 8px 10px;
+    border-radius: 0px;
+    text-decoration: none;
+    font-size: 14px;
+    width: 100%;
+    margin: 10px auto 0 auto;
+}
+
+section a.cancel-button:hover {
+    background-color: #d00000;
+}
+
+
+section figure.img-thumbnail {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+section figure.img-thumbnail img {
+    border-radius: 0px;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 15px;
+        width: calc(100% - 40px); 
+        right: auto; 
+        left: 20px; 
+        top: 100px; 
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+}
+
+
+@media (min-width: 600px) {
+    section {
+        top: 120px; 
+        right: 80px; 
+    }
+}

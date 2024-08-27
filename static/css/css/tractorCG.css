@@ -1,0 +1,109 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'work', 'calibri';
+    background-image: url(../img/fnddv.jpg); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    margin: 20px auto; 
+    max-width: 800px; 
+}
+
+
+.formulario {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    max-width: 400px; 
+    margin: 20px 0 20px auto; 
+    position: relative; 
+    right: 7%;
+}
+
+.formulario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.campo input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 900px) {
+    .formulario {
+        max-width: 100%; 
+        margin: 10px auto; 
+        padding: 10px; 
+        right: 0; 
+    }
+
+    .campo input[type="text"] {
+        padding: 8px; 
+    }
+
+    button[type="submit"] {
+        padding: 8px; 
+        font-size: 14px; 
+    }
+}

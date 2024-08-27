@@ -1,0 +1,130 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+body {
+    font-family: 'work', 'calibri';
+    background-image: url(../img/fnddv.jpg); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: flex-end; 
+    padding: 10px;
+}
+
+form {
+    max-width: 330px;
+    margin: 20px 0; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+div#cuerpo{
+    height: 82vh;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+#titular{
+    background-color: #36a900;
+    color: white;
+    text-align: center;
+    margin-top: 0;
+    padding: 10px;
+}
+#cont_bajo{
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%; 
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%; 
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #00324D;
+    color: white;
+    text-align: center;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(243, 243, 243);
+    color: #36a900;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 600px) {
+    main {
+        justify-content: center; 
+    }
+
+    form {
+        max-width: 100%; 
+        margin: 10px; 
+        padding: 10px; 
+    }
+
+    input[type="text"],
+    input[type="file"] {
+        padding: 8px; 
+    }
+
+    button[type="submit"] {
+        padding: 8px; 
+        font-size: 14px;  
+    }
+}
+
+/* Media Queries para tabletas */
+@media (min-width: 601px) and (max-width: 1024px) {
+    main {
+        justify-content: center; 
+    }
+
+    form {
+        max-width: 100%; 
+        margin: 10px; 
+        padding: 20px; 
+    }
+}
