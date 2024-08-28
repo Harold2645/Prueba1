@@ -20,8 +20,7 @@ class Graficos:
 misGraficos=Graficos(conexion)
 
 
-# hola
-# hola
+
 
 
 

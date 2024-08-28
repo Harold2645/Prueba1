@@ -48,5 +48,5 @@ def test_agregarTrac(mock_dependencies, creador, idobjeto, categoria, foto, hora
         fechamodelo=fechamodelo
     )
 
-    # Verificar el resultado esperado
+   
     assert resultado == True  # O cualquier resultado que esperes
