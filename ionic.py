@@ -1,9 +1,7 @@
 import base64
 from conexion import *
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-from models.usuarios import misUsuarios
-import json
+from datetime import datetime
+from flask import jsonify, request
 
 
 @app.route('/consultaUsuarioIonic', methods=['GET'])
@@ -92,6 +90,34 @@ def consultaConsumibleIonic():
     except Exception as e:
         return jsonify({"error": str(e)})
     
+@app.route('/consultaLiquidoIonic', methods=['GET'])
+def consultaLiquidoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Liquido' AND consumibles.activo = '1';"
+        cursor.execute(query)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+
+        resultado = []
+        for dato in datos:
+            registro = dict(zip(column_names, dato))
+            # Convertir la imagen a Base64 si existe
+            ruta_imagen = os.path.join("uploads", registro['foto'])
+            if os.path.exists(ruta_imagen):
+                with open(ruta_imagen, "rb") as image_file:
+                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
+            else:
+                registro['foto'] = None  # Manejar el caso en que la imagen no exista
+            resultado.append(registro)
+
+        return jsonify(resultado)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
 @app.route('/consultaHerramientaIonic', methods=['GET'])
 def consultaHerramientaIonic():
     try:
@@ -139,3 +165,46 @@ def misPedidos(id):
     except Exception as e:
         return jsonify({"error": str(e)})  
     
+@app.route('/agregarHerramientasIonic', methods=['POST'])
+def agregarHerramientasIonic():
+    try:
+        data = request.get_json()
+
+        # Decodificar la imagen de Base64 y guardarla
+        if data.get('foto'):
+            foto_data = data['foto']
+            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            foto_path = os.path.join('uploads', foto_nombre)
+
+            # Asegúrate de que la carpeta de destino exista
+            os.makedirs('uploads', exist_ok=True)
+
+            # Decodificar y guardar la imagen
+            with open(foto_path, "wb") as fh:
+                fh.write(base64.b64decode(foto_data.split(',')[1]))
+
+        # Simulación de inserción en la base de datos
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(f"INSERT INTO herramientas (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, '1', %s, '1', '{fecha}', %s)", 
+                    (data['idobjeto'], data['idcategoria'], data['nombre'], foto_nombre, data['creador']))
+        connection.commit()
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+    
+@app.route('/eliminarHerramientaIonic', methods=['POST'])
+def eliminarHerramientaIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("UPDATE herramientas SET  activo = '0' WHERE idobjeto = %s", ([data['idobjeto']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})

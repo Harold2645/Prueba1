@@ -132,13 +132,15 @@ def redireccion():
         cur = conexion.cursor()
         
         cur.execute("SELECT cantidad FROM consumibles WHERE nombre LIKE '%acpm%' OR nombre LIKE '%ACMP%' OR nombre LIKE '%A.C.P.M%'")
-        cantidad_acpm = cur.fetchone()[0]
+        cantidad_acpm = cur.fetchone()
+        print(cantidad_acpm)
         
         # Si la cantidad de ACPM es menor o igual a 20 guarda la alerta en la sesión
-        if cantidad_acpm <= 20:
-            session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
-        else:
-            session.pop('alerta_acpm', None)
+        if cantidad_acpm != None:
+            if cantidad_acpm <= 20:
+                session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
+            else:
+                session.pop('alerta_acpm', None)
 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return render_template('usuarios/principalUsu.html',nombreusu=nombre  , rolusu=rol )
