@@ -34,6 +34,11 @@ class Usuario:
         self.cursor.execute(sql)
         self.conexion.commit()
 
+    def rechazarUsu(self, documento):
+        sql = f"UPDATE usuarios  SET activo=0 WHERE documento={documento}"
+        self.cursor.execute(sql)
+        self.conexion.commit()
+
     def actualizar(self,usuarios,documento):
         sql = f"UPDATE usuarios SET nombre='{usuarios[1]},apelldio='{usuarios[2]},celular='{usuarios[3]},contrasena='{usuarios[4]},rol='{usuarios[5]},ficha='{usuarios[6]} WHERE documento = {documento}"
         self.cursor.execute(sql)

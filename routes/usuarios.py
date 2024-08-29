@@ -137,7 +137,7 @@ def redireccion():
         
         # Si la cantidad de ACPM es menor o igual a 20 guarda la alerta en la sesión
         if cantidad_acpm != None:
-            if cantidad_acpm <= 20:
+            if cantidad_acpm[0] <= 20:
                 session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
             else:
                 session.pop('alerta_acpm', None)
@@ -163,6 +163,21 @@ def aceptarUsu(documento_parm):
             return redirect("/panel")
         elif rol == 'Admin' or rol == 'Practicante':
             misUsuarios.aceptarSi(documento_parm)
+            return redirect('/panel')
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
+    else:
+        return redirect('/')
+    
+# Aceptar usuario
+@app.route('/rechazarUsu/<documento_parm>')
+def rechazarUsu(documento_parm):
+    if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
+            return redirect("/panel")
+        elif rol == 'Admin' or rol == 'Practicante':
+            misUsuarios.rechazarUsu(documento_parm)
             return redirect('/panel')
         else:
             return render_template("index.html", msg="Rol no reconocido")
