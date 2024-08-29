@@ -92,41 +92,6 @@ def guardagrafico():
         return redirect('/')
 
 
- 
-   
-
-
-# @app.route('/grafConsu')
-# def grafConsu():
-
-#     if session.get("loginCorrecto"):
-#         rol = session['rol'] 
-#         nombre = session['nombreUsuario']
-#         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
-#             return redirect('/panel')
-#         elif rol == 'Admin' or rol == 'Practicante':
-#             data = misGraficos.datosConsumibles()
-
-#             x = [dato[0] for dato in data]
-#             y = [dato[1] for dato in data]
-
-#             fig, ax = plt.subplots()
-#             ax.bar(x, y)
-#             ax.set_xlabel('Tipos')
-#             ax.set_ylabel('Cantidad en Bodega')
-#             # Save the plot to a BytesIO object
-#             img_buf = io.BytesIO()
-#             plt.savefig(img_buf, format='png')
-#             img_buf.seek(0)
-#             img_base64 = base64.b64encode(img_buf.read()).decode('utf-8')
-
-#             plt.close(fig)
-
-#             return render_template('lideres/graficos/graficos.html', img_base64=img_base64,nombreusu=nombre  , rolusu=rol ,)
-#         else:
-#             return render_template("index.html", msg="Rol no reconocido")
-#     else:
-#         return redirect('/')
 
 
 @app.route('/grafConsu')
