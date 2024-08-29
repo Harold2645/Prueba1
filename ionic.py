@@ -1,9 +1,26 @@
 import base64
 from conexion import *
+import hashlib
 from datetime import datetime
 from flask import jsonify, request
 
 
+@app.route('/loginIonic', methods=['POST'])
+def loginIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cifrada = hashlib.sha512(data['contrasena'].encode("utf-8")).hexdigest()
+        cursor.execute(f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{data['documento']}' AND contrasena='{cifrada}' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
+    
 @app.route('/consultaUsuarioIonic', methods=['GET'])
 def consultaUsuarioIonic():
     try:
@@ -16,9 +33,6 @@ def consultaUsuarioIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
-    # res = misUsuarios.consultar()
-    # return json.dump(res)
-
 
 @app.route('/registrarUsuarioIonic', methods=['POST'])
 def registrarUsuarioIonic():
@@ -150,6 +164,7 @@ def consultaHerramientaIonic():
 @app.route('/misPedidos/<id>', methods=['GET'])
 def misPedidos(id):
     try:
+        print(id)
         connection = conexion
         cursor = connection.cursor()
         cursor.execute (f"SELECT * FROM (SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.documento = {id} UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.documento = {id} UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.documento = {id}) AS combined_results ORDER BY fechasoli DESC;")
@@ -157,7 +172,6 @@ def misPedidos(id):
         datos = cursor.fetchall()
         if(len(datos)==0):
             cursor.close()
-            connection.close()
             return jsonify({"msg":"notFound"})
         else:
             cursor.close()
