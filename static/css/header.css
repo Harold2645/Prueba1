@@ -40,30 +40,33 @@ body {
     font-size: 13px;
 }
 html, body{
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
 }
 figure{
     padding: 0;
     margin: 0;
-    border-right: 2px solid white;
 }
 header#header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    grid-area: header;
     background-color: #00324D;
+}
+#rayita{
+    height: 50px;
+    border: 1px solid white;
+    margin: 10px;
 }
 #contenedortitulo{
     display: flex;
     align-items: center;
     color: white;
     animation: slide-in 0.4s ease-in;
-    padding: 10px 10px 10px 20px;
+    padding: 10px;
 }
 #contenidotitulo{
-    margin-left: 15px;
+    
 }
 #contenedortitulo h2{
     margin: 0;
@@ -157,8 +160,7 @@ header a:hover{
     color: #36A900;
 }
 #logo_sena{
-    width: 90px;
-    height: 80px;
+    width: 55px;
 }
 #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
     display: none;
@@ -167,6 +169,9 @@ header a:hover{
 @media only screen and (min-width: 768px){
     #menu_cont{
         width: 40%;
+    }
+    #rayita{
+        margin: 10px 15px;
     }
 }
 
@@ -191,7 +196,7 @@ header a:hover{
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        height: 83.55px;
+        height: 100px;
     }
 
     figure#logo{
@@ -237,10 +242,6 @@ header a:hover{
     #menu_categorias, #menu_novedad{
         
         width: 180px;
-    }
-
-    #header_logo{
-        width: 40%;
     }
 
     header li{
