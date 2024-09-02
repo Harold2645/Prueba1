@@ -131,7 +131,7 @@ def consultaLiquidoIonic():
     
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+        
 @app.route('/consultaHerramientaIonic', methods=['GET'])
 def consultaHerramientaIonic():
     try:
@@ -164,7 +164,6 @@ def consultaHerramientaIonic():
 @app.route('/misPedidos/<id>', methods=['GET'])
 def misPedidos(id):
     try:
-        print(id)
         connection = conexion
         cursor = connection.cursor()
         cursor.execute (f"SELECT * FROM (SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.documento = {id} UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.documento = {id} UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.documento = {id}) AS combined_results ORDER BY fechasoli DESC;")
@@ -222,3 +221,34 @@ def eliminarHerramientaIonic():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+    
+@app.route('/perfilIonic/<id>', methods=['GET'])
+def perfilIonic(id):
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute (f"SELECT * FROM usuarios WHERE documento={id}")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        if(len(datos)==0):
+            cursor.close()
+            return jsonify({"msg":"notFound"})
+        else:
+            cursor.close()
+            return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})  
+    
+@app.route('/solicitarIonic', methods=['POST'])
+def solicitarIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s)", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo'],'S',{fecha}))
+        connection.commit()
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        return jsonify({"error": str(e)})  
