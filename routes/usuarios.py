@@ -137,7 +137,7 @@ def redireccion():
         
         # Si la cantidad de ACPM es menor o igual a 20 guarda la alerta en la sesión
         if cantidad_acpm != None:
-            if cantidad_acpm <= 20:
+            if cantidad_acpm[0] <= 20:
                 session['alerta_acpm'] = f"Alerta: La cantidad de ACPM está en el límite de 20 galones solo quedan: {cantidad_acpm} galones."
             else:
                 session.pop('alerta_acpm', None)

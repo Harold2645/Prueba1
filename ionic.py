@@ -187,7 +187,11 @@ def agregarHerramientasIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+
+            ahora = datetime.now()
+            referencia = "H"+ahora.strftime("%Y%m%d%H%M%S")
+
+            foto_nombre = f"{referencia}.png"  # Puedes cambiar la extensión si es necesario
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -222,3 +226,38 @@ def eliminarHerramientaIonic():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+@app.route('/perfilIonic/<id>', methods=['GET'])
+def perfilIonic(id):
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute (f"SELECT * FROM usuarios WHERE documento={id}")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        if(len(datos)==0):
+            cursor.close()
+            return jsonify({"msg":"notFound"})
+        else:
+            cursor.close()
+            return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})  
+    
+@app.route('/solicitarIonic', methods=['POST'])
+def solicitarIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        sql = [f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s)", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo'],'S',{fecha})]
+        print(sql)
+        cursor.execute(sql)
+        connection.commit()
+        print("Funciono")
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        return jsonify({"error": str(e)})  
