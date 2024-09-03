@@ -195,7 +195,7 @@
                             NO ESTA
                         {% endif %}
                     </td>
-                    <td data-label="Acciones">
+                    <td data-label="Acciones"> 
                         {% if prest[7] == 'S' %}
                         <div class="cont_botones">
                             <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
@@ -252,9 +252,11 @@
                             {{usua[6]}}
                         {% endif %}
                     </td>
-                    <td data-label="Acciones" class="acciones">
-                        <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
-                        <a href="/aceptarUsu/{{usua[0]}}" id="acepusu">Aceptar</a>
+                    <td data-label="Acciones" id="accionesnov">
+                        <div class="cont_botones">
+                            <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                            <a href="/aceptarUsu/{{usua[0]}}" class="acciones" id="aceptar">Aceptar</a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}

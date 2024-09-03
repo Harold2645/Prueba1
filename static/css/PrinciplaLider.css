@@ -116,11 +116,9 @@ tbody td {
         font-size: 20px;
     }
 
-/* Estilo para el botón de acciones */
-tbody td a[href*="aceptarPedido"]::before,
-tbody td a[href*="aceptarUsu"]::before {
-    color: #36A900;
-}
+    #accionesnov{
+        max-width: 80px;
+    }
 
 #alerta_acpm {
     background-color: #f8d7da;

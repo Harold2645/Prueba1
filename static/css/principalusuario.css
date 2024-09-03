@@ -30,7 +30,8 @@ figure{
     margin: 0;
 }
 figure img{
-    width: 100px;
+    width: 60px;
+    margin: 10px;
 }
 body{
     background: url(../img/fondo1.png);
@@ -47,6 +48,7 @@ header#header{
     flex-direction: column;
     padding: 10px;
     align-items: center;
+    gap: 10px;
     min-height: 100vh;
     position: relative;
 }
@@ -194,7 +196,8 @@ article.mosaicos{
 
 @media only screen and (min-width: 768px){
     figure img#logo_sena{
-        width: 150px;
+        width: 100px;
+        margin: 10px;
     }
     header#header{
         width: 300px;
