@@ -243,11 +243,13 @@ def perfilIonic(id):
 def solicitarIonic():
     try:
         data = request.get_json()
+        print(data)
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime('%Y-%m-%d')
         cursor.execute(f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s)", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo'],'S',{fecha}))
         connection.commit()
+        print("Funciono")
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
