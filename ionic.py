@@ -261,3 +261,16 @@ def solicitarIonic():
         return jsonify({"msg": 'ok'})
     except Exception as e:
         return jsonify({"error": str(e)})  
+
+@app.route('/editarHerramientaIonic/<id>', methods=['POST'])
+def editarHerramientaIonic(id):
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM herramientas WHERE idobjeto = {id}")
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
