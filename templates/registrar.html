@@ -27,13 +27,13 @@
                     <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9*]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
 
                 <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="3" placeholder="Nombre" tabindex="2" required title="Solo letras">
+                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z\s*]{3,32}" maxlength="32" minlength="3" placeholder="Ej: Alexis / Juan Camilo" tabindex="2" required title="Solo letras">
 
                 <label for="apellido">Apellido:</label>
-                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z*]{3,32}" maxlength="32" minlength="3" placeholder="Apellido" tabindex="3" required title="Solo letras">
+                    <input type="text" name="apellido" id="apellido" pattern="[A-Za-z\s*]{3,32}" maxlength="32" minlength="3" placeholder="Ej: Franco / Garcia Guerrero" tabindex="3" required title="Solo letras">
 
                 <label for="celular">Celular:</label>
-                    <input type="tel" name="celular" id="celular" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Telefono" tabindex="4" required>
+                    <input type="tel" name="celular" id="celular" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Ej: 3157431695" tabindex="4" required>
 
                 <label for="contrasena">Contraseña:</label>
                     <input type="password" name="contrasena" id="contrasena" placeholder="Recomendado: Número móvil" pattern="[0-9]{10}" maxlength="10" minlength="10" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
@@ -49,7 +49,7 @@
 
                     <div id="cajaFicha">
                         <label for="ficha">Ficha:</label>
-                        <input type="text" name="ficha" id="ficha" placeholder="Ficha" list="fichas" tabindex="7" pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
+                        <input type="text" name="ficha" id="ficha" placeholder="Ej: 2675373" list="fichas" tabindex="7" pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
                         <datalist name="fichas" id="fichas" >
                             {% for ficha in fichas %}
                             <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>

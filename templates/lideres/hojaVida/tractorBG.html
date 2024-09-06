@@ -8,10 +8,9 @@
         <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
         <link rel="stylesheet" href="../../../static/css/header.css">
         <script src="../../../static/js/menu.js"></script>
-         <title>Tractor BG</title> 
+        <title>Tractor BG</title> 
     </head>
     <body>
-
 
         <header id="header">
 
@@ -19,14 +18,14 @@
                 <figure id="header_logo">
                     <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
                 </figure>
-                <div id="rayita">
-                </div>
                 <div id="contenidotitulo">
                     <h2 id="titulo">Tractores</h2>
                     <div id="contenidonombre">
                         <h4>{{nombreusu}}</h4>
                         {% if rolusu == 'Trabajador'%}
                             <h4>Trabajador de Planta</h4>
+                        {% elif rolusu == 'Admin'%}
+                            <h4>Administrador</h4>
                         {% else %}
                             <h4>{{rolusu}}</h4>
                         {% endif %}
@@ -34,13 +33,12 @@
                 </div>
             </div>
         
-        
             <button id="cont-disparador">
                 <i class="lni lni-menu" id="disparador"></i>
             </button>
         
             <div id="menu_cont">
-        
+            
                 <button id="cont-close">
                     <i class="lni lni-close" id="close"></i>
                 </button>
@@ -48,163 +46,165 @@
                 <div class="menu">
                     <ul class="interior" id="menu_ppal">
         
-                        <li class="interior">
-                            <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
-                            <ul id="menu_usuarios" class="menu-n02">
-                                <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar Usuarios</a></li>
-                                <li><a href="/usuarios" class="btn-n02">Personas Registradas</a></li>
-                            </ul>
-                        </li>
-        
                         <li>
-                            <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
-                            <ul id="menu_tractores" class="menu-n02">
-                                <li><a href="/agregarTractor" class="btn-n02">Agregar Tractor</a></li>
-                                <li><a href="/tractores" class="btn-n02">Tractores Disponibles</a></li>
-                                <li><a href="/consultarTractores" class="btn-n02">Todos los Tractores</a></li>
-                            </ul>
-                        </li>
-        
-                        <li>
-                            <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
-                            <ul id="menu_herramienta" class="menu-n02">
-                                <li><a href="/agregarHerramienta" class="btn-n02">Agregar Herramienta</a></li>
-                                <li><a href="/consultarHerramientas" class="btn-n02">Herramientas Disponibles</a></li>
-                                <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las Herramientas</a></li>
-                            </ul>
-                        </li>
-        
-                        <li>
-                            <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
-                            <ul id="menu_insumo" class="menu-n02">
-                                <li><a href="/agregarConsumibles" class="btn-n02">Agregar Insumos</a></li>
-                                <li><a href="/consultarConsumibles" class="btn-n02">Insumos Disponibles</a></li>
-                                <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los Insumos</a></li>
-        
-                                <li>
-                                    <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
-                                    <ul id="menu_liquidos" class="menu-n03">
-                                        <li><a href="/agregarLiquidos" class="btn-n03">Agregar Liquido</a></li>
-                                        <li><a href="/consultarLiquidos" class="btn-n03">Liquidos Disponibles</a></li>
-                                        <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los Liquidos</a></li>
-                                    </ul>
-                                </li>
-        
-                            </ul>
-                        </li>
-        
-                        <li>
-                            <a href="#"  class="btn-n01" id="btn_servicios">Ordenes</a>
+                            <a href="#" class="btn-n01" id="btn_servicios">PRÉSTAMOS</a>
                             <ul id="menu_servicios" class="menu-n02">
-                                <li><a href="/consultarTodosPedidos" class="btn-n02">Todas las Ordenes</a></li>
-                                <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
-                                <li><a href="/consultarAceptado" class="btn-n02">Por Entregar</a></li>
-                                <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
-                                <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
-                                <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
+                                <li><a href="/consultarTodosPedidos" class="btn-n02">TODOS LOS PRÉSTAMOS</a></li>
+                                <li><a href="/consultarSolicitados" class="btn-n02">SOLICITUDES</a></li>
+                                <li><a href="/consultarAceptado" class="btn-n02">POR ENTREGAR</a></li>
+                                <li><a href="/consultarPrestados" class="btn-n02">PRESTADOS</a></li>
+                                <li><a href="/consultarDevueltos" class="btn-n02">DEVUELTOS</a></li>
+                                <li><a href="/consultarRechazados" class="btn-n02">RECHAZADOS</a></li>
                             </ul>
                         </li>
-        
+                        
                         <li>
-                            <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
-                            <ul id="menu_categorias" class="menu-n02">
-                                <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
-                                <li><a href="/consultarCategorias" class="btn-n02">Categorias Registradas</a></li>
+                            <a href="#" class="btn-n01" id="btn_tractores">TRACTORES</a>
+                            <ul id="menu_tractores" class="menu-n02">
+                                <li><a href="/agregarTractor" class="btn-n02">AGREGAR TRACTOR</a></li>
+                                <li><a href="/tractores" class="btn-n02">TRACTORES DISPONIBLES</a></li>
+                                <li><a href="/consultarTractores" class="btn-n02">TODOS LOS TRACTORES</a></li>
                             </ul>
                         </li>
+                        
+                        <li>
+                            <a href="#" class="btn-n01" id="btn_herramienta">HERRAMIENTAS</a>
+                            <ul id="menu_herramienta" class="menu-n02">
+                                <li><a href="/agregarHerramienta" class="btn-n02">AGREGAR HERRAMIENTA</a></li>
+                                <li><a href="/consultarHerramientas" class="btn-n02">HERRAMIENTAS DISPONIBLES</a></li>
+                                <li><a href="/consultarlasHerramientas" class="btn-n02">TODAS LAS HERRAMIENTAS</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="btn-n01" id="btn_insumo">INSUMOS</a>
+                            <ul id="menu_insumo" class="menu-n02">
+                                <li><a href="/agregarConsumibles" class="btn-n02">AGREGAR INSUMOS</a></li>
+                                <li><a href="/consultarConsumibles" class="btn-n02">INSUMOS DISPONIBLES</a></li>
+                                <li><a href="/consultarLosConsumibles" class="btn-n02">TODOS LOS INSUMOS</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="#" class="btn-n01" id="btn_liquido">LÍQUIDOS</a>
+                            <ul id="menu_liquidos" class="menu-n02">
+                                <li><a href="/agregarLiquidos" class="btn-n02">AGREGAR LÍQUIDO</a></li>
+                                <li><a href="/consultarLiquidos" class="btn-n02">LÍQUIDOS DISPONIBLES</a></li>
+                                <li><a href="/consultarLosLiquidos" class="btn-n02">TODOS LOS LÍQUIDOS</a></li>
+                            </ul>
+                        </li>
+                        
+                        <hr>
         
-                        <li><a href="/novedades" class="btn-n02">Novedades</a></li>
-        
+                        <li class="interior">
+                            <a href="#" class="btn-n01" id="btn_usuarios">USUARIOS</a>
+                            <ul id="menu_usuarios" class="menu-n02">
+                                <li><a href="/aceptarUsuarios" class="btn-n02">ACEPTAR USUARIOS</a></li>
+                                <li><a href="/usuarios" class="btn-n02">PERSONAS REGISTRADAS</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/novedades" class="btn-n02">NOVEDADES</a></li>
+                        
+                        <li>
+                            <a href="#" class="btn-n01" id="btn_categoria">CATEGORÍAS</a>
+                            <ul id="menu_categorias" class="menu-n02">
+                                <li><a href="/agregarCategoria" class="btn-n02">AGREGAR CATEGORÍAS</a></li>
+                                <li><a href="/consultarCategorias" class="btn-n02">CATEGORÍAS REGISTRADAS</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="/graficos" class="btn-n01">GRÁFICOS</a></li>
+                        <hr>
                         <li><a href="/perfilPropio" class="btn-n02">Mi Perfil</a></li>
-        
-                        <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
-                        <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
+                        <li><a href="/panel" class="btn-n02">Inicio</a></li>
+                        <li><a href="/" class="btn-n01">Cerrar Sesión</a></li>
         
                     </ul>
                 </div>
             </div>
         </header>
 
-    <section class="formulario">
-        <form class="formulario-hoja" action="/agregarHojaB" method="post" enctype="multipart/form-data">
-            <h2>Actualizar Hoja de Vida del Tractor</h2>
+        <section class="formulario">
+            <form class="formulario-hoja" action="/agregarHojaB" method="post" enctype="multipart/form-data">
+                <h2>Actualizar Hoja de Vida del Tractor</h2>
 
-            <input type="hidden" name="idObjetos" value="{{res[0]}}">
+                <input type="hidden" name="idObjetos" value="{{res[0]}}">
 
-            <div class="campo">
-                <label for="tipodtraccion">Tipo De Traccion (4x2 / 4x4 )</label>
-                <input type="text" name="tipodtraccion" id="tipodtraccion" required>
-            </div>
+                <div class="campo">
+                    <label for="tipodtraccion">Tipo de Tracción (4x2 / 4x4)</label>
+                    <input type="text" name="tipodtraccion" id="tipodtraccion" required>
+                </div>
 
-            <div class="campo">
-                <label for="distanciaeejes">Distancia Entre Ejes (mm) -A</label>
-                <input type="text" name="distanciaeejes" id="distanciaeejes" required>
-            </div>
+                <div class="campo">
+                    <label for="distanciaeejes">Distancia Entre Ejes (mm) - A</label>
+                    <input type="text" name="distanciaeejes" id="distanciaeejes" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturadpacded">Altura Del Piso Al Centro Del Eje Delantero (mm)-M</label>
-                <input type="text" name="alturadpacded" id="alturadpacded" required>
-            </div>
+                <div class="campo">
+                    <label for="alturadpacded">Altura del Piso al Centro del Eje Delantero (mm) - M</label>
+                    <input type="text" name="alturadpacded" id="alturadpacded" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturatotal">Altura Total (mm)-H</label>
-                <input type="text" name="alturatotal" id="alturatotal" required>
-            </div>
+                <div class="campo">
+                    <label for="alturatotal">Altura Total (mm) - H</label>
+                    <input type="text" name="alturatotal" id="alturatotal" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturadetatdlc">Altura Del Eje Trasero Al Techo De La Cabina (mm)-I</label>
-                <input type="text" name="alturadetatdlc" id="alturadetatdlc" required>
-            </div>
+                <div class="campo">
+                    <label for="alturadetatdlc">Altura del Eje Trasero al Techo de la Cabina (mm) - I</label>
+                    <input type="text" name="alturadetatdlc" id="alturadetatdlc" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturamlb">Altura Maxima Baja La Maquina (mm)-K</label>
-                <input type="text" name="alturamlb" id="alturamlb" required>
-            </div>
+                <div class="campo">
+                    <label for="alturamlb">Altura Máxima Baja la Máquina (mm) - K</label>
+                    <input type="text" name="alturamlb" id="alturamlb" required>
+                </div>
 
-            <div class="campo">
-                <label for="longitudtilbdt">Longitud Total -Incluida La Barra De Tiro (mm)-B</label>
-                <input type="text" name="longitudtilbdt" id="longitudtilbdt" required>
-            </div>
+                <div class="campo">
+                    <label for="longitudtilbdt">Longitud Total - Incluida la Barra de Tiro (mm) - B</label>
+                    <input type="text" name="longitudtilbdt" id="longitudtilbdt" required>
+                </div>
 
-            <div class="campo">
-                <label for="anchototalf">Ancho Total (mm)-F</label>
-                <input type="text" name="anchototalf" id="anchototalf" required>
-            </div>
+                <div class="campo">
+                    <label for="anchototalf">Ancho Total (mm) - F</label>
+                    <input type="text" name="anchototalf" id="anchototalf" required>
+                </div>
 
-            <div class="campo">
-                <label for="anchototalg">Ancho Total (mm)-G</label>
-                <input type="text" name="anchototalg" id="anchototalg" required>
-            </div>
+                <div class="campo">
+                    <label for="anchototalg">Ancho Total (mm) - G</label>
+                    <input type="text" name="anchototalg" id="anchototalg" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturadpaddl">Altura Del Piso Al Diferencial Delantero (mm)-L</label>
-                <input type="text" name="alturadpaddl" id="alturadpaddl" required>
-            </div>
+                <div class="campo">
+                    <label for="alturadpaddl">Altura del Piso al Diferencial Delantero (mm) - L</label>
+                    <input type="text" name="alturadpaddl" id="alturadpaddl" required>
+                </div>
 
-            <div class="campo">
-                <label for="alturadpadtn">Altura Del Piso Al Diferencial Trasero (mm)-N</label>
-                <input type="text" name="alturadpadtn" id="alturadpadtn" required>
-            </div>
+                <div class="campo">
+                    <label for="alturadpadtn">Altura del Piso al Diferencial Trasero (mm) - N</label>
+                    <input type="text" name="alturadpadtn" id="alturadpadtn" required>
+                </div>
 
-            <div class="campo">
-                <label for="distanciadpato">Distancia Del Piso Al tiro (mm)-O</label>
-                <input type="text" name="distanciadpato" id="distanciadpato" required>
-            </div>
+                <div class="campo">
+                    <label for="distanciadpato">Distancia del Piso al Tiro (mm) - O</label>
+                    <input type="text" name="distanciadpato" id="distanciadpato" required>
+                </div>
 
-            <div class="campo">
-                <label for="tomafnde">Toma Fuerza - Numero De Estrias</label>
-                <input type="text" name="tomafnde" id="tomafnde" required>
-            </div>
+                <div class="campo">
+                    <label for="tomafnde">Toma de Fuerza - Número de Estrías</label>
+                    <input type="text" name="tomafnde" id="tomafnde" required>
+                </div>
 
-            <div class="campo">
-                <label for="tomafrtrm">Toma Fuerza - rpm TDF/RPM Motor</label>
-                <input type="text" name="tomafrtrm" id="tomafrtrm" required>
-            </div>
-            
-            <div class="campo">
-                <button type="submit">Guardar</button>
-            </div>
-        </form>
-    </section>
-</body>
+                <div class="campo">
+                    <label for="tomafrtrm">Toma de Fuerza - RPM TDF / RPM Motor</label>
+                    <input type="text" name="tomafrtrm" id="tomafrtrm" required>
+                </div>
+                
+                <div class="campo">
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </section>
+    </body>
 </html>

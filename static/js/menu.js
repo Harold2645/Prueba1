@@ -119,6 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             menu_n03.forEach(elemento_03 => {
                                 elemento_03.style.display = "none";
                             });
+                            menu_n02.forEach(elemento_02 => {
+                                elemento_02.style.display = "none";
+                            });
                             menu_liquidos.style.display = "block";
                         } else {
                             menu_liquidos.style.display = "none";

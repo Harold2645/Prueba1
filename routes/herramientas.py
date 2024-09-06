@@ -81,7 +81,7 @@ def guardarHerramienta():
             idobjeto = request.form['id_herramienta']
             idcategoria = request.form.get('id_categoria')
             nombre = request.form['nombre']
-            cantidad = request.form['cantidad']
+            cantidad = 1
             foto = request.files['foto']
             ahora = datetime.now()
             fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

@@ -26,6 +26,8 @@
                         <h4>{{nombreusu}}</h4>
                         {% if rolusu == 'Trabajador'%}
                             <h4>Trabajador de Planta</h4>
+                        {% elif rolusu == 'Admin'%}
+                            <h4>Administrador</h4>
                         {% else %}
                             <h4>{{rolusu}}</h4>
                         {% endif %}

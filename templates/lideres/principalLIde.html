@@ -13,119 +13,120 @@
 </head>
 <body>
 
-<header id="header">
+    <header id="header">
 
-
-    <div id="contenedortitulo">
-        <figure id="header_logo">
-            <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
-        </figure>
-        <div id="rayita">
-        </div>
-        <div id="contenidotitulo">
-            <h2 id="titulo">Panel Principal</h2>
-            <div id="contenidonombre">
-                <h4>{{nombreusu}}</h4>
-                {% if rolusu == 'Trabajador'%}
-                    <h4>Trabajador de Planta</h4>
-                {% else %}
-                    <h4>{{rolusu}}</h4>
-                {% endif %}
+        <div id="contenedortitulo">
+            <figure id="header_logo">
+                <img src="../../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+            </figure>
+            <div id="contenidotitulo">
+                <h2 id="titulo">Panel Principal</h2>
+                <div id="contenidonombre">
+                    <h4>{{nombreusu}}</h4>
+                    {% if rolusu == 'Trabajador'%}
+                        <h4>Trabajador de Planta</h4>
+                    {% elif rolusu == 'Admin'%}
+                        <h4>Administrador</h4>
+                    {% else %}
+                        <h4>{{rolusu}}</h4>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-
-
-
-    <button id="cont-disparador">
-        <i class="lni lni-menu" id="disparador"></i>
-    </button>
-
-    <div id="menu_cont">
-
-        <button id="cont-close">
-            <i class="lni lni-close" id="close"></i>
+    
+    
+        <button id="cont-disparador">
+            <i class="lni lni-menu" id="disparador"></i>
         </button>
-
-        <div class="menu">
-            <ul class="interior" id="menu_ppal">
-
-                <li class="interior">
-                    <a href="#"  class="btn-n01" id="btn_usuarios">Usuarios</a>
-                    <ul id="menu_usuarios" class="menu-n02">
-                        <li><a href="/aceptarUsuarios" class="btn-n02">Aceptar Usuarios</a></li>
-                        <li><a href="/usuarios" class="btn-n02">Personas Registradas</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_tractores">Tractores</a>
-                    <ul id="menu_tractores" class="menu-n02">
-                        <li><a href="/agregarTractor" class="btn-n02">Agregar Tractor</a></li>
-                        <li><a href="/tractores" class="btn-n02">Tractores Disponibles</a></li>
-                        <li><a href="/consultarTractores" class="btn-n02">Todos los Tractores</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_herramienta">Herramientas</a>
-                    <ul id="menu_herramienta" class="menu-n02">
-                        <li><a href="/agregarHerramienta" class="btn-n02">Agregar Herramienta</a></li>
-                        <li><a href="/consultarHerramientas" class="btn-n02">Herramientas Disponibles</a></li>
-                        <li><a href="/consultarlasHerramientas" class="btn-n02">Todas las Herramientas</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_insumo">Insumos</a>
-                    <ul id="menu_insumo" class="menu-n02">
-                        <li><a href="/agregarConsumibles" class="btn-n02">Agregar Insumos</a></li>
-                        <li><a href="/consultarConsumibles" class="btn-n02">Insumos Disponibles</a></li>
-                        <li><a href="/consultarlosConsumibles" class="btn-n02">Todos los Insumos</a></li>
-
-                        <li>
-                            <a href="#"  class="btn-n01" id="btn_liquido">Liquidos</a>
-                            <ul id="menu_liquidos" class="menu-n03">
-                                <li><a href="/agregarLiquidos" class="btn-n03">Agregar Liquido</a></li>
-                                <li><a href="/consultarLiquidos" class="btn-n03">Liquidos Disponibles</a></li>
-                                <li><a href="/consultarlosLiquidos" class="btn-n03">Todos los Liquidos</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_servicios">Ordenes</a>
-                    <ul id="menu_servicios" class="menu-n02">
-                        <li><a href="/consultarTodosPedidos" class="btn-n02">Todas las Ordenes</a></li>
-                        <li><a href="/consultarSolicitados" class="btn-n02">Solicitudes</a></li>
-                        <li><a href="/consultarAceptado" class="btn-n02">Por Entregar</a></li>
-                        <li><a href="/consultarprestados" class="btn-n02">Prestados</a></li>
-                        <li><a href="/consultarDevueltos" class="btn-n02">Devueltos</a></li>
-                        <li><a href="/consultarRechazados" class="btn-n02">Rechazados</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"  class="btn-n01" id="btn_categoria">Categorias</a>
-                    <ul id="menu_categorias" class="menu-n02">
-                        <li><a href="/agregarCategoria" class="btn-n02">Agregar categorias</a></li>
-                        <li><a href="/consultarCategorias" class="btn-n02">Categorias Registradas</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="/novedades" class="btn-n02">Novedades</a></li>
-
-                <li><a href="/perfilPropio" class="btn-n02">Mi Perfil</a></li>
-
-                <li><a href="/graficos"  class="btn-n01">Graficos</a></li>
-                <li><a href="/"  class="btn-n01">CERRAR SESIÓN</a></li>
-
-            </ul>
+    
+        <div id="menu_cont">
+        
+            <button id="cont-close">
+                <i class="lni lni-close" id="close"></i>
+            </button>
+    
+            <div class="menu">
+                <ul class="interior" id="menu_ppal">
+    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_servicios">PRÉSTAMOS</a>
+                        <ul id="menu_servicios" class="menu-n02">
+                            <li><a href="/consultarTodosPedidos" class="btn-n02">TODOS LOS PRÉSTAMOS</a></li>
+                            <li><a href="/consultarSolicitados" class="btn-n02">SOLICITUDES</a></li>
+                            <li><a href="/consultarAceptado" class="btn-n02">POR ENTREGAR</a></li>
+                            <li><a href="/consultarprestados" class="btn-n02">PRESTADOS</a></li>
+                            <li><a href="/consultarDevueltos" class="btn-n02">DEVUELTOS</a></li>
+                            <li><a href="/consultarRechazados" class="btn-n02">RECHAZADOS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_tractores">TRACTORES</a>
+                        <ul id="menu_tractores" class="menu-n02">
+                            <li><a href="/agregarTractor" class="btn-n02">AGREGAR TRACTOR</a></li>
+                            <li><a href="/tractores" class="btn-n02">TRACTORES DISPONIBLES</a></li>
+                            <li><a href="/consultarTractores" class="btn-n02">TODOS LOS TRACTORES</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_herramienta">HERRAMIENTAS</a>
+                        <ul id="menu_herramienta" class="menu-n02">
+                            <li><a href="/agregarHerramienta" class="btn-n02">AGREGAR HERRAMIENTA</a></li>
+                            <li><a href="/consultarHerramientas" class="btn-n02">HERRAMIENTAS DISPONIBLES</a></li>
+                            <li><a href="/consultarlasHerramientas" class="btn-n02">TODAS LAS HERRAMIENTAS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_insumo">INSUMOS</a>
+                        <ul id="menu_insumo" class="menu-n02">
+                            <li><a href="/agregarConsumibles" class="btn-n02">AGREGAR INSUMOS</a></li>
+                            <li><a href="/consultarConsumibles" class="btn-n02">INSUMOS DISPONIBLES</a></li>
+                            <li><a href="/consultarlosConsumibles" class="btn-n02">TODOS LOS INSUMOS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_liquido">LÍQUIDOS</a>
+                        <ul id="menu_liquidos" class="menu-n02">
+                            <li><a href="/agregarLiquidos" class="btn-n02">AGREGAR LÍQUIDO</a></li>
+                            <li><a href="/consultarLiquidos" class="btn-n02">LÍQUIDOS DISPONIBLES</a></li>
+                            <li><a href="/consultarlosLiquidos" class="btn-n02">TODOS LOS LÍQUIDOS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <hr>
+    
+                    <li class="interior">
+                        <a href="#" class="btn-n01" id="btn_usuarios">USUARIOS</a>
+                        <ul id="menu_usuarios" class="menu-n02">
+                            <li><a href="/aceptarUsuarios" class="btn-n02">ACEPTAR USUARIOS</a></li>
+                            <li><a href="/usuarios" class="btn-n02">PERSONAS REGISTRADAS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="/novedades" class="btn-n02">NOVEDADES</a></li>
+                    
+                    <li>
+                        <a href="#" class="btn-n01" id="btn_categoria">CATEGORÍAS</a>
+                        <ul id="menu_categorias" class="menu-n02">
+                            <li><a href="/agregarCategoria" class="btn-n02">AGREGAR CATEGORÍAS</a></li>
+                            <li><a href="/consultarCategorias" class="btn-n02">CATEGORÍAS REGISTRADAS</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="/graficos" class="btn-n01">GRÁFICOS</a></li>
+                    <hr>
+                    <li><a href="/perfilPropio" class="btn-n02">Mi Perfil</a></li>
+                    <li><a href="/panel" class="btn-n02">Inicio</a></li>
+                    <li><a href="/" class="btn-n01">Cerrar Sesión</a></li>
+                    
+    
+                </ul>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
         
         <main>
 
@@ -147,123 +148,131 @@
                 </div>
             </div> -->
 
-
-        <div id="prestamos">
-            <h2 class="tituloUsu">Prestamos Pendientes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha Registro</th>
-                        <th>Fecha Uso</th>                        
-                        <th>Nombre</th>
-                        <th>Codigo sena</th>
-                        <th>Labor </th>
-                        <th>Quien lo pide</th>
-                        <th>Ficha</th>    
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for prest in trac[:5] %}
-                <tr>
-                    <td data-label="Fecha Registro">{{prest[12]}}</td>
-                    <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
-                    <td data-label="Nombre">{{prest[0]}}</td>
-                    <td data-label="Codigo sena">{{prest[2]}}</td>
-                    <td data-label="Labor">{{prest[3]}}</td>
-                    <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{prest[11]}}</a></td> 
-                    <td data-label="Ficha">
-                        {% if prest[5] == '0' %}
-                            No hay
-                        {% else %}
-                            {{prest[5]}}
-                        {% endif %}
-                    </td>
-                    <td data-label="Estado">
-                        {% if prest[7] == 'S' %}
-                            Solicitado
-                        {% elif prest[7] == 'A' %}
-                            Aceptado
-                        {% elif prest[7] == 'P' %}
-                            Prestado
-                        {% elif prest[7] == 'D' %}
-                            Devuelto
-                        {% elif prest[7] == 'R' %}
-                            Rechazado
-                        {% else %}
-                            NO ESTA
-                        {% endif %}
-                    </td>
-                    <td data-label="Acciones"> 
-                        {% if prest[7] == 'S' %}
-                        <div class="cont_botones">
-                            <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
-                            <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
-                        </div>
-                        {% elif prest[7] == 'A' %}
-                            <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
-                        {% elif prest[7] == 'P' %}
-                            <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
-                        {% else %}
-                            &nbsp;
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}    
-                </tbody>
-            </table>
-        </div>
-
-        
-        <div id="novedad">
-            <h2 class="tituloUsu">Usuarios por Aceptar</h2>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Documento</th>
-                        <th>Nombre Completo</th>
-                        <th>Celular</th>
-                        <th>Rol</th>
-                        <th>Ficha</th> 
-                        <th>Acciones</th>                   
-                    </tr>
-                </thead>
-                <tbody>
-                {% for usua in usu[:5] %}
-                <tr>
-                    <td data-label="Documento">{{ usua[0] }}</td>                    
-                    <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
-                    <td data-label="Celular">{{usua[3]}}</td>
-                    <td data-label="Rol">
-                        {% if usua[5] == 'Trabajador' %}
-                            <h4>Trabajador de Planta</h4>
-                        {% else %}
-                            <h4>{{usua[5]}}</h4>
-                        {% endif %}
-                    </td>
+            {% if trac == [] %}
+                <h1>No hay Ordenes</h1>
+            {% else %}
+                <div id="prestamos">
+                    <h2 class="tituloUsu">Prestamos Pendientes</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha Registro</th>
+                                <th>Fecha Uso</th>                        
+                                <th>Nombre</th>
+                                <th>Codigo sena</th>
+                                <th>Labor </th>
+                                <th>Quien lo pide</th>
+                                <th>Ficha</th>    
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for prest in trac[:5] %}
+                        <tr>
+                            <td data-label="Fecha Registro">{{prest[12]}}</td>
+                            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+                            <td data-label="Nombre">{{prest[0]}}</td>
+                            <td data-label="Codigo sena">{{prest[2]}}</td>
+                            <td data-label="Labor">{{prest[3]}}</td>
+                            <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{prest[11]}}</a></td> 
+                            <td data-label="Ficha">
+                                {% if prest[5] == '0' %}
+                                    No hay
+                                {% else %}
+                                    {{prest[5]}}
+                                {% endif %}
+                            </td>
+                            <td data-label="Estado">
+                                {% if prest[7] == 'S' %}
+                                    Solicitado
+                                {% elif prest[7] == 'A' %}
+                                    Aceptado
+                                {% elif prest[7] == 'P' %}
+                                    Prestado
+                                {% elif prest[7] == 'D' %}
+                                    Devuelto
+                                {% elif prest[7] == 'R' %}
+                                    Rechazado
+                                {% else %}
+                                    NO ESTA
+                                {% endif %}
+                            </td>
+                            <td data-label="Acciones"> 
+                                {% if prest[7] == 'S' %}
+                                <div class="cont_botones">
+                                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                                </div>
+                                {% elif prest[7] == 'A' %}
+                                    <a href="/prestado/{{prest[8]}}"class="acciones">Entregar</a>
+                                {% elif prest[7] == 'P' %}
+                                    <a href="/devolver/{{prest[8]}}"class="acciones">Devolver</a>
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}    
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
 
 
-                    <td data-label="Ficha">
-                        {% if usua[6] == '0' or usua[6] ==  '' %}
-                            No tiene
-                        {% else %}
-                            {{usua[6]}}
-                        {% endif %}
-                    </td>
-                    <td data-label="Acciones" id="accionesnov">
-                        <div class="cont_botones">
-                            <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
-                            <a href="/aceptarUsu/{{usua[0]}}" class="acciones" id="aceptar">Aceptar</a>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-                <tbody>
-            </table>
-        </div>
+            {% if usu == [] %}
+                <h1>No hay usuarios por aceptar</h1>
+            {% else %}
+                <div id="novedad">
+                    <h2 class="tituloUsu">Usuarios por Aceptar</h2>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Nombre Completo</th>
+                                <th>Celular</th>
+                                <th>Rol</th>
+                                <th>Ficha</th> 
+                                <th>Acciones</th>                   
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for usua in usu[:5] %}
+                        <tr>
+                            <td data-label="Documento">{{ usua[0] }}</td>                    
+                            <td data-label="Nombre Completo">{{usua[1]}} {{usua[2]}}</td>
+                            <td data-label="Celular">{{usua[3]}}</td>
+                            <td data-label="Rol">
+                                {% if usua[5] == 'Trabajador' %}
+                                    <h4>Trabajador de Planta</h4>
+                                {% else %}
+                                    <h4>{{usua[5]}}</h4>
+                                {% endif %}
+                            </td>
+
+
+                            <td data-label="Ficha">
+                                {% if usua[6] == '0' or usua[6] ==  '' %}
+                                    No tiene
+                                {% else %}
+                                    {{usua[6]}}
+                                {% endif %}
+                            </td>
+                            <td data-label="Acciones" id="accionesnov">
+                                <div class="cont_botones">
+                                    <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/aceptarUsu/{{usua[0]}}" class="acciones" id="aceptar">Aceptar</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tbody>
+                    </table>
+                </div>
+            {% endif %}
+
 
         </main>
 </body>

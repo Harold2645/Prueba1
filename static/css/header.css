@@ -162,7 +162,7 @@ header a:hover{
 #logo_sena{
     width: 55px;
 }
-#menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+#menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
     display: none;
 }
 
@@ -176,6 +176,9 @@ header a:hover{
 }
 
 @media only screen and (min-width: 1366px){
+    hr{
+        display: none;
+    }
     #menu_cont{
         display: block;
         align-items: center;
@@ -208,7 +211,7 @@ header a:hover{
         height: 120px;
     }
 
-    #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+    #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
         background-color: #012a41;
         box-shadow: 0px 5px 16px rgba(11,3,43,0.3);
         color: aliceblue;
@@ -232,10 +235,10 @@ header a:hover{
     }
         #menu_liquidos{
             width: 170px;
-            position: absolute;
+            /* position: absolute;
             background-color: #001d2e;
             left: 90px;
-            top: 10px;
+            top: 10px; */
         }
     #menu_servicios{
         width: 150px;
