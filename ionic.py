@@ -18,7 +18,6 @@ def loginIonic():
         cursor.close()
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})
     
 @app.route('/consultaUsuarioIonic', methods=['GET'])
@@ -246,11 +245,104 @@ def solicitarIonic():
         print(data)
         connection = conexion
         cursor = connection.cursor()
-        fecha = datetime.now().strftime('%Y-%m-%d')
-        cursor.execute(f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s)", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo'],'S',{fecha}))
+        fecha = datetime.now().strftime("%Y%m%d%H%M%S")
+        cursor.execute(f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s,'S','{fecha}')", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo']))
         connection.commit()
         print("Funciono")
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
+        print(e)
         return jsonify({"error": str(e)})  
+
+    
+@app.route('/registrarIonic', methods=['POST'])
+def registrarIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(f"INSERT INTO usuarios (documento,nombre,apellido,celular,contrasena,rol,ficha,fecha,activo) VALUES (%s, %s, %s, %s, %s, %s, %s, '{fecha}','2')", (data['documento'], data['nombre'], data['apellido'], data['celular'], data['contrasena'], data['rol'], data['ficha']))
+        connection.commit()
+        print("funciono")
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
+    
+@app.route('/categoriasTractorIonic', methods=['GET'])
+def categoriasTractorIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM categorias WHERE tipo='Tractor' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+
+@app.route('/agregarTractorIonic', methods=['POST'])
+def agregarTractorIonic():
+    try:
+        data = request.get_json()
+
+        # Decodificar la imagen de Base64 y guardarla
+        if data.get('foto'):
+            foto_data = data['foto']
+
+            ahora = datetime.now()
+            referencia = "T"+ahora.strftime("%Y%m%d%H%M%S")
+
+            foto_nombre = f"{referencia}.png"  # Puedes cambiar la extensión si es necesario
+            foto_path = os.path.join('uploads', foto_nombre)
+
+            # Asegúrate de que la carpeta de destino exista
+            os.makedirs('uploads', exist_ok=True)
+
+            # Decodificar y guardar la imagen
+            with open(foto_path, "wb") as fh:
+                fh.write(base64.b64decode(foto_data.split(',')[1]))
+
+        # Simulación de inserción en la base de datos
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo,fechamodelo) VALUES (%s, %s, %s, '1', '{fecha}', %s, %s, %s, %s)", (data['idobjeto'], data['idcategoria'], foto_nombre, data['creador'], data['marca'], data['modelo'], data['fechamodelo']))
+        connection.commit()
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
+    
+    
+@app.route('/eliminarTractorIonic', methods=['POST'])
+def eliminarTractorIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("UPDATE tractores SET activo=0 WHERE idObjeto = %s", ([data['idobjeto']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+@app.route('/editarTractorIonic/<id>', methods=['POST'])
+def editarTractorIonic(id):
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM herramientas WHERE idobjeto = {id}")
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
