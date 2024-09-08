@@ -51,7 +51,6 @@ header#header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    grid-area: header;
     background-color: #00324D;
 }
 #header_logo{
@@ -158,13 +157,12 @@ header a:hover{
     }
 }
 
-@media only screen and (min-width: 1366px){
+@media only screen and (min-width: 1450px){
     #menu_cont{
         display: block;
         align-items: center;
         background: none;
         box-shadow: none;
-        width: 100%;
         height: 0px;
         overflow-x: visible;
         margin-top: auto;
@@ -180,6 +178,9 @@ header a:hover{
         justify-content: flex-end;
         align-items: center;
         height: 83.55px;
+    }
+    .menu{
+        width: 200px;
     }
 
     figure#logo{

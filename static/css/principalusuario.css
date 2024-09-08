@@ -132,7 +132,8 @@ header#header{
     display: grid;
     height: 100%;
     gap: 2px;
-    padding: 10px 0px;
+    padding: 10px 0;
+    overflow: hidden;
 }
 
 article.mosaicos{
@@ -233,6 +234,7 @@ article.mosaicos{
     }
     #tresuno{
         margin: 0;
+        overflow-y: auto;
     }
     article.mosaicos .button{
         margin-top: 15px;

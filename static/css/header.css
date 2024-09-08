@@ -54,7 +54,7 @@ header#header{
     background-color: #00324D;
 }
 #rayita{
-    height: 50px;
+    height: 55px;
     border: 1px solid white;
     margin: 10px;
 }
@@ -137,10 +137,11 @@ header#header{
     background: none;
     border: none;
     padding: 10px;
-    cursor: pointer;
 }
 #close{
     color: white;
+    font-size: 30px;
+    cursor: pointer;
 }
     #close:hover{
         color: #36A900;
@@ -150,6 +151,12 @@ header li{
     margin: 10px;
     list-style-type: none;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu{
+    
 }
 header a{
     text-decoration: none;
@@ -159,8 +166,12 @@ header a{
 header a:hover{
     color: #36A900;
 }
-#logo_sena{
+figure#header_logo{
     width: 55px;
+    height: 55px;
+}
+#logo_sena{
+    width: 100%;
 }
 #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
     display: none;
@@ -168,10 +179,7 @@ header a:hover{
 
 @media only screen and (min-width: 768px){
     #menu_cont{
-        width: 40%;
-    }
-    #rayita{
-        margin: 10px 15px;
+        width: 30%;
     }
 }
 
@@ -199,16 +207,7 @@ header a:hover{
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        height: 90px;
-    }
-
-    figure#logo{
-        display: flex;
-        justify-content: center;
-    }
-    img#logo-sena{
-        width: 120px;
-        height: 120px;
+        height: 95px;
     }
 
     #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
@@ -220,32 +219,36 @@ header a:hover{
         top: 45px;
     }
     #menu_tractores{
-        width: 170px;
+        width: 200px;
+        left: 15px;
     }
     #menu_usuarios{
-        width: 170px;
-        left: 10px;
-        top: 65px;
+        width: 200px;
+        left: 15px;
     }
     #menu_herramienta{
-        width: 200px;
+        width: 230px;
+        left: 15px;
     }
     #menu_insumo{
-        width: 170px;
+        width: 190px;
+        left: 15px;
     }
         #menu_liquidos{
-            width: 170px;
+            width: 190px;
+            left: 15px;
             /* position: absolute;
             background-color: #001d2e;
             left: 90px;
             top: 10px; */
         }
     #menu_servicios{
-        width: 150px;
+        width: 190px;
+        left: 15px;
     }
     #menu_categorias, #menu_novedad{
-        
-        width: 180px;
+        width: 210px;
+        left: 15px;
     }
 
     header li{
