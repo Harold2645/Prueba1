@@ -119,9 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             menu_n03.forEach(elemento_03 => {
                                 elemento_03.style.display = "none";
                             });
-                            menu_n02.forEach(elemento_02 => {
-                                elemento_02.style.display = "none";
-                            });
                             menu_liquidos.style.display = "block";
                         } else {
                             menu_liquidos.style.display = "none";
@@ -163,7 +160,7 @@ cerrar.addEventListener("click", () => {
     nav.classList.add("remove")
 
     if(nav.className = "remove"){
-        notscroll.style.overflow = "visible"
+        notscroll.style.overflow = "scroll"
     }
 })
     

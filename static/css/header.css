@@ -237,10 +237,10 @@ figure#header_logo{
         #menu_liquidos{
             width: 190px;
             left: 15px;
-            /* position: absolute;
+            position: absolute;
             background-color: #001d2e;
             left: 90px;
-            top: 10px; */
+            top: 10px;
         }
     #menu_servicios{
         width: 190px;
