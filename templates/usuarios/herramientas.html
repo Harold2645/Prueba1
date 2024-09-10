@@ -10,70 +10,74 @@
         <script src="../../../static/js/menu.js"></script>
         <title>Inicio</title>
     </head>
-    <body>
-            <header id="header">
+<body>
+<header id="header">
 
-    <div id="contenedortitulo">
-        <figure id="header_logo">
-            <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
-        </figure>
-        <div id="rayita">
-        </div>
-        <div id="contenidotitulo">
-            <h2 id="titulo">Herramientas</h2>
-            <div id="contenidonombre">
-                <h4>{{nombreusu}}</h4>
-                {% if rolusu == 'Trabajador'%}
-                    <h4>Trabajador de Planta</h4>
-                {% else %}
-                    <h4>{{rolusu}}</h4>
-                {% endif %}
-            </div>
+<div id="contenedortitulo">
+<figure id="header_logo">
+<img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+</figure>
+<div id="rayita">
+</div>
+<div id="contenidotitulo">
+<h2 id="titulo">Herramientas</h2>
+<div id="contenidonombre">
+    <h4>{{nombreusu}}</h4>
+    {% if rolusu == 'Trabajador'%}
+        <h4>Trabajador de Planta</h4>
+    {% else %}
+        <h4>{{rolusu}}</h4>
+    {% endif %}
+</div>
+</div>
+</div>
+
+
+    <button id="cont-disparador">
+        <i class="lni lni-menu" id="disparador"></i>
+    </button>
+    <div id="menu_cont">
+        <button id="cont-close">
+            <i class="lni lni-close" id="close"></i>
+        </button>
+        <div class="menu">
+            <ul class="interior">
+                <li><a href="/panel">Inicio</a></li>
+                <li><a href="/tractores">Tractores</a></li>
+                <li><a href="/consultarConsumibles">Insumos</a></li>
+                <li><a href="/mispedidos">Mis pedidos</a></li>
+                <li><a href="/perfilPropio">Mi perfil</a></li>
+                <li><a href="/">Cerrar Sesion</a></li>
+            </ul>
         </div>
     </div>
-
-
-                <button id="cont-disparador">
-                    <i class="lni lni-menu" id="disparador"></i>
-                </button>
-                <div id="menu_cont">
-                    <button id="cont-close">
-                        <i class="lni lni-close" id="close"></i>
-                    </button>
-                    <div class="menu">
-                        <ul class="interior">
-                            <li><a href="/panel">Inicio</a></li>
-                            <li><a href="/tractores">Tractores</a></li>
-                            <li><a href="/consultarConsumibles">Insumos</a></li>
-                            <li><a href="/mispedidos">Mis pedidos</a></li>
-                            <li><a href="/perfilPropio">Mi perfil</a></li>
-                            <li><a href="/">Cerrar Sesion</a></li>
-                        </ul>
+</header>
+<section id="cont_mayor">
+    {% if res == [] %}
+        <h1>No hay Herramientas disponibles</h1>
+    {% else %}
+        <div id="cont_paneles">
+            {% for herra in res %}
+            <article class="mosaico" id="reservas">
+                <figure class="img-thumbnail" >
+                    <img src="../../uploads/{{herra[2]}}" alt="{{herra[1]}}" id="img-bd">
+                </figure>
+                <div id="cont-i">
+                    <h2>{{herra[1]}}</h2>
+                </div>
+                <div id="cont_bajo">
+                    <div id="cont_h5">
+                        <h5><span>Categoria: </span> {{herra[3]}} </h5>
+                        <h5><span>Descripción: </span> {{herra[4]}}</h5>
                     </div>
                 </div>
-            </header>
-            <section id="cont_mayor">
-            <div id="cont_paneles">
-                {% for herra in res %}
-                <article class="mosaico" id="reservas">
-                    <figure class="img-thumbnail" >
-                        <img src="../../uploads/{{herra[2]}}" alt="{{herra[1]}}" id="img-bd">
-                    </figure>
-                    <div id="cont-i">
-                        <h2>{{herra[1]}}</h2>
-                    </div>
-                    <div id="cont_bajo">
-                        <div id="cont_h5">
-                            <h5><span>Categoria: </span> {{herra[3]}} </h5>
-                            <h5><span>Descripción: </span> {{herra[4]}}</h5>
-                        </div>
-                    </div>
-                    <div id="cont_link" >
-                        <a href="pedir/{{herra[0]}}" class="btnmosatwo">Solicitar</a>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-        </section>
-    </body>
-    </html>
+                <div id="cont_link" >
+                    <a href="pedir/{{herra[0]}}" class="btnmosatwo">Solicitar</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</section>
+</body>
+</html>

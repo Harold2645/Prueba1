@@ -43,10 +43,12 @@ def consultalasHerramientas():
 @app.route('/buscarHerramientas', methods=['GET', 'POST'])
 def buscarHerramientas():
     if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        nombreUsu = session['nombreUsuario']
         if request.method == "POST":
             nombre = request.form['buscar_herramientas']
             resultado = misHerramientas.buscarPornombre(nombre)
-            return render_template("usuarios/herramientas.html", res=resultado)
+            return render_template("usuarios/herramientas.html", res=resultado,nombreusu=nombreUsu, rolusu=rol)
         else:
             return redirect('/')
     else:

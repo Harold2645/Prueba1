@@ -38,13 +38,15 @@ def consultalarConsumibles():
     else:
         return redirect('/')
 
-@app.route('/buscarLiquido', methods=['GET', 'POST'])
-def buscarLiquido():
+@app.route('/buscarInsumo', methods=['GET', 'POST'])
+def buscarInsumo():
     if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        nombreUsu = session['nombreUsuario']
         if request.method == "POST":
             nombre = request.form['buscar_insumo']
             resultado = misInsumos.buscarPornombre(nombre)
-            return render_template("usuarios/insumos.html", res=resultado)
+            return render_template("usuarios/insumos.html", res=resultado, nombreusu=nombreUsu, rolusu=rol)
         else:
             return redirect('/')
     else:

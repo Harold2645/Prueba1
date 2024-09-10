@@ -54,38 +54,43 @@
             </div>
         </header>
     <section id="cont_mayor">
-        <div id="cont_paneles">
-            {% for trac in res %}
-                <article class="mosaico" id="reservas">
-                    <figure class="img-thumbnail" >
-                        <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
-                    </figure>
-                    <div id="cont-i">
-                        <h2>{{trac[0]}} {{trac[1]}}</h2>
-                    </div>
-                    <div id="cont-bajo">
-                        <div id="cont_h5">
-                            <h5><span>Codigo SENA: </span> {{trac[2]}}</h5>
-                            <h5><span>Categoria: </span> {{trac[7]}} </h5>
-                        
+        {% if res == [] %}
+            <h1>No hay tractores disponibles</h1>
+        {% else %}
+            <div id="cont_paneles">
+                {% for trac in res %}
+                    <article class="mosaico" id="reservas">
+                        <figure class="img-thumbnail" >
+                            <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
+                        </figure>
+                        <div id="cont-i">
+                            <h2>{{trac[0]}} {{trac[1]}}</h2>
+                        </div>
+                        <div id="cont-bajo">
+                            <div id="cont_h5">
+                                <h5><span>Codigo SENA: </span> {{trac[2]}}</h5>
+                                <h5><span>Categoria: </span> {{trac[7]}} </h5>
+                            
 
-                        <!-- {% if trac[5] == '0' %}
-                            <h5>Estado: Ocupado</h5>
-                        {% elif trac[5] == '1' %}
-                            <h5>Estado: Disponible</h5>
-                        {% elif trac[5] == '2' %}
-                            <h5>Estado: Prestado</h5>
-                        {% else %}
-                        <h5>Estado: NO ESTA</h5>
-                        {% endif %} -->
+                            <!-- {% if trac[5] == '0' %}
+                                <h5>Estado: Ocupado</h5>
+                            {% elif trac[5] == '1' %}
+                                <h5>Estado: Disponible</h5>
+                            {% elif trac[5] == '2' %}
+                                <h5>Estado: Prestado</h5>
+                            {% else %}
+                            <h5>Estado: NO ESTA</h5>
+                            {% endif %} -->
+                            </div>
                         </div>
-                    </div>
-                        <div id="cont_link">
-                            <a href="pedir/{{trac[2]}}" class="btnmosatwo">Solicitar</a> 
-                        </div>
-                </article>
-            {% endfor %}
-        </div>
+                            <div id="cont_link">
+                                <a href="pedir/{{trac[2]}}" class="btnmosatwo">Solicitar</a> 
+                            </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+
     </section>
     </main>
 
