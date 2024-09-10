@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../../static/img/logoSena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../static/img/logoSena.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
     <link rel="stylesheet" href="../../../static/css/verPrestamosPrestamos.css">
@@ -199,7 +199,7 @@
                                 {% elif prest[7] == 'A' %}
                                     <a href="/prestado/{{prest[8]}}">Entregar</a>
                                 {% elif prest[7] == 'P' %}
-                                    <a href="/devolverprestamo/{{prest[8]}}">Devolver</a>
+                                    <a href="/devolver/{{prest[8]}}">Devolver</a>
                                 {% else %}
                                     No hay acciones
                                 {% endif %}
@@ -228,7 +228,7 @@
                             <td data-label="Nombre">{{prest[0]}}</td>
                             <td data-label="Quién lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td>
                             <td data-label="Acciones">
-                                <a href="/devolverprestamo/{{prest[8]}}">Devolver</a>
+                                <a href="/devolver/{{prest[8]}}">Devolver</a>
                             </td>
                         {% elif titulo == 'Devueltos' %}
                             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
