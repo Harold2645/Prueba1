@@ -1,0 +1,159 @@
+@font-face{
+    font-family: 'work';
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.ttf);
+    src: url(../fuentes/tipografiaprincipal/WorkSans-Medium.woff),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot),
+        url(../fuentes/tipografiaprincipal/AnyConv.com__WorkSans-Medium.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'calibri';
+    src: url(../fuentes/tipografiasecundaria/CalibriRegular.ttf);
+    src: url(../fuentes/tipografiasecundaria/Calibri-Regular.woff),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot),
+        url(../fuentes/tipografiasecundaria/AnyConv.com__CalibriRegular.eot?iefix) format('embedded-opentype');
+        font-style: normal;
+    font-weight: normal;
+}
+:root{
+    --logo-sena: #39A900;
+    --azul-dark: #00324D;
+    --azul-claro: #82DED0;
+    --amarrillo: #FFCE40;
+    --crema: #FBFBE2;
+    --verde-palido: #385C57;
+    --salmon: #CB7766;
+    --blanco: #fefefe;
+    --negro: #070707;
+}
+
+*{
+    box-sizing: border-box;
+    transition: all 0,3s;
+}
+::placeholder, ::-moz-placeholder{
+    color: inherit;
+    font-family: inherit;
+}
+figure{
+    margin: auto;
+    padding: 0;
+    width: 150px;
+}
+    figure img{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+body, html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'work', 'calibri';
+    background: url(../img/fondo_hangar_dark.jpg) center center / cover no-repeat;
+
+}
+
+main#ppal {
+    min-width: 320px;
+    background-color: var(--blanco); 
+    padding: 20px;
+    margin: 15px 0 ;
+}
+    #cabeza #logo{
+        width: 80px;
+    }
+h2#alerta{
+    color: red;
+    margin: 10px 0;
+    font-size: 15px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: var(--negro); 
+    font-size: 0.8em;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 32px;
+    border: none;
+    border-bottom: solid 1px var(--negro);
+}
+div#cajaFicha{
+    display: none;
+    flex-direction: column;
+}
+
+div#boton{
+    display: flex;
+    justify-content: center;
+}
+    button#registrar {
+        background-color: var(--logo-sena); 
+        border: none;
+        color: var(--blanco); 
+        cursor: pointer;
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        font-size: 20px;
+    }
+    button:hover {
+        background-color: #45a049; 
+    }
+
+a#cancelar {
+    color: var(--logo-sena); 
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    margin: 20px 0 0 0;
+    text-decoration: none;
+    font-size: 12px;
+}
+@media screen and (min-width: 800px) {
+
+    #derecha{
+        display: flex;
+        justify-content: flex-end;
+    }
+    #logo{
+        display: none;
+    }
+    #cuerpo {
+        justify-content: flex-end;
+        min-width: 100%;
+
+    }
+    main#ppal {
+        padding: 20px;
+        max-width: 320px;
+        margin-right: 15%;
+        display: flex;
+        justify-content: center;
+
+    }
+}
+@media screen and (min-width: 1000px) {
+    main#ppal {
+        min-width: 350px;
+    }
+    
+}
+@media screen and (min-width: 1800px) {
+    main#ppal {
+        min-width: 420px;
+        min-height: 200px;
+        padding: 30px;
+    }
+    label {
+        font-size: 25px;
+    }
+}

@@ -260,24 +260,33 @@ def clientes():
     else:
         return redirect('/')
 
+# Interfaz para actualizar usuarios
+@app.route('/actualizar/<id>')
+def actualizar(id):    
+    if session.get("loginCorrecto"):
+        rol = session['rol']
+        nombre = session['nombreUsuario']
+        fichas = misUsuarios.buscarFicha()
+        vFicha = [ficha[0] for ficha in fichas ]
+        usuario = misUsuarios.buscar(id)
+        return render_template("actualizarUsu.html", fichas=vFicha, usu = usuario[0],nombreusu=nombre  , rolusu=rol)
+    else:
+        return redirect('/')
 
 
 @app.route("/actualizarUsuarios", methods=['POST'])
 def actualizarUsuarios():
-    session["loginCorrecto"] = True
-    documento = request.form['documento']
-    nombre = request.form['nombre']
-    apellido = request.form['apellido']
-    celular = request.form['celular']
-    contrasena = request.form['contrasena']
-    cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-    rol = request.form['rol']
-    ficha = request.form['ficha']
-    ahora = datetime.now()
-    fecha = ahora.strftime("%Y%m%d%H%M%S")
-    existente = misUsuarios.buscar(documento)
-    if existente:
-        return render_template("registrar.html", msg="Documento ya existe")
+    if session.get("loginCorrecto"):
+        documento = request.form['documento']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        celular = request.form['celular']
+        contrasena = request.form['contrasena']
+        cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
+        rol = request.form['rol']
+        ficha = request.form['ficha']
+        activo = request.form['activo']
+        misUsuarios.actualizar([documento, nombre, apellido, celular, cifrada, rol, ficha,activo])
+        return redirect('/usuarios')
     else:
-        misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
         return redirect('/')

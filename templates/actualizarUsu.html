@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/verUsuarios.css">
+    <link rel="stylesheet" href="../static/css/editarUsu.css">
+    <script src="../static/js/ocultar.js"></script>
     <script src="../static/js/menu.js"></script>
 
     <title>Gestión de Usuarios</title>
@@ -24,7 +24,7 @@
         <div id="rayita">
         </div>
         <div id="contenidotitulo">
-            <h2 id="titulo">Usuarios</h2>
+            <h2 id="titulo">Editar Usuario</h2>
             <div id="contenidonombre">
                 <h4>{{nombreusu}}</h4>
                 {% if rolusu == 'Trabajador'%}
@@ -131,66 +131,74 @@
         </div>
     </div>
 </header>
-    
-<main>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Documento</th>
-                <th>Nombre Completo</th>
-                <th>Celular</th>
-                <th>Rol</th>
-                <th>Ficha</th>
-                <th>Fecha de Registro</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for usu in res %}
-            <tr>
-                <td data-label="Documento">{{usu[0]}}</td>
-                <td data-label="Nombre Completo">{{usu[1]}} {{usu[2]}}</td>
-                <td data-label="Celular">{{usu[3]}}</td>
-                <td data-label="Rol">
-                    {% if usu[5] == 'Trabajador' %}
-                        Trabajador de Planta
-                    {% else %}
-                        {{usu[5]}}
-                    {% endif %}
-                </td>
-                <td data-label="Ficha">{{usu[6]}}</td>
-                <td data-label="Fecha de Registro">{{usu[7]}}</td>
 
-                {% if usu[8] == '0' %}
-                    <td data-label="Estado">Inactivo</td>
-                    <div class="acciones">
-                        <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
-                    </div>                                
-                {% elif usu[8] == '1' %}
-                <div class="acciones">
-                    <td data-label="Estado">Activo</td>
-                    <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
-                </div>                                
+<div id="derecha">
+    <main id="ppal">
+        <section id="cuerpo">
+            <form id="registrar" name="registrar" action="/actualizarUsuarios" method="post" enctype="multipart/form-data">
 
-                {% elif usu[8] == '2' %}
-                    <td data-label="Estado">En espera</td>
-                    <td data-label="Acciones">
-                    <div class="cont_botones">
-                        <a href="/aceptarUsuS/{{usu[0]}}" class="acciones" id="aceptar">Aceptar</a>
-                        <a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a>
+                <figure id="logo">
+                    <img src="../static/img/logoSena.ico" alt="Logo Sena">
+                </figure>
+
+                <h2 id="alerta">{{msg}}</h2>
+                <label for="documento">Documento:</label>
+                    <input type="text" name="documento" id="documento" value="{{usu[0]}}" readonly placeholder="C.C. / C.E. / P.E.P" pattern="[0-9*]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
+
+                <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z\s*]{3,32}" value="{{usu[1]}}" maxlength="32" minlength="3" placeholder="Ej: Alexis / Juan Camilo" tabindex="2" required title="Solo letras">
+
+                <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" value="{{usu[2]}}" pattern="[A-Za-z\s*]{3,32}" maxlength="32" minlength="3" placeholder="Ej: Franco / Garcia Guerrero" tabindex="3" required title="Solo letras">
+
+                <label for="celular">Celular:</label>
+                    <input type="tel" name="celular" id="celular" value="{{usu[3]}}" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Ej: 3157431695" tabindex="4" required>
+
+                <label for="contrasena">Contraseña:</label>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Recomendado: Número móvil" pattern="[0-9]{10}" maxlength="10" minlength="10" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
+
+                    
+                    <label for="rol">Rol:</label>
+                    <select name="rol" id="rol" tabindex="6" required>
+                        <option value="">Selecione su rol</option>
+                        <option value="Admin">Administrador</option>
+                        <option value="Practicante">Practicante</option>
+                        <option value="Aprendiz">Aprendiz</option>
+                        <option value="Instructor">Instructor</option>
+                        <option value="Trabajador">Trabajador de planta</option>
+                    </select>
+
+                    <div id="cajaFicha">
+                        <label for="ficha">Ficha:</label>
+                        <input type="text" name="ficha" id="ficha" placeholder="Ej: 2675373" value="{{usu[6]}}" list="fichas" tabindex="7" pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
+                        <datalist name="fichas" id="fichas" >
+                            {% for ficha in fichas %}
+                            <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
+                            {% endfor %}
+                        </datalist>
                     </div>
-                    </td>
-                {% else %}
-                    <td data-label="Estado">NO ESTA</td>
-                {% endif %}
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</main>
+                    {% if usu[8] == '0' %}
+                        <label for="activo">Estado:</label>
+                        <select name="activo" id="activo" required tabindex="5">
+                            <option value="">Seleccione</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    {% else %}
+                        <input type="hidden" name="activo" value="{{usu[8]}}">
+                    {% endif %}
+                    
+                    <div id="boton">
+                        <button type="submit" id="registrar">GUARDAR</button>
+                    </div>
+                    <a href="/usuarios" id="cancelar">Cancelar</a>
+            </form>
+        </section>
+
+    </main>
+</div>
+
 
     
 </body>

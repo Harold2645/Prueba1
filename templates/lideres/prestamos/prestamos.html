@@ -194,12 +194,18 @@
                             </td>
                             <td data-label="Acciones">
                                 {% if prest[7] == 'S' %}
-                                    <a href="/aceptarprestamo/{{prest[8]}}/{{prest[9]}}" id="acepusu" >Aceptar</a>
-                                    <a href="/rechazarprestamo/{{prest[8]}}/{{prest[9]}}" id="acepusu">Rechazar</a>
+                                <div class="cont_botones">
+                                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                                </div>
                                 {% elif prest[7] == 'A' %}
+                                <div class="acciones">
                                     <a href="/prestado/{{prest[8]}}" id="acepusu">Entregar</a>
+                                </div>                                
                                 {% elif prest[7] == 'P' %}
+                                <div class="acciones">
                                     <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                                </div>                                
                                 {% else %}
                                     No hay acciones
                                 {% endif %}
@@ -212,8 +218,10 @@
                             <td data-label="Labor">{{prest[3]}}</td>
                             <td data-label="Quién lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td>
                             <td data-label="Acciones">
-                                <a href="/aceptarprestamo/{{prest[8]}}/{{prest[9]}}" id="acepusu">Aceptar</a>
-                                <a href="/rechazarprestamo/{{prest[8]}}/{{prest[9]}}" id="acepusu">Rechazar</a>
+                                <div class="cont_botones">
+                                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
+                                </div>
                             </td>
                         {% elif titulo == 'Por Entregar' %}
                             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
@@ -221,14 +229,17 @@
                             <td data-label="Código SENA">{{prest[2]}}</td>
                             <td data-label="Quién lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td>
                             <td data-label="Acciones">
-                                <a href="/prestamoentregado/{{prest[8]}}" id="acepusu">Entregar</a>
-                            </td>
+                                <div class="acciones">
+                                    <a href="/prestado/{{prest[8]}}" id="acepusu">Entregar</a>
+                                </div>                               </td>
                         {% elif titulo == 'Prestados' %}
                             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
                             <td data-label="Nombre">{{prest[0]}}</td>
                             <td data-label="Quién lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{ prest[11] }}</a></td>
                             <td data-label="Acciones">
-                                <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                                <div class="acciones">
+                                    <a href="/devolver/{{prest[8]}}" id="acepusu">Devolver</a>
+                                </div>                                 
                             </td>
                         {% elif titulo == 'Devueltos' %}
                             <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>

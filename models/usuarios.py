@@ -16,6 +16,7 @@ class Usuario:
         sql = f"SELECT * FROM usuarios WHERE documento={documento}"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
+        print(resultado)
         return resultado
     
     def agregar(self, usuarios):
@@ -39,8 +40,8 @@ class Usuario:
         self.cursor.execute(sql)
         self.conexion.commit()
 
-    def actualizar(self,usuarios,documento):
-        sql = f"UPDATE usuarios SET nombre='{usuarios[1]},apelldio='{usuarios[2]},celular='{usuarios[3]},contrasena='{usuarios[4]},rol='{usuarios[5]},ficha='{usuarios[6]} WHERE documento = {documento}"
+    def actualizar(self,usuarios):
+        sql = f"UPDATE usuarios SET nombre='{usuarios[1]}',apellido='{usuarios[2]}',celular='{usuarios[3]}',contrasena='{usuarios[4]}',rol='{usuarios[5]}',ficha='{usuarios[6]}',activo='{usuarios[7]}' WHERE documento = '{usuarios[0]}'"
         self.cursor.execute(sql)
         self.conexion.commit()
 

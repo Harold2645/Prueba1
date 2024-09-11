@@ -73,6 +73,47 @@ th, td {
         font-size: 20px;
     }
 
+    .cont_botones{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cont_botones a#aceptar{
+        background-color: #00324D;
+        padding: 8px;
+        font-size: 11px;
+        color: white;
+        border-radius: 5px;
+        border: none;
+    }
+        .cont_botones a#aceptar:hover{
+            background-color: rgba(243, 243, 243);
+            color: #36A900;
+        }
+        #acepusu{
+            background-color: #00324D;
+            padding: 8px;
+            font-size: 11px;
+            color: white;
+            border-radius: 5px;
+            border: none;
+        }
+            #acepusu:hover{
+                background-color: rgba(243, 243, 243);
+                color: #36A900;
+            }
+        
+        .acciones{
+            color: #39A900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px;
+        }
+            .acciones i{
+                font-size: 20px;
+            }
+
 
 /* Responsividad */
 @media (max-width: 768px) {
