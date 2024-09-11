@@ -6,7 +6,7 @@ class Usuario:
         self.cursor = self.conexion.cursor()
 
     def consultar(self):
-        sql = "SELECT * FROM usuarios WHERE activo=1"
+        sql = "SELECT * FROM usuarios"
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado
