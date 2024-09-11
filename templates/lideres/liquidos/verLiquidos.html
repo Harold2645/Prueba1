@@ -76,7 +76,7 @@
                     <ul id="menu_herramienta" class="menu-n02">
                         <li><a href="/agregarHerramienta" class="btn-n02">AGREGAR HERRAMIENTA</a></li>
                         <li><a href="/consultarHerramientas" class="btn-n02">HERRAMIENTAS DISPONIBLES</a></li>
-                        <li><a href="/consultarHerramientas" class="btn-n02">TODAS LAS HERRAMIENTAS</a></li>
+                        <li><a href="/consultarlasHerramientas" class="btn-n02">TODAS LAS HERRAMIENTAS</a></li>
                     </ul>
                 </li>
 
@@ -85,13 +85,13 @@
                     <ul id="menu_insumo" class="menu-n02">
                         <li><a href="/agregarConsumibles" class="btn-n02">AGREGAR INSUMOS</a></li>
                         <li><a href="/consultarConsumibles" class="btn-n02">INSUMOS DISPONIBLES</a></li>
-                        <li><a href="/consultarConsumibles" class="btn-n02">TODOS LOS INSUMOS</a></li>
+                        <li><a href="/consultarlosConsumibles" class="btn-n02">TODOS LOS INSUMOS</a></li>
                         <li>
                             <a href="#" class="btn-n01" id="btn_liquido">LÍQUIDOS</a>
                             <ul id="menu_liquidos" class="menu-n02">
                                 <li><a href="/agregarLiquidos" class="btn-n02">AGREGAR LÍQUIDO</a></li>
                                 <li><a href="/consultarLiquidos" class="btn-n02">LÍQUIDOS DISPONIBLES</a></li>
-                                <li><a href="/consultarLiquidos" class="btn-n02">TODOS LOS LÍQUIDOS</a></li>
+                                <li><a href="/consultarlosLiquidos" class="btn-n02">TODOS LOS LÍQUIDOS</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -168,7 +168,7 @@
                         </td>
                         <td data-label="Acciones" id="cont_acciones">
                             <a onclick="return confirm('¿Desea editar este líquido?')" href="editarLiquidos/{{ cons[0] }}" class="acciones"><i class='bx bx-edit'></i>Editar</a>
-                            <a onclick="return confirm('¿Desea agregar una novedad a este líquido?')" href="agregarNovedad/{{ cons[0] }}" class="acciones"><i class="lni lni-circle-plus"></i>Agregar novedad</a>
+                            <a onclick="return confirm('¿Desea agregar una novedad a este líquido?')" href="agregarnovedad/{{ cons[0] }}" class="acciones"><i class="lni lni-circle-plus"></i>Agregar novedad</a>
                             <a onclick="return confirm('¿Desea eliminar este líquido?')" href="borrarLiquidos/{{ cons[0] }}" id="btn_delete"><i class='bx bx-trash' id="delete"></i>Eliminar</a>
                         </td>
                     </tr>
