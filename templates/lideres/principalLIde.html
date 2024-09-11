@@ -203,7 +203,7 @@
                             <td data-label="Acciones"> 
                                 {% if prest[7] == 'S' %}
                                 <div class="cont_botones">
-                                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/rechazar/{{prest[8]}}"class="acciones" id="rechazar" onclick="return confirm('¿Desea rechazar esta solicitud?')"><i class="lni lni-close"></i></a>
                                     <a href="/aceptarPedido/{{prest[8]}}"class="acciones" id="aceptar">Aceptar</a>
                                 </div>
                                 {% elif prest[7] == 'A' %}
@@ -248,6 +248,8 @@
                             <td data-label="Rol">
                                 {% if usua[5] == 'Trabajador' %}
                                     <h4>Trabajador de Planta</h4>
+                                {% elif rolusu == 'Admin'%}
+                                    <h4>Administrador</h4>
                                 {% else %}
                                     <h4>{{usua[5]}}</h4>
                                 {% endif %}
@@ -263,7 +265,7 @@
                             </td>
                             <td data-label="Acciones" id="accionesnov">
                                 <div class="cont_botones">
-                                    <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close"></i></a>
+                                    <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close" onclick="return confirm('¿Deseas rechazar a este usuario?')"></i></a>
                                     <a href="/aceptarUsu/{{usua[0]}}" class="acciones" id="aceptar">Aceptar</a>
                                 </div>
                             </td>
