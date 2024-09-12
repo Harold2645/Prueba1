@@ -42,54 +42,57 @@ def login():
 
     documento = request.form['documento']
     sql = f"SELECT rol FROM usuarios WHERE documento='{documento}'"
+    print(sql)
     cur = conexion.cursor()
     cur.execute(sql)
     resultado = cur.fetchone()
-    res = resultado[0]
-
-
-    if res == 'Aprendiz' or res == 'Instructor' or res == 'Trabajador':
-        documento = request.form['documento']
-        sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND activo='1'"
-        cur = conexion.cursor()
-        cur.execute(sql)
-        resultado = cur.fetchone()
-        if resultado is None:
-            return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
-        else:
-            documento = resultado[0]
-            nombre = resultado[1]
-            apellido = resultado[2]
-            rol = resultado[3]
-            nombre_completo = f"{nombre} {apellido}"
-            session['loginCorrecto'] = True
-            session['documento'] = documento
-            session['nombreUsuario'] = nombre_completo
-            session['rol'] = rol
-            return redirect("/panel")
-    elif res == 'Admin' or res == 'Practicante':
-        documento = request.form['documento']
-        contrasena = request.form['contrasena']
-        cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
-        sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
-        cur = conexion.cursor()
-        cur.execute(sql)
-        resultado = cur.fetchone()
-        if resultado is None:
-            return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
-        else:
-            documento = resultado[0]
-            nombre = resultado[1]
-            apellido = resultado[2]
-            rol = resultado[3]
-            nombre_completo = f"{nombre} {apellido}"
-            session['loginCorrecto'] = True
-            session['documento'] = documento
-            session['nombreUsuario'] = nombre_completo
-            session['rol'] = rol
-            return redirect("/panel")
+    print(resultado)
+    if resultado is None:
+        return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
     else:
-        return render_template("index.html", msg="Rol no reconocido")
+        res = resultado[0]
+        if res == 'Aprendiz' or res == 'Instructor' or res == 'Trabajador':
+            documento = request.form['documento']
+            sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND activo='1'"
+            cur = conexion.cursor()
+            cur.execute(sql)
+            resultado = cur.fetchone()
+            if resultado is None:
+                return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
+            else:
+                documento = resultado[0]
+                nombre = resultado[1]
+                apellido = resultado[2]
+                rol = resultado[3]
+                nombre_completo = f"{nombre} {apellido}"
+                session['loginCorrecto'] = True
+                session['documento'] = documento
+                session['nombreUsuario'] = nombre_completo
+                session['rol'] = rol
+                return redirect("/panel")
+        elif res == 'Admin' or res == 'Practicante':
+            documento = request.form['documento']
+            contrasena = request.form['contrasena']
+            cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
+            sql = f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{documento}' AND contrasena='{cifrada}' AND activo='1'"
+            cur = conexion.cursor()
+            cur.execute(sql)
+            resultado = cur.fetchone()
+            if resultado is None:
+                return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
+            else:
+                documento = resultado[0]
+                nombre = resultado[1]
+                apellido = resultado[2]
+                rol = resultado[3]
+                nombre_completo = f"{nombre} {apellido}"
+                session['loginCorrecto'] = True
+                session['documento'] = documento
+                session['nombreUsuario'] = nombre_completo
+                session['rol'] = rol
+                return redirect("/panel")
+        else:
+            return render_template("index.html", msg="Rol no reconocido")
 
     
 
