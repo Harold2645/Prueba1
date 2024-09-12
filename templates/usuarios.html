@@ -132,7 +132,8 @@
     </div>
 </header>
     
-<main>   
+<main>
+    
     <table>
         <thead>
             <tr>
@@ -147,45 +148,47 @@
             </tr>
         </thead>
         <tbody>
+            
             {% for usu in res %}
-            <tr>
-                <td data-label="Documento">{{usu[0]}}</td>
-                <td data-label="Nombre Completo">{{usu[1]}} {{usu[2]}}</td>
-                <td data-label="Celular">{{usu[3]}}</td>
-                <td data-label="Rol">
-                    {% if usu[5] == 'Trabajador' %}
-                        Trabajador de Planta
-                    {% else %}
-                        {{usu[5]}}
-                    {% endif %}
-                </td>
-                <td data-label="Ficha">{{usu[6]}}</td>
-                <td data-label="Fecha de Registro">{{usu[7]}}</td>
-
-                {% if usu[8] == '0' %}
-                    <td data-label="Estado">Inactivo</td>
-                    <div class="acciones">
-                        <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
-                    </div>                                
-                {% elif usu[8] == '1' %}
-                <div class="acciones">
-                    <td data-label="Estado">Activo</td>
-                    <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
-                </div>                                
-
-                {% elif usu[8] == '2' %}
-                    <td data-label="Estado">En espera</td>
-                    <td data-label="Acciones">
-                    <div class="cont_botones">
-                        <a href="/aceptarUsuS/{{usu[0]}}" class="acciones" id="aceptar">Aceptar</a>
-                        <a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a>
-                    </div>
+                <tr>
+                    <td data-label="Documento">{{usu[0]}}</td>
+                    <td data-label="Nombre Completo">{{usu[1]}} {{usu[2]}}</td>
+                    <td data-label="Celular">{{usu[3]}}</td>
+                    <td data-label="Rol">
+                        {% if usu[5] == 'Trabajador' %}
+                            Trabajador de Planta
+                        {% else %}
+                            {{usu[5]}}
+                        {% endif %}
                     </td>
-                {% else %}
-                    <td data-label="Estado">NO ESTA</td>
-                {% endif %}
+                    <td data-label="Ficha">{{usu[6]}}</td>
+                    <td data-label="Fecha de Registro">{{usu[7]}}</td>
 
-            </tr>
+                    {% if usu[8] == '0' %}
+                    <td data-label="Estado">Inactivo</td>
+                    <!-- Hace de mas -->
+                        <!-- <div class="acciones">  -->
+                            <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
+                        <!-- </div>                                 -->
+                    {% elif usu[8] == '1' %}
+                        <td data-label="Estado">Activo</td>
+                        <!-- <div class="acciones"> -->
+                            <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
+                        <!-- </div>                                 -->
+
+                    {% elif usu[8] == '2' %}
+                        <td data-label="Estado">En espera</td>
+                        <td data-label="Acciones">
+                            <div class="cont_botones">
+                                <a href="/aceptarUsu/{{usu[0]}}" class="acciones" id="aceptar">Aceptar</a>
+                                <a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a>
+                            </div>
+                        </td>
+                    {% else %}
+                        <td data-label="Estado">NO ESTA</td>
+                    {% endif %}
+
+                </tr>
             {% endfor %}
         </tbody>
     </table>
