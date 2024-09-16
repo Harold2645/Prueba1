@@ -177,7 +177,7 @@ article.mosaicos{
         position: relative;
     }
         article.mosaicos .form_busqueda input{
-            padding: 10px 5px;
+            padding: 8px 5px;
             background: none;
             border: 2px solid #00324D;
             border-radius: 5px;
@@ -201,7 +201,7 @@ article.mosaicos{
 
 @media only screen and (min-width: 768px){
     figure img#logo_sena{
-        width: 100px;
+        width: 90px;
         margin: 10px;
     }
     header#header{
