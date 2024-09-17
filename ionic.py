@@ -363,3 +363,15 @@ def editarHerramientaIonicConsulta(id):
         return jsonify({"error": str(e)})
         print(e)
 
+@app.route('/datosgrafLiquidosIonic', methods=['GET'])
+def datosgrafLiquidosIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT nombre, cantidad FROM consumibles WHERE tipo = 'Liquido' GROUP BY nombre ORDER BY nombre ASC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})

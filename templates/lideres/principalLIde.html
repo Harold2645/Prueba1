@@ -139,16 +139,7 @@
             {% endif %}
 
 
-            <!-- <div id="alerta_acpm_modal" class="modal">
-                <div class="modal-content">
-                    <div>
-                        <span class="close">&times;</span>
-                        <p>{{ session['alerta_acpm'] }}</p>
-                    </div>
-                    
-                    <a href="/graficos" class="btn-solicitar">Solicitar</a>
-                </div>
-            </div> -->
+
 
             {% if trac == [] %}
                 <h1>No hay Ordenes</h1>
@@ -158,24 +149,23 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Fecha Registro</th>
-                                <th>Fecha Uso</th>                        
+                                <th>Solicitud</th>
+                                <th>Fecha de Uso</th>                        
                                 <th>Nombre</th>
-                                <th>Codigo sena</th>
+                                <th>Codigo SENA</th>
                                 <th>Labor </th>
-                                <th>Quien lo pide</th>
+                                <th>Quien lo Pide</th>
                                 <th>Ficha</th>    
-                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                         {% for prest in trac[:5] %}
                         <tr>
-                            <td data-label="Fecha Registro">{{prest[12]}}</td>
-                            <td data-label="Fecha">{{prest[6].strftime('%d-%m-%Y')}}</td>
+                            <td data-label="Solicitud">{{prest[12]}}</td>
+                            <td data-label="Fecha de Uso">{{prest[6].strftime('%d-%m-%Y')}}</td>
                             <td data-label="Nombre">{{prest[0]}}</td>
-                            <td data-label="Codigo sena">{{prest[2]}}</td>
+                            <td data-label="Codigo SENA">{{prest[2]}}</td>
                             <td data-label="Labor">{{prest[3]}}</td>
                             <td data-label="Quien lo pide"><a href="/perfil/{{ prest[4] }}">{{ prest[10] }} {{prest[11]}}</a></td> 
                             <td data-label="Ficha">
@@ -183,21 +173,6 @@
                                     No hay
                                 {% else %}
                                     {{prest[5]}}
-                                {% endif %}
-                            </td>
-                            <td data-label="Estado">
-                                {% if prest[7] == 'S' %}
-                                    Solicitado
-                                {% elif prest[7] == 'A' %}
-                                    Aceptado
-                                {% elif prest[7] == 'P' %}
-                                    Prestado
-                                {% elif prest[7] == 'D' %}
-                                    Devuelto
-                                {% elif prest[7] == 'R' %}
-                                    Rechazado
-                                {% else %}
-                                    NO ESTA
                                 {% endif %}
                             </td>
                             <td data-label="Acciones"> 

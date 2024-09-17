@@ -29,7 +29,7 @@ body {
 }
 main {
     padding: 20px;
-    max-width: 1000px;
+    width: clamp(320px, 83%, 1280px);
     margin: 0 auto;
 }
 table {
