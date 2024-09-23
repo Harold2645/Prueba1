@@ -29,7 +29,7 @@ body {
 }
 main {
     padding: 20px;
-    max-width: 1000px;
+    width: clamp(320px, 83%, 1280px);
     margin: 0 auto;
 }
 table {
@@ -116,11 +116,9 @@ tbody td {
         font-size: 20px;
     }
 
-/* Estilo para el botón de acciones */
-tbody td a[href*="aceptarPedido"]::before,
-tbody td a[href*="aceptarUsu"]::before {
-    color: #36A900;
-}
+    #accionesnov{
+        max-width: 80px;
+    }
 
 #alerta_acpm {
     background-color: #f8d7da;

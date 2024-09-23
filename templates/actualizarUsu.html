@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/editarUsu.css">
+    <script src="../static/js/ocultar.js"></script>
+    <script src="../static/js/menu.js"></script>
+
+    <title>Gestión de Usuarios</title>
+</head>
+<body>
+
+
+<header id="header">
+
+    <div id="contenedortitulo">
+        <figure id="header_logo">
+            <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
+        </figure>
+        <div id="rayita">
+        </div>
+        <div id="contenidotitulo">
+            <h2 id="titulo">Editar Usuario</h2>
+            <div id="contenidonombre">
+                <h4>{{nombreusu}}</h4>
+                {% if rolusu == 'Trabajador'%}
+                    <h4>Trabajador de Planta</h4>
+                {% elif rolusu == 'Admin'%}
+                    <h4>Administrador</h4>
+                {% else %}
+                    <h4>{{rolusu}}</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <button id="cont-disparador">
+        <i class="lni lni-menu" id="disparador"></i>
+    </button>
+
+    <div id="menu_cont">
+    
+        <button id="cont-close">
+            <i class="lni lni-close" id="close"></i>
+        </button>
+
+        <div class="menu">
+            <ul class="interior" id="menu_ppal">
+
+                <li>
+                    <a href="#" class="btn-n01" id="btn_servicios">PRÉSTAMOS</a>
+                    <ul id="menu_servicios" class="menu-n02">
+                        <li><a href="/consultarTodosPedidos" class="btn-n02">TODOS LOS PRÉSTAMOS</a></li>
+                        <li><a href="/consultarSolicitados" class="btn-n02">SOLICITUDES</a></li>
+                        <li><a href="/consultarAceptado" class="btn-n02">POR ENTREGAR</a></li>
+                        <li><a href="/consultarprestados" class="btn-n02">PRESTADOS</a></li>
+                        <li><a href="/consultarDevueltos" class="btn-n02">DEVUELTOS</a></li>
+                        <li><a href="/consultarRechazados" class="btn-n02">RECHAZADOS</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" class="btn-n01" id="btn_tractores">TRACTORES</a>
+                    <ul id="menu_tractores" class="menu-n02">
+                        <li><a href="/agregarTractor" class="btn-n02">AGREGAR TRACTOR</a></li>
+                        <li><a href="/tractores" class="btn-n02">TRACTORES DISPONIBLES</a></li>
+                        <li><a href="/consultarTractores" class="btn-n02">TODOS LOS TRACTORES</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" class="btn-n01" id="btn_herramienta">HERRAMIENTAS</a>
+                    <ul id="menu_herramienta" class="menu-n02">
+                        <li><a href="/agregarHerramienta" class="btn-n02">AGREGAR HERRAMIENTA</a></li>
+                        <li><a href="/consultarHerramientas" class="btn-n02">HERRAMIENTAS DISPONIBLES</a></li>
+                        <li><a href="/consultarlasHerramientas" class="btn-n02">TODAS LAS HERRAMIENTAS</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" class="btn-n01" id="btn_insumo">INSUMOS</a>
+                    <ul id="menu_insumo" class="menu-n02">
+                        <li><a href="/agregarConsumibles" class="btn-n02">AGREGAR INSUMOS</a></li>
+                        <li><a href="/consultarConsumibles" class="btn-n02">INSUMOS DISPONIBLES</a></li>
+                        <li><a href="/consultarlosConsumibles" class="btn-n02">TODOS LOS INSUMOS</a></li>
+                        <li>
+                            <a href="#" class="btn-n01" id="btn_liquido">LÍQUIDOS</a>
+                            <ul id="menu_liquidos" class="menu-n02">
+                                <li><a href="/agregarLiquidos" class="btn-n02">AGREGAR LÍQUIDO</a></li>
+                                <li><a href="/consultarLiquidos" class="btn-n02">LÍQUIDOS DISPONIBLES</a></li>
+                                <li><a href="/consultarlosLiquidos" class="btn-n02">TODOS LOS LÍQUIDOS</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                
+                <hr>
+
+                <li>
+                    <a href="#" class="btn-n01" id="btn_usuarios">USUARIOS</a>
+                    <ul id="menu_usuarios" class="menu-n02">
+                        <li><a href="/aceptarUsuarios" class="btn-n02">ACEPTAR USUARIOS</a></li>
+                        <li><a href="/usuarios" class="btn-n02">PERSONAS REGISTRADAS</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="/novedades" class="btn-n02">NOVEDADES</a></li>
+                
+                <li>
+                    <a href="#" class="btn-n01" id="btn_categoria">CATEGORÍAS</a>
+                    <ul id="menu_categorias" class="menu-n02">
+                        <li><a href="/agregarCategoria" class="btn-n02">AGREGAR CATEGORÍAS</a></li>
+                        <li><a href="/consultarCategorias" class="btn-n02">CATEGORÍAS REGISTRADAS</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="/graficos" class="btn-n01">GRÁFICOS</a></li>
+                <hr>
+                <li><a href="/perfilPropio" class="btn-n02">Mi Perfil</a></li>
+                <li><a href="/panel" class="btn-n02">Inicio</a></li>
+                <li><a href="/" class="btn-n01">Cerrar Sesión</a></li>
+                
+
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div id="derecha">
+    <main id="ppal">
+        <section id="cuerpo">
+            <form id="registrar" name="registrar" action="/actualizarUsuarios" method="post" enctype="multipart/form-data">
+
+                <figure id="logo">
+                    <img src="../static/img/logoSena.ico" alt="Logo Sena">
+                </figure>
+
+                <h2 id="alerta">{{msg}}</h2>
+                <label for="documento">Documento:</label>
+                    <input type="text" name="documento" id="documento" value="{{usu[0]}}" readonly placeholder="C.C. / C.E. / P.E.P" pattern="[0-9*]{7,15}" maxlength="15" minlength="7" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus required tabindex="1">
+
+                <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre"  id="nombre" pattern="[A-Za-z\s*]{3,32}" value="{{usu[1]}}" maxlength="32" minlength="3" placeholder="Ej: Alexis / Juan Camilo" tabindex="2" required title="Solo letras">
+
+                <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" value="{{usu[2]}}" pattern="[A-Za-z\s*]{3,32}" maxlength="32" minlength="3" placeholder="Ej: Franco / Garcia Guerrero" tabindex="3" required title="Solo letras">
+
+                <label for="celular">Celular:</label>
+                    <input type="tel" name="celular" id="celular" value="{{usu[3]}}" inputmode="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" placeholder="Ej: 3157431695" tabindex="4" required>
+
+                <label for="contrasena">Contraseña:</label>
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Recomendado: Número móvil" pattern="[0-9]{10}" maxlength="10" minlength="10" required title="Solo números y minimo 10, maximo 10" tabindex="5" required>
+
+                    
+                    <label for="rol">Rol:</label>
+                    <select name="rol" id="rol" tabindex="6" required>
+                        <option value="">Selecione su rol</option>
+                        <option value="Admin">Administrador</option>
+                        <option value="Practicante">Practicante</option>
+                        <option value="Aprendiz">Aprendiz</option>
+                        <option value="Instructor">Instructor</option>
+                        <option value="Trabajador">Trabajador de planta</option>
+                    </select>
+
+                    <div id="cajaFicha">
+                        <label for="ficha">Ficha:</label>
+                        <input type="text" name="ficha" id="ficha" placeholder="Ej: 2675373" value="{{usu[6]}}" list="fichas" tabindex="7" pattern="[0-9]{7}" minlength="7" maxlength="7" title="Solo números">
+                        <datalist name="fichas" id="fichas" >
+                            {% for ficha in fichas %}
+                            <option value="{{ ficha }}" {% if ficha %} selected {% endif %}></option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+
+                    {% if usu[8] == '0' %}
+                        <label for="activo">Estado:</label>
+                        <select name="activo" id="activo" required tabindex="5">
+                            <option value="">Seleccione</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    {% else %}
+                        <input type="hidden" name="activo" value="{{usu[8]}}">
+                    {% endif %}
+                    
+                    <div id="boton">
+                        <button type="submit" id="registrar">GUARDAR</button>
+                    </div>
+                    <a href="/usuarios" id="cancelar">Cancelar</a>
+            </form>
+        </section>
+
+    </main>
+</div>
+
+
+    
+</body>
+</html>

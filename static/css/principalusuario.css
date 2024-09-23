@@ -30,10 +30,11 @@ figure{
     margin: 0;
 }
 figure img{
-    width: 100px;
+    width: 60px;
+    margin: 10px;
 }
 body{
-    background: url(../img/fondo1.png);
+    background: url(../img/fondo1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -47,6 +48,7 @@ header#header{
     flex-direction: column;
     padding: 10px;
     align-items: center;
+    gap: 10px;
     min-height: 100vh;
     position: relative;
 }
@@ -104,6 +106,7 @@ header#header{
 #menu_cont li a{
     display: flex;
     align-items: center;
+    font-weight: normal;
     gap: 10px;
     text-decoration: none;
     color: white;
@@ -130,11 +133,13 @@ header#header{
     display: grid;
     height: 100%;
     gap: 2px;
-    padding: 10px 0px;
+    padding: 10px 0;
+    overflow: hidden;
 }
 
 article.mosaicos{
-    background: rgb(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
     padding: 15px;
     max-width: 340px;
     font-size: 14px;
@@ -172,10 +177,11 @@ article.mosaicos{
         position: relative;
     }
         article.mosaicos .form_busqueda input{
-            padding: 5px;
+            padding: 8px 5px;
             background: none;
             border: 2px solid #00324D;
             border-radius: 5px;
+            color: white;
         }
         article.mosaicos .form_busqueda button{
             background-color: #00324D;
@@ -185,6 +191,7 @@ article.mosaicos{
             border-radius: 5px;
             border: none;
             cursor: pointer;
+            padding: 10px;
         }
 
             article.mosaicos .form_busqueda button:hover{
@@ -194,7 +201,8 @@ article.mosaicos{
 
 @media only screen and (min-width: 768px){
     figure img#logo_sena{
-        width: 150px;
+        width: 90px;
+        margin: 10px;
     }
     header#header{
         width: 300px;
@@ -230,6 +238,7 @@ article.mosaicos{
     }
     #tresuno{
         margin: 0;
+        overflow-y: auto;
     }
     article.mosaicos .button{
         margin-top: 15px;

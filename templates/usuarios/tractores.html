@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/vercartasusuario.css">
     <link rel="stylesheet" href="../../static/css/header.css">
-    <link rel="shortcut icon" href="../../static/img/logoSena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/img/logoSena.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="../../../static/js/menu.js"></script>
@@ -18,6 +18,8 @@
         <figure id="header_logo">
             <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
         </figure>
+        <div id="rayita">
+        </div>
         <div id="contenidotitulo">
             <h2 id="titulo">Tractores</h2>
             <div id="contenidonombre">
@@ -52,38 +54,43 @@
             </div>
         </header>
     <section id="cont_mayor">
-        <div id="cont_paneles">
-            {% for trac in res %}
-                <article class="mosaico" id="reservas">
-                    <figure class="img-thumbnail" >
-                        <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
-                    </figure>
-                    <div id="cont-i">
-                        <h2>{{trac[0]}} {{trac[1]}}</h2>
-                    </div>
-                    <div id="cont-bajo">
-                        <div id="cont_h5">
-                            <h5><span>Codigo SENA: </span> {{trac[2]}}</h5>
-                            <h5><span>Categoria: </span> {{trac[7]}} </h5>
-                        
+        {% if res == [] %}
+            <h1>No hay tractores disponibles</h1>
+        {% else %}
+            <div id="cont_paneles">
+                {% for trac in res %}
+                    <article class="mosaico" id="reservas">
+                        <figure class="img-thumbnail" >
+                            <img src="../../uploads/{{trac[4]}}" alt="{{trac[0]}} {{trac[1]}}" id="img-bd">
+                        </figure>
+                        <div id="cont-i">
+                            <h2>{{trac[0]}} {{trac[1]}}</h2>
+                        </div>
+                        <div id="cont-bajo">
+                            <div id="cont_h5">
+                                <h5><span>Codigo SENA: </span> {{trac[2]}}</h5>
+                                <h5><span>Categoria: </span> {{trac[7]}} </h5>
+                            
 
-                        <!-- {% if trac[5] == '0' %}
-                            <h5>Estado: Ocupado</h5>
-                        {% elif trac[5] == '1' %}
-                            <h5>Estado: Disponible</h5>
-                        {% elif trac[5] == '2' %}
-                            <h5>Estado: Prestado</h5>
-                        {% else %}
-                        <h5>Estado: NO ESTA</h5>
-                        {% endif %} -->
+                            <!-- {% if trac[5] == '0' %}
+                                <h5>Estado: Ocupado</h5>
+                            {% elif trac[5] == '1' %}
+                                <h5>Estado: Disponible</h5>
+                            {% elif trac[5] == '2' %}
+                                <h5>Estado: Prestado</h5>
+                            {% else %}
+                            <h5>Estado: NO ESTA</h5>
+                            {% endif %} -->
+                            </div>
                         </div>
-                    </div>
-                        <div id="cont_link">
-                            <a href="pedir/{{trac[2]}}" class="btnmosatwo">Solicitar</a> 
-                        </div>
-                </article>
-            {% endfor %}
-        </div>
+                            <div id="cont_link">
+                                <a href="pedir/{{trac[2]}}" class="btnmosatwo">Solicitar</a> 
+                            </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+
     </section>
     </main>
 

@@ -43,10 +43,12 @@ def consultalasHerramientas():
 @app.route('/buscarHerramientas', methods=['GET', 'POST'])
 def buscarHerramientas():
     if session.get("loginCorrecto"):
+        rol = session['rol'] 
+        nombreUsu = session['nombreUsuario']
         if request.method == "POST":
             nombre = request.form['buscar_herramientas']
             resultado = misHerramientas.buscarPornombre(nombre)
-            return render_template("usuarios/herramientas.html", res=resultado)
+            return render_template("usuarios/herramientas.html", res=resultado,nombreusu=nombreUsu, rolusu=rol)
         else:
             return redirect('/')
     else:
@@ -81,7 +83,7 @@ def guardarHerramienta():
             idobjeto = request.form['id_herramienta']
             idcategoria = request.form.get('id_categoria')
             nombre = request.form['nombre']
-            cantidad = request.form['cantidad']
+            cantidad = 1
             foto = request.files['foto']
             ahora = datetime.now()
             fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

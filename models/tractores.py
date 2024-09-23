@@ -6,7 +6,7 @@ class Tractores:
         self.cursor = self.conexion.cursor()
     
     def todoslosTractores(self):
-        sql = "SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategor0ia AND categorias.tipo = 'Tractor';"        
+        sql = "SELECT tractores.marca, tractores.modelo, tractores.idobjeto, tractores.idcategoria, tractores.fototrac, tractores.activo, categorias.idcategoria, categorias.nombre, categorias.tipo FROM tractores INNER JOIN categorias WHERE tractores.idcategoria = categorias.idcategoria AND categorias.tipo = 'Tractor';"        
         self.cursor.execute(sql)
         resultado = self.cursor.fetchall()
         return resultado

@@ -1,58 +1,47 @@
-from conexion import *
+from conexion import conexion
 from datetime import datetime
-from models.tractores import misTracores
+from models.tractores import Tractores
 import pytest
-
 
 ahora = datetime.now()
 
-class Test_tractores:
+@pytest.fixture(scope="class")
+def setup_and_teardown():
+    # Configuración de la conexión y Tractores
+    conexion_db = conexion
+    misTractores = Tractores(conexion_db)
+    yield misTractores
+    # Limpieza después de todas las pruebas
+    sql = "DELETE FROM tractores WHERE idobjeto IN ('ABC123123', 'DEF456456', 'GHI789789')"
+    misTractores.cursor.execute(sql)
+    conexion_db.commit()
 
-    ahora = datetime.now()
+@pytest.mark.parametrize(
+    "tractor",
+    [
+        ("ABC123123", "Tractor", "foto1", ahora, "1234567890", "ferguson", "52024", "2014"),
+        ("DEF456456", "Tractor", "foto2", ahora, "0987654321", "john_deere", "X750", "2018"),
+        ("GHI789789", "Tractor", "foto3", ahora, "1122334455", "kubota", "BX238", "2020")
+    ]
+)
+class TestTractores:
 
-    @pytest.mark.parametrize(
-        ["idobjeto", "idcategoria", "fototrac", "activo", "fechacreacion", "creador", "marca", "modelo","fechamodelo", "esperado"],
-        [("ABC123123", "Tractor", "foto", "1", ahora, "1234567890", "ferguson", "52024", "2014", True )]
-    )
-    
-    def setup_method(self):
-        self.conexion = conexion
-        self.cursor = self.conexion.cursor()
+    def test_agregar_tractor(self, setup_and_teardown, tractor):
+        misTractores = setup_and_teardown
 
-    # def teardown_method(self):
-    #     self.cursor.close()
-    #     self.conexion.close()
+        # Verificar si el tractor ya existe y eliminarlo si es necesario
+        sql = f"DELETE FROM tractores WHERE idobjeto='{tractor[0]}'"
+        misTractores.cursor.execute(sql)
+        misTractores.conexion.commit()
 
-    def teardown_class(self):
-        # Limpiar la base de datos
-        sql=f"DELETE FROM tractores WHERE idobjeto='ABC123123'"
-        cursor = conexion.cursor()
-        cursor.execute(sql)
-        conexion.commit()
-
-    def test_agrege_tractor(self):
-        idobjetoo= "ABC123123"
-        categoria= "Tractor"
-        fotot= "foto"
-        fechacreacion= ahora
-        creador= "1234567890"
-        marca= "ferguson"
-        modelo= "52024"
-        fechamodelo= "2014"
-
-        # print(idobjeto)
-
-        sql = f"INSERT INTO tractores (idobjeto, idcategoria, fototrac, activo, fechacreacion, creador, marca, modelo,fechamodelo) VALUES ('{idobjetoo}','{categoria}','{fotot}','1','{fechacreacion}','{creador}','{marca}','{modelo}','{fechamodelo}')"
-        self.cursor.execute(sql)
-        self.conexion.commit()
-
-        sql = f"SELECT idobjeto, modelo FROM tractores WHERE idobjeto='{idobjetoo}'"
-        self.cursor.execute(sql)
-        resultado = self.cursor.fetchall()
+        # Llamar a la función agregar
+        misTractores.agregar(tractor)
         
-        idobjetoFnl = resultado[0][0] 
-
-        print(idobjetoo)
-        print(idobjetoFnl)
-
-        assert idobjetoFnl == idobjetoo
+        # Verificar si el tractor fue agregado correctamente
+        sql = f"SELECT idobjeto, modelo FROM tractores WHERE idobjeto='{tractor[0]}'"
+        misTractores.cursor.execute(sql)
+        resultado = misTractores.cursor.fetchone()
+        
+        assert resultado is not None, f"El tractor con ID {tractor[0]} no fue encontrado en la base de datos."
+        assert resultado[0] == tractor[0], f"ID del objeto esperado: {tractor[0]}, pero se encontró: {resultado[0]}"
+        assert resultado[1] == tractor[6], f"Modelo esperado: {tractor[6]}, pero se encontró: {resultado[1]}"

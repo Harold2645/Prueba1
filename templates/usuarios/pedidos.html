@@ -17,6 +17,8 @@
             <figure id="header_logo">
                 <img src="../../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
             </figure>
+            <div id="rayita">
+            </div>
             <div id="contenidotitulo">
                 <h2 id="titulo">Pedidos</h2>
                 <div id="contenidonombre">
@@ -52,9 +54,10 @@
         </div>
     </header>
 
-    <main id="prestamos">
-        
-        
+<main id="prestamos"> 
+    {% if trac == [] %}
+        <h1>No has solicitado nada</h1>
+    {% else %}
         <table>
             <thead>
                 <tr>
@@ -97,6 +100,9 @@
             {% endfor %}
             </tbody>
         </table>
-    </main>
+    {% endif %}
+
+
+</main>
 </body>
 </html>

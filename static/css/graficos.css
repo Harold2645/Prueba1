@@ -187,3 +187,12 @@ div#imgrafico{
         gap: 15px;
     }
 }
+
+@media only screen and (max-height: 800px){
+    form#formu{
+        justify-content: start;
+    }
+    div#cont_medio{
+        margin-top: 20px;
+    }
+}

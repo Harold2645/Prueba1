@@ -40,30 +40,33 @@ body {
     font-size: 13px;
 }
 html, body{
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
 }
 figure{
     padding: 0;
     margin: 0;
-    border-right: 2px solid white;
 }
 header#header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    grid-area: header;
     background-color: #00324D;
+}
+#rayita{
+    height: 55px;
+    border: 1px solid white;
+    margin: 10px;
 }
 #contenedortitulo{
     display: flex;
     align-items: center;
     color: white;
     animation: slide-in 0.4s ease-in;
-    padding: 10px 10px 10px 20px;
+    padding: 10px;
 }
 #contenidotitulo{
-    margin-left: 15px;
+    
 }
 #contenedortitulo h2{
     margin: 0;
@@ -72,9 +75,10 @@ header#header{
         border: none;
     }
 #contenidonombre h4{
-    font-size: 10px;
+    font-size: 11px;
     margin: 0;
     padding: 0;
+    font-weight: normal;
 }
 
 @keyframes slide-in{
@@ -134,10 +138,11 @@ header#header{
     background: none;
     border: none;
     padding: 10px;
-    cursor: pointer;
 }
 #close{
     color: white;
+    font-size: 30px;
+    cursor: pointer;
 }
     #close:hover{
         color: #36A900;
@@ -147,6 +152,12 @@ header li{
     margin: 10px;
     list-style-type: none;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu{
+    
 }
 header a{
     text-decoration: none;
@@ -156,21 +167,27 @@ header a{
 header a:hover{
     color: #36A900;
 }
-#logo_sena{
-    width: 90px;
-    height: 80px;
+figure#header_logo{
+    width: 55px;
+    height: 55px;
 }
-#menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+#logo_sena{
+    width: 100%;
+}
+#menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
     display: none;
 }
 
 @media only screen and (min-width: 768px){
     #menu_cont{
-        width: 40%;
+        width: 30%;
     }
 }
 
 @media only screen and (min-width: 1366px){
+    hr{
+        display: none;
+    }
     #menu_cont{
         display: block;
         align-items: center;
@@ -191,19 +208,10 @@ header a:hover{
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        height: 83.55px;
+        height: 95px;
     }
 
-    figure#logo{
-        display: flex;
-        justify-content: center;
-    }
-    img#logo-sena{
-        width: 120px;
-        height: 120px;
-    }
-
-    #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad  {
+    #menu_usuarios, #menu_tractores, #menu_herramienta, #menu_insumo, #menu_servicios, #menu_categorias, #menu_novedad, #menu_liquidos  {
         background-color: #012a41;
         box-shadow: 0px 5px 16px rgba(11,3,43,0.3);
         color: aliceblue;
@@ -212,35 +220,35 @@ header a:hover{
         top: 45px;
     }
     #menu_tractores{
-        width: 170px;
+        width: 200px;
+        left: 15px;
     }
     #menu_usuarios{
-        width: 170px;
-        left: 10px;
+        width: 200px;
+        left: 15px;
     }
     #menu_herramienta{
-        width: 200px;
+        width: 230px;
+        left: 15px;
     }
     #menu_insumo{
-        width: 170px;
+        width: 190px;
+        left: 15px;
     }
         #menu_liquidos{
-            width: 170px;
+            width: 190px;
             position: absolute;
             background-color: #001d2e;
-            left: 90px;
-            top: 10px;
+            left: 140px;
+            top: 20px;
         }
     #menu_servicios{
-        width: 150px;
+        width: 190px;
+        left: 15px;
     }
     #menu_categorias, #menu_novedad{
-        
-        width: 180px;
-    }
-
-    #header_logo{
-        width: 40%;
+        width: 210px;
+        left: 15px;
     }
 
     header li{

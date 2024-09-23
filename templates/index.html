@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/principal.css">
     <script src="../static/js/rol.js"></script>
     <title>SENA HANGAR - Bienvenido</title>
@@ -14,13 +14,13 @@
         <form name="login" id="login" action="/login" method="post">
 
         <figure id="logo">
-            <img src="../static/img/logoSena.png" alt="Logo Sena">
+            <img src="../static/img/logoSena.ico" alt="Logo Sena">
         </figure>
 
         <h2 id="alerta">{{msg}}</h2>
 
         <div id="cajadocumento">
-            <label for="documento">Documento</label>
+            <label for="documento">Documento:</label>
             <input type="text" name="documento" id="documento" placeholder="C.C. / C.E. / P.E.P" pattern="[0-9]{7,15}" minlength="7" maxlength="15" title="Numero de documento incorrecto o no cumple con los requisitos de un documento" autofocus tabindex="1"  required>
         </div>
 
@@ -31,7 +31,7 @@
             
         <div id="cajacontra">
             <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" pattern="[0-9]{7,11}" maxlength="15" minlength="6" tabindex="2" placeholder="Numero de celular">
+            <input type="password" id="contrasena" name="contrasena" pattern="[0-9]{10}" maxlength="10" minlength="10" tabindex="2" placeholder="Numero de celular">
         </div>
             
         <div id="boton">

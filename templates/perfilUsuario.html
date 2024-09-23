@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/perfil.css">
     <link rel="stylesheet" href="../static/css/header.css">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
-    <link rel="shortcut icon" href="../static/img/logoSena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/img/logoSena.ico" type="image/x-icon">
     <script src="../static/js/menu.js"></script>
     <title>Mi Perfil</title>
 </head>
@@ -18,12 +18,16 @@
                 <figure id="header_logo">
                     <img src="../static/img/LogoSenaSinFondo.png" alt="Logo Sena" id="logo_sena">
                 </figure>
+                <div id="rayita">
+                </div>
                 <div id="contenidotitulo">
                     <h2 id="titulo">Mi Perfil</h2>
                     <div id="contenidonombre">
                         <h4>{{nombreusu}}</h4>
                         {% if rolusu == 'Trabajador'%}
                             <h4>Trabajador de Planta</h4>
+                        {% elif rolusu == 'Admin'%}
+                            <h4>Administrador</h4>
                         {% else %}
                             <h4>{{rolusu}}</h4>
                         {% endif %}
@@ -58,11 +62,11 @@
                     <td>{{ res[0][0] }}</td>
                 </tr>
                 <tr>
-                    <th>Nombre:</th>
+                    <th>Nombre(s):</th>
                     <td>{{ res[0][1] }}</td>
                 </tr>
                 <tr>
-                    <th>Apellido:</th>
+                    <th>Apellido(s):</th>
                     <td>{{ res[0][2] }}</td>
             </tr>
             <tr>
