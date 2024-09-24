@@ -92,6 +92,7 @@ article#reservas{
     justify-content: center;
     background-color: #39A900;
     color: white;
+    padding: 10px;
 }
 #cont_h5{
     font-size: 17px;

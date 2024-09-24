@@ -168,19 +168,27 @@
                     <td data-label="Estado">Inactivo</td>
                     <!-- Hace de mas -->
                         <!-- <div class="acciones">  -->
-                            <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
+                            <td data-label="Acciones">
+                                <div class="acciones">
+                                    <a href="/actualizar/{{usu[0]}}" id="acepusu">Editar</a>
+                                </div>
+                            </td>
                         <!-- </div>                                 -->
                     {% elif usu[8] == '1' %}
                         <td data-label="Estado">Activo</td>
                         <!-- <div class="acciones"> -->
-                            <td data-label="Acciones"><a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a></td>
+                            <td data-label="Acciones">
+                                <div class="acciones">
+                                    <a href="/actualizar/{{usu[0]}}" id="acepusu">Editar</a>
+                                </div>
+                            </td>
                         <!-- </div>                                 -->
 
                     {% elif usu[8] == '2' %}
                         <td data-label="Estado">En espera</td>
                         <td data-label="Acciones">
                             <div class="cont_botones">
-                                <a href="/aceptarUsu/{{usu[0]}}" class="acciones" id="aceptar">Aceptar</a>
+                                <a href="/aceptarUsu/{{usu[0]}}" class="acciones" id="acepusu">Aceptar</a>
                                 <a href="/actualizar/{{usu[0]}}" class="acciones" id="acepusu">Editar</a>
                             </div>
                         </td>
