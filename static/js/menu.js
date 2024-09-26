@@ -160,7 +160,7 @@ cerrar.addEventListener("click", () => {
     nav.classList.add("remove")
 
     if(nav.className = "remove"){
-        notscroll.style.overflow = "scroll"
+        notscroll.style.overflow = "visible"
     }
 })
     
