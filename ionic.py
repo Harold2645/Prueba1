@@ -363,6 +363,9 @@ def editarHerramientaIonicConsulta(id):
         return jsonify({"error": str(e)})
         print(e)
 
+
+# // cosas de edinson urbano no tocar por favor
+# // cosas de edinson urbano no tocar por favor
 @app.route('/datosgrafLiquidosIonic', methods=['GET'])
 def datosgrafLiquidosIonic():
     try:
@@ -375,3 +378,231 @@ def datosgrafLiquidosIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+# @app.route('/datosgrafTractoresIonic', methods=['GET'])
+# def datosgrafTractoresIonic():
+#     try:
+#         connection = conexion
+#         cursor = connection.cursor()
+#         cursor.execute(f" SELECT tractores.marca,DATE(servicios.fechasalida) AS fecha,COUNT(servicios.idobjeto) AS cantidad FROM servicios INNER JOIN tractores ON tractores.idobjeto = servicios.idobjeto WHERE servicios.tipo = 'Tractor' AND tractores.activo = '1'  AND servicios.fechasalida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) GROUP BY tractores.marca, fecha ORDER BY fecha, tractores.marca;")
+#         column_names = [column[0] for column in cursor.description]
+#         datos = cursor.fetchall()
+#         cursor.close()
+#         result = {}
+#         for row in datos:
+#             marca = row[0]
+#             fecha = row[1]
+#             cantidad = row[2]
+#             if marca not in result:
+#                 result[marca] = {}
+#             result[marca][fecha] = cantidad
+#         return jsonify([dict(zip(column_names, dato)) for dato in datos])
+        
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
+    
+
+
+@app.route('/datosgrafTractoresIonic', methods=['GET'])
+def datosgrafTractoresIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"""
+            SELECT 
+                tractores.marca, 
+                servicios.fechasalida, 
+                COUNT(servicios.idobjeto) AS usos 
+            FROM 
+                servicios 
+            INNER JOIN 
+                tractores ON tractores.idobjeto = servicios.idobjeto 
+            WHERE 
+                servicios.tipo = 'Tractor' AND tractores.activo = '1' 
+            GROUP BY 
+                tractores.marca, servicios.fechasalida 
+            ORDER BY 
+                servicios.fechasalida;
+        """)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+
+
+
+# // cosas de edinson urbano no tocar por favor
+# // cosas de edinson urbano no tocar por favor
+    
+    
+    #FRANCO
+    
+    
+@app.route('/consultaConsumibleIonic', methods=['GET'])
+def consultaConsumibleIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
+        cursor.execute(query)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+
+        resultado = []
+        for dato in datos:
+            registro = dict(zip(column_names, dato))
+            # Convertir la imagen a Base64 si existe
+            ruta_imagen = os.path.join("uploads", registro['foto'])
+            if os.path.exists(ruta_imagen):
+                with open(ruta_imagen, "rb") as image_file:
+                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
+            else:
+                registro['foto'] = None  # Manejar el caso en que la imagen no exista
+            resultado.append(registro)
+            
+        
+
+        return jsonify(resultado)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/agregarInsumoIonic', methods=['POST'])
+def agregarInsumoIonic():
+    try:
+        data = request.get_json()
+
+        # Decodificar la imagen de Base64 y guardarla
+        if data.get('foto'):
+            foto_data = data['foto']
+            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            foto_path = os.path.join('uploads', foto_nombre)
+
+            # Asegúrate de que la carpeta de destino exista
+            os.makedirs('uploads', exist_ok=True)
+
+            # Decodificar y guardar la imagen
+            with open(foto_path, "wb") as fh:
+                fh.write(base64.b64decode(foto_data.split(',')[1]))
+
+        # Simulación de inserción en la base de datos
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(
+            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+        )
+        connection.commit()
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
+    
+    
+@app.route('/eliminarInsumoIonic', methods=['POST'])
+def eliminarInsumoIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("UPDATE consumibles SET activo=0 WHERE idObjeto = %s", ([data['idobjeto']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+@app.route('/consultaLiquido1Ionic', methods=['GET'])
+def consultaLiquido1Ionic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        query = """
+        SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, 
+               categorias.tipo, categorias.descripcion, categorias.nombre as nombreC 
+        FROM consumibles 
+        INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria 
+        WHERE consumibles.tipo = 'Líquido' AND consumibles.activo = '1';
+        """
+        cursor.execute(query)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+
+        resultado = []
+        for dato in datos:
+            registro = dict(zip(column_names, dato))
+            # Convertir la imagen a Base64 si existe
+            ruta_imagen = os.path.join("uploads", registro['foto'])
+            if os.path.exists(ruta_imagen):
+                with open(ruta_imagen, "rb") as image_file:
+                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
+            else:
+                registro['foto'] = None  # Manejar el caso en que la imagen no exista
+            resultado.append(registro)
+
+        return jsonify(resultado)
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+@app.route('/agregarLiquidoIonic', methods=['POST'])
+def agregarLiquidoIonic():
+    try:
+        data = request.get_json()
+
+        # Decodificar la imagen de Base64 y guardarla
+        if data.get('foto'):
+            foto_data = data['foto']
+            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            foto_path = os.path.join('uploads', foto_nombre)
+
+            # Asegúrate de que la carpeta de destino exista
+            os.makedirs('uploads', exist_ok=True)
+
+            # Decodificar y guardar la imagen
+            with open(foto_path, "wb") as fh:
+                fh.write(base64.b64decode(foto_data.split(',')[1]))
+
+        # Inserción en la base de datos para líquidos
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        
+        # Cambia los valores según corresponda para la tabla de líquidos
+        cursor.execute(
+            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+        )
+        connection.commit()
+        cursor.close()
+        
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
+
+
+@app.route('/eliminarLiquidoIonic', methods=['POST'])
+def eliminarLiquidoIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("UPDATE consumibles SET activo=0 WHERE idObjeto = %s", ([data['idobjeto']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+    
