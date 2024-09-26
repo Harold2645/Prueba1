@@ -76,33 +76,6 @@ def consultaTractoresIonic():
     except Exception as e:
         return jsonify({"error": str(e)})
     
-@app.route('/consultaConsumibleIonic', methods=['GET'])
-def consultaConsumibleIonic():
-    try:
-        connection = conexion
-        cursor = connection.cursor()
-        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
-        cursor.execute(query)
-        column_names = [column[0] for column in cursor.description]
-        datos = cursor.fetchall()
-        cursor.close()
-
-        resultado = []
-        for dato in datos:
-            registro = dict(zip(column_names, dato))
-            # Convertir la imagen a Base64 si existe
-            ruta_imagen = os.path.join("uploads", registro['foto'])
-            if os.path.exists(ruta_imagen):
-                with open(ruta_imagen, "rb") as image_file:
-                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
-            else:
-                registro['foto'] = None  # Manejar el caso en que la imagen no exista
-            resultado.append(registro)
-
-        return jsonify(resultado)
-    
-    except Exception as e:
-        return jsonify({"error": str(e)})
    
 @app.route('/consultaLiquidoIonic', methods=['GET'])
 def consultaLiquidoIonic():
@@ -448,12 +421,11 @@ def consultaConsumibleIonic():
     try:
         connection = conexion
         cursor = connection.cursor()
-        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
+        query = (f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';")
         cursor.execute(query)
         column_names = [column[0] for column in cursor.description]
         datos = cursor.fetchall()
         cursor.close()
-
         resultado = []
         for dato in datos:
             registro = dict(zip(column_names, dato))
