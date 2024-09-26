@@ -75,34 +75,7 @@ def consultaTractoresIonic():
     
     except Exception as e:
         return jsonify({"error": str(e)})
-    
-@app.route('/consultaConsumibleIonic', methods=['GET'])
-def consultaConsumibleIonic():
-    try:
-        connection = conexion
-        cursor = connection.cursor()
-        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
-        cursor.execute(query)
-        column_names = [column[0] for column in cursor.description]
-        datos = cursor.fetchall()
-        cursor.close()
 
-        resultado = []
-        for dato in datos:
-            registro = dict(zip(column_names, dato))
-            # Convertir la imagen a Base64 si existe
-            ruta_imagen = os.path.join("uploads", registro['foto'])
-            if os.path.exists(ruta_imagen):
-                with open(ruta_imagen, "rb") as image_file:
-                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
-            else:
-                registro['foto'] = None  # Manejar el caso en que la imagen no exista
-            resultado.append(registro)
-
-        return jsonify(resultado)
-    
-    except Exception as e:
-        return jsonify({"error": str(e)})
    
 @app.route('/consultaLiquidoIonic', methods=['GET'])
 def consultaLiquidoIonic():
@@ -363,9 +336,6 @@ def editarHerramientaIonicConsulta(id):
         return jsonify({"error": str(e)})
         print(e)
 
-
-# // cosas de edinson urbano no tocar por favor
-# // cosas de edinson urbano no tocar por favor
 @app.route('/datosgrafLiquidosIonic', methods=['GET'])
 def datosgrafLiquidosIonic():
     try:
@@ -378,66 +348,6 @@ def datosgrafLiquidosIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
-
-
-# @app.route('/datosgrafTractoresIonic', methods=['GET'])
-# def datosgrafTractoresIonic():
-#     try:
-#         connection = conexion
-#         cursor = connection.cursor()
-#         cursor.execute(f" SELECT tractores.marca,DATE(servicios.fechasalida) AS fecha,COUNT(servicios.idobjeto) AS cantidad FROM servicios INNER JOIN tractores ON tractores.idobjeto = servicios.idobjeto WHERE servicios.tipo = 'Tractor' AND tractores.activo = '1'  AND servicios.fechasalida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) GROUP BY tractores.marca, fecha ORDER BY fecha, tractores.marca;")
-#         column_names = [column[0] for column in cursor.description]
-#         datos = cursor.fetchall()
-#         cursor.close()
-#         result = {}
-#         for row in datos:
-#             marca = row[0]
-#             fecha = row[1]
-#             cantidad = row[2]
-#             if marca not in result:
-#                 result[marca] = {}
-#             result[marca][fecha] = cantidad
-#         return jsonify([dict(zip(column_names, dato)) for dato in datos])
-        
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
-    
-
-
-@app.route('/datosgrafTractoresIonic', methods=['GET'])
-def datosgrafTractoresIonic():
-    try:
-        connection = conexion
-        cursor = connection.cursor()
-        cursor.execute(f"""
-            SELECT 
-                tractores.marca, 
-                servicios.fechasalida, 
-                COUNT(servicios.idobjeto) AS usos 
-            FROM 
-                servicios 
-            INNER JOIN 
-                tractores ON tractores.idobjeto = servicios.idobjeto 
-            WHERE 
-                servicios.tipo = 'Tractor' AND tractores.activo = '1' 
-            GROUP BY 
-                tractores.marca, servicios.fechasalida 
-            ORDER BY 
-                servicios.fechasalida;
-        """)
-        column_names = [column[0] for column in cursor.description]
-        datos = cursor.fetchall()
-        cursor.close()
-        return jsonify([dict(zip(column_names, dato)) for dato in datos])
-    except Exception as e:
-        return jsonify({"error": str(e)})
-
-
-
-
-
-# // cosas de edinson urbano no tocar por favor
-# // cosas de edinson urbano no tocar por favor
     
     
     #FRANCO
@@ -481,7 +391,7 @@ def agregarInsumoIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            foto_nombre = f"{data['nombre']}.png"  # Usar el nombre del insumo para nombrar la foto
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -491,21 +401,29 @@ def agregarInsumoIonic():
             with open(foto_path, "wb") as fh:
                 fh.write(base64.b64decode(foto_data.split(',')[1]))
 
-        # Simulación de inserción en la base de datos
+        # Conexión a la base de datos
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime('%Y-%m-%d')
+
+        cantidad = data.get('cantidad', '0')
+
+        
+        tipo = 'Insumo'  
+
         cursor.execute(
-            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+            "INSERT INTO consumibles (idcategoria, nombre, cantidad, foto, tipo, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idcategoria'], data['nombre'], cantidad, foto_nombre, tipo, '1', fecha, data['creador'])
         )
+
         connection.commit()
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)})
-    
+
+  
     
 @app.route('/eliminarInsumoIonic', methods=['POST'])
 def eliminarInsumoIonic():
@@ -563,7 +481,7 @@ def agregarLiquidoIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            foto_nombre = f"{data['nombre']}.png"  # Usar el nombre del líquido para nombrar la foto
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -573,15 +491,19 @@ def agregarLiquidoIonic():
             with open(foto_path, "wb") as fh:
                 fh.write(base64.b64decode(foto_data.split(',')[1]))
 
-        # Inserción en la base de datos para líquidos
+        # Conexión a la base de datos
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime('%Y-%m-%d')
+
+        cantidad = data.get('cantidad', '0') 
+
         
-        # Cambia los valores según corresponda para la tabla de líquidos
+        tipo = 'Líquido'  
+
         cursor.execute(
-            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+            "INSERT INTO consumibles (idcategoria, nombre, cantidad, foto, tipo, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idcategoria'], data['nombre'], cantidad, foto_nombre, tipo, '1', fecha, data['creador'])
         )
         connection.commit()
         cursor.close()
@@ -590,6 +512,7 @@ def agregarLiquidoIonic():
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)})
+
 
 
 @app.route('/eliminarLiquidoIonic', methods=['POST'])
@@ -604,5 +527,20 @@ def eliminarLiquidoIonic():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+# @app.route('/categoriasInsumoIonic', methods=['GET'])
+# def categoriasInsumoIonic():
+#     try:
+#         connection = conexion
+#         cursor = connection.cursor()
+#         cursor.execute("SELECT * FROM categorias WHERE tipo='Insumo' AND activo='1'")
+#         column_names = [column[0] for column in cursor.description]
+#         datos = cursor.fetchall()
+#         cursor.close()
+#         return jsonify([dict(zip(column_names, dato)) for dato in datos])
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
+    
     
     
