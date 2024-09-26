@@ -363,6 +363,9 @@ def editarHerramientaIonicConsulta(id):
         return jsonify({"error": str(e)})
         print(e)
 
+
+# // cosas de edinson urbano no tocar por favor
+# // cosas de edinson urbano no tocar por favor
 @app.route('/datosgrafLiquidosIonic', methods=['GET'])
 def datosgrafLiquidosIonic():
     try:
@@ -375,3 +378,63 @@ def datosgrafLiquidosIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+# @app.route('/datosgrafTractoresIonic', methods=['GET'])
+# def datosgrafTractoresIonic():
+#     try:
+#         connection = conexion
+#         cursor = connection.cursor()
+#         cursor.execute(f" SELECT tractores.marca,DATE(servicios.fechasalida) AS fecha,COUNT(servicios.idobjeto) AS cantidad FROM servicios INNER JOIN tractores ON tractores.idobjeto = servicios.idobjeto WHERE servicios.tipo = 'Tractor' AND tractores.activo = '1'  AND servicios.fechasalida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) GROUP BY tractores.marca, fecha ORDER BY fecha, tractores.marca;")
+#         column_names = [column[0] for column in cursor.description]
+#         datos = cursor.fetchall()
+#         cursor.close()
+#         result = {}
+#         for row in datos:
+#             marca = row[0]
+#             fecha = row[1]
+#             cantidad = row[2]
+#             if marca not in result:
+#                 result[marca] = {}
+#             result[marca][fecha] = cantidad
+#         return jsonify([dict(zip(column_names, dato)) for dato in datos])
+        
+#     except Exception as e:
+#         return jsonify({"error": str(e)})
+    
+
+
+@app.route('/datosgrafTractoresIonic', methods=['GET'])
+def datosgrafTractoresIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"""
+            SELECT 
+                tractores.marca, 
+                servicios.fechasalida, 
+                COUNT(servicios.idobjeto) AS usos 
+            FROM 
+                servicios 
+            INNER JOIN 
+                tractores ON tractores.idobjeto = servicios.idobjeto 
+            WHERE 
+                servicios.tipo = 'Tractor' AND tractores.activo = '1' 
+            GROUP BY 
+                tractores.marca, servicios.fechasalida 
+            ORDER BY 
+                servicios.fechasalida;
+        """)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+
+
+
+# // cosas de edinson urbano no tocar por favor
+# // cosas de edinson urbano no tocar por favor
