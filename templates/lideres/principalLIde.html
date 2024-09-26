@@ -156,7 +156,7 @@
                                 <th>Labor </th>
                                 <th>Quien lo Pide</th>
                                 <th>Ficha</th>    
-                                <th>Acciones</th>
+                                <th class="th_acciones">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -211,7 +211,7 @@
                                 <th>Celular</th>
                                 <th>Rol</th>
                                 <th>Ficha</th> 
-                                <th>Acciones</th>                   
+                                <th class="th_acciones">Acciones</th>                   
                             </tr>
                         </thead>
                         <tbody>
@@ -238,7 +238,7 @@
                                     {{usua[6]}}
                                 {% endif %}
                             </td>
-                            <td data-label="Acciones" id="accionesnov">
+                            <td data-label="Acciones">
                                 <div class="cont_botones">
                                     <a href="/rechazarUsu/{{usua[0]}}"class="acciones" id="rechazar"><i class="lni lni-close" onclick="return confirm('¿Deseas rechazar a este usuario?')"></i></a>
                                     <a href="/aceptarUsu/{{usua[0]}}" class="acciones" id="aceptar">Aceptar</a>
