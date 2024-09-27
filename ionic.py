@@ -274,3 +274,82 @@ def editarHerramientaIonic(id):
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+    
+@app.route('/consultaTodoPrestamosIonic', methods=['GET'])
+def consultaTodoPrestamosIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+
+@app.route('/consultaSolicitadosIonic', methods=['GET'])
+def consultaSolicitadosIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'S' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'S' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'S' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/consultaPorEntregarIonic', methods=['GET'])
+def consultaPorEntregarIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'A' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'A' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'A' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/consultaPrestadoIonic', methods=['GET'])
+def consultaPrestadoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'P' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'P' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'P' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/consultaDevueltoIonic', methods=['GET'])
+def consultaDevueltoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'D' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'D' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'D' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/consultaRechazadoIonic', methods=['GET'])
+def consultaRechazadoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT t.marca AS nombre, t.modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Tractor' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM tractores AS t INNER JOIN servicios AS s ON t.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE t.activo = '1' AND s.tipo = 'Tractor' AND s.estado = 'R' UNION ALL SELECT h.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Herramienta' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM herramientas AS h INNER JOIN servicios AS s ON h.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE h.activo = '1' AND s.tipo = 'Herramienta' AND s.estado = 'R' UNION ALL SELECT c.nombre, NULL AS modelo, s.idobjeto, s.labor, s.documento, s.ficha, s.fechasalida, s.estado, s.idservicio, 'Insumo' AS tipo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido, fechasoli FROM consumibles AS c INNER JOIN servicios AS s ON c.idobjeto = s.idobjeto INNER JOIN usuarios AS u ON s.documento = u.documento WHERE c.activo = '1' AND s.tipo = 'Insumo' AND s.estado = 'R' ORDER BY fechasoli DESC;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
