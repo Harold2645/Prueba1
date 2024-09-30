@@ -101,7 +101,8 @@ form#Pedir button[type="submit"] {
 }
 
 form#Pedir button[type="submit"]:hover {
-    background-color: #00324D; 
+    background-color: rgb(243, 243, 243); 
+    color: #39A900;
 }
 
 @media (max-width: 1300px) {

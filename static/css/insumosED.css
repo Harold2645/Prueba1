@@ -28,29 +28,31 @@ body {
     font-family: 'work', 'calibri';
 }
 
-
-
-/* css de editar*/
-
-
-
+section{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 85vh;
+}
 
 form {
     background-color: #ffffff;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 350px;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto; 
-    position: absolute; 
-    top: 120px; 
-    right: 10px; 
+    max-width: 400px;
+    margin-right: 60px;
 }
 
+form h2{
+    background-color: #39A900;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
 
-/* Estilo de las etiquetas */
+#cont_medio{
+    padding: 20px;
+}
+
 label {
     display: block;
     margin-bottom: 8px;
@@ -58,7 +60,6 @@ label {
     font-weight: bold;
 }
 
-/* Estilo de los campos de entrada */
 input[type="text"],
 input[type="number"],
 input[type="file"],
@@ -71,16 +72,8 @@ select {
     box-sizing: border-box;
 }
 
-
-figure {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
 figure img {
-    border-radius: 8px;
-    object-fit: cover;
+    width: 100px;
 }
 
 
@@ -96,20 +89,8 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #00324D;
-}
-
-a {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #4CAF50;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
+    background-color: rgb(243, 243, 243);
+    color: #39A900;
 }
 
 a.cancel-button {
@@ -130,31 +111,18 @@ a.cancel-button:hover {
     background-color: #d00000;
 }
 
-/* Adaptabilidad para dispositivos móviles */
+
 @media (max-width: 600px) {
-    form {
-        padding: 15px;
-        width: 90%; 
-        right: auto; 
-        left: 50%;
-        transform: translateX(-50%);
-        top: 100px; 
+    section {
+        justify-content: center;
     }
-
-    header h2 {
-        font-size: 1.5em;
-    }
-
-    a.cancel-button {
-        width: 100%; 
+    form{
+        margin-right: 0;
     }
 }
 
-
-@media (min-width: 600px) {
-    form {
-        top: 120px; 
-        right: 100px; 
+@media only screen and (max-height: 626px) {
+    section {
+        align-items: start;
     }
 }
-

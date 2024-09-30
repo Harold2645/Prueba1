@@ -130,10 +130,11 @@
     </header>
 
     <main>
-        <section>
-            <h2>Editar Líquido</h2> 
+        <section> 
             <form action="/actualizarLiquidos" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="idobjeto" name="idobjeto" value="{{ Consu[0] }}">
+                <h2>Editar Líquido</h2>
+                <div id="cont_medio">
+                    <input type="hidden" id="idobjeto" name="idobjeto" value="{{ Consu[0] }}">
 
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" value="{{Consu[1]}}" placeholder="Nombre del líquido" pattern="[A-Za-z\s*]{4,40}" maxlength="40" minlength="4" required title="Mínimo 4 letras" tabindex="1" autofocus>
@@ -168,6 +169,7 @@
                 </figure>
 
                 <button type="submit">Guardar</button>
+                </div>
             </form>
         </section>
     </main>

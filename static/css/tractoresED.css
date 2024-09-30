@@ -28,21 +28,31 @@ body {
 }
 
 section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 85vh;
+    padding: 10px;
+}
+
+form#formulario{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-right: 60px;
     max-width: 450px;
-    margin: 20px 0;
-    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#cont_medio{
     padding: 20px;
-    border-radius: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-    right: 8%;
-    float: right;
 }
 
 section h2 {
+    margin-top: 0;
+    background-color: #39A900;
+    padding: 10px;
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    color: white;
 }
 
 section h4 {
@@ -95,7 +105,8 @@ button[type="submit"].btn-guardar {
 }
 
 button[type="submit"].btn-guardar:hover {
-    background-color: #00324D;
+    background-color: rgb(243, 243, 243);
+    color: #39A900;
 }
 
 a.btn-cancelar {
@@ -109,34 +120,15 @@ a.btn-cancelar:hover {
 
 @media (max-width: 600px) {
     section {
-        max-width: 100%;
-        margin: 10px auto;
-        padding: 10px;
-        right: 0;
-        float: none;
+        justify-content: center;
     }
-
-    input[type="text"],
-    select,
-    input[type="file"] {
-        padding: 8px;
-    }
-
-    button[type="submit"],
-    a.btn-cancelar {
-        padding: 8px;
-        font-size: 14px;
-        width: 100%;
-        margin: 5px 0;
+    form#formulario{
+        margin-right: 0;
     }
 }
 
-@media (min-width: 601px) and (max-width: 1024px) {
+@media only screen and (max-height: 917px) {
     section {
-        max-width: 100%;
-        margin: 10px auto;
-        padding: 20px;
-        right: 0;
-        float: none;
+        align-items: start;
     }
 }

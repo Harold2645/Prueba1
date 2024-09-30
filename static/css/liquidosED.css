@@ -29,21 +29,33 @@ body {
 }
 
 section {
-    background-color: #ffffff;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 85vh;
+    padding: 10px;
+}
+
+form{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-right: 60px;
+}
+
+form h2{
+    padding: 10px;
+    text-align: center;
+    background-color: #39A900;
+    color: white;
+}
+
+#cont_medio{
     padding: 20px;
-    border-radius: 0px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    max-width: 100%; 
-    box-sizing: border-box;
-    position: absolute; 
-    top: 120px; 
-    right: 80px; 
-    margin: 0 auto; 
 }
 
 
-section label {
+form label {
     display: block;
     margin-bottom: 8px;
     color: #555;
@@ -51,10 +63,10 @@ section label {
 }
 
 
-section input[type="text"],
-section input[type="number"],
-section input[type="file"],
-section select {
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -63,10 +75,9 @@ section select {
     box-sizing: border-box;
 }
 
-section button[type="submit"] {
+form button[type="submit"] {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
+    padding: 10px;
     text-align: center;
     display: block;
     background-color: #00324D;
@@ -78,12 +89,13 @@ section button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-section button[type="submit"]:hover {
-    background-color: #00324D;
+form button[type="submit"]:hover {
+    background-color: rgb(243, 243, 243);
+    color: #39A900;
 }
 
 
-section a.cancel-button {
+form a.cancel-button {
     display: block;
     text-align: center;
     margin-top: 10px;
@@ -97,40 +109,25 @@ section a.cancel-button {
     margin: 10px auto 0 auto;
 }
 
-section a.cancel-button:hover {
+form a.cancel-button:hover {
     background-color: #d00000;
 }
 
-
-section figure.img-thumbnail {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-}
-
-section figure.img-thumbnail img {
-    border-radius: 0px;
-    border: 1px solid #ccc;
+form figure.img-thumbnail img {
+    width: 100px;
 }
 
 @media (max-width: 600px) {
     section {
-        padding: 15px;
-        width: calc(100% - 40px); 
-        right: auto; 
-        left: 20px; 
-        top: 100px; 
+        justify-content: center;
     }
-
-    section h2 {
-        font-size: 1.5em;
+    form{
+        margin-right: 0;
     }
 }
 
-
-@media (min-width: 600px) {
+@media only screen and (max-height: 626px) {
     section {
-        top: 120px; 
-        right: 80px; 
+        align-items: start;
     }
 }

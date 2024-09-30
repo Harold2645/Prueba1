@@ -61,7 +61,7 @@ header#cabeza a[href="/agregar"] {
 }
 
 .tabla th {
-  background-color: #4CAF50; 
+  background-color: #39A900; 
   color: white;
   font-size: 1.1em; 
 }
@@ -86,4 +86,31 @@ header#cabeza a[href="/agregar"] {
   width: 3px;
   height: 100%;
   background-color: #ffffff; 
+}
+.botones{
+  padding: 6px;
+  background-color: #00324D;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+.botones i{
+  font-size: 20px;
+  margin: 5px;
+}
+.botones:hover{
+  background-color: rgb(243, 243, 243);
+  color: #39A900;
+}
+.data{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 652px){
+  .contenedor-tablas{
+    flex-direction: column;
+  }
 }
