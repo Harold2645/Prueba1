@@ -60,12 +60,11 @@
     <section id="cuerpo">
         <form id="Pedir" name="Pedir" action="/prestamo" method="post" enctype="multipart/form-data">
             
-            <!-- Título dentro del formulario -->
             <div id="form_title">
                 <h1>Solicitar</h1>
             </div>
 
-
+            <div id="cont_bajo">
                 <input type="hidden" name="idobjeto" value="{{res[0]}}" required>
 
                 <input type="hidden" name="tipo" value="{{tipo}}" required>
@@ -90,6 +89,7 @@
                     <div id="boton">
                         <button type="submit" id="registrar">SOLICITAR</button>
                     </div>
+            </div>
                     <!-- <a href="/panel" id="cancelar">Cancelar</a> -->
             </form>
         </section>

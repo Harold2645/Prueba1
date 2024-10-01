@@ -134,10 +134,11 @@
 
 
     <section>
-        <form action="/actualizarTractor" method="post" enctype="multipart/form-data">
-            <h2>Editar Tractor</h2>
-    
-            <label for="id_tractor">Codigo sena</label>
+        <form action="/actualizarTractor" method="post" enctype="multipart/form-data" id="formulario">
+                <h2>Editar Tractor</h2>
+            
+            <div id="cont_medio">
+                <label for="id_tractor">Codigo sena</label>
             <input type="text" name="id_tractor" id="id_tractor" readonly value="{{tractor[3]}}" placeholder="Codigo Sena" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" required>
     
             <label for="marca">Marca:</label>
@@ -173,6 +174,7 @@
     
             <div class="button-container">
                 <button type="submit" class="btn-guardar">Guardar</button>
+            </div>
             </div>
     
         </form>

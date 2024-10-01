@@ -28,67 +28,23 @@ body {
     font-family: 'work', 'calibri';
 }
 
+form#form_medio{
+    max-width: 400px;
+    background-color: white;
+}
 
+form#form_medio h2{
+    background-color: #39A900;
+    color: white;
+    padding: 10px;
+    margin-top: 0;
+    text-align: center;
+}
 
-
-form#agregar_herramienta {
-    background-color: #ffffff;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#cont_medio{
     padding: 20px;
-    width: 350px;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto; 
-    position: absolute; 
-    top: 120px; 
-    right: 25px; 
-}
-
-form#agregar_herramienta h2 {
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-}
-
-form#agregar_herramienta h4 {
-    color: #ff0000;
-    text-align: center;
-}
-
-form#agregar_herramienta label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-form#agregar_herramienta input,
-form#agregar_herramienta select {
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
-    width: 100%;
-}
-
-form#agregar_herramienta input[type="file"] {
-    padding: 3px;
-}
-
-form#agregar_herramienta button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #00324D;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-form#agregar_herramienta button:hover {
-    background-color: #00324D;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilos para los botones */
@@ -116,25 +72,11 @@ form#agregar_herramienta button:hover {
 }
 
 section {
-    margin: 20px auto;
-    width: 100%;
-    max-width: 450px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 76%; 
-    
-}
-
-form {
     display: flex;
-    flex-direction: column;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+    padding: 10px;
+    align-items: center;
+    height: 85vh;
 }
 
 label {
@@ -157,16 +99,8 @@ input[type="file"] {
     padding: 8px;
 }
 
-.img-thumbnail {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
 .img-thumbnail img {
     width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
 button[type="submit"],
@@ -180,67 +114,21 @@ a {
 }
 
 button[type="submit"]:hover {
-    background-color:#00324D;
+    background-color: rgb(243, 243, 243);
+    color: #39A900;
 }
 
-/* Media Queries para Responsividad */
-@media (max-width: 2124px) and (min-width: 890px) {
-    
-    .container {
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    header#header {
-        justify-content: space-between;
-    }
-
-    
-    form#agregar_herramienta {
-        width: 450px;
-        max-width: 410px; 
-        margin: 20px auto; 
-        margin-left: auto;
-        margin-right: auto; 
-        margin-left: 59%;
-    }
-
-    
+@media (max-width: 600px) {
     section {
-        width: 450px; 
-        max-width: 410px;
-        margin: 20px auto; 
-        margin-left: auto; 
-        margin-right: auto; 
-        margin-left: 59%;
+        justify-content: center;
+    }
+    form#form_medio{
+        margin-right: 0;
     }
 }
 
-@media (max-width: 1300px) {
-    .container {
-        padding: 100px;
-    }
-
-    form#agregar_herramienta,
+@media only screen and (max-height: 626px) {
     section {
-        width: 90%;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 1300px) {
-    .container {
-        padding: 5px;
-    }
-
-    form#agregar_herramienta,
-    section {
-        width: 100%;
-        margin: 20px auto; 
-    }
-
-    .btn-guardar,
-    .btn-cancelar {
-        width: 100%;
+        align-items: start;
     }
 }

@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (consu.length > 6 && consu.length < 16){
 
                 // const respuesta = await fetch('http://85.31.231.136:5004/consultarol', {
+<<<<<<< HEAD
                 const respuesta = await fetch('http://192.168.12.12:5004/consultarol', {
+=======
+                const respuesta = await fetch('http://192.168.198.12:5004/consultarol', {
+>>>>>>> f80fe8ba36d65edaf5655717c6e6d209d9bcc0a7
                 //const respuesta = await fetch('http://10.206.81.27:5004/consultarol', {
                     method: 'POST',
                     headers: {

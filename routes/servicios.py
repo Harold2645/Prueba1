@@ -172,6 +172,8 @@ def devolucion():
             fotot = "D"+hora.strftime("%Y%m%d%H%M%S")+fextension        
             foto.save("uploads/" + fotot)
             envio=[id,hora,descripcion,fotot]
+            codigo = misServicios.buscar_codigo(id)
+            misServicios.estado_activo(codigo[0])
             misServicios.devueltoinsu(envio)
             return redirect("/consultarTodosPedidos")
         else:
@@ -216,6 +218,8 @@ def pedido():
             id = request.form['idservicio']
             estadosalida = request.form['estado']
             encargado = session['documento']
+            codigo = misServicios.buscar_codigo(id)
+            misServicios.estado(codigo[0])
             if request.form['tipo'] == "tractor" :
                 cantidad = request.form['cantidadt']
                 nombre = 'ACPM'

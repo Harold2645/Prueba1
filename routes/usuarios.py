@@ -42,11 +42,9 @@ def login():
 
     documento = request.form['documento']
     sql = f"SELECT rol FROM usuarios WHERE documento='{documento}'"
-    print(sql)
     cur = conexion.cursor()
     cur.execute(sql)
     resultado = cur.fetchone()
-    print(resultado)
     if resultado is None:
         return render_template("index.html", msg="Credenciales incorrectas o usuario inactivo")
     else:
