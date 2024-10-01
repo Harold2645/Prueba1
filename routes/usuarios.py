@@ -20,7 +20,9 @@ def guardarUsuarios():
     session["loginCorrecto"] = False
     documento = request.form['documento']
     nombre = request.form['nombre']
+    nombreM = nombre.upper()
     apellido = request.form['apellido']
+    apellidoM = apellido.upper()
     celular = request.form['celular']
     contrasena = request.form['contrasena']
     cifrada = hashlib.sha512(contrasena.encode("utf-8")).hexdigest()
@@ -32,7 +34,7 @@ def guardarUsuarios():
     if existente:
         return render_template("registrar.html", msg="Documento ya existe")
     else:
-        misUsuarios.agregar([documento, nombre, apellido, celular, cifrada, rol, ficha, fecha])
+        misUsuarios.agregar([documento, nombreM, apellidoM, celular, cifrada, rol, ficha, fecha])
         return redirect('/')
 
 
