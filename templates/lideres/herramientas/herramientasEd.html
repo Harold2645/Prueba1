@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../static/css/EDherramienta.css">
-    <link rel="stylesheet" href="../../../static/css/categorias.css">
     <link rel="shortcut icon" href="../../../static/img/logoSena.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
     <link rel="stylesheet" href="../../../static/css/header.css">
@@ -125,10 +124,11 @@
     </header>
 
     <main id="cont-principal">
-        <section id="editar-herramienta">
-            <h2>Editar Herramienta</h2>
-            <form action="/actualizarHerramienta" method="post" enctype="multipart/form-data" id="form-medio">
-                <label for="id_herramienta">Código Sena:</label>
+        <section>
+            <form action="/actualizarHerramienta" method="post" enctype="multipart/form-data" id="form_medio">
+                <h2>Editar Herramienta</h2>
+                <div id="cont_medio">
+                    <label for="id_herramienta">Código Sena:</label>
                 <input type="text" name="id_herramienta" id="id_herramienta" readonly value="{{herramienta[0]}}" required tabindex="1">
 
                 <label for="nombre">Nombre:</label>
@@ -161,7 +161,8 @@
                     <img width="100" height="100" src="../../../uploads/{{herramienta[2]}}" alt="{{herramienta[1]}}">
                 </figure>
 
-                <button type="submit" class="btn-guardar">Guardar</button>                
+                <button type="submit" class="btn-guardar">Guardar</button>
+                </div>                
             </form>
         </section>
     </main>

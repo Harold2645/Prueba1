@@ -1,4 +1,10 @@
 import base64
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
 from conexion import *
 import hashlib
 from datetime import datetime
@@ -159,7 +165,10 @@ def agregarHerramientasIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+            ahora = datetime.now()
+            referencia = "H"+ahora.strftime("%Y%m%d%H%M%S")
+
+            foto_nombre = f"{referencia}.png"  # Puedes cambiar la extensión si es necesario
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -216,17 +225,14 @@ def perfilIonic(id):
 def solicitarIonic():
     try:
         data = request.get_json()
-        print(data)
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime("%Y%m%d%H%M%S")
         cursor.execute(f"INSERT INTO servicios (idobjeto, labor, documento, ficha, fechasalida, cantidad, tipo, estado,fechasoli) VALUES (%s, %s, %s, %s,%s, %s, %s,'S','{fecha}')", (data['idobjeto'],data['labor'],data['documento'],data['ficha'],data['fechasalida'],data['cantidad'],data['tipo']))
         connection.commit()
-        print("Funciono")
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})  
 
     
@@ -239,11 +245,9 @@ def registrarIonic():
         fecha = datetime.now().strftime('%Y-%m-%d')
         cursor.execute(f"INSERT INTO usuarios (documento,nombre,apellido,celular,contrasena,rol,ficha,fecha,activo) VALUES (%s, %s, %s, %s, %s, %s, %s, '{fecha}','2')", (data['documento'], data['nombre'], data['apellido'], data['celular'], data['contrasena'], data['rol'], data['ficha']))
         connection.commit()
-        print("funciono")
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})
     
 @app.route('/categoriasTractorIonic', methods=['GET'])
@@ -291,7 +295,6 @@ def agregarTractorIonic():
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})
     
     
@@ -329,7 +332,6 @@ def editarHerramientaIonicConsulta(id):
         cursor.execute(f"SELECT * FROM herramientas WHERE idobjeto = '{id}'")
         column_names = [column[0] for column in cursor.description]
         datos = cursor.fetchall()
-        print(datos)
         cursor.close()
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
@@ -351,31 +353,7 @@ def datosgrafLiquidosIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
-
-
-# @app.route('/datosgrafTractoresIonic', methods=['GET'])
-# def datosgrafTractoresIonic():
-#     try:
-#         connection = conexion
-#         cursor = connection.cursor()
-#         cursor.execute(f" SELECT tractores.marca,DATE(servicios.fechasalida) AS fecha,COUNT(servicios.idobjeto) AS cantidad FROM servicios INNER JOIN tractores ON tractores.idobjeto = servicios.idobjeto WHERE servicios.tipo = 'Tractor' AND tractores.activo = '1'  AND servicios.fechasalida >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) GROUP BY tractores.marca, fecha ORDER BY fecha, tractores.marca;")
-#         column_names = [column[0] for column in cursor.description]
-#         datos = cursor.fetchall()
-#         cursor.close()
-#         result = {}
-#         for row in datos:
-#             marca = row[0]
-#             fecha = row[1]
-#             cantidad = row[2]
-#             if marca not in result:
-#                 result[marca] = {}
-#             result[marca][fecha] = cantidad
-#         return jsonify([dict(zip(column_names, dato)) for dato in datos])
-        
-#     except Exception as e:
-#         return jsonify({"error": str(e)})
     
-
 
 @app.route('/datosgrafTractoresIonic', methods=['GET'])
 def datosgrafTractoresIonic():
@@ -409,23 +387,133 @@ def datosgrafTractoresIonic():
 
 
 
+
+
+
+@app.route('/envioConsuPezIonic', methods=['POST'])
+def envioConsuPezIonic():
+    correoSub = request.json['correo']
+    print(f"Correo recibido: {correoSub}")
+
+    remitente = "senahangar2024@outlook.com"
+    destinatario = correoSub
+    
+    mensaje = """
+            <html>
+                    <body>
+                        <p>Cordial saludo Estimado,</p>
+                        <p>Nos dirigimos a usted desde el Centro Agropecuario de Buga SENA CAB, específicamente del equipo encargado del hangar, para informarle que los niveles de combustible diésel disponibles para los tractores están alcanzando sus límites mínimos.</p>
+                        <p>Es fundamental para nosotros mantener los tractores operativos para asegurar el correcto funcionamiento de nuestras actividades diarias y cumplir con nuestros objetivos. Por ello, solicitamos de manera urgente el reabastecimiento de combustible diésel.</p>
+                        <p>Adjunto encontrará un gráfico que ilustra los niveles actuales de combustible en nuestra bodega.</p>
+                        <p>Agradecemos de antemano su pronta atención a esta solicitud y quedamos a la espera de su respuesta.</p>
+                        <div style="display: flex; align-items: center">
+                            <p><img src="cid:logo_sena" alt="Logo SENA" style=" width: 180px;"></p>
+                            <div>
+                                <p>Atentamente,</p>
+                                <p>Equipo de Gestión del Hangar</p>
+                                <p>Centro Agropecuario de Buga SENA CAB</p>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            """
+
+    email = MIMEMultipart()
+    email["From"] = remitente
+    email["To"] = destinatario
+    email["Subject"] = "!!Solicitud Urgente de Reabastecimiento de Combustible Diésel!!"
+
+    email.attach(MIMEText(mensaje, "html"))
+
+    ruta_logo = os.path.join(app.root_path, 'static', 'img', 'logoSena.png')
+
+    with open(ruta_logo, 'rb') as archivo_imagen:
+        imagen = MIMEImage(archivo_imagen.read())
+        imagen.add_header('Content-ID', '<logo_sena>')
+        email.attach(imagen)
+
+
+
+    filename = "graficoIonic.pdf"
+    with open(filename, "rb") as archivo_grafico:
+        adjunto_grafico = MIMEBase("application", "octet-stream")
+        adjunto_grafico.set_payload(archivo_grafico.read())
+        encoders.encode_base64(adjunto_grafico)
+        adjunto_grafico.add_header("Content-Disposition", f"attachment; filename={filename}")
+        email.attach(adjunto_grafico)
+
+
+    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+    smtp.starttls()
+    smtp.login(remitente, "senahangar24")
+    smtp.sendmail(remitente, destinatario, email.as_string())
+    smtp.quit()
+
+
+    return jsonify({"message": "Correo enviado exitosamente"}), 200  # Respuesta exitosa
+
+
+
+
+
+@app.route('/save-pdf', methods=['POST'])
+def save_pdf():
+    if 'file' not in request.files:
+        return jsonify({"message": "No file part"}), 400
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"message": "No selected file"}), 400
+
+    save_path = os.path.join(app.root_path, file.filename)  # Cambia 'static/pdfs' por tu ruta deseada
+
+    # Asegúrate de que la carpeta exista
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+    file.save(save_path)  # Guarda el archivo en el servidor
+    return jsonify({"message": "Archivo guardado exitosamente"}), 200
+
+
+
+
+
+
+
+
+@app.route('/check-file', methods=['GET'])
+def check_file():
+    filename = "graficoIonic.pdf"
+    if os.path.isfile(filename):
+        return jsonify({"exists": True}), 200
+    else:
+        return jsonify({"exists": False}), 404
+
+
+
+
+
+
+
+
+
+
 # // cosas de edinson urbano no tocar por favor
 # // cosas de edinson urbano no tocar por favor
     
     
     #FRANCO
-    
-    
 @app.route('/consultaConsumibleIonic', methods=['GET'])
 def consultaConsumibleIonic():
     try:
         connection = conexion
         cursor = connection.cursor()
-        query = (f"SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';")
+        query = "SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, categorias.tipo, categorias.descripcion, categorias.nombre as nombreC FROM consumibles INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria WHERE consumibles.tipo = 'Insumo' AND consumibles.activo = '1';"
         cursor.execute(query)
         column_names = [column[0] for column in cursor.description]
         datos = cursor.fetchall()
         cursor.close()
+
         resultado = []
         for dato in datos:
             registro = dict(zip(column_names, dato))
@@ -453,7 +541,11 @@ def agregarInsumoIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+
+            ahora = datetime.now()
+            referencia = "I"+ahora.strftime("%Y%m%d%H%M%S")
+
+            foto_nombre = f"{referencia}.png"  # Puedes cambiar la extensión si es necesario
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -463,21 +555,27 @@ def agregarInsumoIonic():
             with open(foto_path, "wb") as fh:
                 fh.write(base64.b64decode(foto_data.split(',')[1]))
 
-        # Simulación de inserción en la base de datos
+        # Conexión a la base de datos
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime('%Y-%m-%d')
+
+        cantidad = data.get('cantidad', '0')
+
+        
+        tipo = 'Insumo'  
+
         cursor.execute(
-            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+            "INSERT INTO consumibles (idcategoria, nombre, cantidad, foto, tipo, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idcategoria'], data['nombre'], cantidad, foto_nombre, tipo, '1', fecha, data['creador'])
         )
+
         connection.commit()
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)})
-    
     
 @app.route('/eliminarInsumoIonic', methods=['POST'])
 def eliminarInsumoIonic():
@@ -500,7 +598,7 @@ def consultaLiquido1Ionic():
         cursor = connection.cursor()
         query = """
         SELECT consumibles.idobjeto, consumibles.nombre, consumibles.cantidad, consumibles.foto, 
-               categorias.tipo, categorias.descripcion, categorias.nombre as nombreC 
+            categorias.tipo, categorias.descripcion, categorias.nombre as nombreC 
         FROM consumibles 
         INNER JOIN categorias ON categorias.idcategoria = consumibles.idcategoria 
         WHERE consumibles.tipo = 'Líquido' AND consumibles.activo = '1';
@@ -535,7 +633,11 @@ def agregarLiquidoIonic():
         # Decodificar la imagen de Base64 y guardarla
         if data.get('foto'):
             foto_data = data['foto']
-            foto_nombre = f"{data['idobjeto']}.png"  # Puedes cambiar la extensión si es necesario
+
+            ahora = datetime.now()
+            referencia = "L"+ahora.strftime("%Y%m%d%H%M%S")
+
+            foto_nombre = f"{referencia}.png"
             foto_path = os.path.join('uploads', foto_nombre)
 
             # Asegúrate de que la carpeta de destino exista
@@ -545,15 +647,19 @@ def agregarLiquidoIonic():
             with open(foto_path, "wb") as fh:
                 fh.write(base64.b64decode(foto_data.split(',')[1]))
 
-        # Inserción en la base de datos para líquidos
+        # Conexión a la base de datos
         connection = conexion
         cursor = connection.cursor()
         fecha = datetime.now().strftime('%Y-%m-%d')
+
+        cantidad = data.get('cantidad', '0') 
+
         
-        # Cambia los valores según corresponda para la tabla de líquidos
+        tipo = 'Líquido'  
+
         cursor.execute(
-            "INSERT INTO consumibles (idobjeto, idcategoria, nombre, cantidad, foto, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (data['idobjeto'], data['idcategoria'], data['nombre'], '1', foto_nombre, '1', fecha, data['creador'])
+            "INSERT INTO consumibles (idcategoria, nombre, cantidad, foto, tipo, activo, fecha, creador) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+            (data['idcategoria'], data['nombre'], cantidad, foto_nombre, tipo, '1', fecha, data['creador'])
         )
         connection.commit()
         cursor.close()
@@ -562,6 +668,7 @@ def agregarLiquidoIonic():
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)})
+
 
 
 @app.route('/eliminarLiquidoIonic', methods=['POST'])
@@ -576,6 +683,34 @@ def eliminarLiquidoIonic():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+@app.route('/categoriasInsumoIonic', methods=['GET'])
+def categoriasInsumoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM categorias WHERE tipo='Insumo' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+@app.route('/categoriasLiquidoIonic', methods=['GET'])
+def categoriasLiquidoIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM categorias WHERE tipo='Liquido' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
     
     
 @app.route('/consultaTodoPrestamosIonic', methods=['GET'])

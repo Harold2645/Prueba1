@@ -140,7 +140,7 @@
                     <h4>{{msg}}</h4>
 
                     <label for="idobjeto">Codigo SENA:</label>
-                    <input type="text" name="idobjeto" id="idobjeto" placeholder="Codigo SENA" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" autofocus required>
+                    <input type="text" name="idobjeto" id="idobjeto" placeholder="91241037990" pattern="[A-Za-z0-9\s*]{10,15}" maxlength="15" minlength="10" required title="Debe poner el codigo sena del tractor" tabindex="1" autofocus required>
 
                     <label for="marca">Marca</label>
                     <input type="text" name="marca" id="marca" placeholder="John Deere / Massey Ferguson" pattern="[A-Za-z\s*]{5,15}" maxlength="15" minlength="5" required title="Debe poner la marca del tractor" tabindex="2"  required>
@@ -149,7 +149,7 @@
                     <input type="text" name="modelo" id="modelo"  placeholder="Ej: 26480 / 16794" pattern="[A-Za-z0-9\s*]{4,15}" maxlength="15" minlength="4" required title="Debe poner el modelo del tractor" tabindex="3" required>
 
                         <label for="fechamodelo">Año:</label>
-                        <input type="text" name="fechamodelo" id="fechamodelo" placeholder="2001 / 2003" pattern="[0-9*]{4}" maxlength="4" minlength="4" required title="Debe poner el año en el que salio el tractor" tabindex="4" required>
+                        <input type="text" name="fechamodelo" id="fechamodelo" placeholder="2001 / 2003" pattern="[0-9*]{4}" maxlength="4" minlength="4"  title="Debe poner el año en el que salio el tractor" tabindex="4" >
 
 
                         {% if categorias == [] %}

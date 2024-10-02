@@ -73,9 +73,6 @@ header#header{
     animation: slide-in 0.4s ease-in;
     padding: 10px;
 }
-#contenidotitulo{
-    
-}
 #contenedortitulo h2{
     margin: 0;
 }
@@ -107,7 +104,7 @@ header#header{
     top: 0px;
     height: 100vh;
     overflow-x: auto;
-    width: 70%;
+    width: 80%;
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
     background-color: #00324D;
     display: none;
@@ -164,9 +161,7 @@ header li{
     flex-direction: column;
     align-items: center;
 }
-.menu{
-    
-}
+
 header a{
     text-decoration: none;
     color: white;
@@ -188,7 +183,7 @@ figure#header_logo{
 
 @media only screen and (min-width: 768px){
     #menu_cont{
-        width: 30%;
+        width: 40%;
     }
 }
 

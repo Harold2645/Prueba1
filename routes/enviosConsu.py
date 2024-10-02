@@ -27,7 +27,7 @@ def envioConsuPez():
 
             guardagrafico()
 
-            remitente = "hangarsena25@outlook.com"
+            remitente = "senahangar2024@outlook.com"
             destinatario = correoSub
 
             mensaje = """
@@ -80,7 +80,7 @@ def envioConsuPez():
             # Configurar con servidor 
             smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
             smtp.starttls()
-            smtp.login(remitente, "correosena03")
+            smtp.login(remitente, "senahangar24")
             smtp.sendmail(remitente, destinatario, email.as_string())
             smtp.quit()
 

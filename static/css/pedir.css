@@ -28,19 +28,22 @@ body {
     font-family: 'work', 'calibri';
 }
 
-form#Pedir #form_title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form#Pedir #form_title h1 {
-    font-size: 2em;
-    color: #333;
-}
-
 #cuerpo {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    height: 85vh;
+}
+
+div#form_title{
+    background-color: #39A900;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+div#cont_bajo{
     padding: 20px;
 }
 
@@ -48,7 +51,6 @@ form#Pedir {
     background-color: #ffffff;
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     width: 80%;
     max-width: 350px;
     box-sizing: border-box;
@@ -99,7 +101,8 @@ form#Pedir button[type="submit"] {
 }
 
 form#Pedir button[type="submit"]:hover {
-    background-color: #00324D; 
+    background-color: rgb(243, 243, 243); 
+    color: #39A900;
 }
 
 @media (max-width: 1300px) {
