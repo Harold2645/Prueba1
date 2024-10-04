@@ -11,8 +11,8 @@ from datetime import datetime
 from flask import jsonify, request
 
 
-@app.route('/loginIonic', methods=['POST'])
-def loginIonic():
+@app.route('/loginIonicA', methods=['POST'])
+def loginIonicA():
     try:
         data = request.get_json()
         connection = conexion
@@ -24,7 +24,34 @@ def loginIonic():
         cursor.close()
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
-        print(e)
+        return jsonify({"error": str(e)})
+    
+@app.route('/loginIonicB', methods=['POST'])
+def loginIonicB():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT documento, nombre, apellido, rol FROM usuarios WHERE documento='{data['documento']}' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/consultarolIonic', methods=['POST'])
+def consultarolIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT rol FROM usuarios WHERE documento='{data['documento']}'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
         return jsonify({"error": str(e)})
     
 @app.route('/consultaUsuarioIonic', methods=['GET'])
@@ -106,6 +133,34 @@ def consultaLiquidoIonic():
                 registro['foto'] = None  # Manejar el caso en que la imagen no exista
             resultado.append(registro)
 
+        return jsonify(resultado)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+
+@app.route('/consultaNovedadIonic', methods=['GET'])
+def consultaNovedadIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        query = "SELECT * FROM (SELECT t.marca AS nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM tractores AS t INNER JOIN novedades AS n ON t.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento UNION ALL SELECT h.nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM herramientas AS h INNER JOIN novedades AS n ON h.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento UNION ALL SELECT c.nombre, n.idobjeto, n.documento, n.fecha, n.descripcion, n.foto, n.tipo AS tipo, n.idnovedad, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM consumibles AS c INNER JOIN novedades AS n ON c.idobjeto = n.idobjeto INNER JOIN usuarios AS u ON n.documento = u.documento) AS combined_results ORDER BY fecha DESC;"
+        cursor.execute(query)
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+
+        resultado = []
+        for dato in datos:
+            registro = dict(zip(column_names, dato))
+            # Convertir la imagen a Base64 si existe
+            ruta_imagen = os.path.join("uploads", registro['foto'])
+            if os.path.exists(ruta_imagen):
+                with open(ruta_imagen, "rb") as image_file:
+                    registro['foto'] = base64.b64encode(image_file.read()).decode('utf-8')
+            else:
+                registro['foto'] = None  # Manejar el caso en que la imagen no exista
+            resultado.append(registro)
         return jsonify(resultado)
     
     except Exception as e:
@@ -574,7 +629,6 @@ def agregarInsumoIonic():
         cursor.close()
         return jsonify({"msg": 'ok'})
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})
     
 @app.route('/eliminarInsumoIonic', methods=['POST'])
@@ -666,7 +720,6 @@ def agregarLiquidoIonic():
         
         return jsonify({"msg": 'ok'})
     except Exception as e:
-        print(e)
         return jsonify({"error": str(e)})
 
 
