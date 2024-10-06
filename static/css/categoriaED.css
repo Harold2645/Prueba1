@@ -106,7 +106,6 @@ section#agregar a:hover {
     background-color: #d00000;
 }
 
-/* Adaptabilidad para dispositivos móviles */
 @media (max-width: 600px) {
     section#agregar {
         padding: 15px;

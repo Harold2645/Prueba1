@@ -81,6 +81,7 @@ tbody td a:hover {
     tbody tr {
         display: block;
         margin-bottom: 15px;
+        background-color: #e2e2e2;
     }
     tbody th, tbody td {
         display: block;
@@ -88,6 +89,7 @@ tbody td a:hover {
         padding-left: 50%;
         position: relative;
         border-bottom: 1px solid #ddd;
+        background-color: #e2e2e2;
     }
     tbody th::before, tbody td::before {
         content: attr(data-label);
