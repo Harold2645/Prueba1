@@ -409,7 +409,6 @@ def datosgrafLiquidosIonic():
     except Exception as e:
         return jsonify({"error": str(e)})
     
-
 @app.route('/datosgrafTractoresIonic', methods=['GET'])
 def datosgrafTractoresIonic():
     try:
@@ -437,13 +436,6 @@ def datosgrafTractoresIonic():
         return jsonify([dict(zip(column_names, dato)) for dato in datos])
     except Exception as e:
         return jsonify({"error": str(e)})
-
-
-
-
-
-
-
 
 @app.route('/envioConsuPezIonic', methods=['POST'])
 def envioConsuPezIonic():
@@ -507,10 +499,6 @@ def envioConsuPezIonic():
 
     return jsonify({"message": "Correo enviado exitosamente"}), 200  # Respuesta exitosa
 
-
-
-
-
 @app.route('/save-pdf', methods=['POST'])
 def save_pdf():
     if 'file' not in request.files:
@@ -529,13 +517,6 @@ def save_pdf():
     file.save(save_path)  # Guarda el archivo en el servidor
     return jsonify({"message": "Archivo guardado exitosamente"}), 200
 
-
-
-
-
-
-
-
 @app.route('/check-file', methods=['GET'])
 def check_file():
     filename = "graficoIonic.pdf"
@@ -544,9 +525,51 @@ def check_file():
     else:
         return jsonify({"exists": False}), 404
 
+@app.route('/consultaCategoriasIonic', methods=['GET'])
+def consultaCategoriasIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT c.idcategoria, c.nombre, c.tipo, c.descripcion, c.fecha, c.creador, c.activo, u.nombre AS usuario_nombre, u.apellido AS usuario_apellido FROM categorias AS c INNER JOIN usuarios AS u ON c.creador = u.documento;")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+@app.route('/eliminarCategoriaIonic', methods=['POST'])
+def eliminarCategoriaIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("UPDATE categorias SET activo = CASE WHEN activo = 1 THEN 0 ELSE 1 END WHERE idCategoria = %s", ([data['idcategoria']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 
 
+@app.route('/agregaCategoriaIonic', methods=['POST'])
+def agregaCategoriaIonic():
+    try:
+        data = request.get_json()
+
+        print(f"Nombre: {data['nombre']}, Tipo: {data['categoria']}, Descripción: {data['descripcion']}, Creador: {data['creador']}")
+
+        connection = conexion
+        cursor = connection.cursor()
+        fecha = datetime.now().strftime('%Y-%m-%d')
+        cursor.execute(f"INSERT INTO categorias (nombre, tipo, descripcion, fecha, creador, activo) VALUES (%s, %s, %s, '{fecha}', %s,'1')", (data['nombre'], data['categoria'], data['descripcion'], data['creador']))
+        connection.commit()
+        cursor.close()
+        return jsonify({"msg": 'ok'})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
 
 
 
