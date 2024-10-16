@@ -31,10 +31,9 @@ body {
 
 #agregar {
     display: flex;
+    padding: 0 50px;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 0; 
-    padding: 0px 50px;
     height: 85vh;
 }
 
@@ -43,7 +42,7 @@ form {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 350px;
+    width: clamp(300px, 85%, 350px);
     box-sizing: border-box;
 }
 
@@ -125,26 +124,9 @@ section#agregar a.cancel-button:hover {
 }
 
 /* Media Query para dispositivos móviles */
-@media (max-width: 600px) {
-    section#agregar {
-        padding: 15px;
-        width: 90%; 
-        right: auto; 
-        left: 50%;
-        transform: translateX(-50%);
-        top: 100px; 
-    }
-
-    section#agregar h2 {
-        font-size: 1.5em;
+@media only screen and (max-width: 600px) {
+    #agregar {
+        justify-content: center;
+        padding: 0;
     }
 }
-
-
-@media (min-width: 600px) {
-    section#agregar {
-        top: 120px; 
-        right: 80px; 
-    }
-}
-
