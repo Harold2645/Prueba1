@@ -33,8 +33,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0; 
-    padding: 0px 50px;
+    margin-top: 0;
     height: 85vh;
 }
 
@@ -43,7 +42,7 @@ form {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 350px;
+    width: clamp(300px, 85%, 350px);
     box-sizing: border-box;
 }
 
@@ -106,15 +105,9 @@ form#agregar_herramienta button:hover {
     color: #36A900;
 }
 
-/* Media Queries para Responsividad */
-@media (max-width: 1300px) {
-    form#agregar_herramienta {
-        width: 80%; 
-    }
-}
-
 @media (min-width: 768px) {
     #agregar{
         justify-content: flex-end;
+        padding: 0 50px;
     }
 }

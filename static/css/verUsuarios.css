@@ -147,6 +147,8 @@ th, td {
     }
     tbody td:last-child {
         border-bottom: 0;
+        display: flex;
+        justify-content: flex-end;
     }
     .acciones{
         color: black;

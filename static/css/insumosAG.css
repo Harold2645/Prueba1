@@ -34,7 +34,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin-top: 0; 
-    padding: 20px; 
+    padding: 0 50px;
     height: 85vh;
 }
 
@@ -43,7 +43,7 @@ form {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 350px;
+    width: clamp(300px, 85%, 350px);
     box-sizing: border-box;
 }
 
@@ -105,14 +105,10 @@ button[type="submit"]:hover {
     color: #36A900; 
 }
 
-/* Adaptabilidad para dispositivos móviles */
 @media (max-width: 600px) {
     #agregar {
         justify-content: center; 
-    }
-
-    form {
-        width: 90%;
+        padding: 0;
     }
 
     form h2 {
