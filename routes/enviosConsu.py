@@ -12,11 +12,8 @@ from routes.graficos import *
 from conexion import *
 import os
 
-
 @app.route('/envioConsuPez', methods=['POST'])
 def envioConsuPez(): 
-
-
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
@@ -27,8 +24,9 @@ def envioConsuPez():
 
             guardagrafico()
 
-            remitente = "senahangar2024@outlook.com"
+            remitente = "hangarsencacab@gmail.com"
             destinatario = correoSub
+            password = "wvyi ztyc vc fj rspx"  # Usa la contraseña de aplicación de Gmail
 
             mensaje = """
             <html>
@@ -58,7 +56,7 @@ def envioConsuPez():
             # Adjuntar el cuerpo del correo
             email.attach(MIMEText(mensaje, "html"))
 
-            # Ruta de la imagen del logo del SNA
+            # Ruta de la imagen del logo del SENA
             ruta_logo = os.path.join(app.root_path, 'static', 'img', 'logoSena.png')
 
             # Adjuntar la imagen como parte del cuerpo del correo
@@ -77,24 +75,16 @@ def envioConsuPez():
                 adjunto_grafico.add_header("Content-Disposition", f"attachment; filename={filename}")
                 email.attach(adjunto_grafico)
 
-            # Configurar con servidor 
-            smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
-            smtp.starttls()
-            smtp.login(remitente, "senahangar24")
-            smtp.sendmail(remitente, destinatario, email.as_string())
-            smtp.quit()
-
-    #         return redirect('/graficos')
-    #     else:
-    #         return render_template("index.html", msg="Rol no reconocido")
-    # else:
-    #     return redirect('/')
-            
-            return jsonify({"status": "success", "message": "Correo enviado correctamente"})
-        else:
-            return jsonify({"status": "error", "message": "Rol no reconocido"})
+            # Configurar con servidor Gmail
+            try:
+                smtp = smtplib.SMTP("smtp.gmail.com", 587)
+                smtp.starttls()
+                smtp.login(remitente, password)
+                smtp.sendmail(remitente, destinatario, email.as_string())
+                smtp.quit()
+                return jsonify({"status": "success", "message": "Correo enviado correctamente"})
+            except Exception as e:
+                print(f"Error al enviar correo: {e}")
+                return jsonify({"status": "error", "message": "Error al enviar correo"}), 500  # Respuesta de error
     else:
         return jsonify({"status": "error", "message": "No autorizado"})
-
-
-    

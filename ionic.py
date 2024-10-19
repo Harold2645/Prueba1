@@ -9,6 +9,7 @@ from conexion import *
 import hashlib
 from datetime import datetime
 from flask import jsonify, request
+import os
 
 
 @app.route('/loginIonicA', methods=['POST'])
@@ -437,14 +438,16 @@ def datosgrafTractoresIonic():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
 @app.route('/envioConsuPezIonic', methods=['POST'])
 def envioConsuPezIonic():
     correoSub = request.json['correo']
     print(f"Correo recibido: {correoSub}")
 
-    remitente = "senahangar2024@outlook.com"
+    remitente = "hangarsencacab@gmail.com"
     destinatario = correoSub
-    
+    password = "wvyi ztyc vc fj rspx"  #wvyi ztyc vc fj rspx
+
     mensaje = """
             <html>
                     <body>
@@ -479,8 +482,6 @@ def envioConsuPezIonic():
         imagen.add_header('Content-ID', '<logo_sena>')
         email.attach(imagen)
 
-
-
     filename = "graficoIonic.pdf"
     with open(filename, "rb") as archivo_grafico:
         adjunto_grafico = MIMEBase("application", "octet-stream")
@@ -489,15 +490,18 @@ def envioConsuPezIonic():
         adjunto_grafico.add_header("Content-Disposition", f"attachment; filename={filename}")
         email.attach(adjunto_grafico)
 
+    try:
+        smtp = smtplib.SMTP("smtp.gmail.com", 587)
+        smtp.starttls()
+        smtp.login(remitente, password)
+        smtp.sendmail(remitente, destinatario, email.as_string())
+        smtp.quit()
+        return jsonify({"message": "Correo enviado exitosamente"}), 200  # Respuesta exitosa
+    except Exception as e:
+        print(f"Error al enviar correo: {e}")
+        return jsonify({"message": "Error al enviar correo"}), 500  # Respuesta de erroooooooor
 
-    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
-    smtp.starttls()
-    smtp.login(remitente, "senahangar24")
-    smtp.sendmail(remitente, destinatario, email.as_string())
-    smtp.quit()
 
-
-    return jsonify({"message": "Correo enviado exitosamente"}), 200  # Respuesta exitosa
 
 @app.route('/save-pdf', methods=['POST'])
 def save_pdf():

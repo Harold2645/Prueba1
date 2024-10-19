@@ -7,7 +7,9 @@
         <link rel="shortcut icon" href="../../../static/img/logoSena.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css"/>
         <link rel="stylesheet" href="../../../static/css/header.css">
+
         <script src="../../../static/js/menu.js"></script>
+        <script src="../../../static/js/alertinicio.js"></script>
          <title>Entrega</title> 
     </head>
 <body>
@@ -131,6 +133,7 @@
 
     <div id="cuerpo">
 
+       
         <form action="/pedido" method="post" enctype="multipart/form-data">
             
             <h2 id="titular">Entrega</h2>
@@ -151,6 +154,20 @@
                     <input type="hidden" name="cantidadi" value="{{cantidad[1]}}">
                 {% endif %}
         
+
+                <input type="hidden" id="nivel_acpm" value="{{nivel_acpm}}">
+
+                <div id="alerta_acpm_modal" class="modal">
+                    <div class="modal-content">
+                        <div>
+                            <span class="close">&times;</span>
+                            <p>{{ session['alerta_acpm'] }}</p>
+                        </div>
+                        
+                        <a href="/grafConsu" class="btn-solicitar">Solicitar</a>
+                    </div>
+                </div>
+
                 <button type="submit">Entregar</button>
             </div>
     
