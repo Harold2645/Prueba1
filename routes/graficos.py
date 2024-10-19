@@ -26,7 +26,6 @@ def graficos():
         return redirect('/')
 
 
-
 @app.route('/guardagrafico')
 def guardagrafico():
 
@@ -91,8 +90,6 @@ def guardagrafico():
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-
-
 
 
 @app.route('/grafConsu')
@@ -163,12 +160,6 @@ def grafConsu():
             return redirect('/panel')
     else:
         return redirect('/')
-
-
-
-
-
-
 
 
 @app.route('/grafTrac')

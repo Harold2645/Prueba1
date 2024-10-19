@@ -791,8 +791,24 @@ def categoriasLiquidoIonic():
     except Exception as e:
         return jsonify({"error": str(e)})
     
+
+@app.route('/categoriasherraIonic', methods=['GET'])
+def categoriasherraIonic():
+    try:
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM categorias WHERE tipo='Herramieta' AND activo='1'")
+        column_names = [column[0] for column in cursor.description]
+        datos = cursor.fetchall()
+        cursor.close()
+        return jsonify([dict(zip(column_names, dato)) for dato in datos])
+    except Exception as e:
+        return jsonify({"error": str(e)})
     
     
+
+
+
 @app.route('/consultaTodoPrestamosIonic', methods=['GET'])
 def consultaTodoPrestamosIonic():
     try:
@@ -928,3 +944,6 @@ def rechazarPrestamo():
     except Exception as e:
         return jsonify({"error": str(e)})
     
+
+
+

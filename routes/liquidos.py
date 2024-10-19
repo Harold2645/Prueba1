@@ -149,7 +149,7 @@ def actualizarLiquidos():
 
             creador = session['documento'] 
             movimiento = "EditoLiquido"
-            misMovimientos.agregar([creador, movimiento, nombre])
+            misMovimientos.agregar([creador, movimiento, idobjeto])
             return redirect("/consultarLiquidos")
         else:
             return render_template("index.html", msg="Rol no reconocido")

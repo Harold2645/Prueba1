@@ -164,7 +164,7 @@ def actualizarConsumibles():
 
             creador = session['documento'] 
             movimiento = "EditoInsumo"
-            misMovimientos.agregar([creador, movimiento, nombre])
+            misMovimientos.agregar([creador, movimiento, idobjeto])
             return redirect("/consultarConsumibles")
         else:
             return render_template("index.html", msg="Rol no reconocido")
