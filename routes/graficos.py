@@ -7,6 +7,8 @@ import numpy as np
 import base64
 from conexion import *
 from models.graficos import misGraficos
+import matplotlib.dates as mdates
+
 
 @app.route('/graficos')
 def graficos():
@@ -162,38 +164,63 @@ def grafConsu():
     else:
         return redirect('/')
 
+
+
+
+
+
+
+
 @app.route('/grafTrac')
 def grafTrac():
-
     if session.get("loginCorrecto"):
         rol = session['rol'] 
         nombre = session['nombreUsuario']
         if rol == 'Aprendiz' or rol == 'Instructor' or rol == 'Trabajador':
             return redirect('/panel')
         elif rol == 'Admin' or rol == 'Practicante':
-            
             data = misGraficos.datosTractores()
 
             fig, ax = plt.subplots(figsize=(8, 6))
 
             tractores_vistor = set()
+            all_dates = set()  # Para almacenar todas las fechas
+            tractor_data = {}  # Para acumular datos por tractor
 
             for dato in data:
-                x = dato[1] #fecha
-                y = dato[0] #cantidad
-                nombreT = dato[2] #nombre
-                
-                if nombreT not in tractores_vistor:
+                x = dato[1]  # fecha
+                y = dato[0]  # cantidad
+                nombreT = dato[2]  # nombre
 
-                    x_trac = [dato[1] for dato in data if dato[2] == nombreT]
-                    y_trac = [dato[0] for dato in data if dato[2] == nombreT]  
-                    
-                    lineas = ax.plot(x_trac, y_trac, label=nombreT)
-                    tractores_vistor.add(nombreT)
+                # Acumular fechas
+                all_dates.add(x)
 
+                # Agrupar datos por tractor
+                if nombreT not in tractor_data:
+                    tractor_data[nombreT] = {}
+                if x not in tractor_data[nombreT]:
+                    tractor_data[nombreT][x] = 0
+                tractor_data[nombreT][x] += y
+
+            # Generar las líneas del gráfico
+            for nombreT, fechas in tractor_data.items():
+                x_trac = []
+                y_trac = []
+                for fecha in sorted(all_dates):
+                    x_trac.append(fecha)
+                    y_trac.append(fechas.get(fecha, 0))  # Mantener en 0 si no hay solicitudes
+
+                lineas = ax.plot(x_trac, y_trac, label=nombreT)
+                tractores_vistor.add(nombreT)
+
+            # Formatear el eje X para mostrar solo la fecha
+            ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+            ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))  # Mostrar una fecha cada dos días
+            ax.tick_params(axis='x', labelsize=8)  # Ajustar tamaño de las etiquetas del eje X
+
+            plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, ha='right')  # Rotar etiquetas
 
             ax.set_xlabel('Fechas')
-            ax.set_xticklabels(x_trac,rotation=10, ha='left')
             ax.set_ylabel('Cantidad de Peticiones')
             ax.set_title('Solicitudes de Tractores')
             ax.legend()
@@ -206,11 +233,8 @@ def grafTrac():
 
             plt.close(fig)
 
-            return render_template('lideres/graficos/graficos.html', img_base64=img_base64,nombreusu=nombre  , rolusu=rol )
+            return render_template('lideres/graficos/graficos.html', img_base64=img_base64, nombreusu=nombre, rolusu=rol)
         else:
             return render_template("index.html", msg="Rol no reconocido")
     else:
         return redirect('/')
-
-
-
