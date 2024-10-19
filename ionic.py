@@ -402,7 +402,7 @@ def datosgrafLiquidosIonic():
     try:
         connection = conexion
         cursor = connection.cursor()
-        cursor.execute(f"SELECT nombre, cantidad FROM consumibles WHERE tipo = 'Liquido' GROUP BY nombre ORDER BY nombre ASC;")
+        cursor.execute(f"SELECT nombre, SUM(cantidad) as cantidad_total FROM consumibles WHERE tipo = 'Liquido' GROUP BY nombre ORDER BY nombre ASC;")
         column_names = [column[0] for column in cursor.description]
         datos = cursor.fetchall()
         cursor.close()
