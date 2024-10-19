@@ -878,20 +878,50 @@ def aceptarPrestamoIonic():
         data = request.get_json()
         connection = conexion
         cursor = connection.cursor()
-        cursor.execute(f"UPDATE servicios SET estado='A' WHERE idservicio = %", ([data['idservicio']]))
+        cursor.execute(f"UPDATE servicios SET estado='A' WHERE idservicio = %s", ([data['idservicio']]))
+
+        # cursor.execute(f"UPDATE servicios SET estado = CASE WHEN estado = 'S' THEN 'A' THEN 'S' ELSE 'A' END WHERE idservicio= %s", ([activ['idservicio']]))                       
+
+
         connection.commit()
         cursor.close()
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
     
-@app.route('/rechazarPrestamo', methods=['POST'])
+@app.route('/entregarPrestamoIonic', methods=['POST'])
+def entregarPrestamoIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE servicios SET estado='P' WHERE idservicio = %s", ([data['idservicio']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/devolverPrestamoIonic', methods=['POST'])
+def devolverPrestamoIonic():
+    try:
+        data = request.get_json()
+        connection = conexion
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE servicios SET estado='D' WHERE idservicio = %s", ([data['idservicio']]))
+        connection.commit()
+        cursor.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+@app.route('/rechazarPrestamoIonic', methods=['POST'])
 def rechazarPrestamo():
     try:
         data = request.get_json()
         connection = conexion
         cursor = connection.cursor()
-        cursor.execute(f"UPDATE servicios SET estado='R' WHERE idservicio = %", ([data['idservicio']]))
+        cursor.execute(f"UPDATE servicios SET estado='R' WHERE idservicio = %s", ([data['idservicio']]))
         connection.commit()
         cursor.close()
         return jsonify({"success": True})
